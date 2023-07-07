@@ -1,0 +1,16 @@
+{
+  "resourceName": "s39dff486f",
+  "policyUUID": "9dff486f",
+  "bucketName": "treehouse21e7882026c34cdcb6f40559db56f97b",
+  "storageAccess": "authAndGuest",
+  "guestAccess": [
+    "READ"
+  ],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ],
+  "triggerFunction": "NONE",
+  "groupAccess": {}
+}

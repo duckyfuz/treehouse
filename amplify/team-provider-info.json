@@ -1,0 +1,32 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-treehouse-dev-74704-authRole",
+      "UnauthRoleArn": "arn:aws:iam::650617877251:role/amplify-treehouse-dev-74704-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::650617877251:role/amplify-treehouse-dev-74704-authRole",
+      "Region": "ap-southeast-1",
+      "DeploymentBucketName": "amplify-treehouse-dev-74704-deployment",
+      "UnauthRoleName": "amplify-treehouse-dev-74704-unauthRole",
+      "StackName": "amplify-treehouse-dev-74704",
+      "StackId": "arn:aws:cloudformation:ap-southeast-1:650617877251:stack/amplify-treehouse-dev-74704/eb51db00-19fb-11ee-bfad-0a61e4d87b8a",
+      "AmplifyAppId": "d1ykjigyeh5h3"
+    },
+    "categories": {
+      "api": {
+        "treehouse": {}
+      },
+      "auth": {
+        "treehouse6c7f120a": {}
+      },
+      "storage": {
+        "s39dff486f": {}
+      },
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "d1ykjigyeh5h3",
+          "type": "manual"
+        }
+      }
+    }
+  }
+}

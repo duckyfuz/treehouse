@@ -1,25 +1,87 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import { AuthGuard } from "./AuthGuard";
+import { Home } from "./routes/Home";
+import { Layout } from "./components/Layout";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-function App() {
+import {
+  defaultDarkModeOverride,
+  Flex,
+  ThemeProvider,
+  withAuthenticator,
+} from "@aws-amplify/ui-react";
+
+import "@aws-amplify/ui-react/styles.css";
+
+import "./App.css";
+import { OnBoarding } from "./routes/OnBoarding";
+import { Dashboard } from "./routes/Dashboard";
+import { Settings } from "./routes/Settings";
+
+function MyRoutes({ mode, onModeChange }) {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <BrowserRouter>
+      <Routes>
+        <Route
+          path="/"
+          element={<Layout mode={mode} onModeChange={onModeChange} />}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
+          <Route index element={<Home />} />
+          <Route
+            path="/onboarding"
+            element={
+              <AuthGuard>
+                <OnBoarding />
+              </AuthGuard>
+            }
+          />
+          <Route
+            path="/dashboard"
+            element={
+              <AuthGuard>
+                <Dashboard />
+              </AuthGuard>
+            }
+          />
+          <Route
+            path="/settings"
+            element={
+              <AuthGuard>
+                <Settings />
+              </AuthGuard>
+            }
+          />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
-export default App;
+function App() {
+  const theme = {
+    name: "app-theme",
+    overrides: [defaultDarkModeOverride],
+  };
+
+  const getSavedColorMode = () => {
+    return localStorage.getItem("color-mode") || "system";
+  };
+  const saveColorMode = (value) => {
+    localStorage.setItem("color-mode", value);
+  };
+  const [colorMode, setColorMode] = useState(getSavedColorMode());
+  const onColorModeChange = (value) => {
+    saveColorMode(value);
+    setColorMode(value);
+  };
+
+  return (
+    <ThemeProvider theme={theme} colorMode={colorMode}>
+      <Flex justifyContent={"center"}>
+        <MyRoutes mode={colorMode} onModeChange={onColorModeChange} />
+      </Flex>
+    </ThemeProvider>
+  );
+}
+
+export default withAuthenticator(App);
