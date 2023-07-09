@@ -43,8 +43,8 @@ export const Dashboard = () => {
   });
 
   return (
-    <Flex justifyContent="center" minWidth={"30rem"}>
-      <ScrollView height={(window.innerHeight * 5) / 6} width={"520px"}>
+    <Flex justifyContent="center">
+      <ScrollView height={(window.innerHeight * 5) / 6} width={"500px"}>
         <ActivityCardCollection
           overrideItems={({ item }) => ({
             overrides: {
@@ -58,14 +58,14 @@ export const Dashboard = () => {
               },
               ActivityCard: {
                 onClick: () => {
-                  setActiveActivity(item.hostName);
+                  setActiveActivity(item.id);
                 },
               },
             },
           })}
         />
       </ScrollView>
-      <Modal isOpen={true} param1={activeActivity} param2="Value 2" />
+      <Modal activity={activeActivity} />
     </Flex>
   );
 };

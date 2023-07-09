@@ -36,25 +36,23 @@ export default function ActivityCard(props) {
       {...rest}
     >
       <Flex
-        gap="0"
+        gap="12px"
         direction="row"
         width="unset"
         height="unset"
         justifyContent="center"
         alignItems="center"
-        grow="1"
-        shrink="1"
-        basis="0"
+        shrink="0"
         position="relative"
         padding="0px 0px 0px 0px"
-        {...getOverrideProps(overrides, "Frame 417")}
+        {...getOverrideProps(overrides, "HostDetails")}
       >
         <Flex
-          gap="0"
+          gap="2px"
           direction="column"
-          width="300px"
-          height="68px"
-          justifyContent="flex-start"
+          width="280px"
+          height="80px"
+          justifyContent="center"
           alignItems="flex-start"
           shrink="0"
           position="relative"
@@ -63,7 +61,7 @@ export default function ActivityCard(props) {
         >
           <Text
             fontFamily="Inter"
-            fontSize="16px"
+            fontSize="24px"
             fontWeight="700"
             color="rgba(13,26,38,1)"
             lineHeight="20px"
@@ -79,14 +77,13 @@ export default function ActivityCard(props) {
             alignSelf="stretch"
             position="relative"
             padding="0px 0px 0px 0px"
-            whiteSpace="nowrap"
-            isTruncated={true}
-            children={activityItem?.title}
+            whiteSpace="pre-wrap"
+            children="ACTIVITY TITLE"
             {...getOverrideProps(overrides, "ACTIVITY TITLE")}
           ></Text>
           <Text
             fontFamily="Inter"
-            fontSize="16px"
+            fontSize="18px"
             fontWeight="400"
             color="rgba(48,64,80,1)"
             lineHeight="24px"
@@ -94,7 +91,7 @@ export default function ActivityCard(props) {
             display="block"
             direction="column"
             justifyContent="unset"
-            letterSpacing="0.01px"
+            letterSpacing="0.03px"
             width="unset"
             height="unset"
             gap="unset"
@@ -103,9 +100,8 @@ export default function ActivityCard(props) {
             alignSelf="stretch"
             position="relative"
             padding="0px 0px 0px 0px"
-            whiteSpace="nowrap"
-            isTruncated={true}
-            children={activityItem?.dateTime}
+            whiteSpace="pre-wrap"
+            children="DATE AND TIME"
             {...getOverrideProps(overrides, "DATE AND TIME")}
           ></Text>
           <Text
@@ -119,7 +115,7 @@ export default function ActivityCard(props) {
             direction="column"
             justifyContent="unset"
             letterSpacing="0.01px"
-            width={120}
+            width="unset"
             height="unset"
             gap="unset"
             alignItems="unset"
@@ -127,32 +123,29 @@ export default function ActivityCard(props) {
             alignSelf="stretch"
             position="relative"
             padding="0px 0px 0px 0px"
-            whiteSpace="nowrap"
-            isTruncated={true}
+            whiteSpace="pre-wrap"
             children="LOCATION"
             {...getOverrideProps(overrides, "LOCATION")}
           ></Text>
         </Flex>
         <Flex
-          gap="0"
+          gap="2px"
           direction="column"
-          width="unset"
-          height="unset"
+          width="150px"
+          height="60px"
           justifyContent="center"
           alignItems="center"
-          overflow="hidden"
           shrink="0"
           position="relative"
           padding="0px 0px 0px 0px"
-          backgroundColor="rgba(255,255,255,1)"
-          {...getOverrideProps(overrides, "Frame 437")}
+          {...getOverrideProps(overrides, "Main Text")}
         >
           <Text
             fontFamily="Inter"
-            fontSize="16px"
+            fontSize="18px"
             fontWeight="700"
             color="rgba(13,26,38,1)"
-            lineHeight="25px"
+            lineHeight="20px"
             textAlign="left"
             display="block"
             direction="column"
@@ -166,19 +159,21 @@ export default function ActivityCard(props) {
             position="relative"
             padding="0px 0px 0px 0px"
             whiteSpace="pre-wrap"
+            isTruncated={true}
             children="USERNAME"
             {...getOverrideProps(overrides, "USERNAME")}
           ></Text>
           <Text
             fontFamily="Inter"
-            fontSize="10px"
+            fontSize="12px"
             fontWeight="400"
-            color="rgba(13,26,38,1)"
-            lineHeight="20px"
-            textAlign="center"
+            color="rgba(48,64,80,1)"
+            lineHeight="24px"
+            textAlign="left"
             display="block"
             direction="column"
             justifyContent="unset"
+            letterSpacing="0px"
             width="unset"
             height="unset"
             gap="unset"
@@ -188,6 +183,7 @@ export default function ActivityCard(props) {
             position="relative"
             padding="0px 0px 0px 0px"
             whiteSpace="pre-wrap"
+            isTruncated={true}
             children="5 other participants..."
             {...getOverrideProps(overrides, "5 other participants...")}
           ></Text>

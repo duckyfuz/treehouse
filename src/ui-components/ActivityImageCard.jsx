@@ -50,7 +50,7 @@ export default function ActivityImageCard(props) {
         justifyContent="center"
         alignItems="center"
         position="absolute"
-        top="calc(50% - 50px - -45px)"
+        top="calc(50% - 56px - -45px)"
         left="0%"
         right="0%"
         borderRadius="0px 0px 10px 10px"

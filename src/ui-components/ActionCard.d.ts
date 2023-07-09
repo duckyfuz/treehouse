@@ -6,18 +6,23 @@
 
 import * as React from "react";
 import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
-import { ButtonProps, FlexProps, ImageProps, RatingProps, TextProps } from "@aws-amplify/ui-react";
+import { ButtonProps, FlexProps, TextProps } from "@aws-amplify/ui-react";
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type ActionCardOverridesProps = {
     ActionCard?: PrimitiveOverrideProps<FlexProps>;
-    image?: PrimitiveOverrideProps<ImageProps>;
-    "Card Area"?: PrimitiveOverrideProps<FlexProps>;
-    "Main Text"?: PrimitiveOverrideProps<FlexProps>;
-    "Classic Long Sleeve T-Shirt"?: PrimitiveOverrideProps<TextProps>;
-    "Information about this product"?: PrimitiveOverrideProps<TextProps>;
-    Rating?: PrimitiveOverrideProps<RatingProps>;
-    "$99 USD"?: PrimitiveOverrideProps<TextProps>;
+    "Product Title"?: PrimitiveOverrideProps<FlexProps>;
+    "ACTIVITY TITLE"?: PrimitiveOverrideProps<TextProps>;
+    LOCATION?: PrimitiveOverrideProps<TextProps>;
+    "Card Area29766753"?: PrimitiveOverrideProps<FlexProps>;
+    "Card Area39001901"?: PrimitiveOverrideProps<FlexProps>;
+    "Main Text39001902"?: PrimitiveOverrideProps<FlexProps>;
+    "DATE AND TIME"?: PrimitiveOverrideProps<TextProps>;
     Button?: PrimitiveOverrideProps<ButtonProps>;
+    PARTICIPANTS?: PrimitiveOverrideProps<TextProps>;
+    "PARTICIPANTS LIST"?: PrimitiveOverrideProps<TextProps>;
+    "Main Text29766754"?: PrimitiveOverrideProps<FlexProps>;
+    "DETAILS:"?: PrimitiveOverrideProps<TextProps>;
+    "DETAILS FILL"?: PrimitiveOverrideProps<TextProps>;
 } & EscapeHatchProps;
 export declare type ActionCardProps = React.PropsWithChildren<Partial<FlexProps> & {
     overrides?: ActionCardOverridesProps | undefined | null;
