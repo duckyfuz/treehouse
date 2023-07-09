@@ -1,16 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Flex, ScrollView, View, Text } from "@aws-amplify/ui-react";
+import { DataStore, Storage } from "aws-amplify";
+import { Flex } from "@aws-amplify/ui-react";
 
-import {
-  ActionCard,
-  ActivityCard,
-  ActivityCardCollection,
-  IconName,
-} from "../ui-components";
-import { DataStore } from "aws-amplify";
+import { ActivityCardCollection } from "../ui-components";
 import { UserDetails } from "../models";
 
 export const Dashboard = () => {
+  const [profiles, setProfiles] = useState([]);
   function convertISOToCustomFormat(isoTime) {
     const dateObj = new Date(isoTime);
     const day = dateObj.getDate().toString().padStart(2, "0");
@@ -33,35 +29,38 @@ export const Dashboard = () => {
       .toString()
       .padStart(2, "0")} ${ampm}`;
 
-    return `${formattedDate} ${formattedTime}`;
+    return `${formattedDate} | ${formattedTime}`;
   }
 
-  const getProfile = async ({ host }) => {
-    const userDetails = await DataStore.query(UserDetails, (c) =>
-      c.name.eq(host)
-    );
-    const imageURL = await Storage.get(userDetails[0].profilePicture);
-    return imageURL;
-  };
+  useEffect(() => {
+    const getProfiles = async () => {
+      const profiles = await DataStore.query(UserDetails);
+      setProfiles(profiles);
+    };
+    getProfiles();
+  });
 
   return (
     <Flex justifyContent="center" minWidth={"30rem"}>
-      <ScrollView height={window.innerHeight} width="500px">
-        <ActivityCardCollection
-          overrides={{}}
-          overrideItems={({ item, index }) => ({
-            overrides: {
-              "DATE AND TIME": {
-                children: convertISOToCustomFormat(item.dateTime),
-              },
-              LOCATION: { children: item.residence + " | " + item.location },
-              overrides: {
-                "5 other participants...": { children: "hello" },
+      <ActivityCardCollection
+        overrideItems={({ item }) => ({
+          overrides: {
+            "DATE AND TIME": {
+              children: convertISOToCustomFormat(item.dateTime),
+            },
+            LOCATION: { children: item.residence + " | " + item.location },
+            USERNAME: { children: item.hostName },
+            "5 other participants...": {
+              children: item.participants.length + " other participant(s)...",
+            },
+            ActivityCard: {
+              onClick: () => {
+                console.log("workds");
               },
             },
-          })}
-        />
-      </ScrollView>
+          },
+        })}
+      />
     </Flex>
   );
 };

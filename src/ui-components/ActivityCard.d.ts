@@ -8,7 +8,6 @@ import * as React from "react";
 import { ActivityItem } from "../models";
 import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
 import { FlexProps, TextProps } from "@aws-amplify/ui-react";
-import { IconNameParticipantsProps } from "./IconNameParticipants";
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type ActivityCardOverridesProps = {
     ActivityCard?: PrimitiveOverrideProps<FlexProps>;
@@ -17,11 +16,12 @@ export declare type ActivityCardOverridesProps = {
     "ACTIVITY TITLE"?: PrimitiveOverrideProps<TextProps>;
     "DATE AND TIME"?: PrimitiveOverrideProps<TextProps>;
     LOCATION?: PrimitiveOverrideProps<TextProps>;
-    IconNameParticipants?: IconNameParticipantsProps;
+    "Frame 437"?: PrimitiveOverrideProps<FlexProps>;
+    USERNAME?: PrimitiveOverrideProps<TextProps>;
+    "5 other participants..."?: PrimitiveOverrideProps<TextProps>;
 } & EscapeHatchProps;
 export declare type ActivityCardProps = React.PropsWithChildren<Partial<FlexProps> & {
     activityItem?: ActivityItem;
-    frame437?: React.ReactNode;
 } & {
     overrides?: ActivityCardOverridesProps | undefined | null;
 }>;

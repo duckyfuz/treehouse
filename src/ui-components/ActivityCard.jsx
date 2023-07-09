@@ -6,23 +6,32 @@
 
 /* eslint-disable */
 import * as React from "react";
-import { getOverrideProps } from "@aws-amplify/ui-react/internal";
+import {
+  getOverrideProps,
+  useNavigateAction,
+} from "@aws-amplify/ui-react/internal";
 import { Flex, Text } from "@aws-amplify/ui-react";
-import IconNameParticipants from "./IconNameParticipants";
 export default function ActivityCard(props) {
-  const { activityItem, frame437, overrides, ...rest } = props;
+  const { activityItem, overrides, ...rest } = props;
+  const activityCardOnClick = useNavigateAction({
+    type: "url",
+    url: activityItem?.id,
+  });
   return (
     <Flex
       gap="16px"
-      direction="column"
+      direction="row"
       width="480px"
       height="unset"
-      justifyContent="flex-start"
-      alignItems="flex-start"
+      justifyContent="center"
+      alignItems="center"
       position="relative"
       borderRadius="10px"
       padding="16px 16px 16px 16px"
       backgroundColor="rgba(255,255,255,1)"
+      onClick={() => {
+        activityCardOnClick();
+      }}
       {...getOverrideProps(overrides, "ActivityCard")}
       {...rest}
     >
@@ -31,10 +40,11 @@ export default function ActivityCard(props) {
         direction="row"
         width="unset"
         height="unset"
-        justifyContent="space-between"
+        justifyContent="center"
         alignItems="center"
-        shrink="0"
-        alignSelf="stretch"
+        grow="1"
+        shrink="1"
+        basis="0"
         position="relative"
         padding="0px 0px 0px 0px"
         {...getOverrideProps(overrides, "Frame 417")}
@@ -118,22 +128,70 @@ export default function ActivityCard(props) {
             position="relative"
             padding="0px 0px 0px 0px"
             whiteSpace="nowrap"
+            isTruncated={true}
             children="LOCATION"
             {...getOverrideProps(overrides, "LOCATION")}
           ></Text>
         </Flex>
-        <IconNameParticipants
-          width="130px"
-          height="35px"
-          display="block"
-          gap="unset"
-          alignItems="unset"
-          justifyContent="unset"
+        <Flex
+          gap="0"
+          direction="column"
+          width="unset"
+          height="unset"
+          justifyContent="center"
+          alignItems="center"
+          overflow="hidden"
           shrink="0"
           position="relative"
           padding="0px 0px 0px 0px"
-          {...getOverrideProps(overrides, "IconNameParticipants")}
-        ></IconNameParticipants>
+          backgroundColor="rgba(255,255,255,1)"
+          {...getOverrideProps(overrides, "Frame 437")}
+        >
+          <Text
+            fontFamily="Inter"
+            fontSize="16px"
+            fontWeight="700"
+            color="rgba(13,26,38,1)"
+            lineHeight="25px"
+            textAlign="left"
+            display="block"
+            direction="column"
+            justifyContent="unset"
+            width="unset"
+            height="unset"
+            gap="unset"
+            alignItems="unset"
+            shrink="0"
+            alignSelf="stretch"
+            position="relative"
+            padding="0px 0px 0px 0px"
+            whiteSpace="pre-wrap"
+            children="USERNAME"
+            {...getOverrideProps(overrides, "USERNAME")}
+          ></Text>
+          <Text
+            fontFamily="Inter"
+            fontSize="10px"
+            fontWeight="400"
+            color="rgba(13,26,38,1)"
+            lineHeight="20px"
+            textAlign="center"
+            display="block"
+            direction="column"
+            justifyContent="unset"
+            width="unset"
+            height="unset"
+            gap="unset"
+            alignItems="unset"
+            shrink="0"
+            alignSelf="stretch"
+            position="relative"
+            padding="0px 0px 0px 0px"
+            whiteSpace="pre-wrap"
+            children="5 other participants..."
+            {...getOverrideProps(overrides, "5 other participants...")}
+          ></Text>
+        </Flex>
       </Flex>
     </Flex>
   );
