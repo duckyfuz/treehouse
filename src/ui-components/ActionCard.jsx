@@ -190,7 +190,7 @@ export default function ActionCard(props) {
           <Text
             fontFamily="Inter"
             fontSize="20px"
-            fontWeight="700"
+            fontWeight="400"
             color="rgba(13,26,38,1)"
             lineHeight="25px"
             textAlign="left"

@@ -33,7 +33,7 @@ export const Dashboard = () => {
 
   return (
     <Flex justifyContent="center">
-      <ScrollView height={(window.innerHeight * 5) / 6} width={"500px"}>
+      <ScrollView height={(window.innerHeight * 9) / 10} width={"500px"}>
         <ActivityCardCollection
           overrideItems={({ item }) => ({
             overrides: {

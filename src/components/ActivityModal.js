@@ -1,10 +1,13 @@
 import React, { useCallback, useEffect, useState } from "react";
+import { useAuthenticator } from "@aws-amplify/ui-react";
 import { DataStore } from "aws-amplify";
 import { ActionCard, NoActionCard } from "../ui-components";
 import { ActivityItem } from "../models";
 
 const Modal = ({ activity }) => {
+  const { user } = useAuthenticator((context) => [context.user]);
   const [activityDetails, setActivityDetails] = useState();
+  const [reloadHandler, setReloadHandler] = useState(true);
 
   useEffect(() => {
     const getActivity = async () => {
@@ -13,7 +16,7 @@ const Modal = ({ activity }) => {
     };
     getActivity();
     console.log(activityDetails);
-  }, [activity]);
+  }, [activity, reloadHandler]);
 
   function convertISOToCustomFormat(isoTime) {
     const dateObj = new Date(isoTime);
@@ -44,8 +47,16 @@ const Modal = ({ activity }) => {
     console.log("contact host");
   };
 
-  const attendActivityHandler = () => {
+  const attendActivityHandler = async () => {
     console.log("attend activity");
+    const original = await DataStore.query(ActivityItem, activity);
+    const updatedActivityItem = await DataStore.save(
+      ActivityItem.copyOf(original, (updated) => {
+        updated.participants.push(user.username);
+      })
+    );
+    setReloadHandler(!reloadHandler);
+    console.log(updatedActivityItem);
   };
 
   if (activityDetails === undefined) {
@@ -66,7 +77,12 @@ const Modal = ({ activity }) => {
         },
         Button39001905: { color: "red", onClick: attendActivityHandler },
         Button39001917: { color: "blue", onClick: contactHostHandler },
-        "PARTICIPANTS LIST": { children: activityDetails.participants },
+        "PARTICIPANTS LIST": {
+          children:
+            activityDetails.participants.length === 0
+              ? "No participants yet... \nBe the first to join! "
+              : activityDetails.participants,
+        },
         "DETAILS FILL": { children: activityDetails.description },
       }}
     />

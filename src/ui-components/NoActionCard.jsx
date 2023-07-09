@@ -15,7 +15,7 @@ export default function NoActionCard(props) {
       gap="0"
       direction="column"
       width="610px"
-      height="20px"
+      height="unset"
       justifyContent="center"
       alignItems="center"
       overflow="hidden"
