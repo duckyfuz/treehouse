@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { DataStore, Storage } from "aws-amplify";
-import { Flex } from "@aws-amplify/ui-react";
+import { Flex, ScrollView } from "@aws-amplify/ui-react";
 
 import { ActivityCardCollection } from "../ui-components";
 import { UserDetails } from "../models";
+import Modal from "../components/ActivityModal";
 
 export const Dashboard = () => {
   const [profiles, setProfiles] = useState([]);
+  const [activeActivity, setActiveActivity] = useState();
   function convertISOToCustomFormat(isoTime) {
     const dateObj = new Date(isoTime);
     const day = dateObj.getDate().toString().padStart(2, "0");
@@ -42,25 +44,28 @@ export const Dashboard = () => {
 
   return (
     <Flex justifyContent="center" minWidth={"30rem"}>
-      <ActivityCardCollection
-        overrideItems={({ item }) => ({
-          overrides: {
-            "DATE AND TIME": {
-              children: convertISOToCustomFormat(item.dateTime),
-            },
-            LOCATION: { children: item.residence + " | " + item.location },
-            USERNAME: { children: item.hostName },
-            "5 other participants...": {
-              children: item.participants.length + " other participant(s)...",
-            },
-            ActivityCard: {
-              onClick: () => {
-                console.log("workds");
+      <ScrollView height={(window.innerHeight * 5) / 6} width={"520px"}>
+        <ActivityCardCollection
+          overrideItems={({ item }) => ({
+            overrides: {
+              "DATE AND TIME": {
+                children: convertISOToCustomFormat(item.dateTime),
+              },
+              LOCATION: { children: item.residence + " | " + item.location },
+              USERNAME: { children: item.hostName },
+              "5 other participants...": {
+                children: item.participants.length + " other participant(s)...",
+              },
+              ActivityCard: {
+                onClick: () => {
+                  setActiveActivity(item.hostName);
+                },
               },
             },
-          },
-        })}
-      />
+          })}
+        />
+      </ScrollView>
+      <Modal isOpen={true} param1={activeActivity} param2="Value 2" />
     </Flex>
   );
 };
