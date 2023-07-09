@@ -14,9 +14,9 @@ export default function ActionCard(props) {
     <Flex
       gap="0"
       direction="column"
-      width="617px"
+      width="610px"
       height="unset"
-      justifyContent="center"
+      justifyContent="flex-start"
       alignItems="flex-start"
       position="relative"
       borderRadius="10px"
@@ -35,7 +35,7 @@ export default function ActionCard(props) {
         shrink="0"
         alignSelf="stretch"
         position="relative"
-        padding="0px 16px 18px 16px"
+        padding="0px 16px 0px 16px"
         {...getOverrideProps(overrides, "Product Title")}
       >
         <Text
@@ -55,10 +55,11 @@ export default function ActionCard(props) {
           grow="1"
           shrink="1"
           basis="0"
+          alignSelf="stretch"
           position="relative"
           padding="0px 0px 0px 0px"
           whiteSpace="pre-wrap"
-          children="ACTIVITY TITLE"
+          children='"DAWdhaiwdhiu awhiud hiaw iofh aich ifuehaiuf heiuahfiuhaiuwefhiae hfiaew iufheaiuwfhieahfahwifuheiuahfiuhfia"'
           {...getOverrideProps(overrides, "ACTIVITY TITLE")}
         ></Text>
         <Text
@@ -87,15 +88,13 @@ export default function ActionCard(props) {
       <Flex
         gap="16px"
         direction="row"
-        width="585px"
+        width="unset"
         height="unset"
         justifyContent="flex-start"
         alignItems="flex-start"
-        grow="1"
-        shrink="1"
-        basis="0"
+        shrink="0"
         position="relative"
-        padding="0px 16px 12px 16px"
+        padding="12px 16px 12px 16px"
         {...getOverrideProps(overrides, "Card Area29766753")}
       >
         <Flex
@@ -154,7 +153,17 @@ export default function ActionCard(props) {
             isDisabled={false}
             variation="primary"
             children="Attend!"
-            {...getOverrideProps(overrides, "Button")}
+            {...getOverrideProps(overrides, "Button39001905")}
+          ></Button>
+          <Button
+            width="250px"
+            height="45px"
+            shrink="0"
+            size="large"
+            isDisabled={false}
+            variation="primary"
+            children="Contact Host"
+            {...getOverrideProps(overrides, "Button39001917")}
           ></Button>
           <Text
             fontFamily="Inter"
@@ -204,13 +213,11 @@ export default function ActionCard(props) {
         <Flex
           gap="8px"
           direction="column"
-          width="unset"
+          width="237px"
           height="unset"
           justifyContent="flex-start"
           alignItems="flex-start"
-          grow="1"
-          shrink="1"
-          basis="0"
+          shrink="0"
           position="relative"
           padding="0px 0px 0px 0px"
           {...getOverrideProps(overrides, "Main Text29766754")}

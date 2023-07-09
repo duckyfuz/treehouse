@@ -17,7 +17,8 @@ export declare type ActionCardOverridesProps = {
     "Card Area39001901"?: PrimitiveOverrideProps<FlexProps>;
     "Main Text39001902"?: PrimitiveOverrideProps<FlexProps>;
     "DATE AND TIME"?: PrimitiveOverrideProps<TextProps>;
-    Button?: PrimitiveOverrideProps<ButtonProps>;
+    Button39001905?: PrimitiveOverrideProps<ButtonProps>;
+    Button39001917?: PrimitiveOverrideProps<ButtonProps>;
     PARTICIPANTS?: PrimitiveOverrideProps<TextProps>;
     "PARTICIPANTS LIST"?: PrimitiveOverrideProps<TextProps>;
     "Main Text29766754"?: PrimitiveOverrideProps<FlexProps>;

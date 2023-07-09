@@ -31,6 +31,7 @@ export { default as TallCard } from "./TallCard";
 export { default as ProductCard } from "./ProductCard";
 export { default as HeroLayout2 } from "./HeroLayout2";
 export { default as NavBarHeader2 } from "./NavBarHeader2";
+export { default as NoActionCard } from "./NoActionCard";
 export { default as NavBarHeader } from "./NavBarHeader";
 export { default as CTASection } from "./CTASection";
 export { default as SocialPost } from "./SocialPost";

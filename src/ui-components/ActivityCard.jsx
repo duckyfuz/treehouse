@@ -77,8 +77,9 @@ export default function ActivityCard(props) {
             alignSelf="stretch"
             position="relative"
             padding="0px 0px 0px 0px"
-            whiteSpace="pre-wrap"
-            children="ACTIVITY TITLE"
+            whiteSpace=""
+            isTruncated={true}
+            children={activityItem?.title}
             {...getOverrideProps(overrides, "ACTIVITY TITLE")}
           ></Text>
           <Text
@@ -100,7 +101,8 @@ export default function ActivityCard(props) {
             alignSelf="stretch"
             position="relative"
             padding="0px 0px 0px 0px"
-            whiteSpace="pre-wrap"
+            whiteSpace=""
+            isTruncated={true}
             children="DATE AND TIME"
             {...getOverrideProps(overrides, "DATE AND TIME")}
           ></Text>
@@ -123,7 +125,8 @@ export default function ActivityCard(props) {
             alignSelf="stretch"
             position="relative"
             padding="0px 0px 0px 0px"
-            whiteSpace="pre-wrap"
+            whiteSpace={true}
+            isTruncated={true}
             children="LOCATION"
             {...getOverrideProps(overrides, "LOCATION")}
           ></Text>
@@ -158,7 +161,7 @@ export default function ActivityCard(props) {
             alignSelf="stretch"
             position="relative"
             padding="0px 0px 0px 0px"
-            whiteSpace="pre-wrap"
+            whiteSpace=""
             isTruncated={true}
             children="USERNAME"
             {...getOverrideProps(overrides, "USERNAME")}
@@ -182,7 +185,7 @@ export default function ActivityCard(props) {
             alignSelf="stretch"
             position="relative"
             padding="0px 0px 0px 0px"
-            whiteSpace="pre-wrap"
+            whiteSpace=""
             isTruncated={true}
             children="5 other participants..."
             {...getOverrideProps(overrides, "5 other participants...")}

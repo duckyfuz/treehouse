@@ -1,14 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { DataStore, Storage } from "aws-amplify";
+import React, { useState } from "react";
 import { Flex, ScrollView } from "@aws-amplify/ui-react";
 
 import { ActivityCardCollection } from "../ui-components";
-import { UserDetails } from "../models";
 import Modal from "../components/ActivityModal";
 
 export const Dashboard = () => {
-  const [profiles, setProfiles] = useState([]);
-  const [activeActivity, setActiveActivity] = useState();
+  const [activeActivity, setActiveActivity] = useState("");
   function convertISOToCustomFormat(isoTime) {
     const dateObj = new Date(isoTime);
     const day = dateObj.getDate().toString().padStart(2, "0");
@@ -33,14 +30,6 @@ export const Dashboard = () => {
 
     return `${formattedDate} | ${formattedTime}`;
   }
-
-  useEffect(() => {
-    const getProfiles = async () => {
-      const profiles = await DataStore.query(UserDetails);
-      setProfiles(profiles);
-    };
-    getProfiles();
-  });
 
   return (
     <Flex justifyContent="center">
