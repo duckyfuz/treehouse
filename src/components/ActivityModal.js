@@ -1,13 +1,19 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useAuthenticator } from "@aws-amplify/ui-react";
-import { DataStore } from "aws-amplify";
+import { Analytics, DataStore, Notifications } from "aws-amplify";
 import { ActionCard, NoActionCard } from "../ui-components";
 import { ActivityItem } from "../models";
+
+const { InAppMessaging } = Notifications;
 
 const Modal = ({ activity }) => {
   const { user } = useAuthenticator((context) => [context.user]);
   const [activityDetails, setActivityDetails] = useState();
   const [reloadHandler, setReloadHandler] = useState(true);
+
+  useEffect(() => {
+    InAppMessaging.syncMessages();
+  }, []);
 
   useEffect(() => {
     const getActivity = async () => {
@@ -44,6 +50,7 @@ const Modal = ({ activity }) => {
   }
 
   const contactHostHandler = () => {
+    InAppMessaging.dispatchEvent({ name: "newParticipant" });
     console.log("contact host");
   };
 
@@ -83,7 +90,9 @@ const Modal = ({ activity }) => {
               ? "No participants yet... \nBe the first to join! "
               : activityDetails.participants,
         },
-        "DETAILS FILL": { children: activityDetails.description },
+        "DETAILS FILL": {
+          children: activityDetails.description,
+        },
       }}
     />
   );

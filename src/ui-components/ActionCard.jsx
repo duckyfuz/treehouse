@@ -265,7 +265,7 @@ export default function ActionCard(props) {
             position="relative"
             padding="0px 0px 0px 0px"
             whiteSpace="pre-wrap"
-            children="DETAILS FILL"
+            children="dwadawdwa dnwoadnakwfkjawfjjawlfjawfjakwjdlad"
             {...getOverrideProps(overrides, "DETAILS FILL")}
           ></Text>
         </Flex>

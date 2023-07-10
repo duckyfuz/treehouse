@@ -1,0 +1,22 @@
+{
+  "appName": "treehouse",
+  "roleName": "pinpointLambdaRolee9eb8fa8",
+  "cloudformationPolicyName": "cloudformationPolicye9eb8fa8",
+  "cloudWatchPolicyName": "cloudWatchPolicye9eb8fa8",
+  "pinpointPolicyName": "pinpointPolicye9eb8fa8",
+  "authPolicyName": "pinpoint_amplify_e9eb8fa8",
+  "unauthPolicyName": "pinpoint_amplify_e9eb8fa8",
+  "authRoleName": {
+    "Ref": "AuthRoleName"
+  },
+  "unauthRoleName": {
+    "Ref": "UnauthRoleName"
+  },
+  "authRoleArn": {
+    "Fn::GetAtt": [
+      "AuthRole",
+      "Arn"
+    ]
+  },
+  "pinpointInAppMessagingPolicyName": "pinpointInAppMessagingPolicyNamee9eb8fa8"
+}

@@ -26,6 +26,21 @@
           "appId": "d1ykjigyeh5h3",
           "type": "manual"
         }
+      },
+      "notifications": {
+        "Pinpoint": {
+          "Name": "treehouse-dev",
+          "Id": "100eeb933bd2471ea567566bcf46ea8f",
+          "Region": "ap-southeast-1"
+        }
+      },
+      "analytics": {
+        "Pinpoint": {
+          "Name": "treehouse-dev",
+          "Id": "100eeb933bd2471ea567566bcf46ea8f",
+          "Region": "ap-southeast-1"
+        },
+        "treehouse": {}
       }
     }
   }

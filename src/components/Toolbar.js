@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { DataStore, Storage } from "aws-amplify";
+import { Analytics, DataStore, Storage } from "aws-amplify";
 import {
   Flex,
   Image,
@@ -23,6 +23,10 @@ const TreeHouse = ({ onClick }) => {
 
   useEffect(() => {
     async function getDetails() {
+      await Analytics.updateEndpoint({
+        user: user.username,
+        attributes: { residence: ["BLK111", "BLK112"] },
+      });
       const userDetails = await DataStore.query(UserDetails, (c) =>
         c.name.eq(user.username)
       );

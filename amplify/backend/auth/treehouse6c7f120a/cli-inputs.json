@@ -2,7 +2,7 @@
   "version": "1",
   "cognitoConfig": {
     "identityPoolName": "treehouse6c7f120a_identitypool_6c7f120a",
-    "allowUnauthenticatedIdentities": false,
+    "allowUnauthenticatedIdentities": true,
     "resourceNameTruncated": "treeho6c7f120a",
     "userPoolName": "treehouse6c7f120a_userpool_6c7f120a",
     "autoVerifiedAttributes": [
