@@ -1,63 +1,44 @@
-import { useEffect, useState } from "react";
-
-import { Analytics, DataStore, Storage } from "aws-amplify";
-import {
-  Flex,
-  Image,
-  Button,
-  Menu,
-  MenuItem,
-  useAuthenticator,
-  Text,
-} from "@aws-amplify/ui-react";
+import { Flex, Button, Menu, MenuItem, Text } from "@aws-amplify/ui-react";
 
 import { GiHamburgerMenu } from "react-icons/gi";
 
 import { ColorModeToggle } from "./ColorModeSelector";
-import { UserDetails } from "../models";
 
-const TreeHouse = ({ onClick }) => {
-  const { user } = useAuthenticator((context) => [context.user]);
-  const [activitiesCount, setActivitiesCount] = useState("-");
-  const [imageURL, setImageURL] = useState();
+// NEED TO REMOVE USER.USERNAME SOMEHOW FROM HERE
 
-  useEffect(() => {
-    async function getDetails() {
-      await Analytics.updateEndpoint({
-        user: user.username,
-        attributes: { residence: ["BLK111", "BLK112"] },
-      });
-      const userDetails = await DataStore.query(UserDetails, (c) =>
-        c.name.eq(user.username)
-      );
-      const imageURL = await Storage.get(userDetails[0].profilePicture);
-      setActivitiesCount(
-        userDetails[0].activitiesAttended.length +
-          userDetails[0].activitiesHosted.length
-      );
-      setImageURL(imageURL);
-    }
-    getDetails();
-  }, [user.username]);
+// const TreeHouse = ({ onClick }) => {
+//   const [activitiesCount, setActivitiesCount] = useState("-");
+//   const [imageURL, setImageURL] = useState();
 
-  return (
-    <Flex
-      gap="0.5rem"
-      justifyContent="center"
-      alignItems="center"
-      onClick={() => onClick("settings")}
-      margin={"0.5rem"}
-    >
-      <Image src={imageURL} height="50px" width="50px" borderRadius={"10px"} />
-      <Flex direction="column" gap="0rem" justifyContent="center">
-        <Text fontWeight={750} fontSize={"20px"}>
-          {user.username}
-        </Text>
-        <Text fontSize={"12px"}>{activitiesCount} activities attended!</Text>
-      </Flex>
-    </Flex>
-  );
-};
+//   useEffect(() => {
+//     async function getDetails() {
+//       const imageURL = await Storage.get(user.profilePicture);
+//       setActivitiesCount(
+//         user.activitiesAttended.length + user.activitiesHosted.length
+//       );
+//       setImageURL(imageURL);
+//     }
+//     getDetails();
+//   }, []);
+
+//   return (
+//     <Flex
+//       gap="0.5rem"
+//       justifyContent="center"
+//       alignItems="center"
+//       onClick={() => onClick("settings")}
+//       margin={"0.5rem"}
+//     >
+//       <Image src={imageURL} height="50px" width="50px" borderRadius={"10px"} />
+//       <Flex direction="column" gap="0rem" justifyContent="center">
+//         <Text fontWeight={750} fontSize={"20px"}>
+//           {user.name}
+//         </Text>
+//         <Text fontSize={"12px"}>{activitiesCount} activities attended!</Text>
+//       </Flex>
+//     </Flex>
+//   );
+// };
 
 export function Toolbar({ loggedIn, mode, onClick }) {
   return (
@@ -66,7 +47,12 @@ export function Toolbar({ loggedIn, mode, onClick }) {
       position="relative"
       justifyContent="space-between"
     >
-      <TreeHouse onClick={onClick} />
+      {/* <TreeHouse onClick={onClick} /> */}
+      {!loggedIn ? (
+        <Text>Make an account now!</Text>
+      ) : (
+        <Text>Welcome User!</Text>
+      )}
       <Flex alignItems="center">
         <ColorModeToggle
           mode={mode}

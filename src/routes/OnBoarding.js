@@ -4,6 +4,10 @@ import { useNavigate } from "react-router-dom";
 import { useUserObserver } from "../hooks/useUser";
 
 export const OnBoarding = () => {
+  // await Analytics.updateEndpoint({
+  //   user: user.username,
+  //   attributes: { residence: ["BLK111", "BLK112"] },
+  // });
   const { user } = useUserObserver();
   const navigate = useNavigate();
 

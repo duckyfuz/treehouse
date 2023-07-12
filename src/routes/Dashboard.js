@@ -1,35 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Flex, ScrollView } from "@aws-amplify/ui-react";
 
 import { ActivityCardCollection } from "../ui-components";
 import Modal from "../components/ActivityModal";
 
+import { useNavigate } from "react-router-dom";
+import { useUserObserver } from "../hooks/useUser";
+
+import convertISOToCustomFormat from "../utils";
+
 export const Dashboard = () => {
   const [activeActivity, setActiveActivity] = useState("");
-  function convertISOToCustomFormat(isoTime) {
-    const dateObj = new Date(isoTime);
-    const day = dateObj.getDate().toString().padStart(2, "0");
-    const month = dateObj.toLocaleString("default", { month: "short" });
-    const year = dateObj.getFullYear().toString().slice(-2);
-    let hours = dateObj.getHours();
-    let ampm = "AM";
+  const { user } = useUserObserver();
+  const navigate = useNavigate();
 
-    if (hours >= 12) {
-      ampm = "PM";
-      if (hours > 12) {
-        hours -= 12;
-      }
+  useEffect(() => {
+    if (user && !user.onBoarded) {
+      navigate("/onboarding");
     }
-
-    const minutes = dateObj.getMinutes();
-
-    const formattedDate = `${day} ${month} ${year}`;
-    const formattedTime = `${hours.toString().padStart(2, "0")}:${minutes
-      .toString()
-      .padStart(2, "0")} ${ampm}`;
-
-    return `${formattedDate} | ${formattedTime}`;
-  }
+  }, [navigate, user]);
 
   return (
     <Flex justifyContent="center">

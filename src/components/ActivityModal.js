@@ -1,8 +1,9 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useAuthenticator } from "@aws-amplify/ui-react";
-import { Analytics, DataStore, Notifications } from "aws-amplify";
+import { DataStore, Notifications } from "aws-amplify";
 import { ActionCard, NoActionCard } from "../ui-components";
 import { ActivityItem } from "../models";
+import convertISOToCustomFormat from "../utils";
 
 const { InAppMessaging } = Notifications;
 
@@ -10,10 +11,6 @@ const Modal = ({ activity }) => {
   const { user } = useAuthenticator((context) => [context.user]);
   const [activityDetails, setActivityDetails] = useState();
   const [reloadHandler, setReloadHandler] = useState(true);
-
-  useEffect(() => {
-    InAppMessaging.syncMessages();
-  }, []);
 
   useEffect(() => {
     const getActivity = async () => {
@@ -24,46 +21,23 @@ const Modal = ({ activity }) => {
     console.log(activityDetails);
   }, [activity, reloadHandler]);
 
-  function convertISOToCustomFormat(isoTime) {
-    const dateObj = new Date(isoTime);
-    const day = dateObj.getDate().toString().padStart(2, "0");
-    const month = dateObj.toLocaleString("default", { month: "short" });
-    const year = dateObj.getFullYear().toString().slice(-2);
-    let hours = dateObj.getHours();
-    let ampm = "AM";
-
-    if (hours >= 12) {
-      ampm = "PM";
-      if (hours > 12) {
-        hours -= 12;
-      }
-    }
-
-    const minutes = dateObj.getMinutes();
-
-    const formattedDate = `${day} ${month} ${year}`;
-    const formattedTime = `${hours.toString().padStart(2, "0")}:${minutes
-      .toString()
-      .padStart(2, "0")} ${ampm}`;
-
-    return `${formattedDate} | ${formattedTime}`;
-  }
-
   const contactHostHandler = () => {
-    InAppMessaging.dispatchEvent({ name: "newParticipant" });
+    InAppMessaging.dispatchEvent({
+      name: "newParticipant",
+      attributes: { residence: "BLK111" },
+    });
     console.log("contact host");
   };
 
   const attendActivityHandler = async () => {
     console.log("attend activity");
     const original = await DataStore.query(ActivityItem, activity);
-    const updatedActivityItem = await DataStore.save(
+    await DataStore.save(
       ActivityItem.copyOf(original, (updated) => {
         updated.participants.push(user.username);
       })
     );
     setReloadHandler(!reloadHandler);
-    console.log(updatedActivityItem);
   };
 
   if (activityDetails === undefined) {

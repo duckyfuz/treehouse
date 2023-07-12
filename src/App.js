@@ -13,12 +13,13 @@ import {
 } from "@aws-amplify/ui-react";
 
 import "@aws-amplify/ui-react/styles.css";
-
 import "./App.css";
+
 import { OnBoarding } from "./routes/OnBoarding";
 import { Dashboard } from "./routes/Dashboard";
 import { Settings } from "./routes/Settings";
 import { Notifications } from "aws-amplify";
+import { Login } from "./routes/Login";
 
 const { InAppMessaging } = Notifications;
 
@@ -56,12 +57,17 @@ function MyRoutes({ mode, onModeChange }) {
             }
           />
         </Route>
+        <Route path="/login" element={<Login />} />
       </Routes>
     </BrowserRouter>
   );
 }
 
 function App() {
+  useEffect(() => {
+    InAppMessaging.syncMessages();
+  }, []);
+
   const theme = {
     name: "app-theme",
     overrides: [defaultDarkModeOverride],
@@ -70,28 +76,25 @@ function App() {
   const getSavedColorMode = () => {
     return localStorage.getItem("color-mode") || "system";
   };
-  const saveColorMode = (value) => {
+  const [colorMode, setColorMode] = useState(getSavedColorMode());
+
+  const savedColorMode = (value) => {
     localStorage.setItem("color-mode", value);
   };
-  const [colorMode, setColorMode] = useState(getSavedColorMode());
   const onColorModeChange = (value) => {
-    saveColorMode(value);
+    savedColorMode(value);
     setColorMode(value);
   };
 
-  useEffect(() => {
-    InAppMessaging.syncMessages();
-  }, []);
-
   return (
     <ThemeProvider theme={theme} colorMode={colorMode}>
-      <Authenticator>
+      <Authenticator.Provider>
         <Flex justifyContent={"center"}>
           <MyRoutes mode={colorMode} onModeChange={onColorModeChange} />
         </Flex>
-      </Authenticator>
+      </Authenticator.Provider>
     </ThemeProvider>
   );
 }
 
-export default withInAppMessaging(App, {});
+export default withInAppMessaging(App);
