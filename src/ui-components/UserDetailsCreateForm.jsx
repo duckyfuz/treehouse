@@ -17,12 +17,12 @@ import {
   SelectField,
   SwitchField,
   Text,
-  TextField,
   useTheme,
 } from "@aws-amplify/ui-react";
-import { getOverrideProps } from "@aws-amplify/ui-react/internal";
+import { StorageManager } from "@aws-amplify/ui-react-storage";
+import { Field, getOverrideProps } from "@aws-amplify/ui-react/internal";
 import { UserDetails } from "../models";
-import { fetchByPath, validateField } from "./utils";
+import { fetchByPath, processFile, validateField } from "./utils";
 import { DataStore } from "aws-amplify";
 function ArrayField({
   items = [],
@@ -194,44 +194,23 @@ export default function UserDetailsCreateForm(props) {
     ...rest
   } = props;
   const initialValues = {
-    name: "",
-    onBoarded: false,
-    activitiesAttended: [],
-    activitiesHosted: [],
-    profilePicture: "",
+    profilePicture: undefined,
     residence: [],
+    onBoarded: false,
   };
-  const [name, setName] = React.useState(initialValues.name);
-  const [onBoarded, setOnBoarded] = React.useState(initialValues.onBoarded);
-  const [activitiesAttended, setActivitiesAttended] = React.useState(
-    initialValues.activitiesAttended
-  );
-  const [activitiesHosted, setActivitiesHosted] = React.useState(
-    initialValues.activitiesHosted
-  );
   const [profilePicture, setProfilePicture] = React.useState(
     initialValues.profilePicture
   );
   const [residence, setResidence] = React.useState(initialValues.residence);
+  const [onBoarded, setOnBoarded] = React.useState(initialValues.onBoarded);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
-    setName(initialValues.name);
-    setOnBoarded(initialValues.onBoarded);
-    setActivitiesAttended(initialValues.activitiesAttended);
-    setCurrentActivitiesAttendedValue("");
-    setActivitiesHosted(initialValues.activitiesHosted);
-    setCurrentActivitiesHostedValue("");
     setProfilePicture(initialValues.profilePicture);
     setResidence(initialValues.residence);
     setCurrentResidenceValue("");
+    setOnBoarded(initialValues.onBoarded);
     setErrors({});
   };
-  const [currentActivitiesAttendedValue, setCurrentActivitiesAttendedValue] =
-    React.useState("");
-  const activitiesAttendedRef = React.createRef();
-  const [currentActivitiesHostedValue, setCurrentActivitiesHostedValue] =
-    React.useState("");
-  const activitiesHostedRef = React.createRef();
   const [currentResidenceValue, setCurrentResidenceValue] = React.useState("");
   const residenceRef = React.createRef();
   const getDisplayValue = {
@@ -247,12 +226,9 @@ export default function UserDetailsCreateForm(props) {
     },
   };
   const validations = {
-    name: [],
-    onBoarded: [],
-    activitiesAttended: [],
-    activitiesHosted: [],
     profilePicture: [],
-    residence: [],
+    residence: [{ type: "Required" }],
+    onBoarded: [{ type: "Required" }],
   };
   const runValidationTasks = async (
     fieldName,
@@ -280,12 +256,9 @@ export default function UserDetailsCreateForm(props) {
       onSubmit={async (event) => {
         event.preventDefault();
         let modelFields = {
-          name,
-          onBoarded,
-          activitiesAttended,
-          activitiesHosted,
           profilePicture,
           residence,
+          onBoarded,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -331,205 +304,61 @@ export default function UserDetailsCreateForm(props) {
       {...getOverrideProps(overrides, "UserDetailsCreateForm")}
       {...rest}
     >
-      <TextField
-        label="Name"
-        isRequired={false}
-        isReadOnly={false}
-        value={name}
-        onChange={(e) => {
-          let { value } = e.target;
-          if (onChange) {
-            const modelFields = {
-              name: value,
-              onBoarded,
-              activitiesAttended,
-              activitiesHosted,
-              profilePicture,
-              residence,
-            };
-            const result = onChange(modelFields);
-            value = result?.name ?? value;
-          }
-          if (errors.name?.hasError) {
-            runValidationTasks("name", value);
-          }
-          setName(value);
-        }}
-        onBlur={() => runValidationTasks("name", name)}
-        errorMessage={errors.name?.errorMessage}
-        hasError={errors.name?.hasError}
-        {...getOverrideProps(overrides, "name")}
-      ></TextField>
-      <SwitchField
-        label="On boarded"
-        defaultChecked={false}
-        isDisabled={false}
-        isChecked={onBoarded}
-        onChange={(e) => {
-          let value = e.target.checked;
-          if (onChange) {
-            const modelFields = {
-              name,
-              onBoarded: value,
-              activitiesAttended,
-              activitiesHosted,
-              profilePicture,
-              residence,
-            };
-            const result = onChange(modelFields);
-            value = result?.onBoarded ?? value;
-          }
-          if (errors.onBoarded?.hasError) {
-            runValidationTasks("onBoarded", value);
-          }
-          setOnBoarded(value);
-        }}
-        onBlur={() => runValidationTasks("onBoarded", onBoarded)}
-        errorMessage={errors.onBoarded?.errorMessage}
-        hasError={errors.onBoarded?.hasError}
-        {...getOverrideProps(overrides, "onBoarded")}
-      ></SwitchField>
-      <ArrayField
-        onChange={async (items) => {
-          let values = items;
-          if (onChange) {
-            const modelFields = {
-              name,
-              onBoarded,
-              activitiesAttended: values,
-              activitiesHosted,
-              profilePicture,
-              residence,
-            };
-            const result = onChange(modelFields);
-            values = result?.activitiesAttended ?? values;
-          }
-          setActivitiesAttended(values);
-          setCurrentActivitiesAttendedValue("");
-        }}
-        currentFieldValue={currentActivitiesAttendedValue}
-        label={"Activities attended"}
-        items={activitiesAttended}
-        hasError={errors?.activitiesAttended?.hasError}
-        errorMessage={errors?.activitiesAttended?.errorMessage}
-        setFieldValue={setCurrentActivitiesAttendedValue}
-        inputFieldRef={activitiesAttendedRef}
-        defaultFieldValue={""}
-      >
-        <TextField
-          label="Activities attended"
-          isRequired={false}
-          isReadOnly={false}
-          value={currentActivitiesAttendedValue}
-          onChange={(e) => {
-            let { value } = e.target;
-            if (errors.activitiesAttended?.hasError) {
-              runValidationTasks("activitiesAttended", value);
-            }
-            setCurrentActivitiesAttendedValue(value);
-          }}
-          onBlur={() =>
-            runValidationTasks(
-              "activitiesAttended",
-              currentActivitiesAttendedValue
-            )
-          }
-          errorMessage={errors.activitiesAttended?.errorMessage}
-          hasError={errors.activitiesAttended?.hasError}
-          ref={activitiesAttendedRef}
-          labelHidden={true}
-          {...getOverrideProps(overrides, "activitiesAttended")}
-        ></TextField>
-      </ArrayField>
-      <ArrayField
-        onChange={async (items) => {
-          let values = items;
-          if (onChange) {
-            const modelFields = {
-              name,
-              onBoarded,
-              activitiesAttended,
-              activitiesHosted: values,
-              profilePicture,
-              residence,
-            };
-            const result = onChange(modelFields);
-            values = result?.activitiesHosted ?? values;
-          }
-          setActivitiesHosted(values);
-          setCurrentActivitiesHostedValue("");
-        }}
-        currentFieldValue={currentActivitiesHostedValue}
-        label={"Activities hosted"}
-        items={activitiesHosted}
-        hasError={errors?.activitiesHosted?.hasError}
-        errorMessage={errors?.activitiesHosted?.errorMessage}
-        setFieldValue={setCurrentActivitiesHostedValue}
-        inputFieldRef={activitiesHostedRef}
-        defaultFieldValue={""}
-      >
-        <TextField
-          label="Activities hosted"
-          isRequired={false}
-          isReadOnly={false}
-          value={currentActivitiesHostedValue}
-          onChange={(e) => {
-            let { value } = e.target;
-            if (errors.activitiesHosted?.hasError) {
-              runValidationTasks("activitiesHosted", value);
-            }
-            setCurrentActivitiesHostedValue(value);
-          }}
-          onBlur={() =>
-            runValidationTasks("activitiesHosted", currentActivitiesHostedValue)
-          }
-          errorMessage={errors.activitiesHosted?.errorMessage}
-          hasError={errors.activitiesHosted?.hasError}
-          ref={activitiesHostedRef}
-          labelHidden={true}
-          {...getOverrideProps(overrides, "activitiesHosted")}
-        ></TextField>
-      </ArrayField>
-      <TextField
-        label="Profile picture"
-        isRequired={false}
-        isReadOnly={false}
-        value={profilePicture}
-        onChange={(e) => {
-          let { value } = e.target;
-          if (onChange) {
-            const modelFields = {
-              name,
-              onBoarded,
-              activitiesAttended,
-              activitiesHosted,
-              profilePicture: value,
-              residence,
-            };
-            const result = onChange(modelFields);
-            value = result?.profilePicture ?? value;
-          }
-          if (errors.profilePicture?.hasError) {
-            runValidationTasks("profilePicture", value);
-          }
-          setProfilePicture(value);
-        }}
-        onBlur={() => runValidationTasks("profilePicture", profilePicture)}
+      <Field
         errorMessage={errors.profilePicture?.errorMessage}
         hasError={errors.profilePicture?.hasError}
-        {...getOverrideProps(overrides, "profilePicture")}
-      ></TextField>
+        label={"Profile picture"}
+        isRequired={false}
+        isReadOnly={false}
+      >
+        <StorageManager
+          onUploadSuccess={({ key }) => {
+            setProfilePicture((prev) => {
+              let value = key;
+              if (onChange) {
+                const modelFields = {
+                  profilePicture: value,
+                  residence,
+                  onBoarded,
+                };
+                const result = onChange(modelFields);
+                value = result?.profilePicture ?? value;
+              }
+              return value;
+            });
+          }}
+          onFileRemove={({ key }) => {
+            setProfilePicture((prev) => {
+              let value = initialValues?.profilePicture;
+              if (onChange) {
+                const modelFields = {
+                  profilePicture: value,
+                  residence,
+                  onBoarded,
+                };
+                const result = onChange(modelFields);
+                value = result?.profilePicture ?? value;
+              }
+              return value;
+            });
+          }}
+          processFile={processFile}
+          accessLevel={"private"}
+          acceptedFileTypes={[]}
+          isResumable={false}
+          showThumbnails={true}
+          maxFileCount={1}
+          {...getOverrideProps(overrides, "profilePicture")}
+        ></StorageManager>
+      </Field>
       <ArrayField
         onChange={async (items) => {
           let values = items;
           if (onChange) {
             const modelFields = {
-              name,
-              onBoarded,
-              activitiesAttended,
-              activitiesHosted,
               profilePicture,
               residence: values,
+              onBoarded,
             };
             const result = onChange(modelFields);
             values = result?.residence ?? values;
@@ -593,6 +422,32 @@ export default function UserDetailsCreateForm(props) {
           ></option>
         </SelectField>
       </ArrayField>
+      <SwitchField
+        label="I accept the terms and conditions. "
+        defaultChecked={false}
+        isDisabled={false}
+        isChecked={onBoarded}
+        onChange={(e) => {
+          let value = e.target.checked;
+          if (onChange) {
+            const modelFields = {
+              profilePicture,
+              residence,
+              onBoarded: value,
+            };
+            const result = onChange(modelFields);
+            value = result?.onBoarded ?? value;
+          }
+          if (errors.onBoarded?.hasError) {
+            runValidationTasks("onBoarded", value);
+          }
+          setOnBoarded(value);
+        }}
+        onBlur={() => runValidationTasks("onBoarded", onBoarded)}
+        errorMessage={errors.onBoarded?.errorMessage}
+        hasError={errors.onBoarded?.hasError}
+        {...getOverrideProps(overrides, "onBoarded")}
+      ></SwitchField>
       <Flex
         justifyContent="space-between"
         {...getOverrideProps(overrides, "CTAFlex")}

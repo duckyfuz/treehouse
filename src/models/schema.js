@@ -21,7 +21,7 @@ export const schema = {
                     "name": "onBoarded",
                     "isArray": false,
                     "type": "Boolean",
-                    "isRequired": false,
+                    "isRequired": true,
                     "attributes": []
                 },
                 "activitiesAttended": {
@@ -53,7 +53,7 @@ export const schema = {
                     "type": {
                         "enum": "Residence"
                     },
-                    "isRequired": false,
+                    "isRequired": true,
                     "attributes": [],
                     "isArrayNullable": true
                 },
@@ -226,5 +226,5 @@ export const schema = {
     },
     "nonModels": {},
     "codegenVersion": "3.4.4",
-    "version": "b7b266678ecafb26c04abd1e7ead7dc0"
+    "version": "43eddcd8412110d0292ebf5281bbd6f1"
 };

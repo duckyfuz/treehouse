@@ -5,7 +5,8 @@
  **************************************************************************/
 
 import * as React from "react";
-import { GridProps, SelectFieldProps, SwitchFieldProps, TextFieldProps } from "@aws-amplify/ui-react";
+import { GridProps, SelectFieldProps, SwitchFieldProps } from "@aws-amplify/ui-react";
+import { StorageManagerProps } from "@aws-amplify/ui-react-storage";
 import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
 export declare type ValidationResponse = {
     hasError: boolean;
@@ -13,30 +14,21 @@ export declare type ValidationResponse = {
 };
 export declare type ValidationFunction<T> = (value: T, validationResponse: ValidationResponse) => ValidationResponse | Promise<ValidationResponse>;
 export declare type UserDetailsCreateFormInputValues = {
-    name?: string;
-    onBoarded?: boolean;
-    activitiesAttended?: string[];
-    activitiesHosted?: string[];
     profilePicture?: string;
     residence?: string[];
+    onBoarded?: boolean;
 };
 export declare type UserDetailsCreateFormValidationValues = {
-    name?: ValidationFunction<string>;
-    onBoarded?: ValidationFunction<boolean>;
-    activitiesAttended?: ValidationFunction<string>;
-    activitiesHosted?: ValidationFunction<string>;
     profilePicture?: ValidationFunction<string>;
     residence?: ValidationFunction<string>;
+    onBoarded?: ValidationFunction<boolean>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type UserDetailsCreateFormOverridesProps = {
     UserDetailsCreateFormGrid?: PrimitiveOverrideProps<GridProps>;
-    name?: PrimitiveOverrideProps<TextFieldProps>;
-    onBoarded?: PrimitiveOverrideProps<SwitchFieldProps>;
-    activitiesAttended?: PrimitiveOverrideProps<TextFieldProps>;
-    activitiesHosted?: PrimitiveOverrideProps<TextFieldProps>;
-    profilePicture?: PrimitiveOverrideProps<TextFieldProps>;
+    profilePicture?: PrimitiveOverrideProps<StorageManagerProps>;
     residence?: PrimitiveOverrideProps<SelectFieldProps>;
+    onBoarded?: PrimitiveOverrideProps<SwitchFieldProps>;
 } & EscapeHatchProps;
 export declare type UserDetailsCreateFormProps = React.PropsWithChildren<{
     overrides?: UserDetailsCreateFormOverridesProps | undefined | null;

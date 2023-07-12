@@ -42,7 +42,7 @@ export { default as MyIcon } from "./MyIcon";
 export { default as ContactUs } from "./ContactUs";
 export { default as MarketingPricing } from "./MarketingPricing";
 export { default as studioTheme } from "./studioTheme";
-export { default as UserDetailsCreateForm } from "./UserDetailsCreateForm";
 export { default as UserDetailsUpdateForm } from "./UserDetailsUpdateForm";
+export { default as UserDetailsCreateForm } from "./UserDetailsCreateForm";
 export { default as ActivityItemCreateForm } from "./ActivityItemCreateForm";
 export { default as ActivityItemUpdateForm } from "./ActivityItemUpdateForm";

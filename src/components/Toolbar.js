@@ -79,7 +79,7 @@ export function Toolbar({ loggedIn, mode, onClick }) {
               <MenuItem onClick={() => onClick("dashboard")}>
                 Dashboard
               </MenuItem>
-              <MenuItem onClick={() => onClick("logo")}>Logo</MenuItem>
+              <MenuItem onClick={() => onClick("settings")}>Settings</MenuItem>
               <MenuItem onClick={() => onClick("logout")}>Logout</MenuItem>
             </Menu>
           </Flex>

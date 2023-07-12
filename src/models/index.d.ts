@@ -19,11 +19,11 @@ type EagerUserDetails = {
   };
   readonly id: string;
   readonly name?: string | null;
-  readonly onBoarded?: boolean | null;
+  readonly onBoarded: boolean;
   readonly activitiesAttended?: (string | null)[] | null;
   readonly activitiesHosted?: (string | null)[] | null;
   readonly profilePicture?: string | null;
-  readonly residence?: (Residence | null)[] | keyof typeof Residence | null;
+  readonly residence?: Residence[] | keyof typeof Residence | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -35,11 +35,11 @@ type LazyUserDetails = {
   };
   readonly id: string;
   readonly name?: string | null;
-  readonly onBoarded?: boolean | null;
+  readonly onBoarded: boolean;
   readonly activitiesAttended?: (string | null)[] | null;
   readonly activitiesHosted?: (string | null)[] | null;
   readonly profilePicture?: string | null;
-  readonly residence?: (Residence | null)[] | keyof typeof Residence | null;
+  readonly residence?: Residence[] | keyof typeof Residence | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
