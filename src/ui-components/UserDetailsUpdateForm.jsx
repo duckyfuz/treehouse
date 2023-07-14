@@ -197,11 +197,15 @@ export default function UserDetailsUpdateForm(props) {
   } = props;
   const initialValues = {
     name: "",
+    preferedName: "",
     profilePicture: undefined,
     residence: [],
     onBoarded: false,
   };
   const [name, setName] = React.useState(initialValues.name);
+  const [preferedName, setPreferedName] = React.useState(
+    initialValues.preferedName
+  );
   const [profilePicture, setProfilePicture] = React.useState(
     initialValues.profilePicture
   );
@@ -213,6 +217,7 @@ export default function UserDetailsUpdateForm(props) {
       ? { ...initialValues, ...userDetailsRecord }
       : initialValues;
     setName(cleanValues.name);
+    setPreferedName(cleanValues.preferedName);
     setProfilePicture(cleanValues.profilePicture);
     setResidence(cleanValues.residence ?? []);
     setCurrentResidenceValue("");
@@ -247,6 +252,7 @@ export default function UserDetailsUpdateForm(props) {
   };
   const validations = {
     name: [],
+    preferedName: [],
     profilePicture: [],
     residence: [{ type: "Required" }],
     onBoarded: [{ type: "Required" }],
@@ -278,6 +284,7 @@ export default function UserDetailsUpdateForm(props) {
         event.preventDefault();
         let modelFields = {
           name,
+          preferedName,
           profilePicture,
           residence,
           onBoarded,
@@ -337,6 +344,7 @@ export default function UserDetailsUpdateForm(props) {
           if (onChange) {
             const modelFields = {
               name: value,
+              preferedName,
               profilePicture,
               residence,
               onBoarded,
@@ -354,6 +362,34 @@ export default function UserDetailsUpdateForm(props) {
         hasError={errors.name?.hasError}
         {...getOverrideProps(overrides, "name")}
       ></TextField>
+      <TextField
+        label="Prefered name"
+        isRequired={false}
+        isReadOnly={false}
+        value={preferedName}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              name,
+              preferedName: value,
+              profilePicture,
+              residence,
+              onBoarded,
+            };
+            const result = onChange(modelFields);
+            value = result?.preferedName ?? value;
+          }
+          if (errors.preferedName?.hasError) {
+            runValidationTasks("preferedName", value);
+          }
+          setPreferedName(value);
+        }}
+        onBlur={() => runValidationTasks("preferedName", preferedName)}
+        errorMessage={errors.preferedName?.errorMessage}
+        hasError={errors.preferedName?.hasError}
+        {...getOverrideProps(overrides, "preferedName")}
+      ></TextField>
       <Field
         errorMessage={errors.profilePicture?.errorMessage}
         hasError={errors.profilePicture?.hasError}
@@ -370,6 +406,7 @@ export default function UserDetailsUpdateForm(props) {
                 if (onChange) {
                   const modelFields = {
                     name,
+                    preferedName,
                     profilePicture: value,
                     residence,
                     onBoarded,
@@ -386,6 +423,7 @@ export default function UserDetailsUpdateForm(props) {
                 if (onChange) {
                   const modelFields = {
                     name,
+                    preferedName,
                     profilePicture: value,
                     residence,
                     onBoarded,
@@ -412,6 +450,7 @@ export default function UserDetailsUpdateForm(props) {
           if (onChange) {
             const modelFields = {
               name,
+              preferedName,
               profilePicture,
               residence: values,
               onBoarded,
@@ -488,6 +527,7 @@ export default function UserDetailsUpdateForm(props) {
           if (onChange) {
             const modelFields = {
               name,
+              preferedName,
               profilePicture,
               residence,
               onBoarded: value,

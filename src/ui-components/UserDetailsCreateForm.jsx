@@ -17,6 +17,7 @@ import {
   SelectField,
   SwitchField,
   Text,
+  TextField,
   useTheme,
 } from "@aws-amplify/ui-react";
 import { StorageManager } from "@aws-amplify/ui-react-storage";
@@ -194,10 +195,14 @@ export default function UserDetailsCreateForm(props) {
     ...rest
   } = props;
   const initialValues = {
+    preferedName: "",
     profilePicture: undefined,
     residence: [],
     onBoarded: false,
   };
+  const [preferedName, setPreferedName] = React.useState(
+    initialValues.preferedName
+  );
   const [profilePicture, setProfilePicture] = React.useState(
     initialValues.profilePicture
   );
@@ -205,6 +210,7 @@ export default function UserDetailsCreateForm(props) {
   const [onBoarded, setOnBoarded] = React.useState(initialValues.onBoarded);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
+    setPreferedName(initialValues.preferedName);
     setProfilePicture(initialValues.profilePicture);
     setResidence(initialValues.residence);
     setCurrentResidenceValue("");
@@ -226,6 +232,7 @@ export default function UserDetailsCreateForm(props) {
     },
   };
   const validations = {
+    preferedName: [],
     profilePicture: [],
     residence: [{ type: "Required" }],
     onBoarded: [{ type: "Required" }],
@@ -256,6 +263,7 @@ export default function UserDetailsCreateForm(props) {
       onSubmit={async (event) => {
         event.preventDefault();
         let modelFields = {
+          preferedName,
           profilePicture,
           residence,
           onBoarded,
@@ -304,10 +312,37 @@ export default function UserDetailsCreateForm(props) {
       {...getOverrideProps(overrides, "UserDetailsCreateForm")}
       {...rest}
     >
+      <TextField
+        label="Prefered Name"
+        isRequired={false}
+        isReadOnly={false}
+        value={preferedName}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              preferedName: value,
+              profilePicture,
+              residence,
+              onBoarded,
+            };
+            const result = onChange(modelFields);
+            value = result?.preferedName ?? value;
+          }
+          if (errors.preferedName?.hasError) {
+            runValidationTasks("preferedName", value);
+          }
+          setPreferedName(value);
+        }}
+        onBlur={() => runValidationTasks("preferedName", preferedName)}
+        errorMessage={errors.preferedName?.errorMessage}
+        hasError={errors.preferedName?.hasError}
+        {...getOverrideProps(overrides, "preferedName")}
+      ></TextField>
       <Field
         errorMessage={errors.profilePicture?.errorMessage}
         hasError={errors.profilePicture?.hasError}
-        label={"Profile picture"}
+        label={"Profile Picture"}
         isRequired={false}
         isReadOnly={false}
       >
@@ -317,6 +352,7 @@ export default function UserDetailsCreateForm(props) {
               let value = key;
               if (onChange) {
                 const modelFields = {
+                  preferedName,
                   profilePicture: value,
                   residence,
                   onBoarded,
@@ -332,6 +368,7 @@ export default function UserDetailsCreateForm(props) {
               let value = initialValues?.profilePicture;
               if (onChange) {
                 const modelFields = {
+                  preferedName,
                   profilePicture: value,
                   residence,
                   onBoarded,
@@ -343,8 +380,8 @@ export default function UserDetailsCreateForm(props) {
             });
           }}
           processFile={processFile}
-          accessLevel={"private"}
-          acceptedFileTypes={[]}
+          accessLevel={"public"}
+          acceptedFileTypes={["image/*"]}
           isResumable={false}
           showThumbnails={true}
           maxFileCount={1}
@@ -356,6 +393,7 @@ export default function UserDetailsCreateForm(props) {
           let values = items;
           if (onChange) {
             const modelFields = {
+              preferedName,
               profilePicture,
               residence: values,
               onBoarded,
@@ -431,6 +469,7 @@ export default function UserDetailsCreateForm(props) {
           let value = e.target.checked;
           if (onChange) {
             const modelFields = {
+              preferedName,
               profilePicture,
               residence,
               onBoarded: value,

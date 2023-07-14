@@ -17,11 +17,11 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
-                "onBoarded": {
-                    "name": "onBoarded",
+                "preferedName": {
+                    "name": "preferedName",
                     "isArray": false,
-                    "type": "Boolean",
-                    "isRequired": true,
+                    "type": "String",
+                    "isRequired": false,
                     "attributes": []
                 },
                 "activitiesAttended": {
@@ -56,6 +56,13 @@ export const schema = {
                     "isRequired": true,
                     "attributes": [],
                     "isArrayNullable": true
+                },
+                "onBoarded": {
+                    "name": "onBoarded",
+                    "isArray": false,
+                    "type": "Boolean",
+                    "isRequired": true,
+                    "attributes": []
                 },
                 "createdAt": {
                     "name": "createdAt",
@@ -226,5 +233,5 @@ export const schema = {
     },
     "nonModels": {},
     "codegenVersion": "3.4.4",
-    "version": "43eddcd8412110d0292ebf5281bbd6f1"
+    "version": "3231ffe8f38a5d65ee4ac0d56130fb0b"
 };

@@ -3,6 +3,7 @@ import { Flex, Button, Menu, MenuItem, Text } from "@aws-amplify/ui-react";
 import { GiHamburgerMenu } from "react-icons/gi";
 
 import { ColorModeToggle } from "./ColorModeSelector";
+import { useEffect, useState } from "react";
 
 // NEED TO REMOVE USER.USERNAME SOMEHOW FROM HERE
 

@@ -9,11 +9,12 @@ enum Residence {
 type UserDetails @model @auth(rules: [{allow: public}]) {
   id: ID!
   name: String
-  onBoarded: Boolean!
+  preferedName: String
   activitiesAttended: [String]
   activitiesHosted: [String]
   profilePicture: String
   residence: [Residence!]
+  onBoarded: Boolean!
 }
 
 type ActivityItem @model @auth(rules: [{allow: public}]) {
