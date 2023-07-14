@@ -9,7 +9,6 @@ import {
   defaultDarkModeOverride,
   Flex,
   ThemeProvider,
-  withInAppMessaging,
 } from "@aws-amplify/ui-react";
 
 import "@aws-amplify/ui-react/styles.css";
@@ -19,8 +18,8 @@ import { OnBoarding } from "./routes/OnBoarding";
 import { Dashboard } from "./routes/Dashboard";
 import { Settings } from "./routes/Settings";
 import { Notifications } from "aws-amplify";
-import { Login } from "./routes/Login";
 
+import { Login } from "./routes/Login";
 const { InAppMessaging } = Notifications;
 
 function MyRoutes({ mode, onModeChange }) {
@@ -97,4 +96,4 @@ function App() {
   );
 }
 
-export default withInAppMessaging(App);
+export default App;

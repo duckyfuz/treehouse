@@ -8,14 +8,23 @@ import { Amplify } from "aws-amplify";
 import { AmplifyProvider } from "@aws-amplify/ui-react";
 import "@aws-amplify/ui-react/styles.css";
 
+import {
+  InAppMessageDisplay,
+  InAppMessagingProvider,
+} from "@aws-amplify/ui-react-notifications";
+
 import config from "./aws-exports";
 Amplify.configure(config);
+
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <AmplifyProvider>
     <StrictMode>
-      <App />
+      <InAppMessagingProvider>
+        <InAppMessageDisplay />
+        <App />
+      </InAppMessagingProvider>
     </StrictMode>
   </AmplifyProvider>
 );
