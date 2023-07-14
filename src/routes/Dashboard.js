@@ -8,8 +8,13 @@ import { useNavigate } from "react-router-dom";
 import { useUserObserver } from "../hooks/useUser";
 
 import convertISOToCustomFormat from "../utils";
+import { UserDetails } from "../models";
+import { DataStore } from "aws-amplify";
+import { useAuthenticator } from "@aws-amplify/ui-react";
 
 export const Dashboard = () => {
+  const Authenticator = useAuthenticator((context) => [context.user]);
+
   const [activeActivity, setActiveActivity] = useState("");
   const user = useUserObserver();
   const navigate = useNavigate();
@@ -18,6 +23,15 @@ export const Dashboard = () => {
     if (user && !user.onBoarded) {
       navigate("/onboarding");
     }
+    async function getOnBoardingStatus() {
+      const userDetails = await DataStore.query(UserDetails, (c) =>
+        c.name.eq(Authenticator.user.username)
+      );
+      if (userDetails.length === 0) {
+        navigate("/onboarding");
+      }
+    }
+    getOnBoardingStatus();
   }, [navigate, user]);
 
   return (

@@ -18,7 +18,6 @@ const Modal = ({ activity }) => {
       setActivityDetails(activityDetails);
     };
     getActivity();
-    console.log(activityDetails);
   }, [activity, reloadHandler]);
 
   const contactHostHandler = () => {
@@ -26,11 +25,9 @@ const Modal = ({ activity }) => {
       name: "newParticipant",
       attributes: { residence: "BLK111" },
     });
-    console.log("contact host");
   };
 
   const attendActivityHandler = async () => {
-    console.log("attend activity");
     const original = await DataStore.query(ActivityItem, activity);
     await DataStore.save(
       ActivityItem.copyOf(original, (updated) => {

@@ -21,8 +21,7 @@ export const OnBoarding = () => {
     if (user && user.onBoarded) {
       navigate("/dashboard");
     }
-    if (user !== undefined) {
-      console.log("userDetails present");
+    if (user !== null) {
       setUserDetailsCreated(true);
       async function getUserID() {
         const userDetails = await DataStore.query(UserDetails, (c) =>
@@ -32,10 +31,9 @@ export const OnBoarding = () => {
       }
       getUserID();
     } else {
-      console.log("userDetails NOT present");
       setUserDetailsCreated(false);
     }
-  }, [navigate, user]);
+  }, [navigate, user, Authenticator.user.username]);
 
   return (
     <Flex justifyContent="center" minWidth={"30rem"}>
@@ -51,6 +49,8 @@ export const OnBoarding = () => {
               }
             });
             updatedFields["name"] = Authenticator.user.username;
+            updatedFields["activitiesAttended"] = [];
+            updatedFields["activitiesHosted"] = [];
             return updatedFields;
           }}
         />
