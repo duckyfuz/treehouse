@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useUserObserver } from "../hooks/useUser";
 
 export const Settings = () => {
-  const { user } = useUserObserver();
+  const user = useUserObserver();
   const navigate = useNavigate();
 
   useEffect(() => {

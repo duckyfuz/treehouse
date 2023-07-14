@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { DataStore, Predicates } from "@aws-amplify/datastore";
+import { DataStore } from "@aws-amplify/datastore";
 
 import { UserDetails } from "../models";
 import { useAuthenticator } from "@aws-amplify/ui-react";
@@ -9,7 +9,6 @@ export const useUserObserver = () => {
   const Authenticator = useAuthenticator((context) => [context.user]);
 
   const observeUser = () => {
-    console.log(Authenticator.user.username);
     return DataStore.observeQuery(UserDetails, (c) =>
       c.name.eq(Authenticator.user.username)
     ).subscribe((snapshot) => {
@@ -26,5 +25,5 @@ export const useUserObserver = () => {
     };
   }, []);
 
-  return { user };
+  return user;
 };

@@ -11,7 +11,7 @@ import convertISOToCustomFormat from "../utils";
 
 export const Dashboard = () => {
   const [activeActivity, setActiveActivity] = useState("");
-  const { user } = useUserObserver();
+  const user = useUserObserver();
   const navigate = useNavigate();
 
   useEffect(() => {

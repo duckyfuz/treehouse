@@ -11,19 +11,26 @@ export const OnBoarding = () => {
   //   user: user.username,
   //   attributes: { residence: ["BLK111", "BLK112"] },
   // });
-  const { user } = useUserObserver();
+  const user = useUserObserver();
   const navigate = useNavigate();
   const Authenticator = useAuthenticator((context) => [context.user]);
   const [userDetailsCreated, setUserDetailsCreated] = useState();
+  const [userID, setUserID] = useState();
 
   useEffect(() => {
     if (user && user.onBoarded) {
       navigate("/dashboard");
     }
-    console.log(user + "THISSS");
     if (user !== undefined) {
       console.log("userDetails present");
       setUserDetailsCreated(true);
+      async function getUserID() {
+        const userDetails = await DataStore.query(UserDetails, (c) =>
+          c.name.eq(Authenticator.user.username)
+        );
+        setUserID(userDetails[0].id);
+      }
+      getUserID();
     } else {
       console.log("userDetails NOT present");
       setUserDetailsCreated(false);
@@ -48,7 +55,7 @@ export const OnBoarding = () => {
           }}
         />
       ) : (
-        <UserDetailsUpdateForm />
+        <UserDetailsUpdateForm id={userID} />
       )}
     </Flex>
   );
