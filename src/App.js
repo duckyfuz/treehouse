@@ -1,11 +1,8 @@
 import { useEffect, useState } from "react";
-import { AuthGuard } from "./AuthGuard";
-import { Home } from "./routes/Home";
-import { Layout } from "./components/Layout";
+import { SideLayout } from "./components/SideLayout";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import {
-  Authenticator,
   defaultDarkModeOverride,
   Flex,
   ThemeProvider,
@@ -14,53 +11,15 @@ import {
 import "@aws-amplify/ui-react/styles.css";
 import "./App.css";
 
+import { Home } from "./routes/Home";
 import { OnBoarding } from "./routes/OnBoarding";
 import { Dashboard } from "./routes/Dashboard";
 import { Settings } from "./routes/Settings";
+import { Login } from "./routes/Login";
+
 import { Notifications } from "aws-amplify";
 
-import { Login } from "./routes/Login";
 const { InAppMessaging } = Notifications;
-
-function MyRoutes({ mode, onModeChange }) {
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route
-          path="/"
-          element={<Layout mode={mode} onModeChange={onModeChange} />}
-        >
-          <Route index element={<Home />} />
-          <Route
-            path="/onboarding"
-            element={
-              <AuthGuard>
-                <OnBoarding />
-              </AuthGuard>
-            }
-          />
-          <Route
-            path="/dashboard"
-            element={
-              <AuthGuard>
-                <Dashboard />
-              </AuthGuard>
-            }
-          />
-          <Route
-            path="/settings"
-            element={
-              <AuthGuard>
-                <Settings />
-              </AuthGuard>
-            }
-          />
-        </Route>
-        <Route path="/login" element={<Login />} />
-      </Routes>
-    </BrowserRouter>
-  );
-}
 
 function App() {
   useEffect(() => {
@@ -72,26 +31,23 @@ function App() {
     overrides: [defaultDarkModeOverride],
   };
 
-  const getSavedColorMode = () => {
-    return localStorage.getItem("color-mode") || "system";
-  };
-  const [colorMode, setColorMode] = useState(getSavedColorMode());
-
-  const savedColorMode = (value) => {
-    localStorage.setItem("color-mode", value);
-  };
-  const onColorModeChange = (value) => {
-    savedColorMode(value);
-    setColorMode(value);
-  };
-
   return (
-    <ThemeProvider theme={theme} colorMode={colorMode}>
-      <Authenticator.Provider>
-        <Flex justifyContent={"center"}>
-          <MyRoutes mode={colorMode} onModeChange={onColorModeChange} />
-        </Flex>
-      </Authenticator.Provider>
+    <ThemeProvider theme={theme}>
+      <Flex height={"100vh"}>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/onboarding" element={<OnBoarding />} />
+            <Route path="/onboarding" element={<OnBoarding />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/" element={<SideLayout />}>
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/settings" element={<Settings />} />
+            </Route>
+            <Route path="*" element={<p>Page Not Found</p>} />
+          </Routes>
+        </BrowserRouter>
+      </Flex>
     </ThemeProvider>
   );
 }

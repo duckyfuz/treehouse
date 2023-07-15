@@ -5,7 +5,7 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
 import { Amplify } from "aws-amplify";
-import { AmplifyProvider } from "@aws-amplify/ui-react";
+import { AmplifyProvider, Authenticator } from "@aws-amplify/ui-react";
 import "@aws-amplify/ui-react/styles.css";
 
 import {
@@ -16,15 +16,16 @@ import {
 import config from "./aws-exports";
 Amplify.configure(config);
 
-
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <AmplifyProvider>
     <StrictMode>
-      <InAppMessagingProvider>
-        <InAppMessageDisplay />
-        <App />
-      </InAppMessagingProvider>
+      <Authenticator.Provider>
+        <InAppMessagingProvider>
+          <InAppMessageDisplay />
+          <App />
+        </InAppMessagingProvider>
+      </Authenticator.Provider>
     </StrictMode>
   </AmplifyProvider>
 );

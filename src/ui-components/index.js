@@ -19,6 +19,7 @@ export { default as SideBar } from "./SideBar";
 export { default as CheckoutPayment } from "./CheckoutPayment";
 export { default as MarketingFooter } from "./MarketingFooter";
 export { default as IconNameParticipants } from "./IconNameParticipants";
+export { default as UserCard } from "./UserCard";
 export { default as ActivityImageCard } from "./ActivityImageCard";
 export { default as FormCheckout } from "./FormCheckout";
 export { default as ProfileCard } from "./ProfileCard";

@@ -48,12 +48,6 @@ export function Toolbar({ loggedIn, mode, onClick }) {
       position="relative"
       justifyContent="space-between"
     >
-      {/* <TreeHouse onClick={onClick} /> */}
-      {!loggedIn ? (
-        <Text>Make an account now!</Text>
-      ) : (
-        <Text>Welcome User!</Text>
-      )}
       <Flex alignItems="center">
         <ColorModeToggle
           mode={mode}

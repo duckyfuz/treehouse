@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Flex, ScrollView } from "@aws-amplify/ui-react";
 
-import { ActivityCardCollection } from "../ui-components";
+import { ActivityCardCollection, UserCard } from "../ui-components";
 import Modal from "../components/ActivityModal";
 
 import { useNavigate } from "react-router-dom";
@@ -35,29 +35,44 @@ export const Dashboard = () => {
   }, [navigate, user]);
 
   return (
-    <Flex justifyContent="center">
-      <ScrollView height={(window.innerHeight * 9) / 10} width={"500px"}>
-        <ActivityCardCollection
-          overrideItems={({ item }) => ({
-            overrides: {
-              "DATE AND TIME": {
-                children: convertISOToCustomFormat(item.dateTime),
-              },
-              LOCATION: { children: item.residence + " | " + item.location },
-              USERNAME: { children: item.hostName },
-              "5 other participants...": {
-                children: item.participants.length + " other participant(s)...",
-              },
-              ActivityCard: {
-                onClick: () => {
-                  setActiveActivity(item.id);
+    <Flex direction="column">
+      <Flex justifyContent="space-between">
+        <UserCard
+          mode={"Light"}
+          overrides={{
+            Heading: {
+              children: "HELLo",
+            },
+            Body39111824: { children: "HELLo" },
+            Body39121831: { children: "HELLo" },
+          }}
+        />
+      </Flex>
+      <Flex justifyContent="center">
+        <ScrollView height={(window.innerHeight * 9) / 10} width={"500px"}>
+          <ActivityCardCollection
+            overrideItems={({ item }) => ({
+              overrides: {
+                "DATE AND TIME": {
+                  children: convertISOToCustomFormat(item.dateTime),
+                },
+                LOCATION: { children: item.residence + " | " + item.location },
+                USERNAME: { children: item.hostName },
+                "5 other participants...": {
+                  children:
+                    item.participants.length + " other participant(s)...",
+                },
+                ActivityCard: {
+                  onClick: () => {
+                    setActiveActivity(item.id);
+                  },
                 },
               },
-            },
-          })}
-        />
-      </ScrollView>
-      <Modal activity={activeActivity} />
+            })}
+          />
+        </ScrollView>
+        <Modal activity={activeActivity} />
+      </Flex>
     </Flex>
   );
 };
