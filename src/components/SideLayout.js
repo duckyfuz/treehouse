@@ -19,9 +19,9 @@ export function SideLayout() {
   }
 
   return (
-    <Flex>
+    <>
       <Sidebar loggedIn={route === "authenticated"} logOut={logOut} />
       <Outlet />
-    </Flex>
+    </>
   );
 }

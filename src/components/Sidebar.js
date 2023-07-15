@@ -7,7 +7,7 @@ import logo from "../assets/images/logo.png";
 const LogoName = () => {
   return (
     <>
-      <Flex alignItems="center" margin={"20px"} backgroundColor={"blue"}>
+      <Flex alignItems="center" margin={"20px"}>
         <img src={logo} alt="logo" width={"80px"} height={"80px"} />
         <Text
           variation="primary"
@@ -30,13 +30,7 @@ export const NavButtons = () => {
 
   return (
     <>
-      <Flex
-        direction="column"
-        alignItems="start"
-        width={"100%"}
-        gap={"5px"}
-        backgroundColor={"red"}
-      >
+      <Flex direction="column" alignItems="start" width={"100%"} gap={"5px"}>
         <Button
           variation={pathname === "/" ? "primary" : "menu"}
           size="large"

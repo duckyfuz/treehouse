@@ -29,7 +29,7 @@ export const Settings = () => {
   }, [navigate, user]);
 
   return (
-    <Flex justifyContent="center" minWidth={"30rem"}>
+    <Flex justifyContent="center" width={"30rem"}>
       <div>Settings</div>
     </Flex>
   );

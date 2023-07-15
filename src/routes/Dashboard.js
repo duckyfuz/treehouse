@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Flex, ScrollView } from "@aws-amplify/ui-react";
+import { Card, Flex, ScrollView, Text } from "@aws-amplify/ui-react";
 
 import { ActivityCardCollection, UserCard } from "../ui-components";
 import Modal from "../components/ActivityModal";
@@ -35,8 +35,54 @@ export const Dashboard = () => {
   }, [navigate, user]);
 
   return (
-    <Flex direction="column">
-      <Flex justifyContent="space-between">
+    <Flex
+      direction={"column"}
+      alignContent={"center"}
+      justifyContent={"flex-start"}
+      alignItems={"center"}
+      width={"100rem"}
+    >
+      <Flex
+        width={"90rem"}
+        height={"200px"}
+        backgroundColor={"blue"}
+        justifyContent="space-between"
+        alignItems="center"
+        alignContent="flex-start"
+      >
+        <Text>Hello user</Text>
+      </Flex>
+      <Flex justifyContent="center">
+        <Card variation="elevated" width={"90rem"}>
+          <Text
+            variation="primary"
+            lineHeight="1.5em"
+            fontWeight={500}
+            fontSize="2em"
+            fontStyle="bold"
+          >
+            national activities
+          </Text>
+        </Card>
+      </Flex>
+      <Flex
+        backgroundColor={"blue"}
+        alignContent={"center"}
+        justifyContent={"flex-start"}
+        alignItems={"center"}
+        width={"90rem"}
+      >
+        <Text
+          variation="primary"
+          lineHeight="1.5em"
+          fontWeight={500}
+          fontSize="2em"
+          fontStyle="bold"
+        >
+          neighborhood meetups
+        </Text>
+      </Flex>
+      {/* <Flex justifyContent="space-between">
         <UserCard
           mode={"Light"}
           overrides={{
@@ -72,7 +118,7 @@ export const Dashboard = () => {
           />
         </ScrollView>
         <Modal activity={activeActivity} />
-      </Flex>
+      </Flex> */}
     </Flex>
   );
 };
