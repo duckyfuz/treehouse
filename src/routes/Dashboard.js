@@ -58,11 +58,8 @@ export const Dashboard = () => {
           sort: (s) => s.dateTime(SortDirection.ASCENDING),
         }
       );
-      console.log(sortedActivities);
       const filteredActivities = filterDateTimeBeforeToday(sortedActivities);
-      console.log(filteredActivities);
       setFutureActivities(filteredActivities);
-      console.log(filteredActivities);
       setIsLoading(false);
     })();
   }, []);
@@ -88,6 +85,7 @@ export const Dashboard = () => {
     );
   };
 
+  const currentTime = new Date();
   if (userDets !== null) {
     content = (
       <>
@@ -98,7 +96,13 @@ export const Dashboard = () => {
           fontSize="2em"
           fontStyle="bold"
         >
-          Welcome back, {userDets.preferedName}
+          Good{" "}
+          {currentTime.getHours() < 12
+            ? "Morning"
+            : currentTime.getHours() < 18
+            ? "Afternoon"
+            : "Evening"}
+          , {!isLoading && userDets.preferedName}
         </Text>
         <AddActivityButton />
       </>
