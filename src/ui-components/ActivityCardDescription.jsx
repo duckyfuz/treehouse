@@ -9,7 +9,8 @@ import * as React from "react";
 import { getOverrideProps } from "@aws-amplify/ui-react/internal";
 import { Button, Flex, Text } from "@aws-amplify/ui-react";
 export default function ActivityCardDescription(props) {
-  const { activityItem, overrides, ...rest } = props;
+  const { activityItem, dateTime, location, participants, overrides, ...rest } =
+    props;
   return (
     <Flex
       gap="16px"
@@ -122,7 +123,7 @@ export default function ActivityCardDescription(props) {
                 position="relative"
                 padding="0px 0px 0px 0px"
                 whiteSpace="pre-wrap"
-                children="Date and Time"
+                children={dateTime}
                 {...getOverrideProps(overrides, "Date and Time")}
               ></Text>
               <Text
@@ -145,7 +146,7 @@ export default function ActivityCardDescription(props) {
                 position="relative"
                 padding="0px 0px 0px 0px"
                 whiteSpace="pre-wrap"
-                children="Location of Event"
+                children={location}
                 {...getOverrideProps(overrides, "Location of Event")}
               ></Text>
             </Flex>
@@ -182,7 +183,7 @@ export default function ActivityCardDescription(props) {
                 position="relative"
                 padding="0px 0px 0px 0px"
                 whiteSpace="pre-wrap"
-                children="HostName"
+                children={`${"Host: "}${activityItem?.hostName}`}
                 {...getOverrideProps(overrides, "HostName")}
               ></Text>
               <Text
@@ -205,7 +206,7 @@ export default function ActivityCardDescription(props) {
                 position="relative"
                 padding="0px 0px 0px 0px"
                 whiteSpace="pre-wrap"
-                children="ParticipantsNo"
+                children={participants}
                 {...getOverrideProps(overrides, "ParticipantsNo")}
               ></Text>
             </Flex>

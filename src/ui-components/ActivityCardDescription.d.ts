@@ -25,6 +25,9 @@ export declare type ActivityCardDescriptionOverridesProps = {
 } & EscapeHatchProps;
 export declare type ActivityCardDescriptionProps = React.PropsWithChildren<Partial<FlexProps> & {
     activityItem?: ActivityItem;
+    dateTime?: String;
+    location?: String;
+    participants?: String;
 } & {
     overrides?: ActivityCardDescriptionOverridesProps | undefined | null;
 }>;

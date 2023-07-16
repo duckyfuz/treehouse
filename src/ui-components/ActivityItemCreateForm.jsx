@@ -56,7 +56,7 @@ export default function ActivityItemCreateForm(props) {
     title: [{ type: "Required" }],
     description: [],
     dateTime: [{ type: "Required" }],
-    location: [],
+    location: [{ type: "Required" }],
     residence: [],
   };
   const runValidationTasks = async (
@@ -239,7 +239,7 @@ export default function ActivityItemCreateForm(props) {
       ></TextField>
       <TextField
         label="Location"
-        isRequired={false}
+        isRequired={true}
         isReadOnly={false}
         value={location}
         onChange={(e) => {

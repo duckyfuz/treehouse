@@ -230,14 +230,14 @@ export const schema = {
                     "name": "location",
                     "isArray": false,
                     "type": "String",
-                    "isRequired": false,
+                    "isRequired": true,
                     "attributes": []
                 },
                 "hostName": {
                     "name": "hostName",
                     "isArray": false,
                     "type": "String",
-                    "isRequired": false,
+                    "isRequired": true,
                     "attributes": []
                 },
                 "residence": {
@@ -306,5 +306,5 @@ export const schema = {
     },
     "nonModels": {},
     "codegenVersion": "3.4.4",
-    "version": "c08c6fe25d14a0620d8b721f722bceb8"
+    "version": "4f3a07d0a8f408a2b05210dee4114e79"
 };

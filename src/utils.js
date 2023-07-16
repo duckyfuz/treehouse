@@ -23,3 +23,13 @@ export default function convertISOToCustomFormat(isoTime) {
 
   return `${formattedDate} @ ${formattedTime}`;
 }
+
+export function filterDateTimeBeforeToday(activities) {
+  const currentDate = new Date();
+  const halfDayAgo = new Date(currentDate.getTime() - 12 * 60 * 60 * 1000);
+  const filteredActivities = activities.filter((activity) => {
+    const testDate = new Date(activity.dateTime);
+    return testDate >= halfDayAgo;
+  });
+  return filteredActivities;
+}

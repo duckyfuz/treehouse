@@ -95,8 +95,8 @@ type EagerActivityItem = {
   readonly dateTime: string;
   readonly participants?: (string | null)[] | null;
   readonly images?: (string | null)[] | null;
-  readonly location?: string | null;
-  readonly hostName?: string | null;
+  readonly location: string;
+  readonly hostName: string;
   readonly residence?: Residence | keyof typeof Residence | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
@@ -113,8 +113,8 @@ type LazyActivityItem = {
   readonly dateTime: string;
   readonly participants?: (string | null)[] | null;
   readonly images?: (string | null)[] | null;
-  readonly location?: string | null;
-  readonly hostName?: string | null;
+  readonly location: string;
+  readonly hostName: string;
   readonly residence?: Residence | keyof typeof Residence | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;

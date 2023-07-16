@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { DataStore } from "aws-amplify";
+import { DataStore, Predicates, SortDirection } from "aws-amplify";
 import {
   Button,
   Card,
+  Collection,
   Flex,
   Placeholder,
   Text,
@@ -11,29 +12,28 @@ import {
 import { useNavigate } from "react-router-dom";
 import { useUserObserver } from "../hooks/useUser";
 
-import { UserDetails } from "../models";
+import { ActivityItem, UserDetails } from "../models";
 import {
-  ActivityCardDescriptionCollection,
+  ActivityCardDescription,
   NatCardDescriptionCollection,
 } from "../ui-components";
-import Modal from "../components/ActivityModal";
 
 import { BiMessageSquareAdd } from "react-icons/bi";
 
-import convertISOToCustomFormat from "../utils";
+import convertISOToCustomFormat, { filterDateTimeBeforeToday } from "../utils";
 import AddActivityModal from "../components/AddActivityModal";
 
 export const Dashboard = () => {
   const Authenticator = useAuthenticator((context) => [context.user]);
 
   const [activeActivity, setActiveActivity] = useState();
+  const [futureActivities, setFutureActivities] = useState();
   const [openAddActivityModal, setOpenAddActivityModal] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const userDets = useUserObserver();
   const navigate = useNavigate();
 
   useEffect(() => {
-    setIsLoading(true);
     if (userDets && !userDets.onBoarded) {
       navigate("/onboarding");
     }
@@ -45,10 +45,27 @@ export const Dashboard = () => {
       if (userDetails.length === 0) {
         navigate("/onboarding");
       }
-      setIsLoading(false);
     }
     getOnBoardingStatus();
   }, [navigate, userDets]);
+
+  useEffect(() => {
+    (async function () {
+      const sortedActivities = await DataStore.query(
+        ActivityItem,
+        Predicates.ALL,
+        {
+          sort: (s) => s.dateTime(SortDirection.ASCENDING),
+        }
+      );
+      console.log(sortedActivities);
+      const filteredActivities = filterDateTimeBeforeToday(sortedActivities);
+      console.log(filteredActivities);
+      setFutureActivities(filteredActivities);
+      console.log(filteredActivities);
+      setIsLoading(false);
+    })();
+  }, []);
 
   const openAddActivityModalHandler = () => {
     setOpenAddActivityModal(true);
@@ -56,7 +73,22 @@ export const Dashboard = () => {
 
   let content = <Placeholder size="large" />;
 
-  if (userDets !== null && !isLoading) {
+  const AddActivityButton = () => {
+    return (
+      <Button
+        size="large"
+        gap="0.4rem"
+        variation="primary"
+        onClick={() => {
+          openAddActivityModalHandler();
+        }}
+      >
+        <BiMessageSquareAdd /> Host an Activity!
+      </Button>
+    );
+  };
+
+  if (userDets !== null) {
     content = (
       <>
         <Text
@@ -68,16 +100,7 @@ export const Dashboard = () => {
         >
           Welcome back, {userDets.preferedName}
         </Text>
-        <Button
-          size="large"
-          gap="0.4rem"
-          variation="primary"
-          onClick={() => {
-            openAddActivityModalHandler();
-          }}
-        >
-          <BiMessageSquareAdd /> Host an Activity!
-        </Button>
+        <AddActivityButton />
       </>
     );
   }
@@ -139,30 +162,59 @@ export const Dashboard = () => {
             neighborhood meetups
           </Text>
         </Flex>
-        <ActivityCardDescriptionCollection
-          overrideItems={({ item }) => ({
-            overrides: {
-              "This is the Activity Name": {
-                children: item.title,
-                width: "24rem",
-                isTruncated: true,
-                whiteSpace: "nowrap",
-              },
-              "Date and Time": {
-                children: convertISOToCustomFormat(item.dateTime),
-              },
-              "Location of Event": {
-                children: item.residence + ", " + item.location,
-              },
-              HostName: {
-                children: "Host: " + item.hostName,
-              },
-              ParticipantsNo: {
-                children: item.participants.length + " neighbor(s) attending!",
-              },
-            },
-          })}
-        />
+        {!isLoading && (
+          <Collection
+            isPaginated
+            itemsPerPage={3}
+            items={futureActivities}
+            type="list"
+            direction="row"
+            wrap="nowrap"
+            isSearchable
+            searchNoResultsFound={
+              <Flex
+                justifyContent="center"
+                alignContent={"center"}
+                alignItems={"center"}
+                direction={"column"}
+              >
+                <Text
+                  variation="primary"
+                  lineHeight="1.2em"
+                  fontWeight={360}
+                  fontSize="1.4em"
+                  fontStyle="bold"
+                >
+                  No activities found...
+                </Text>
+                <AddActivityButton />
+                <Text
+                  variation="primary"
+                  lineHeight="0.8em"
+                  fontWeight={340}
+                  fontSize="1.2em"
+                  fontStyle="bold"
+                >
+                  Why not host your own!
+                </Text>
+              </Flex>
+            }
+            searchPlaceholder="Find your next activity!"
+          >
+            {(activity, index) => (
+              <ActivityCardDescription
+                width={"28rem"}
+                margin={"0.5rem"}
+                activityItem={activity}
+                dateTime={convertISOToCustomFormat(activity.dateTime)}
+                location={activity.residence + ", " + activity.location}
+                participants={
+                  activity.participants.length + " neighbor(s) attending!"
+                }
+              />
+            )}
+          </Collection>
+        )}
       </Flex>
       <AddActivityModal
         open={openAddActivityModal}

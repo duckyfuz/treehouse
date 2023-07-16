@@ -256,8 +256,8 @@ export default function ActivityItemUpdateForm(props) {
     dateTime: [{ type: "Required" }],
     participants: [],
     images: [],
-    location: [],
-    hostName: [],
+    location: [{ type: "Required" }],
+    hostName: [{ type: "Required" }],
     residence: [],
   };
   const runValidationTasks = async (
@@ -554,7 +554,7 @@ export default function ActivityItemUpdateForm(props) {
       </ArrayField>
       <TextField
         label="Location"
-        isRequired={false}
+        isRequired={true}
         isReadOnly={false}
         value={location}
         onChange={(e) => {
@@ -585,7 +585,7 @@ export default function ActivityItemUpdateForm(props) {
       ></TextField>
       <TextField
         label="Host name"
-        isRequired={false}
+        isRequired={true}
         isReadOnly={false}
         value={hostName}
         onChange={(e) => {
