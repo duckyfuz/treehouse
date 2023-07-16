@@ -5,7 +5,7 @@
  **************************************************************************/
 
 import * as React from "react";
-import { GridProps, SelectFieldProps, TextFieldProps } from "@aws-amplify/ui-react";
+import { GridProps, SelectFieldProps, TextAreaFieldProps, TextFieldProps } from "@aws-amplify/ui-react";
 import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
 export declare type ValidationResponse = {
     hasError: boolean;
@@ -16,32 +16,23 @@ export declare type ActivityItemCreateFormInputValues = {
     title?: string;
     description?: string;
     dateTime?: string;
-    participants?: string[];
-    images?: string[];
     location?: string;
-    hostName?: string;
     residence?: string;
 };
 export declare type ActivityItemCreateFormValidationValues = {
     title?: ValidationFunction<string>;
     description?: ValidationFunction<string>;
     dateTime?: ValidationFunction<string>;
-    participants?: ValidationFunction<string>;
-    images?: ValidationFunction<string>;
     location?: ValidationFunction<string>;
-    hostName?: ValidationFunction<string>;
     residence?: ValidationFunction<string>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type ActivityItemCreateFormOverridesProps = {
     ActivityItemCreateFormGrid?: PrimitiveOverrideProps<GridProps>;
     title?: PrimitiveOverrideProps<TextFieldProps>;
-    description?: PrimitiveOverrideProps<TextFieldProps>;
+    description?: PrimitiveOverrideProps<TextAreaFieldProps>;
     dateTime?: PrimitiveOverrideProps<TextFieldProps>;
-    participants?: PrimitiveOverrideProps<TextFieldProps>;
-    images?: PrimitiveOverrideProps<TextFieldProps>;
     location?: PrimitiveOverrideProps<TextFieldProps>;
-    hostName?: PrimitiveOverrideProps<TextFieldProps>;
     residence?: PrimitiveOverrideProps<SelectFieldProps>;
 } & EscapeHatchProps;
 export declare type ActivityItemCreateFormProps = React.PropsWithChildren<{

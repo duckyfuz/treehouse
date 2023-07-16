@@ -2,8 +2,11 @@ import Modal from "@mui/material/Modal";
 import { Button, Flex, Text } from "@aws-amplify/ui-react";
 import { ActivityItemCreateForm } from "../ui-components";
 import { MdDelete } from "react-icons/md";
+import { useUserObserver } from "../hooks/useUser";
 
 const AddActivityModal = ({ open, setOpenAddActivityModal }) => {
+  const userDets = useUserObserver();
+
   return (
     <Modal
       open={open}
@@ -21,12 +24,13 @@ const AddActivityModal = ({ open, setOpenAddActivityModal }) => {
           width={"40%"}
           direction={"column"}
           padding={"5px"}
+          borderRadius={"15px"}
         >
           <Flex
             width={"100%"}
             paddingLeft={"25px"}
             paddingRight={"25px"}
-            paddingTop={"10px"}
+            paddingTop={"15px"}
             justifyContent="space-between"
             alignItems="center"
             alignContent="center"
@@ -43,7 +47,26 @@ const AddActivityModal = ({ open, setOpenAddActivityModal }) => {
               Exit <MdDelete />
             </Button>
           </Flex>
-          <ActivityItemCreateForm width={"100%"} />
+          <ActivityItemCreateForm
+            width={"100%"}
+            onSubmit={(fields) => {
+              const updatedFields = {};
+              Object.keys(fields).forEach((key) => {
+                if (typeof fields[key] === "string") {
+                  updatedFields[key] = fields[key].trim();
+                } else {
+                  updatedFields[key] = fields[key];
+                }
+              });
+              updatedFields["hostName"] = userDets.name;
+              updatedFields["participants"] = [];
+              updatedFields["images"] = [];
+              return updatedFields;
+            }}
+            onSuccess={() => {
+              setOpenAddActivityModal(false);
+            }}
+          />
         </Flex>
       </Flex>
     </Modal>
