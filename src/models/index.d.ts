@@ -12,6 +12,38 @@ export enum Residence {
 
 
 
+type EagerNatActivity = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<NatActivity, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
+  readonly id: string;
+  readonly title?: string | null;
+  readonly dateTime?: string | null;
+  readonly location?: string | null;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+}
+
+type LazyNatActivity = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<NatActivity, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
+  readonly id: string;
+  readonly title?: string | null;
+  readonly dateTime?: string | null;
+  readonly location?: string | null;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+}
+
+export declare type NatActivity = LazyLoading extends LazyLoadingDisabled ? EagerNatActivity : LazyNatActivity
+
+export declare const NatActivity: (new (init: ModelInit<NatActivity>) => NatActivity) & {
+  copyOf(source: NatActivity, mutator: (draft: MutableModel<NatActivity>) => MutableModel<NatActivity> | void): NatActivity;
+}
+
 type EagerUserDetails = {
   readonly [__modelMeta__]: {
     identifier: ManagedIdentifier<UserDetails, 'id'>;

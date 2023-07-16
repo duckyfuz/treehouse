@@ -10,9 +10,10 @@ const Residence = {
   "BLK333": "BLK333"
 };
 
-const { UserDetails, ActivityItem } = initSchema(schema);
+const { NatActivity, UserDetails, ActivityItem } = initSchema(schema);
 
 export {
+  NatActivity,
   UserDetails,
   ActivityItem,
   Residence

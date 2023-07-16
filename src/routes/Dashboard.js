@@ -1,38 +1,86 @@
 import React, { useState, useEffect } from "react";
-import { Card, Flex, ScrollView, Text } from "@aws-amplify/ui-react";
-
-import { ActivityCardCollection, UserCard } from "../ui-components";
-import Modal from "../components/ActivityModal";
-
+import { DataStore } from "aws-amplify";
+import {
+  Button,
+  Card,
+  Flex,
+  Placeholder,
+  Text,
+  useAuthenticator,
+} from "@aws-amplify/ui-react";
 import { useNavigate } from "react-router-dom";
 import { useUserObserver } from "../hooks/useUser";
 
-import convertISOToCustomFormat from "../utils";
 import { UserDetails } from "../models";
-import { DataStore } from "aws-amplify";
-import { useAuthenticator } from "@aws-amplify/ui-react";
+import {
+  ActivityCardDescriptionCollection,
+  NatCardDescriptionCollection,
+} from "../ui-components";
+import Modal from "../components/ActivityModal";
+
+import { BiMessageSquareAdd } from "react-icons/bi";
+
+import convertISOToCustomFormat from "../utils";
+import AddActivityModal from "../components/AddActivityModal";
 
 export const Dashboard = () => {
   const Authenticator = useAuthenticator((context) => [context.user]);
 
-  const [activeActivity, setActiveActivity] = useState("");
-  const user = useUserObserver();
+  const [activeActivity, setActiveActivity] = useState();
+  const [openAddActivityModal, setOpenAddActivityModal] = useState();
+  const [isLoading, setIsLoading] = useState(true);
+  const userDets = useUserObserver();
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (user && !user.onBoarded) {
+    setIsLoading(true);
+    if (userDets && !userDets.onBoarded) {
       navigate("/onboarding");
     }
     async function getOnBoardingStatus() {
+      let name = Authenticator.user.username;
       const userDetails = await DataStore.query(UserDetails, (c) =>
-        c.name.eq(Authenticator.user.username)
+        c.name.eq(name)
       );
       if (userDetails.length === 0) {
         navigate("/onboarding");
       }
+      setIsLoading(false);
     }
     getOnBoardingStatus();
-  }, [navigate, user]);
+  }, [navigate, userDets]);
+
+  const openAddActivityModalHandler = () => {
+    setOpenAddActivityModal(true);
+  };
+
+  let content = <Placeholder size="large" />;
+
+  if (userDets !== null && !isLoading) {
+    content = (
+      <>
+        <Text
+          variation="primary"
+          lineHeight="1.5em"
+          fontWeight={500}
+          fontSize="2em"
+          fontStyle="bold"
+        >
+          Welcome back, {userDets.preferedName}
+        </Text>
+        <Button
+          size="large"
+          gap="0.4rem"
+          variation="primary"
+          onClick={() => {
+            openAddActivityModalHandler();
+          }}
+        >
+          <BiMessageSquareAdd /> Host an Activity!
+        </Button>
+      </>
+    );
+  }
 
   return (
     <Flex
@@ -45,12 +93,11 @@ export const Dashboard = () => {
       <Flex
         width={"90rem"}
         height={"200px"}
-        backgroundColor={"blue"}
         justifyContent="space-between"
         alignItems="center"
         alignContent="flex-start"
       >
-        <Text>Hello user</Text>
+        {content}
       </Flex>
       <Flex justifyContent="center">
         <Card variation="elevated" width={"90rem"}>
@@ -63,62 +110,64 @@ export const Dashboard = () => {
           >
             national activities
           </Text>
+          <NatCardDescriptionCollection
+            overrideItems={({ item }) => ({
+              overrides: {
+                "Date and Time": {
+                  children: convertISOToCustomFormat(item.dateTime),
+                },
+              },
+            })}
+          />
         </Card>
       </Flex>
       <Flex
-        backgroundColor={"blue"}
+        direction={"column"}
         alignContent={"center"}
         justifyContent={"flex-start"}
         alignItems={"center"}
         width={"90rem"}
       >
-        <Text
-          variation="primary"
-          lineHeight="1.5em"
-          fontWeight={500}
-          fontSize="2em"
-          fontStyle="bold"
-        >
-          neighborhood meetups
-        </Text>
-      </Flex>
-      {/* <Flex justifyContent="space-between">
-        <UserCard
-          mode={"Light"}
-          overrides={{
-            Heading: {
-              children: "HELLo",
+        <Flex width={"90rem"}>
+          <Text
+            variation="primary"
+            lineHeight="1.5em"
+            fontWeight={500}
+            fontSize="2em"
+            fontStyle="bold"
+          >
+            neighborhood meetups
+          </Text>
+        </Flex>
+        <ActivityCardDescriptionCollection
+          overrideItems={({ item }) => ({
+            overrides: {
+              "This is the Activity Name": {
+                children: item.title,
+                width: "24rem",
+                isTruncated: true,
+                whiteSpace: "nowrap",
+              },
+              "Date and Time": {
+                children: convertISOToCustomFormat(item.dateTime),
+              },
+              "Location of Event": {
+                children: item.residence + ", " + item.location,
+              },
+              HostName: {
+                children: "Host: " + item.hostName,
+              },
+              ParticipantsNo: {
+                children: item.participants.length + " neighbor(s) attending!",
+              },
             },
-            Body39111824: { children: "HELLo" },
-            Body39121831: { children: "HELLo" },
-          }}
+          })}
         />
       </Flex>
-      <Flex justifyContent="center">
-        <ScrollView height={(window.innerHeight * 9) / 10} width={"500px"}>
-          <ActivityCardCollection
-            overrideItems={({ item }) => ({
-              overrides: {
-                "DATE AND TIME": {
-                  children: convertISOToCustomFormat(item.dateTime),
-                },
-                LOCATION: { children: item.residence + " | " + item.location },
-                USERNAME: { children: item.hostName },
-                "5 other participants...": {
-                  children:
-                    item.participants.length + " other participant(s)...",
-                },
-                ActivityCard: {
-                  onClick: () => {
-                    setActiveActivity(item.id);
-                  },
-                },
-              },
-            })}
-          />
-        </ScrollView>
-        <Modal activity={activeActivity} />
-      </Flex> */}
+      <AddActivityModal
+        open={openAddActivityModal}
+        setOpenAddActivityModal={setOpenAddActivityModal}
+      />
     </Flex>
   );
 };

@@ -1,3 +1,10 @@
+type NatActivity @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  title: String
+  dateTime: AWSDateTime
+  location: String
+}
+
 enum Residence {
   BLK111
   BLK112
