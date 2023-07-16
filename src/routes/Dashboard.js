@@ -22,13 +22,15 @@ import { BiMessageSquareAdd } from "react-icons/bi";
 
 import convertISOToCustomFormat, { filterDateTimeBeforeToday } from "../utils";
 import AddActivityModal from "../components/AddActivityModal";
+import ViewActivityModal from "../components/ViewActivityModal";
 
 export const Dashboard = () => {
   const Authenticator = useAuthenticator((context) => [context.user]);
 
   const [activeActivity, setActiveActivity] = useState();
   const [futureActivities, setFutureActivities] = useState();
-  const [openAddActivityModal, setOpenAddActivityModal] = useState();
+  const [openAddActivityModal, setOpenAddActivityModal] = useState(false);
+  const [openViewActivityModal, setOpenViewActivityModal] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const userDets = useUserObserver();
   const navigate = useNavigate();
@@ -66,6 +68,10 @@ export const Dashboard = () => {
 
   const openAddActivityModalHandler = () => {
     setOpenAddActivityModal(true);
+  };
+
+  const openViewActivityModalHandler = () => {
+    setOpenViewActivityModal(true);
   };
 
   let content = <Placeholder size="large" />;
@@ -215,6 +221,11 @@ export const Dashboard = () => {
                 participants={
                   activity.participants.length + " neighbor(s) attending!"
                 }
+                moreDetailsHandler={() => {
+                  setActiveActivity(activity.id);
+                  openViewActivityModalHandler();
+                  console.log(activeActivity);
+                }}
               />
             )}
           </Collection>
@@ -223,6 +234,11 @@ export const Dashboard = () => {
       <AddActivityModal
         open={openAddActivityModal}
         setOpenAddActivityModal={setOpenAddActivityModal}
+      />
+      <ViewActivityModal
+        id={activeActivity}
+        open={openViewActivityModal}
+        setOpenViewActivityModal={setOpenViewActivityModal}
       />
     </Flex>
   );

@@ -8,6 +8,7 @@ import * as React from "react";
 import { ActivityItem } from "../models";
 import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
 import { ButtonProps, FlexProps, TextProps } from "@aws-amplify/ui-react";
+import { SyntheticEvent } from "react";
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type ActivityCardDescriptionOverridesProps = {
     ActivityCardDescription?: PrimitiveOverrideProps<FlexProps>;
@@ -28,6 +29,7 @@ export declare type ActivityCardDescriptionProps = React.PropsWithChildren<Parti
     dateTime?: String;
     location?: String;
     participants?: String;
+    moreDetailsHandler?: (event: SyntheticEvent) => void;
 } & {
     overrides?: ActivityCardDescriptionOverridesProps | undefined | null;
 }>;

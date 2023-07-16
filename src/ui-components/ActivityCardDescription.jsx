@@ -9,8 +9,15 @@ import * as React from "react";
 import { getOverrideProps } from "@aws-amplify/ui-react/internal";
 import { Button, Flex, Text } from "@aws-amplify/ui-react";
 export default function ActivityCardDescription(props) {
-  const { activityItem, dateTime, location, participants, overrides, ...rest } =
-    props;
+  const {
+    activityItem,
+    dateTime,
+    location,
+    participants,
+    moreDetailsHandler,
+    overrides,
+    ...rest
+  } = props;
   return (
     <Flex
       gap="16px"
@@ -221,6 +228,7 @@ export default function ActivityCardDescription(props) {
         isDisabled={false}
         variation="primary"
         children="More Details..."
+        onClick={moreDetailsHandler}
         {...getOverrideProps(overrides, "Button")}
       ></Button>
     </Flex>
