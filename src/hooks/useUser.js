@@ -26,7 +26,7 @@ export const useUserObserver = () => {
         userSubscription.unsubscribe();
       };
     }
-  }, []);
+  }, [authStatus]);
 
   return userDets;
 };

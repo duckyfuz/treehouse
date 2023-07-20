@@ -37,10 +37,9 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/onboarding" element={<OnBoarding />} />
-            <Route path="/onboarding" element={<OnBoarding />} />
             <Route path="/login" element={<Login />} />
             <Route path="/" element={<SideLayout />}>
+              <Route path="/onboarding" element={<OnBoarding />} />
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/settings" element={<Settings />} />
             </Route>

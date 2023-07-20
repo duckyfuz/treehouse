@@ -36,18 +36,14 @@ export const Dashboard = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // if (user === undefined) {
-    //   navigate("/");
-    // }
     if (authStatus === "authenticated") {
       console.log(userDets);
       if (userDets && !userDets.onBoarded) {
         navigate("/onboarding");
       }
       async function getOnBoardingStatus() {
-        let name = user.username;
         const userDetails = await DataStore.query(UserDetails, (c) =>
-          c.name.eq(name)
+          c.name.eq(user.username)
         );
         if (userDetails.length === 0) {
           navigate("/onboarding");
@@ -57,20 +53,24 @@ export const Dashboard = () => {
         getOnBoardingStatus();
       }
     }
-  }, [navigate, userDets, authStatus]);
+  }, [navigate, userDets, authStatus, user]);
 
   useEffect(() => {
     (async function () {
-      const sortedActivities = await DataStore.query(
-        ActivityItem,
-        Predicates.ALL,
-        {
-          sort: (s) => s.dateTime(SortDirection.ASCENDING),
-        }
-      );
-      const filteredActivities = filterDateTimeBeforeToday(sortedActivities);
-      setFutureActivities(filteredActivities);
-      setIsLoading(false);
+      try {
+        const sortedActivities = await DataStore.query(
+          ActivityItem,
+          Predicates.ALL,
+          {
+            sort: (s) => s.dateTime(SortDirection.ASCENDING),
+          }
+        );
+        const filteredActivities = filterDateTimeBeforeToday(sortedActivities);
+        setFutureActivities(filteredActivities);
+        setIsLoading(false);
+      } catch (err) {
+        console.log(err);
+      }
     })();
   }, []);
 

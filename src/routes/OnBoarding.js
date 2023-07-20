@@ -7,56 +7,73 @@ import { UserDetailsCreateForm, UserDetailsUpdateForm } from "../ui-components";
 import { DataStore } from "aws-amplify";
 
 export const OnBoarding = () => {
+  const { user, authStatus } = useAuthenticator((context) => [context.user]);
   // await Analytics.updateEndpoint({
   //   user: user.username,
   //   attributes: { residence: ["BLK111", "BLK112"] },
   // });
-  const user = useUserObserver();
-  const navigate = useNavigate();
-  const Authenticator = useAuthenticator((context) => [context.user]);
   const [userDetailsCreated, setUserDetailsCreated] = useState();
   const [userID, setUserID] = useState();
+  const userDets = useUserObserver();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    if (user && user.onBoarded) {
-      navigate("/dashboard");
-    }
-    if (user !== null) {
-      setUserDetailsCreated(true);
+    console.log(authStatus);
+    if (authStatus === "authenticated") {
+      if (userDets && userDets.onBoarded) {
+        navigate("/dashboard");
+      }
+      console.log("hi");
       async function getUserID() {
+        console.log(user.username);
         const userDetails = await DataStore.query(UserDetails, (c) =>
-          c.name.eq(Authenticator.user.username)
+          c.name.eq(user.username)
         );
         setUserID(userDetails[0].id);
       }
-      getUserID();
-    } else {
-      setUserDetailsCreated(false);
+      if (userDets !== null) {
+        setUserDetailsCreated(true);
+        getUserID();
+      } else {
+        setUserDetailsCreated(false);
+      }
     }
-  }, [navigate, user, Authenticator.user.username]);
+  }, [navigate, userDets, authStatus, user]);
+
+  let content = (
+    <UserDetailsCreateForm
+      onSubmit={(fields) => {
+        const updatedFields = {};
+        Object.keys(fields).forEach((key) => {
+          if (typeof fields[key] === "string") {
+            updatedFields[key] = fields[key].trim();
+          } else {
+            updatedFields[key] = fields[key];
+          }
+        });
+        updatedFields["name"] = user.username;
+        updatedFields["activitiesAttended"] = [];
+        updatedFields["activitiesHosted"] = [];
+        return updatedFields;
+      }}
+    />
+  );
+
+  if (userDetailsCreated) {
+    console.log(userID + "hi");
+    content = <UserDetailsUpdateForm id={userID} />;
+  }
 
   return (
-    <Flex justifyContent="center" minWidth={"30rem"}>
-      {!userDetailsCreated ? (
-        <UserDetailsCreateForm
-          onSubmit={(fields) => {
-            const updatedFields = {};
-            Object.keys(fields).forEach((key) => {
-              if (typeof fields[key] === "string") {
-                updatedFields[key] = fields[key].trim();
-              } else {
-                updatedFields[key] = fields[key];
-              }
-            });
-            updatedFields["name"] = Authenticator.user.username;
-            updatedFields["activitiesAttended"] = [];
-            updatedFields["activitiesHosted"] = [];
-            return updatedFields;
-          }}
-        />
+    <>
+      {authStatus === "configuring" && "Loading..."}
+      {authStatus !== "authenticated" ? (
+        "Not Authed"
       ) : (
-        <UserDetailsUpdateForm id={userID} />
+        <Flex justifyContent="center" minWidth={"30rem"}>
+          {content}
+        </Flex>
       )}
-    </Flex>
+    </>
   );
 };
