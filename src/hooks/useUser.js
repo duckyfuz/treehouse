@@ -6,7 +6,7 @@ import { useAuthenticator } from "@aws-amplify/ui-react";
 
 export const useUserObserver = () => {
   const [userDets, setUserDets] = useState(null);
-  const { user } = useAuthenticator((context) => [context.user]);
+  const { user, authStatus } = useAuthenticator((context) => [context.user]);
 
   const observeUser = () => {
     return DataStore.observeQuery(UserDetails, (c) =>
@@ -19,10 +19,13 @@ export const useUserObserver = () => {
   };
 
   useEffect(() => {
-    const userSubscription = observeUser();
-    return () => {
-      userSubscription.unsubscribe();
-    };
+    if (authStatus === "authenticated") {
+      const userSubscription = observeUser();
+      console.log(userSubscription);
+      return () => {
+        userSubscription.unsubscribe();
+      };
+    }
   }, []);
 
   return userDets;

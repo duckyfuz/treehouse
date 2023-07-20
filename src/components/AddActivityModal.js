@@ -58,7 +58,8 @@ const AddActivityModal = ({ open, setOpenAddActivityModal }) => {
                   updatedFields[key] = fields[key];
                 }
               });
-              updatedFields["hostName"] = userDets.name;
+              updatedFields["hostName"] = userDets.preferedName;
+              updatedFields["host"] = userDets.name;
               updatedFields["participants"] = [];
               updatedFields["images"] = [];
               return updatedFields;

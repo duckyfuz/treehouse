@@ -25,7 +25,7 @@ import AddActivityModal from "../components/AddActivityModal";
 import ViewActivityModal from "../components/ViewActivityModal";
 
 export const Dashboard = () => {
-  const Authenticator = useAuthenticator((context) => [context.user]);
+  const { user, authStatus } = useAuthenticator((context) => [context.user]);
 
   const [activeActivity, setActiveActivity] = useState();
   const [futureActivities, setFutureActivities] = useState();
@@ -36,20 +36,28 @@ export const Dashboard = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (userDets && !userDets.onBoarded) {
-      navigate("/onboarding");
-    }
-    async function getOnBoardingStatus() {
-      let name = Authenticator.user.username;
-      const userDetails = await DataStore.query(UserDetails, (c) =>
-        c.name.eq(name)
-      );
-      if (userDetails.length === 0) {
+    // if (user === undefined) {
+    //   navigate("/");
+    // }
+    if (authStatus === "authenticated") {
+      console.log(userDets);
+      if (userDets && !userDets.onBoarded) {
         navigate("/onboarding");
       }
+      async function getOnBoardingStatus() {
+        let name = user.username;
+        const userDetails = await DataStore.query(UserDetails, (c) =>
+          c.name.eq(name)
+        );
+        if (userDetails.length === 0) {
+          navigate("/onboarding");
+        }
+      }
+      if (user) {
+        getOnBoardingStatus();
+      }
     }
-    getOnBoardingStatus();
-  }, [navigate, userDets]);
+  }, [navigate, userDets, authStatus]);
 
   useEffect(() => {
     (async function () {
@@ -92,7 +100,7 @@ export const Dashboard = () => {
   };
 
   const currentTime = new Date();
-  if (userDets !== null) {
+  if (authStatus === "authenticated") {
     content = (
       <>
         <Text
@@ -108,7 +116,7 @@ export const Dashboard = () => {
             : currentTime.getHours() < 18
             ? "Afternoon"
             : "Evening"}
-          , {!isLoading && userDets.preferedName}
+          , {user.username}
         </Text>
         <AddActivityButton />
       </>
@@ -116,130 +124,137 @@ export const Dashboard = () => {
   }
 
   return (
-    <Flex
-      direction={"column"}
-      alignContent={"center"}
-      justifyContent={"flex-start"}
-      alignItems={"center"}
-      width={"100rem"}
-    >
-      <Flex
-        width={"90rem"}
-        height={"200px"}
-        justifyContent="space-between"
-        alignItems="center"
-        alignContent="flex-start"
-      >
-        {content}
-      </Flex>
-      <Flex justifyContent="center">
-        <Card variation="elevated" width={"90rem"}>
-          <Text
-            variation="primary"
-            lineHeight="1.5em"
-            fontWeight={500}
-            fontSize="2em"
-            fontStyle="bold"
+    <>
+      {authStatus === "configuring" && "Loading..."}
+      {authStatus !== "authenticated" ? (
+        "Not Authed"
+      ) : (
+        <Flex
+          direction={"column"}
+          alignContent={"center"}
+          justifyContent={"flex-start"}
+          alignItems={"center"}
+          width={"100rem"}
+        >
+          <Flex
+            width={"90rem"}
+            height={"200px"}
+            justifyContent="space-between"
+            alignItems="center"
+            alignContent="flex-start"
           >
-            national activities
-          </Text>
-          <NatCardDescriptionCollection
-            overrideItems={({ item }) => ({
-              overrides: {
-                "Date and Time": {
-                  children: convertISOToCustomFormat(item.dateTime),
-                },
-              },
-            })}
-          />
-        </Card>
-      </Flex>
-      <Flex
-        direction={"column"}
-        alignContent={"center"}
-        justifyContent={"flex-start"}
-        alignItems={"center"}
-        width={"90rem"}
-      >
-        <Flex width={"90rem"}>
-          <Text
-            variation="primary"
-            lineHeight="1.5em"
-            fontWeight={500}
-            fontSize="2em"
-            fontStyle="bold"
-          >
-            neighborhood meetups
-          </Text>
-        </Flex>
-        {!isLoading && (
-          <Collection
-            isPaginated
-            itemsPerPage={3}
-            items={futureActivities}
-            type="list"
-            direction="row"
-            wrap="nowrap"
-            isSearchable
-            searchNoResultsFound={
-              <Flex
-                justifyContent="center"
-                alignContent={"center"}
-                alignItems={"center"}
-                direction={"column"}
+            {content}
+          </Flex>
+          <Flex justifyContent="center">
+            <Card variation="elevated" width={"90rem"}>
+              <Text
+                variation="primary"
+                lineHeight="1.5em"
+                fontWeight={500}
+                fontSize="2em"
+                fontStyle="bold"
               >
-                <Text
-                  variation="primary"
-                  lineHeight="1.2em"
-                  fontWeight={360}
-                  fontSize="1.4em"
-                  fontStyle="bold"
-                >
-                  No activities found...
-                </Text>
-                <AddActivityButton />
-                <Text
-                  variation="primary"
-                  lineHeight="0.8em"
-                  fontWeight={340}
-                  fontSize="1.2em"
-                  fontStyle="bold"
-                >
-                  Why not host your own!
-                </Text>
-              </Flex>
-            }
-            searchPlaceholder="Find your next activity!"
-          >
-            {(activity, index) => (
-              <ActivityCardDescription
-                width={"28rem"}
-                margin={"0.5rem"}
-                activityItem={activity}
-                dateTime={convertISOToCustomFormat(activity.dateTime)}
-                location={activity.residence + ", " + activity.location}
-                participants={
-                  activity.participants.length + " neighbor(s) attending!"
-                }
-                moreDetailsHandler={() => {
-                  setActiveActivity(activity.id);
-                  openViewActivityModalHandler();
-                  console.log(activeActivity);
-                }}
+                national activities
+              </Text>
+              <NatCardDescriptionCollection
+                overrideItems={({ item }) => ({
+                  overrides: {
+                    "Date and Time": {
+                      children: convertISOToCustomFormat(item.dateTime),
+                    },
+                  },
+                })}
               />
+            </Card>
+          </Flex>
+          <Flex
+            direction={"column"}
+            alignContent={"center"}
+            justifyContent={"flex-start"}
+            alignItems={"center"}
+            width={"90rem"}
+          >
+            <Flex width={"90rem"}>
+              <Text
+                variation="primary"
+                lineHeight="1.5em"
+                fontWeight={500}
+                fontSize="2em"
+                fontStyle="bold"
+              >
+                neighborhood meetups
+              </Text>
+            </Flex>
+            {!isLoading && (
+              <Collection
+                isPaginated
+                itemsPerPage={3}
+                items={futureActivities}
+                type="list"
+                direction="row"
+                wrap="nowrap"
+                isSearchable
+                searchNoResultsFound={
+                  <Flex
+                    justifyContent="center"
+                    alignContent={"center"}
+                    alignItems={"center"}
+                    direction={"column"}
+                  >
+                    <Text
+                      variation="primary"
+                      lineHeight="1.2em"
+                      fontWeight={360}
+                      fontSize="1.4em"
+                      fontStyle="bold"
+                    >
+                      No activities found...
+                    </Text>
+                    <AddActivityButton />
+                    <Text
+                      variation="primary"
+                      lineHeight="0.8em"
+                      fontWeight={340}
+                      fontSize="1.2em"
+                      fontStyle="bold"
+                    >
+                      Why not host your own!
+                    </Text>
+                  </Flex>
+                }
+                searchPlaceholder="Find your next activity!"
+              >
+                {(activity, index) => (
+                  <ActivityCardDescription
+                    width={"28rem"}
+                    margin={"0.5rem"}
+                    activityItem={activity}
+                    dateTime={convertISOToCustomFormat(activity.dateTime)}
+                    location={activity.residence + ", " + activity.location}
+                    participants={
+                      activity.participants.length + " neighbor(s) attending!"
+                    }
+                    moreDetailsHandler={() => {
+                      setActiveActivity(activity.id);
+                      openViewActivityModalHandler();
+                      console.log(activeActivity);
+                    }}
+                  />
+                )}
+              </Collection>
             )}
-          </Collection>
-        )}
-      </Flex>
-      <AddActivityModal
-        open={openAddActivityModal}
-        setOpenAddActivityModal={setOpenAddActivityModal}
-      />
-      <ViewActivityModal
-        id={activeActivity}
-        open={openViewActivityModal}
-        setOpenViewActivityModal={setOpenViewActivityModal}
-      />
-    </Flex>
+          </Flex>
+          <AddActivityModal
+            open={openAddActivityModal}
+            setOpenAddActivityModal={setOpenAddActivityModal}
+          />
+          <ViewActivityModal
+            id={activeActivity}
+            open={openViewActivityModal}
+            setOpenViewActivityModal={setOpenViewActivityModal}
+          />
+        </Flex>
+      )}
+    </>
   );
 };
