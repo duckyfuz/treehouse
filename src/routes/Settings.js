@@ -36,7 +36,14 @@ export const Settings = () => {
 
   let content = <Placeholder size="large" />;
   if (userDets) {
-    content = <UserDetailsUpdateForm id={userDets.id} />;
+    content = (
+      <UserDetailsUpdateForm
+        id={userDets.id}
+        onSuccess={() => {
+          console.log("submitted");
+        }}
+      />
+    );
   }
 
   return (
