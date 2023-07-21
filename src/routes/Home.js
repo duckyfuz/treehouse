@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-import { Button, Flex, Text } from "@aws-amplify/ui-react";
+import { Button, Flex, Text, useAuthenticator } from "@aws-amplify/ui-react";
 import {
   HomePageFeatures,
   HomePageFinisher,
@@ -9,13 +9,21 @@ import {
   HomePageIntro,
 } from "../ui-components";
 
-import { FaDoorOpen } from "react-icons/fa6";
+import { FaDoorClosed, FaDoorOpen } from "react-icons/fa6";
 
 import logo from "../assets/images/logo.png";
 import image from "../assets/images/treehouse720.jpeg";
+import { DataStore } from "aws-amplify";
 
 export const Home = () => {
+  const { authStatus, signOut } = useAuthenticator((context) => [context.user]);
   const navigate = useNavigate();
+
+  function logOut() {
+    signOut();
+    DataStore.clear();
+    navigate("/");
+  }
 
   const LogoName = () => {
     return (
@@ -36,17 +44,31 @@ export const Home = () => {
             treehouse
           </Text>
         </Flex>
-        <Button
-          size="large"
-          gap="0.4rem"
-          variation="primary"
-          onClick={() => {
-            navigate("/login");
-          }}
-        >
-          <FaDoorOpen />
-          Login
-        </Button>
+        {authStatus === "unauthenticated" ? (
+          <Button
+            size="large"
+            gap="0.4rem"
+            variation="primary"
+            onClick={() => {
+              navigate("/login");
+            }}
+          >
+            <FaDoorOpen />
+            Log In
+          </Button>
+        ) : (
+          <Button
+            size="large"
+            gap="0.4rem"
+            variation="destructive"
+            onClick={() => {
+              logOut();
+            }}
+          >
+            <FaDoorClosed />
+            Log Out
+          </Button>
+        )}
       </Flex>
     );
   };
@@ -62,22 +84,36 @@ export const Home = () => {
       <HomePageIntro
         borderRadius={"15px"}
         image={image}
+        getStartedHandler={() => {
+          navigate("/login");
+        }}
         overrides={{
           "image 1": {
             borderRadius: "15px",
           },
         }}
-        getStartedHandler={() => {
-          navigate("/login");
-        }}
       />
       <HomePageFeatures />
-      <HomePageFinisher
-        borderRadius={"15px"}
-        createAccountHandler={() => {
-          navigate("/login");
-        }}
-      />
+      {authStatus === "authenticated" ? (
+        <HomePageFinisher
+          borderRadius={"15px"}
+          createAccountHandler={() => {
+            navigate("/login");
+          }}
+          overrides={{
+            Button: {
+              children: "Let's Get Started!",
+            },
+          }}
+        />
+      ) : (
+        <HomePageFinisher
+          borderRadius={"15px"}
+          createAccountHandler={() => {
+            navigate("/login");
+          }}
+        />
+      )}
       <HomePageFooter />
     </Flex>
   );
