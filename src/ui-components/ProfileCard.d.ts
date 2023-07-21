@@ -6,8 +6,7 @@
 
 import * as React from "react";
 import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
-import { ButtonProps, FlexProps, ImageProps, TextProps } from "@aws-amplify/ui-react";
-import { MyIconProps } from "./MyIcon";
+import { ButtonProps, FlexProps, ImageProps, TextProps, ViewProps } from "@aws-amplify/ui-react";
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type ProfileCardOverridesProps = {
     ProfileCard?: PrimitiveOverrideProps<FlexProps>;
@@ -16,7 +15,7 @@ export declare type ProfileCardOverridesProps = {
     "Melinda Marcus"?: PrimitiveOverrideProps<TextProps>;
     "Design Engineer at Cloth Studios"?: PrimitiveOverrideProps<TextProps>;
     Followers?: PrimitiveOverrideProps<FlexProps>;
-    MyIcon?: MyIconProps;
+    MyIcon?: PrimitiveOverrideProps<ViewProps>;
     "99 Followers"?: PrimitiveOverrideProps<TextProps>;
     Button?: PrimitiveOverrideProps<ButtonProps>;
 } & EscapeHatchProps;

@@ -27,7 +27,7 @@ export { default as FormCheckout } from "./FormCheckout";
 export { default as ProfileCard } from "./ProfileCard";
 export { default as NavBarSide } from "./NavBarSide";
 export { default as IconName } from "./IconName";
-export { default as ActionCard } from "./ActionCard";
+export { default as ViewActivityDetailsModal } from "./ViewActivityDetailsModal";
 export { default as Filters } from "./Filters";
 export { default as HeroLayout1 } from "./HeroLayout1";
 export { default as TallCard } from "./TallCard";

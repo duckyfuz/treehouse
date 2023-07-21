@@ -232,7 +232,7 @@ export default function UserDetailsCreateForm(props) {
     },
   };
   const validations = {
-    preferedName: [],
+    preferedName: [{ type: "Required" }],
     profilePicture: [],
     residence: [{ type: "Required" }],
     onBoarded: [{ type: "Required" }],
@@ -313,8 +313,13 @@ export default function UserDetailsCreateForm(props) {
       {...rest}
     >
       <TextField
-        label="Prefered Name"
-        isRequired={false}
+        label={
+          <span style={{ display: "inline-flex" }}>
+            <span>Prefered Name</span>
+            <span style={{ color: "red" }}>*</span>
+          </span>
+        }
+        isRequired={true}
         isReadOnly={false}
         value={preferedName}
         onChange={(e) => {

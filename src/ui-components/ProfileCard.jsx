@@ -7,8 +7,7 @@
 /* eslint-disable */
 import * as React from "react";
 import { getOverrideProps } from "@aws-amplify/ui-react/internal";
-import { Button, Flex, Image, Text } from "@aws-amplify/ui-react";
-import MyIcon from "./MyIcon";
+import { Button, Flex, Image, Text, View } from "@aws-amplify/ui-react";
 export default function ProfileCard(props) {
   const { overrides, ...rest } = props;
   return (
@@ -107,20 +106,11 @@ export default function ProfileCard(props) {
         padding="0px 0px 0px 0px"
         {...getOverrideProps(overrides, "Followers")}
       >
-        <MyIcon
+        <View
           width="24px"
           height="24px"
-          display="block"
-          gap="unset"
-          alignItems="unset"
-          justifyContent="unset"
-          overflow="hidden"
-          shrink="0"
-          position="relative"
-          padding="0px 0px 0px 0px"
-          type="group"
           {...getOverrideProps(overrides, "MyIcon")}
-        ></MyIcon>
+        ></View>
         <Text
           fontFamily="Inter"
           fontSize="16px"

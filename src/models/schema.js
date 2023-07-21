@@ -87,14 +87,14 @@ export const schema = {
                     "name": "name",
                     "isArray": false,
                     "type": "String",
-                    "isRequired": false,
+                    "isRequired": true,
                     "attributes": []
                 },
                 "preferedName": {
                     "name": "preferedName",
                     "isArray": false,
                     "type": "String",
-                    "isRequired": false,
+                    "isRequired": true,
                     "attributes": []
                 },
                 "activitiesAttended": {
@@ -249,6 +249,13 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
+                "host": {
+                    "name": "host",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
                 "createdAt": {
                     "name": "createdAt",
                     "isArray": false,
@@ -306,5 +313,5 @@ export const schema = {
     },
     "nonModels": {},
     "codegenVersion": "3.4.4",
-    "version": "4f3a07d0a8f408a2b05210dee4114e79"
+    "version": "9bafd40a8cf0c11e00eadd008440a4aa"
 };

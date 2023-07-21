@@ -202,6 +202,7 @@ export default function ActivityItemUpdateForm(props) {
     location: "",
     hostName: "",
     residence: "",
+    host: "",
   };
   const [title, setTitle] = React.useState(initialValues.title);
   const [description, setDescription] = React.useState(
@@ -215,6 +216,7 @@ export default function ActivityItemUpdateForm(props) {
   const [location, setLocation] = React.useState(initialValues.location);
   const [hostName, setHostName] = React.useState(initialValues.hostName);
   const [residence, setResidence] = React.useState(initialValues.residence);
+  const [host, setHost] = React.useState(initialValues.host);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     const cleanValues = activityItemRecord
@@ -230,6 +232,7 @@ export default function ActivityItemUpdateForm(props) {
     setLocation(cleanValues.location);
     setHostName(cleanValues.hostName);
     setResidence(cleanValues.residence);
+    setHost(cleanValues.host);
     setErrors({});
   };
   const [activityItemRecord, setActivityItemRecord] = React.useState(
@@ -259,6 +262,7 @@ export default function ActivityItemUpdateForm(props) {
     location: [{ type: "Required" }],
     hostName: [{ type: "Required" }],
     residence: [],
+    host: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -311,6 +315,7 @@ export default function ActivityItemUpdateForm(props) {
           location,
           hostName,
           residence,
+          host,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -374,6 +379,7 @@ export default function ActivityItemUpdateForm(props) {
               location,
               hostName,
               residence,
+              host,
             };
             const result = onChange(modelFields);
             value = result?.title ?? value;
@@ -405,6 +411,7 @@ export default function ActivityItemUpdateForm(props) {
               location,
               hostName,
               residence,
+              host,
             };
             const result = onChange(modelFields);
             value = result?.description ?? value;
@@ -438,6 +445,7 @@ export default function ActivityItemUpdateForm(props) {
               location,
               hostName,
               residence,
+              host,
             };
             const result = onChange(modelFields);
             value = result?.dateTime ?? value;
@@ -465,6 +473,7 @@ export default function ActivityItemUpdateForm(props) {
               location,
               hostName,
               residence,
+              host,
             };
             const result = onChange(modelFields);
             values = result?.participants ?? values;
@@ -516,6 +525,7 @@ export default function ActivityItemUpdateForm(props) {
               location,
               hostName,
               residence,
+              host,
             };
             const result = onChange(modelFields);
             values = result?.images ?? values;
@@ -569,6 +579,7 @@ export default function ActivityItemUpdateForm(props) {
               location: value,
               hostName,
               residence,
+              host,
             };
             const result = onChange(modelFields);
             value = result?.location ?? value;
@@ -600,6 +611,7 @@ export default function ActivityItemUpdateForm(props) {
               location,
               hostName: value,
               residence,
+              host,
             };
             const result = onChange(modelFields);
             value = result?.hostName ?? value;
@@ -631,6 +643,7 @@ export default function ActivityItemUpdateForm(props) {
               location,
               hostName,
               residence: value,
+              host,
             };
             const result = onChange(modelFields);
             value = result?.residence ?? value;
@@ -671,6 +684,38 @@ export default function ActivityItemUpdateForm(props) {
           {...getOverrideProps(overrides, "residenceoption4")}
         ></option>
       </SelectField>
+      <TextField
+        label="Host"
+        isRequired={false}
+        isReadOnly={false}
+        value={host}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              title,
+              description,
+              dateTime,
+              participants,
+              images,
+              location,
+              hostName,
+              residence,
+              host: value,
+            };
+            const result = onChange(modelFields);
+            value = result?.host ?? value;
+          }
+          if (errors.host?.hasError) {
+            runValidationTasks("host", value);
+          }
+          setHost(value);
+        }}
+        onBlur={() => runValidationTasks("host", host)}
+        errorMessage={errors.host?.errorMessage}
+        hasError={errors.host?.hasError}
+        {...getOverrideProps(overrides, "host")}
+      ></TextField>
       <Flex
         justifyContent="space-between"
         {...getOverrideProps(overrides, "CTAFlex")}

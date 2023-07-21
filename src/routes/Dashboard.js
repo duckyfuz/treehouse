@@ -79,6 +79,8 @@ export const Dashboard = () => {
   };
 
   const openViewActivityModalHandler = () => {
+    console.log("View Open");
+    console.log(activeActivity);
     setOpenViewActivityModal(true);
   };
 
@@ -116,7 +118,7 @@ export const Dashboard = () => {
             : currentTime.getHours() < 18
             ? "Afternoon"
             : "Evening"}
-          , {user.username}
+          , {userDets && userDets.preferedName}
         </Text>
         <AddActivityButton />
       </>
@@ -210,7 +212,6 @@ export const Dashboard = () => {
                     >
                       No activities found...
                     </Text>
-                    <AddActivityButton />
                     <Text
                       variation="primary"
                       lineHeight="0.8em"
@@ -220,12 +221,14 @@ export const Dashboard = () => {
                     >
                       Why not host your own!
                     </Text>
+                    <AddActivityButton />
                   </Flex>
                 }
                 searchPlaceholder="Find your next activity!"
               >
                 {(activity, index) => (
                   <ActivityCardDescription
+                    key={activity.id}
                     width={"28rem"}
                     margin={"0.5rem"}
                     activityItem={activity}
@@ -237,7 +240,6 @@ export const Dashboard = () => {
                     moreDetailsHandler={() => {
                       setActiveActivity(activity.id);
                       openViewActivityModalHandler();
-                      console.log(activeActivity);
                     }}
                   />
                 )}
@@ -248,11 +250,12 @@ export const Dashboard = () => {
             open={openAddActivityModal}
             setOpenAddActivityModal={setOpenAddActivityModal}
           />
-          <ViewActivityModal
-            id={activeActivity}
-            open={openViewActivityModal}
-            setOpenViewActivityModal={setOpenViewActivityModal}
-          />
+            <ViewActivityModal
+              id={activeActivity}
+              open={openViewActivityModal}
+              setOpenViewActivityModal={setOpenViewActivityModal}
+              user={user}
+            />
         </Flex>
       )}
     </>

@@ -196,13 +196,11 @@ export default function UserDetailsUpdateForm(props) {
     ...rest
   } = props;
   const initialValues = {
-    name: "",
     preferedName: "",
     profilePicture: undefined,
     residence: [],
     onBoarded: false,
   };
-  const [name, setName] = React.useState(initialValues.name);
   const [preferedName, setPreferedName] = React.useState(
     initialValues.preferedName
   );
@@ -216,7 +214,6 @@ export default function UserDetailsUpdateForm(props) {
     const cleanValues = userDetailsRecord
       ? { ...initialValues, ...userDetailsRecord }
       : initialValues;
-    setName(cleanValues.name);
     setPreferedName(cleanValues.preferedName);
     setProfilePicture(cleanValues.profilePicture);
     setResidence(cleanValues.residence ?? []);
@@ -251,8 +248,7 @@ export default function UserDetailsUpdateForm(props) {
     },
   };
   const validations = {
-    name: [],
-    preferedName: [],
+    preferedName: [{ type: "Required" }],
     profilePicture: [],
     residence: [{ type: "Required" }],
     onBoarded: [{ type: "Required" }],
@@ -283,7 +279,6 @@ export default function UserDetailsUpdateForm(props) {
       onSubmit={async (event) => {
         event.preventDefault();
         let modelFields = {
-          name,
           preferedName,
           profilePicture,
           residence,
@@ -335,43 +330,19 @@ export default function UserDetailsUpdateForm(props) {
       {...rest}
     >
       <TextField
-        label="Name"
-        isRequired={false}
-        isReadOnly={false}
-        value={name}
-        onChange={(e) => {
-          let { value } = e.target;
-          if (onChange) {
-            const modelFields = {
-              name: value,
-              preferedName,
-              profilePicture,
-              residence,
-              onBoarded,
-            };
-            const result = onChange(modelFields);
-            value = result?.name ?? value;
-          }
-          if (errors.name?.hasError) {
-            runValidationTasks("name", value);
-          }
-          setName(value);
-        }}
-        onBlur={() => runValidationTasks("name", name)}
-        errorMessage={errors.name?.errorMessage}
-        hasError={errors.name?.hasError}
-        {...getOverrideProps(overrides, "name")}
-      ></TextField>
-      <TextField
-        label="Prefered name"
-        isRequired={false}
+        label={
+          <span style={{ display: "inline-flex" }}>
+            <span>Prefered name</span>
+            <span style={{ color: "red" }}>*</span>
+          </span>
+        }
+        isRequired={true}
         isReadOnly={false}
         value={preferedName}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
-              name,
               preferedName: value,
               profilePicture,
               residence,
@@ -405,7 +376,6 @@ export default function UserDetailsUpdateForm(props) {
                 let value = key;
                 if (onChange) {
                   const modelFields = {
-                    name,
                     preferedName,
                     profilePicture: value,
                     residence,
@@ -422,7 +392,6 @@ export default function UserDetailsUpdateForm(props) {
                 let value = initialValues?.profilePicture;
                 if (onChange) {
                   const modelFields = {
-                    name,
                     preferedName,
                     profilePicture: value,
                     residence,
@@ -436,7 +405,7 @@ export default function UserDetailsUpdateForm(props) {
             }}
             processFile={processFile}
             accessLevel={"private"}
-            acceptedFileTypes={[]}
+            acceptedFileTypes={["image/*"]}
             isResumable={false}
             showThumbnails={true}
             maxFileCount={1}
@@ -449,7 +418,6 @@ export default function UserDetailsUpdateForm(props) {
           let values = items;
           if (onChange) {
             const modelFields = {
-              name,
               preferedName,
               profilePicture,
               residence: values,
@@ -526,7 +494,6 @@ export default function UserDetailsUpdateForm(props) {
           let value = e.target.checked;
           if (onChange) {
             const modelFields = {
-              name,
               preferedName,
               profilePicture,
               residence,

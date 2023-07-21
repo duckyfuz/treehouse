@@ -7,8 +7,7 @@
 /* eslint-disable */
 import * as React from "react";
 import { getOverrideProps } from "@aws-amplify/ui-react/internal";
-import MyIcon from "./MyIcon";
-import { Flex, Text } from "@aws-amplify/ui-react";
+import { Flex, Text, View } from "@aws-amplify/ui-react";
 export default function Features2x2(props) {
   const { overrides, ...rest } = props;
   return (
@@ -82,20 +81,11 @@ export default function Features2x2(props) {
               backgroundColor="rgba(233,249,252,1)"
               {...getOverrideProps(overrides, "Frame 43039424113")}
             >
-              <MyIcon
+              <View
                 width="24px"
                 height="24px"
-                display="block"
-                gap="unset"
-                alignItems="unset"
-                justifyContent="unset"
-                overflow="hidden"
-                shrink="0"
-                position="relative"
-                padding="0px 0px 0px 0px"
-                type="checkmark"
                 {...getOverrideProps(overrides, "MyIcon39424114")}
-              ></MyIcon>
+              ></View>
             </Flex>
             <Text
               fontFamily="Inter"
@@ -177,20 +167,11 @@ export default function Features2x2(props) {
               backgroundColor="rgba(233,249,252,1)"
               {...getOverrideProps(overrides, "Frame 43039424116")}
             >
-              <MyIcon
+              <View
                 width="24px"
                 height="24px"
-                display="block"
-                gap="unset"
-                alignItems="unset"
-                justifyContent="unset"
-                overflow="hidden"
-                shrink="0"
-                position="relative"
-                padding="0px 0px 0px 0px"
-                type="checkmark"
                 {...getOverrideProps(overrides, "MyIcon39424117")}
-              ></MyIcon>
+              ></View>
             </Flex>
             <Text
               fontFamily="Inter"
@@ -287,20 +268,11 @@ export default function Features2x2(props) {
               backgroundColor="rgba(233,249,252,1)"
               {...getOverrideProps(overrides, "Frame 43039403233")}
             >
-              <MyIcon
+              <View
                 width="24px"
                 height="24px"
-                display="block"
-                gap="unset"
-                alignItems="unset"
-                justifyContent="unset"
-                overflow="hidden"
-                shrink="0"
-                position="relative"
-                padding="0px 0px 0px 0px"
-                type="checkmark"
                 {...getOverrideProps(overrides, "MyIcon39403234")}
-              ></MyIcon>
+              ></View>
             </Flex>
             <Text
               fontFamily="Inter"
@@ -382,20 +354,11 @@ export default function Features2x2(props) {
               backgroundColor="rgba(233,249,252,1)"
               {...getOverrideProps(overrides, "Frame 43039424110")}
             >
-              <MyIcon
+              <View
                 width="24px"
                 height="24px"
-                display="block"
-                gap="unset"
-                alignItems="unset"
-                justifyContent="unset"
-                overflow="hidden"
-                shrink="0"
-                position="relative"
-                padding="0px 0px 0px 0px"
-                type="checkmark"
                 {...getOverrideProps(overrides, "MyIcon39424111")}
-              ></MyIcon>
+              ></View>
             </Flex>
             <Text
               fontFamily="Inter"

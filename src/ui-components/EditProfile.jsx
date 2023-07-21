@@ -7,8 +7,14 @@
 /* eslint-disable */
 import * as React from "react";
 import { getOverrideProps } from "@aws-amplify/ui-react/internal";
-import MyIcon from "./MyIcon";
-import { Button, Flex, Image, Text, TextField } from "@aws-amplify/ui-react";
+import {
+  Button,
+  Flex,
+  Image,
+  Text,
+  TextField,
+  View,
+} from "@aws-amplify/ui-react";
 export default function EditProfile(props) {
   const { overrides, ...rest } = props;
   return (
@@ -51,20 +57,11 @@ export default function EditProfile(props) {
           padding="0px 0px 0px 0px"
           {...getOverrideProps(overrides, "Edit Profile29766913")}
         >
-          <MyIcon
+          <View
             width="24px"
             height="24px"
-            display="block"
-            gap="unset"
-            alignItems="unset"
-            justifyContent="unset"
-            overflow="hidden"
-            shrink="0"
-            position="relative"
-            padding="0px 0px 0px 0px"
-            type="close"
             {...getOverrideProps(overrides, "MyIcon")}
-          ></MyIcon>
+          ></View>
           <Text
             fontFamily="Inter"
             fontSize="16px"

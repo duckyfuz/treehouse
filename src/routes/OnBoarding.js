@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Flex, useAuthenticator } from "@aws-amplify/ui-react";
+import { Flex, Text, useAuthenticator } from "@aws-amplify/ui-react";
 import { useNavigate } from "react-router-dom";
 import { useUserObserver } from "../hooks/useUser";
 import { UserDetails } from "../models";
@@ -60,7 +60,6 @@ export const OnBoarding = () => {
   );
 
   if (userDetailsCreated) {
-    console.log(userID + "hi");
     content = <UserDetailsUpdateForm id={userID} />;
   }
 
@@ -70,7 +69,17 @@ export const OnBoarding = () => {
       {authStatus !== "authenticated" ? (
         "Not Authed"
       ) : (
-        <Flex justifyContent="center" minWidth={"30rem"}>
+        <Flex justifyContent="center" minWidth={"30rem"} direction={"column"}>
+          <Text
+            variation="primary"
+            lineHeight="1.5em"
+            fontWeight={500}
+            fontSize="2em"
+            fontStyle="bold"
+            marginLeft={"20px"}
+          >
+            Onbarding Form
+          </Text>
           {content}
         </Flex>
       )}

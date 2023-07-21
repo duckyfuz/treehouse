@@ -6,8 +6,7 @@
 
 import * as React from "react";
 import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
-import { ButtonProps, CheckboxFieldProps, FlexProps, TextAreaFieldProps, TextFieldProps, TextProps } from "@aws-amplify/ui-react";
-import { MyIconProps } from "./MyIcon";
+import { ButtonProps, CheckboxFieldProps, FlexProps, TextAreaFieldProps, TextFieldProps, TextProps, ViewProps } from "@aws-amplify/ui-react";
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type ContactUsOverridesProps = {
     ContactUs?: PrimitiveOverrideProps<FlexProps>;
@@ -20,10 +19,10 @@ export declare type ContactUsOverridesProps = {
     Button?: PrimitiveOverrideProps<ButtonProps>;
     "Frame 2829766941"?: PrimitiveOverrideProps<FlexProps>;
     "Frame 2829766942"?: PrimitiveOverrideProps<FlexProps>;
-    MyIcon39193120?: MyIconProps;
+    MyIcon39193120?: PrimitiveOverrideProps<ViewProps>;
     Instagram?: PrimitiveOverrideProps<TextProps>;
     "Frame 30"?: PrimitiveOverrideProps<FlexProps>;
-    MyIcon39193123?: MyIconProps;
+    MyIcon39193123?: PrimitiveOverrideProps<ViewProps>;
     Twitter?: PrimitiveOverrideProps<TextProps>;
 } & EscapeHatchProps;
 export declare type ContactUsProps = React.PropsWithChildren<Partial<FlexProps> & {

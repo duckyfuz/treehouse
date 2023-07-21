@@ -7,8 +7,7 @@
 /* eslint-disable */
 import * as React from "react";
 import { getOverrideProps } from "@aws-amplify/ui-react/internal";
-import { Button, Flex, Text } from "@aws-amplify/ui-react";
-import MyIcon from "./MyIcon";
+import { Button, Flex, Text, View } from "@aws-amplify/ui-react";
 export default function MarketingPricing(props) {
   const { overrides, ...rest } = props;
   return (
@@ -238,20 +237,11 @@ export default function MarketingPricing(props) {
               backgroundColor="rgba(233,249,252,1)"
               {...getOverrideProps(overrides, "Frame 43039393324")}
             >
-              <MyIcon
+              <View
                 width="24px"
                 height="24px"
-                display="block"
-                gap="unset"
-                alignItems="unset"
-                justifyContent="unset"
-                overflow="hidden"
-                shrink="0"
-                position="relative"
-                padding="0px 0px 0px 0px"
-                type="checkmark"
                 {...getOverrideProps(overrides, "MyIcon39393299")}
-              ></MyIcon>
+              ></View>
             </Flex>
             <Text
               fontFamily="Inter"
@@ -308,20 +298,11 @@ export default function MarketingPricing(props) {
               backgroundColor="rgba(233,249,252,1)"
               {...getOverrideProps(overrides, "Frame 43139393330")}
             >
-              <MyIcon
+              <View
                 width="24px"
                 height="24px"
-                display="block"
-                gap="unset"
-                alignItems="unset"
-                justifyContent="unset"
-                overflow="hidden"
-                shrink="0"
-                position="relative"
-                padding="0px 0px 0px 0px"
-                type="checkmark"
                 {...getOverrideProps(overrides, "MyIcon39393331")}
-              ></MyIcon>
+              ></View>
             </Flex>
             <Text
               fontFamily="Inter"
@@ -378,20 +359,11 @@ export default function MarketingPricing(props) {
               backgroundColor="rgba(233,249,252,1)"
               {...getOverrideProps(overrides, "Frame 43039393348")}
             >
-              <MyIcon
+              <View
                 width="24px"
                 height="24px"
-                display="block"
-                gap="unset"
-                alignItems="unset"
-                justifyContent="unset"
-                overflow="hidden"
-                shrink="0"
-                position="relative"
-                padding="0px 0px 0px 0px"
-                type="checkmark"
                 {...getOverrideProps(overrides, "MyIcon39393349")}
-              ></MyIcon>
+              ></View>
             </Flex>
             <Text
               fontFamily="Inter"
@@ -553,20 +525,11 @@ export default function MarketingPricing(props) {
               backgroundColor="rgba(233,249,252,1)"
               {...getOverrideProps(overrides, "Frame 43039393397")}
             >
-              <MyIcon
+              <View
                 width="24px"
                 height="24px"
-                display="block"
-                gap="unset"
-                alignItems="unset"
-                justifyContent="unset"
-                overflow="hidden"
-                shrink="0"
-                position="relative"
-                padding="0px 0px 0px 0px"
-                type="checkmark"
                 {...getOverrideProps(overrides, "MyIcon39393398")}
-              ></MyIcon>
+              ></View>
             </Flex>
             <Text
               fontFamily="Inter"
@@ -623,20 +586,11 @@ export default function MarketingPricing(props) {
               backgroundColor="rgba(233,249,252,1)"
               {...getOverrideProps(overrides, "Frame 43139393401")}
             >
-              <MyIcon
+              <View
                 width="24px"
                 height="24px"
-                display="block"
-                gap="unset"
-                alignItems="unset"
-                justifyContent="unset"
-                overflow="hidden"
-                shrink="0"
-                position="relative"
-                padding="0px 0px 0px 0px"
-                type="checkmark"
                 {...getOverrideProps(overrides, "MyIcon39393402")}
-              ></MyIcon>
+              ></View>
             </Flex>
             <Text
               fontFamily="Inter"
@@ -693,20 +647,11 @@ export default function MarketingPricing(props) {
               backgroundColor="rgba(233,249,252,1)"
               {...getOverrideProps(overrides, "Frame 43039393405")}
             >
-              <MyIcon
+              <View
                 width="24px"
                 height="24px"
-                display="block"
-                gap="unset"
-                alignItems="unset"
-                justifyContent="unset"
-                overflow="hidden"
-                shrink="0"
-                position="relative"
-                padding="0px 0px 0px 0px"
-                type="checkmark"
                 {...getOverrideProps(overrides, "MyIcon39393406")}
-              ></MyIcon>
+              ></View>
             </Flex>
             <Text
               fontFamily="Inter"
@@ -868,20 +813,11 @@ export default function MarketingPricing(props) {
               backgroundColor="rgba(233,249,252,1)"
               {...getOverrideProps(overrides, "Frame 43039393613")}
             >
-              <MyIcon
+              <View
                 width="24px"
                 height="24px"
-                display="block"
-                gap="unset"
-                alignItems="unset"
-                justifyContent="unset"
-                overflow="hidden"
-                shrink="0"
-                position="relative"
-                padding="0px 0px 0px 0px"
-                type="checkmark"
                 {...getOverrideProps(overrides, "MyIcon39393614")}
-              ></MyIcon>
+              ></View>
             </Flex>
             <Text
               fontFamily="Inter"
@@ -938,20 +874,11 @@ export default function MarketingPricing(props) {
               backgroundColor="rgba(233,249,252,1)"
               {...getOverrideProps(overrides, "Frame 43139393617")}
             >
-              <MyIcon
+              <View
                 width="24px"
                 height="24px"
-                display="block"
-                gap="unset"
-                alignItems="unset"
-                justifyContent="unset"
-                overflow="hidden"
-                shrink="0"
-                position="relative"
-                padding="0px 0px 0px 0px"
-                type="checkmark"
                 {...getOverrideProps(overrides, "MyIcon39393618")}
-              ></MyIcon>
+              ></View>
             </Flex>
             <Text
               fontFamily="Inter"
@@ -1008,20 +935,11 @@ export default function MarketingPricing(props) {
               backgroundColor="rgba(233,249,252,1)"
               {...getOverrideProps(overrides, "Frame 43039393621")}
             >
-              <MyIcon
+              <View
                 width="24px"
                 height="24px"
-                display="block"
-                gap="unset"
-                alignItems="unset"
-                justifyContent="unset"
-                overflow="hidden"
-                shrink="0"
-                position="relative"
-                padding="0px 0px 0px 0px"
-                type="checkmark"
                 {...getOverrideProps(overrides, "MyIcon39393622")}
-              ></MyIcon>
+              ></View>
             </Flex>
             <Text
               fontFamily="Inter"

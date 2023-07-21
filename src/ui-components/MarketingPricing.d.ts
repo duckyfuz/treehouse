@@ -6,8 +6,7 @@
 
 import * as React from "react";
 import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
-import { ButtonProps, FlexProps, TextProps } from "@aws-amplify/ui-react";
-import { MyIconProps } from "./MyIcon";
+import { ButtonProps, FlexProps, TextProps, ViewProps } from "@aws-amplify/ui-react";
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type MarketingPricingOverridesProps = {
     MarketingPricing?: PrimitiveOverrideProps<FlexProps>;
@@ -23,15 +22,15 @@ export declare type MarketingPricingOverridesProps = {
     "Free forever, always"?: PrimitiveOverrideProps<TextProps>;
     "Frame 13829766688"?: PrimitiveOverrideProps<FlexProps>;
     "Frame 43039393324"?: PrimitiveOverrideProps<FlexProps>;
-    MyIcon39393299?: MyIconProps;
+    MyIcon39393299?: PrimitiveOverrideProps<ViewProps>;
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.29766691"?: PrimitiveOverrideProps<TextProps>;
     "Frame 13929766692"?: PrimitiveOverrideProps<FlexProps>;
     "Frame 43139393330"?: PrimitiveOverrideProps<FlexProps>;
-    MyIcon39393331?: MyIconProps;
+    MyIcon39393331?: PrimitiveOverrideProps<ViewProps>;
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.29766695"?: PrimitiveOverrideProps<TextProps>;
     "Frame 13729766696"?: PrimitiveOverrideProps<FlexProps>;
     "Frame 43039393348"?: PrimitiveOverrideProps<FlexProps>;
-    MyIcon39393349?: MyIconProps;
+    MyIcon39393349?: PrimitiveOverrideProps<ViewProps>;
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.29766699"?: PrimitiveOverrideProps<TextProps>;
     Button29766686?: PrimitiveOverrideProps<ButtonProps>;
     "Frame 39039393391"?: PrimitiveOverrideProps<FlexProps>;
@@ -41,15 +40,15 @@ export declare type MarketingPricingOverridesProps = {
     "Billed annually39393395"?: PrimitiveOverrideProps<TextProps>;
     "Frame 13839393396"?: PrimitiveOverrideProps<FlexProps>;
     "Frame 43039393397"?: PrimitiveOverrideProps<FlexProps>;
-    MyIcon39393398?: MyIconProps;
+    MyIcon39393398?: PrimitiveOverrideProps<ViewProps>;
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.39393399"?: PrimitiveOverrideProps<TextProps>;
     "Frame 13939393400"?: PrimitiveOverrideProps<FlexProps>;
     "Frame 43139393401"?: PrimitiveOverrideProps<FlexProps>;
-    MyIcon39393402?: MyIconProps;
+    MyIcon39393402?: PrimitiveOverrideProps<ViewProps>;
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.39393403"?: PrimitiveOverrideProps<TextProps>;
     "Frame 13739393404"?: PrimitiveOverrideProps<FlexProps>;
     "Frame 43039393405"?: PrimitiveOverrideProps<FlexProps>;
-    MyIcon39393406?: MyIconProps;
+    MyIcon39393406?: PrimitiveOverrideProps<ViewProps>;
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.39393407"?: PrimitiveOverrideProps<TextProps>;
     Button39393408?: PrimitiveOverrideProps<ButtonProps>;
     "Frame 391"?: PrimitiveOverrideProps<FlexProps>;
@@ -59,15 +58,15 @@ export declare type MarketingPricingOverridesProps = {
     "Billed annually39393611"?: PrimitiveOverrideProps<TextProps>;
     "Frame 13839393612"?: PrimitiveOverrideProps<FlexProps>;
     "Frame 43039393613"?: PrimitiveOverrideProps<FlexProps>;
-    MyIcon39393614?: MyIconProps;
+    MyIcon39393614?: PrimitiveOverrideProps<ViewProps>;
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.39393615"?: PrimitiveOverrideProps<TextProps>;
     "Frame 13939393616"?: PrimitiveOverrideProps<FlexProps>;
     "Frame 43139393617"?: PrimitiveOverrideProps<FlexProps>;
-    MyIcon39393618?: MyIconProps;
+    MyIcon39393618?: PrimitiveOverrideProps<ViewProps>;
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.39393619"?: PrimitiveOverrideProps<TextProps>;
     "Frame 13739393620"?: PrimitiveOverrideProps<FlexProps>;
     "Frame 43039393621"?: PrimitiveOverrideProps<FlexProps>;
-    MyIcon39393622?: MyIconProps;
+    MyIcon39393622?: PrimitiveOverrideProps<ViewProps>;
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.39393623"?: PrimitiveOverrideProps<TextProps>;
     Button39393624?: PrimitiveOverrideProps<ButtonProps>;
 } & EscapeHatchProps;

@@ -14,8 +14,8 @@ import {
   Text,
   TextAreaField,
   TextField,
+  View,
 } from "@aws-amplify/ui-react";
-import MyIcon from "./MyIcon";
 export default function ContactUs(props) {
   const { overrides, ...rest } = props;
   return (
@@ -148,20 +148,11 @@ export default function ContactUs(props) {
           padding="0px 0px 0px 0px"
           {...getOverrideProps(overrides, "Frame 2829766942")}
         >
-          <MyIcon
+          <View
             width="24px"
             height="24px"
-            display="block"
-            gap="unset"
-            alignItems="unset"
-            justifyContent="unset"
-            overflow="hidden"
-            shrink="0"
-            position="relative"
-            padding="0px 0px 0px 0px"
-            type="instagram"
             {...getOverrideProps(overrides, "MyIcon39193120")}
-          ></MyIcon>
+          ></View>
           <Text
             fontFamily="Inter"
             fontSize="14px"
@@ -196,20 +187,11 @@ export default function ContactUs(props) {
           padding="0px 0px 0px 0px"
           {...getOverrideProps(overrides, "Frame 30")}
         >
-          <MyIcon
+          <View
             width="24px"
             height="24px"
-            display="block"
-            gap="unset"
-            alignItems="unset"
-            justifyContent="unset"
-            overflow="hidden"
-            shrink="0"
-            position="relative"
-            padding="0px 0px 0px 0px"
-            type="twitter"
             {...getOverrideProps(overrides, "MyIcon39193123")}
-          ></MyIcon>
+          ></View>
           <Text
             fontFamily="Inter"
             fontSize="14px"

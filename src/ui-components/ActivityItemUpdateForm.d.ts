@@ -22,6 +22,7 @@ export declare type ActivityItemUpdateFormInputValues = {
     location?: string;
     hostName?: string;
     residence?: string;
+    host?: string;
 };
 export declare type ActivityItemUpdateFormValidationValues = {
     title?: ValidationFunction<string>;
@@ -32,6 +33,7 @@ export declare type ActivityItemUpdateFormValidationValues = {
     location?: ValidationFunction<string>;
     hostName?: ValidationFunction<string>;
     residence?: ValidationFunction<string>;
+    host?: ValidationFunction<string>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type ActivityItemUpdateFormOverridesProps = {
@@ -44,6 +46,7 @@ export declare type ActivityItemUpdateFormOverridesProps = {
     location?: PrimitiveOverrideProps<TextFieldProps>;
     hostName?: PrimitiveOverrideProps<TextFieldProps>;
     residence?: PrimitiveOverrideProps<SelectFieldProps>;
+    host?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type ActivityItemUpdateFormProps = React.PropsWithChildren<{
     overrides?: ActivityItemUpdateFormOverridesProps | undefined | null;

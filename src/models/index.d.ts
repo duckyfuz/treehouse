@@ -50,8 +50,8 @@ type EagerUserDetails = {
     readOnlyFields: 'createdAt' | 'updatedAt';
   };
   readonly id: string;
-  readonly name?: string | null;
-  readonly preferedName?: string | null;
+  readonly name: string;
+  readonly preferedName: string;
   readonly activitiesAttended?: (string | null)[] | null;
   readonly activitiesHosted?: (string | null)[] | null;
   readonly profilePicture?: string | null;
@@ -67,8 +67,8 @@ type LazyUserDetails = {
     readOnlyFields: 'createdAt' | 'updatedAt';
   };
   readonly id: string;
-  readonly name?: string | null;
-  readonly preferedName?: string | null;
+  readonly name: string;
+  readonly preferedName: string;
   readonly activitiesAttended?: (string | null)[] | null;
   readonly activitiesHosted?: (string | null)[] | null;
   readonly profilePicture?: string | null;
@@ -98,6 +98,7 @@ type EagerActivityItem = {
   readonly location: string;
   readonly hostName: string;
   readonly residence?: Residence | keyof typeof Residence | null;
+  readonly host?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -116,6 +117,7 @@ type LazyActivityItem = {
   readonly location: string;
   readonly hostName: string;
   readonly residence?: Residence | keyof typeof Residence | null;
+  readonly host?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }

@@ -15,14 +15,12 @@ export declare type ValidationResponse = {
 };
 export declare type ValidationFunction<T> = (value: T, validationResponse: ValidationResponse) => ValidationResponse | Promise<ValidationResponse>;
 export declare type UserDetailsUpdateFormInputValues = {
-    name?: string;
     preferedName?: string;
     profilePicture?: string;
     residence?: string[];
     onBoarded?: boolean;
 };
 export declare type UserDetailsUpdateFormValidationValues = {
-    name?: ValidationFunction<string>;
     preferedName?: ValidationFunction<string>;
     profilePicture?: ValidationFunction<string>;
     residence?: ValidationFunction<string>;
@@ -31,7 +29,6 @@ export declare type UserDetailsUpdateFormValidationValues = {
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type UserDetailsUpdateFormOverridesProps = {
     UserDetailsUpdateFormGrid?: PrimitiveOverrideProps<GridProps>;
-    name?: PrimitiveOverrideProps<TextFieldProps>;
     preferedName?: PrimitiveOverrideProps<TextFieldProps>;
     profilePicture?: PrimitiveOverrideProps<StorageManagerProps>;
     residence?: PrimitiveOverrideProps<SelectFieldProps>;
