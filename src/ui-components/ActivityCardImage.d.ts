@@ -12,6 +12,7 @@ import { SyntheticEvent } from "react";
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type ActivityCardImageOverridesProps = {
     ActivityCardImage?: PrimitiveOverrideProps<FlexProps>;
+    ImageSlot?: PrimitiveOverrideProps<FlexProps>;
     image?: PrimitiveOverrideProps<ImageProps>;
     Body?: PrimitiveOverrideProps<FlexProps>;
     Text?: PrimitiveOverrideProps<FlexProps>;
@@ -28,6 +29,7 @@ export declare type ActivityCardImageProps = React.PropsWithChildren<Partial<Fle
     dateTime?: String;
     location?: String;
     image?: String;
+    group1?: React.ReactNode;
 } & {
     overrides?: ActivityCardImageOverridesProps | undefined | null;
 }>;

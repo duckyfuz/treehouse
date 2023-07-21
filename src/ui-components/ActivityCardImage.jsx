@@ -7,7 +7,7 @@
 /* eslint-disable */
 import * as React from "react";
 import { getOverrideProps } from "@aws-amplify/ui-react/internal";
-import { Button, Flex, Image, Text } from "@aws-amplify/ui-react";
+import { Button, Flex, Text } from "@aws-amplify/ui-react";
 export default function ActivityCardImage(props) {
   const {
     activityItem,
@@ -15,6 +15,7 @@ export default function ActivityCardImage(props) {
     dateTime,
     location,
     image,
+    group1,
     overrides,
     ...rest
   } = props;
@@ -34,27 +35,24 @@ export default function ActivityCardImage(props) {
       {...getOverrideProps(overrides, "ActivityCardImage")}
       {...rest}
     >
-      <Image
-        width="unset"
+      <Flex
+        padding="0px 0px 0px 0px"
+        width="448px"
         height="120px"
         display="block"
         gap="unset"
         alignItems="unset"
         justifyContent="unset"
         shrink="0"
-        alignSelf="stretch"
         position="relative"
-        borderRadius="10px 10px 0px 0px"
-        padding="0px 0px 0px 0px"
-        objectFit="cover"
-        src={image}
-        {...getOverrideProps(overrides, "image")}
-      ></Image>
+        children={group1}
+        {...getOverrideProps(overrides, "ImageSlot")}
+      ></Flex>
       <Flex
         gap="40px"
         direction="row"
         width="unset"
-        height="unset"
+        height="67px"
         justifyContent="flex-start"
         alignItems="flex-start"
         shrink="0"

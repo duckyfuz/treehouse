@@ -90,7 +90,7 @@ export function Sidebar({ logOut }) {
         <NavButtons />
         <Flex alignContent={"flex-end"}>
           <Button
-            marginTop={"600px"}
+            marginTop={"60px"}
             size="large"
             gap="0.4rem"
             variation="destructive"

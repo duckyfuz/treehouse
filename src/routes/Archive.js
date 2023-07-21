@@ -1,31 +1,19 @@
 import React, { useState, useEffect } from "react";
-import { DataStore, Predicates, SortDirection } from "aws-amplify";
+import { DataStore, Predicates, SortDirection, Storage } from "aws-amplify";
 import {
-  Button,
-  Card,
   Collection,
   Flex,
-  Placeholder,
   Text,
   useAuthenticator,
+  Image,
 } from "@aws-amplify/ui-react";
 import { useNavigate } from "react-router-dom";
 import { useUserObserver } from "../hooks/useUser";
 
 import { ActivityItem, UserDetails } from "../models";
-import {
-  ActivityCardDescription,
-  ActivityCardImage,
-  NatCardDescriptionCollection,
-} from "../ui-components";
+import { ActivityCardImage } from "../ui-components";
 
-import { BiMessageSquareAdd } from "react-icons/bi";
-
-import convertISOToCustomFormat, {
-  filterDateTimeAfterToday,
-  filterDateTimeBeforeToday,
-} from "../utils";
-import AddActivityModal from "../components/AddActivityModal";
+import convertISOToCustomFormat, { filterDateTimeAfterToday } from "../utils";
 import ViewActivityModal from "../components/ViewActivityModal";
 
 export const Archive = () => {
@@ -37,6 +25,9 @@ export const Archive = () => {
   const [isLoading, setIsLoading] = useState(true);
   const userDets = useUserObserver();
   const navigate = useNavigate();
+
+  const [defaultImage, setDefaultImage] = useState();
+  const [imageDict, setImageDict] = useState({});
 
   useEffect(() => {
     if (authStatus === "authenticated") {
@@ -55,6 +46,10 @@ export const Archive = () => {
       if (user) {
         getOnBoardingStatus();
       }
+      (async () => {
+        const link = await Storage.get("default.jpg");
+        setDefaultImage(link);
+      })();
     }
   }, [navigate, userDets, authStatus, user]);
 
@@ -74,6 +69,17 @@ export const Archive = () => {
           userDets.residence.includes(activity.residence)
         );
         setPastActivities(filteredActivities);
+
+        filteredActivities.forEach((activity) => {
+          (async function () {
+            const link = await Storage.get(activity.images[0]);
+            setImageDict((prevImageDict) => ({
+              ...prevImageDict,
+              [activity.id]: link,
+            }));
+          })();
+        });
+        console.log(imageDict);
         setIsLoading(false);
       }
     })();
@@ -85,7 +91,12 @@ export const Archive = () => {
     setOpenViewActivityModal(true);
   };
 
-  const currentTime = new Date();
+  const getImageHandler = async ({ images }) => {
+    // console.log(images[0]);
+    // const link = await Storage.get(images[0]);
+    // console.log(link);
+    // return link;
+  };
 
   return (
     <>
@@ -157,13 +168,21 @@ export const Archive = () => {
                 }
                 searchPlaceholder="Find your next activity!"
               >
-                {(activity, index) => (
+                {(activity) => (
                   <ActivityCardImage
                     key={activity.id}
                     width={"28rem"}
                     margin={"0.5rem"}
                     activityItem={activity}
-                    dateTime={convertISOToCustomFormat(activity.dateTime)}
+                    group1={
+                      <Image
+                        src={imageDict[activity.id]}
+                        width={"448px"}
+                        height={"120px"}
+                        objectFit="cover"
+                      />
+                    }
+                    dateTime={convertISOToCustomFormat(activity.dateTime[0])}
                     location={activity.residence + ", " + activity.location}
                     moreDetailsHandler={() => {
                       setActiveActivity(activity.id);
