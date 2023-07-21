@@ -11,9 +11,11 @@ import {
 import logo from "../assets/images/logo.png";
 
 const LogoName = () => {
+  const navigate = useNavigate();
+
   return (
     <>
-      <Flex alignItems="center" margin={"20px"}>
+      <Flex alignItems="center" margin={"20px"} onClick={() => navigate("/")}>
         <img src={logo} alt="logo" width={"80px"} height={"80px"} />
         <Text
           variation="primary"
@@ -25,7 +27,9 @@ const LogoName = () => {
           treehouse
         </Text>
       </Flex>
-      <Text>Revive the kampong spirit!</Text>
+      <Text variation="secondary" fontSize="1.2em">
+        Revive the kampong spirit!
+      </Text>
     </>
   );
 };
@@ -37,16 +41,6 @@ export const NavButtons = () => {
   return (
     <>
       <Flex direction="column" alignItems="start" width={"100%"} gap={"5px"}>
-        <Button
-          variation={pathname === "/" ? "primary" : "menu"}
-          size="large"
-          gap="0.4rem"
-          width="100%"
-          onClick={() => navigate("/")}
-        >
-          <MdHome />
-          Home
-        </Button>
         <Button
           variation={pathname === "/dashboard" ? "primary" : "menu"}
           size="large"
