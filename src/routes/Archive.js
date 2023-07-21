@@ -31,7 +31,7 @@ export const Archive = () => {
   const { user, authStatus } = useAuthenticator((context) => [context.user]);
 
   const [activeActivity, setActiveActivity] = useState();
-  const [futureActivities, setFutureActivities] = useState();
+  const [pastActivities, setPastActivities] = useState();
   const [openViewActivityModal, setOpenViewActivityModal] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const userDets = useUserObserver();
@@ -59,7 +59,7 @@ export const Archive = () => {
 
   useEffect(() => {
     (async function () {
-      try {
+      if (userDets) {
         const sortedActivities = await DataStore.query(
           ActivityItem,
           Predicates.ALL,
@@ -67,14 +67,16 @@ export const Archive = () => {
             sort: (s) => s.dateTime(SortDirection.ASCENDING),
           }
         );
-        const filteredActivities = filterDateTimeAfterToday(sortedActivities);
-        setFutureActivities(filteredActivities);
+        const currentActivities = filterDateTimeAfterToday(sortedActivities);
+        console.log(userDets.residence);
+        const filteredActivities = currentActivities.filter((activity) =>
+          userDets.residence.includes(activity.residence)
+        );
+        setPastActivities(filteredActivities);
         setIsLoading(false);
-      } catch (err) {
-        console.log(err);
       }
     })();
-  }, []);
+  }, [userDets]);
 
   const openViewActivityModalHandler = () => {
     console.log("View Open");
@@ -120,7 +122,7 @@ export const Archive = () => {
               <Collection
                 isPaginated
                 itemsPerPage={9}
-                items={futureActivities}
+                items={pastActivities}
                 type="list"
                 direction="row"
                 wrap="wrap"
