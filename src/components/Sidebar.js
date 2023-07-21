@@ -27,7 +27,7 @@ const LogoName = () => {
           treehouse
         </Text>
       </Flex>
-      <Text variation="secondary" fontSize="1.2em">
+      <Text variation="secondary" fontSize="1.2em" marginBottom={"30px"}>
         Revive the kampong spirit!
       </Text>
     </>
