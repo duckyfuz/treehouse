@@ -31,7 +31,6 @@ export const Archive = () => {
 
   useEffect(() => {
     if (authStatus === "authenticated") {
-      console.log(userDets);
       if (userDets && !userDets.onBoarded) {
         navigate("/onboarding");
       }
@@ -64,7 +63,6 @@ export const Archive = () => {
           }
         );
         const currentActivities = filterDateTimeAfterToday(sortedActivities);
-        console.log(userDets.residence);
         const filteredActivities = currentActivities.filter((activity) =>
           userDets.residence.includes(activity.residence)
         );
@@ -79,23 +77,13 @@ export const Archive = () => {
             }));
           })();
         });
-        console.log(imageDict);
         setIsLoading(false);
       }
     })();
   }, [userDets]);
 
   const openViewActivityModalHandler = () => {
-    console.log("View Open");
-    console.log(activeActivity);
     setOpenViewActivityModal(true);
-  };
-
-  const getImageHandler = async ({ images }) => {
-    // console.log(images[0]);
-    // const link = await Storage.get(images[0]);
-    // console.log(link);
-    // return link;
   };
 
   return (
