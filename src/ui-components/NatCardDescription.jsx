@@ -14,8 +14,8 @@ export default function NatCardDescription(props) {
     <Flex
       gap="16px"
       direction="column"
-      width="280px"
-      height="unset"
+      width="448px"
+      height="115px"
       justifyContent="flex-start"
       alignItems="flex-start"
       position="relative"

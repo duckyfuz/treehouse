@@ -6,13 +6,11 @@
 
 import * as React from "react";
 import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
-import { ButtonProps, FlexProps, SelectFieldProps } from "@aws-amplify/ui-react";
+import { FlexProps } from "@aws-amplify/ui-react";
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type FiltersOverridesProps = {
     Filters?: PrimitiveOverrideProps<FlexProps>;
-    SelectField38963527?: PrimitiveOverrideProps<SelectFieldProps>;
-    SelectField38963544?: PrimitiveOverrideProps<SelectFieldProps>;
-    Button?: PrimitiveOverrideProps<ButtonProps>;
+    Filters39685408?: PrimitiveOverrideProps<FlexProps>;
 } & EscapeHatchProps;
 export declare type FiltersProps = React.PropsWithChildren<Partial<FlexProps> & {
     overrides?: FiltersOverridesProps | undefined | null;

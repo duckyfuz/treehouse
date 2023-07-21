@@ -7,14 +7,14 @@
 /* eslint-disable */
 import * as React from "react";
 import { getOverrideProps } from "@aws-amplify/ui-react/internal";
-import { Button, Flex, Text } from "@aws-amplify/ui-react";
-export default function ActivityCardDescription(props) {
+import { Button, Flex, Image, Text } from "@aws-amplify/ui-react";
+export default function ActivityCardImage(props) {
   const {
     activityItem,
+    moreDetailsHandler,
     dateTime,
     location,
-    participants,
-    moreDetailsHandler,
+    image,
     overrides,
     ...rest
   } = props;
@@ -23,17 +23,33 @@ export default function ActivityCardDescription(props) {
       gap="16px"
       direction="column"
       width="448px"
-      height="220px"
+      height="288px"
       justifyContent="center"
       alignItems="center"
       position="relative"
       boxShadow="0px 4px 4px rgba(0, 0, 0, 0.25)"
       borderRadius="5px"
-      padding="24px 24px 24px 24px"
+      padding="0px 0px 24px 0px"
       backgroundColor="rgba(255,255,255,1)"
-      {...getOverrideProps(overrides, "ActivityCardDescription")}
+      {...getOverrideProps(overrides, "ActivityCardImage")}
       {...rest}
     >
+      <Image
+        width="unset"
+        height="120px"
+        display="block"
+        gap="unset"
+        alignItems="unset"
+        justifyContent="unset"
+        shrink="0"
+        alignSelf="stretch"
+        position="relative"
+        borderRadius="10px 10px 0px 0px"
+        padding="0px 0px 0px 0px"
+        objectFit="cover"
+        src={image}
+        {...getOverrideProps(overrides, "image")}
+      ></Image>
       <Flex
         gap="40px"
         direction="row"
@@ -44,7 +60,7 @@ export default function ActivityCardDescription(props) {
         shrink="0"
         alignSelf="stretch"
         position="relative"
-        padding="0px 0px 0px 0px"
+        padding="0px 24px 0px 24px"
         {...getOverrideProps(overrides, "Body")}
       >
         <Flex
@@ -92,8 +108,7 @@ export default function ActivityCardDescription(props) {
               alignSelf="stretch"
               position="relative"
               padding="0px 0px 0px 0px"
-              whiteSpace=""
-              isTruncated={true}
+              whiteSpace="pre-wrap"
               children={activityItem?.title}
               {...getOverrideProps(overrides, "This is the Activity Name")}
             ></Text>
@@ -108,7 +123,7 @@ export default function ActivityCardDescription(props) {
               alignSelf="stretch"
               position="relative"
               padding="0px 0px 0px 0px"
-              {...getOverrideProps(overrides, "Frame29766856")}
+              {...getOverrideProps(overrides, "Frame")}
             >
               <Text
                 fontFamily="Inter"
@@ -155,66 +170,6 @@ export default function ActivityCardDescription(props) {
                 whiteSpace="pre-wrap"
                 children={location}
                 {...getOverrideProps(overrides, "Location of Event")}
-              ></Text>
-            </Flex>
-            <Flex
-              gap="2px"
-              direction="column"
-              width="unset"
-              height="34px"
-              justifyContent="flex-start"
-              alignItems="flex-start"
-              shrink="0"
-              alignSelf="stretch"
-              position="relative"
-              padding="0px 0px 0px 0px"
-              {...getOverrideProps(overrides, "Frame39251847")}
-            >
-              <Text
-                fontFamily="Inter"
-                fontSize="16px"
-                fontWeight="400"
-                color="rgba(92,102,112,1)"
-                lineHeight="16px"
-                textAlign="left"
-                display="block"
-                direction="column"
-                justifyContent="unset"
-                letterSpacing="0.01px"
-                width="unset"
-                height="unset"
-                gap="unset"
-                alignItems="unset"
-                shrink="0"
-                alignSelf="stretch"
-                position="relative"
-                padding="0px 0px 0px 0px"
-                whiteSpace="pre-wrap"
-                children={`${"Host: "}${activityItem?.hostName}`}
-                {...getOverrideProps(overrides, "HostName")}
-              ></Text>
-              <Text
-                fontFamily="Inter"
-                fontSize="16px"
-                fontWeight="400"
-                color="rgba(92,102,112,1)"
-                lineHeight="16px"
-                textAlign="left"
-                display="block"
-                direction="column"
-                justifyContent="unset"
-                letterSpacing="0.01px"
-                width="unset"
-                height="unset"
-                gap="unset"
-                alignItems="unset"
-                shrink="0"
-                alignSelf="stretch"
-                position="relative"
-                padding="0px 0px 0px 0px"
-                whiteSpace="pre-wrap"
-                children={participants}
-                {...getOverrideProps(overrides, "ParticipantsNo")}
               ></Text>
             </Flex>
           </Flex>

@@ -15,6 +15,7 @@ import { useUserObserver } from "../hooks/useUser";
 import { ActivityItem, UserDetails } from "../models";
 import {
   ActivityCardDescription,
+  ActivityCardImage,
   NatCardDescriptionCollection,
 } from "../ui-components";
 
@@ -157,16 +158,13 @@ export const Archive = () => {
                 searchPlaceholder="Find your next activity!"
               >
                 {(activity, index) => (
-                  <ActivityCardDescription
+                  <ActivityCardImage
                     key={activity.id}
                     width={"28rem"}
                     margin={"0.5rem"}
                     activityItem={activity}
                     dateTime={convertISOToCustomFormat(activity.dateTime)}
                     location={activity.residence + ", " + activity.location}
-                    participants={
-                      activity.participants.length + " neighbor(s) attending!"
-                    }
                     moreDetailsHandler={() => {
                       setActiveActivity(activity.id);
                       openViewActivityModalHandler();

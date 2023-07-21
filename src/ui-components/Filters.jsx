@@ -7,57 +7,29 @@
 /* eslint-disable */
 import * as React from "react";
 import { getOverrideProps } from "@aws-amplify/ui-react/internal";
-import { Button, Flex, SelectField } from "@aws-amplify/ui-react";
+import { Flex } from "@aws-amplify/ui-react";
 export default function Filters(props) {
   const { overrides, ...rest } = props;
   return (
     <Flex
-      gap="16px"
-      direction="row"
+      gap="10px"
+      direction="column"
       width="unset"
       height="unset"
-      justifyContent="center"
-      alignItems="flex-end"
-      overflow="hidden"
+      justifyContent="flex-start"
+      alignItems="flex-start"
       position="relative"
-      padding="16px 16px 16px 16px"
+      borderRadius="8px"
+      padding="32px 32px 32px 32px"
+      backgroundColor="rgba(255,255,255,1)"
       {...getOverrideProps(overrides, "Filters")}
       {...rest}
     >
-      <SelectField
-        width="240px"
-        height="unset"
-        label="Status"
-        placeholder="All"
-        shrink="0"
-        size="small"
-        isDisabled={false}
-        labelHidden={false}
-        variation="default"
-        {...getOverrideProps(overrides, "SelectField38963527")}
-      ></SelectField>
-      <SelectField
-        width="240px"
-        height="unset"
-        label="Channel"
-        placeholder="All"
-        shrink="0"
-        size="small"
-        isDisabled={false}
-        labelHidden={false}
-        variation="default"
-        {...getOverrideProps(overrides, "SelectField38963544")}
-      ></SelectField>
-      <Button
+      <Flex
         width="unset"
         height="unset"
-        shrink="0"
-        size="small"
-        isDisabled={false}
-        variation="default"
-        children="Clear"
-        {...getOverrideProps(overrides, "Button")}
-      ></Button>
+        {...getOverrideProps(overrides, "Filters39685408")}
+      ></Flex>
     </Flex>
   );
 }

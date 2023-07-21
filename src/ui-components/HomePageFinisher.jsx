@@ -63,7 +63,7 @@ export default function HomePageFinisher(props) {
         {...getOverrideProps(overrides, "Left")}
       >
         <Flex
-          gap="24px"
+          gap="12px"
           direction="column"
           width="840px"
           height="unset"
@@ -129,7 +129,7 @@ export default function HomePageFinisher(props) {
               position="relative"
               padding="0px 0px 0px 0px"
               whiteSpace="pre-wrap"
-              children="At Treehouse, we firmly believe that together, we can create a brighter future. By fostering a vibrant and inclusive community spirit, we can tackle challenges as one, support each other through thick and thin, and celebrate triumphs collectively.&#xA;&#xA;Join the Treehouse movement today and be a part of something extraordinary – a thriving community where neighbours become friends and memories are cherished forever. Together, let's keep the kampong spirit alive and thriving in the heart of modern Singapore.&#xA;&#xA;"
+              children="At Treehouse, we firmly believe that together, we can create a brighter future. By fostering a vibrant and inclusive community spirit, we can tackle challenges as one, support each other through thick and thin, and celebrate triumphs collectively.&#xA;&#xA;Join the Treehouse movement today and be a part of something extraordinary – a thriving community where neighbours become friends and memories are cherished forever. Together, let's keep the kampong spirit alive and thriving in the heart of modern Singapore.&#xA;"
               {...getOverrideProps(overrides, "Body")}
             ></Text>
           </Flex>
