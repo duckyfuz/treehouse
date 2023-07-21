@@ -38,7 +38,20 @@ export const Settings = () => {
   if (userDets) {
     content = (
       <UserDetailsUpdateForm
+        width={"90rem"}
         id={userDets.id}
+        onSubmit={(fields) => {
+          const updatedFields = {};
+          Object.keys(fields).forEach((key) => {
+            if (typeof fields[key] === "string") {
+              updatedFields[key] = fields[key].trim();
+            } else {
+              updatedFields[key] = fields[key];
+            }
+          });
+          updatedFields["residence"] = [...new Set(fields.residence)];
+          return updatedFields;
+        }}
         onSuccess={() => {
           console.log("submitted");
         }}
@@ -47,7 +60,13 @@ export const Settings = () => {
   }
 
   return (
-    <Flex minWidth={"30rem"} direction={"column"}>
+    <Flex
+      direction={"column"}
+      alignContent={"center"}
+      justifyContent={"flex-start"}
+      alignItems={"center"}
+      width={"100rem"}
+    >
       {content}
     </Flex>
   );
