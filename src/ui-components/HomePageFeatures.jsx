@@ -7,19 +7,19 @@
 /* eslint-disable */
 import * as React from "react";
 import { getOverrideProps } from "@aws-amplify/ui-react/internal";
-import { Flex, Text, View } from "@aws-amplify/ui-react";
+import { Flex, Text } from "@aws-amplify/ui-react";
 export default function HomePageFeatures(props) {
   const { overrides, ...rest } = props;
   return (
     <Flex
       gap="0"
       direction="column"
-      width="1600px"
-      height="732px"
+      width="unset"
+      height="unset"
       justifyContent="center"
       alignItems="center"
       position="relative"
-      padding="40px 160px 40px 160px"
+      padding="0px 0px 0px 0px"
       backgroundColor="rgba(250,250,250,1)"
       {...getOverrideProps(overrides, "HomePageFeatures")}
       {...rest}
@@ -32,7 +32,6 @@ export default function HomePageFeatures(props) {
         justifyContent="flex-start"
         alignItems="flex-start"
         shrink="0"
-        alignSelf="stretch"
         position="relative"
         padding="0px 0px 0px 0px"
         {...getOverrideProps(overrides, "Frame 13629766592")}
@@ -40,12 +39,11 @@ export default function HomePageFeatures(props) {
         <Flex
           gap="24px"
           direction="row"
-          width="unset"
+          width="1440px"
           height="unset"
           justifyContent="center"
           alignItems="center"
           shrink="0"
-          alignSelf="stretch"
           position="relative"
           padding="0px 0px 0px 0px"
           {...getOverrideProps(overrides, "Frame 13629766593")}
@@ -67,26 +65,6 @@ export default function HomePageFeatures(props) {
             backgroundColor="rgba(239,240,240,1)"
             {...getOverrideProps(overrides, "Frame 37429766594")}
           >
-            <Flex
-              gap="0"
-              direction="row"
-              width="unset"
-              height="unset"
-              justifyContent="flex-start"
-              alignItems="flex-start"
-              shrink="0"
-              position="relative"
-              borderRadius="8px"
-              padding="8px 8px 8px 8px"
-              backgroundColor="rgba(233,249,252,1)"
-              {...getOverrideProps(overrides, "Frame 43039424113")}
-            >
-              <View
-                width="24px"
-                height="24px"
-                {...getOverrideProps(overrides, "MyIcon39424114")}
-              ></View>
-            </Flex>
             <Text
               fontFamily="Inter"
               fontSize="24px"
@@ -153,26 +131,6 @@ export default function HomePageFeatures(props) {
             backgroundColor="rgba(239,240,240,1)"
             {...getOverrideProps(overrides, "Frame 37329766597")}
           >
-            <Flex
-              gap="0"
-              direction="row"
-              width="unset"
-              height="unset"
-              justifyContent="flex-start"
-              alignItems="flex-start"
-              shrink="0"
-              position="relative"
-              borderRadius="8px"
-              padding="8px 8px 8px 8px"
-              backgroundColor="rgba(233,249,252,1)"
-              {...getOverrideProps(overrides, "Frame 43039424116")}
-            >
-              <View
-                width="24px"
-                height="24px"
-                {...getOverrideProps(overrides, "MyIcon39424117")}
-              ></View>
-            </Flex>
             <Text
               fontFamily="Inter"
               fontSize="24px"
@@ -226,12 +184,11 @@ export default function HomePageFeatures(props) {
         <Flex
           gap="24px"
           direction="row"
-          width="unset"
+          width="1440px"
           height="unset"
           justifyContent="center"
           alignItems="center"
           shrink="0"
-          alignSelf="stretch"
           position="relative"
           padding="0px 0px 0px 0px"
           {...getOverrideProps(overrides, "Frame 393")}
@@ -254,26 +211,6 @@ export default function HomePageFeatures(props) {
             backgroundColor="rgba(239,240,240,1)"
             {...getOverrideProps(overrides, "Frame 37429766601")}
           >
-            <Flex
-              gap="0"
-              direction="row"
-              width="unset"
-              height="unset"
-              justifyContent="flex-start"
-              alignItems="flex-start"
-              shrink="0"
-              position="relative"
-              borderRadius="8px"
-              padding="8px 8px 8px 8px"
-              backgroundColor="rgba(233,249,252,1)"
-              {...getOverrideProps(overrides, "Frame 43039403233")}
-            >
-              <View
-                width="24px"
-                height="24px"
-                {...getOverrideProps(overrides, "MyIcon39403234")}
-              ></View>
-            </Flex>
             <Text
               fontFamily="Inter"
               fontSize="24px"
@@ -340,26 +277,6 @@ export default function HomePageFeatures(props) {
             backgroundColor="rgba(239,240,240,1)"
             {...getOverrideProps(overrides, "Frame 37329766604")}
           >
-            <Flex
-              gap="0"
-              direction="row"
-              width="unset"
-              height="unset"
-              justifyContent="flex-start"
-              alignItems="flex-start"
-              shrink="0"
-              position="relative"
-              borderRadius="8px"
-              padding="8px 8px 8px 8px"
-              backgroundColor="rgba(233,249,252,1)"
-              {...getOverrideProps(overrides, "Frame 43039424110")}
-            >
-              <View
-                width="24px"
-                height="24px"
-                {...getOverrideProps(overrides, "MyIcon39424111")}
-              ></View>
-            </Flex>
             <Text
               fontFamily="Inter"
               fontSize="24px"

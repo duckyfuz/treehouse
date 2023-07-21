@@ -13,7 +13,7 @@ import {
 } from "@aws-amplify/ui-react/internal";
 import { Button, Flex, Image, Text } from "@aws-amplify/ui-react";
 export default function HomePageIntro(props) {
-  const { overrides: overridesProp, ...rest } = props;
+  const { image, getStartedHandler, overrides: overridesProp, ...rest } = props;
   const variants = [
     {
       variantValues: { type: "Intro" },
@@ -80,12 +80,11 @@ export default function HomePageIntro(props) {
           <Flex
             gap="16px"
             direction="column"
-            width="unset"
+            width="600px"
             height="unset"
             justifyContent="center"
             alignItems="center"
             shrink="0"
-            alignSelf="stretch"
             position="relative"
             padding="0px 0px 0px 0px"
             display="flex"
@@ -123,12 +122,11 @@ export default function HomePageIntro(props) {
               direction="column"
               justifyContent="unset"
               letterSpacing="0.01px"
-              width="unset"
+              width="480px"
               height="unset"
               gap="unset"
               alignItems="unset"
               shrink="0"
-              alignSelf="stretch"
               position="relative"
               padding="0px 0px 0px 0px"
               whiteSpace="pre-wrap"
@@ -143,14 +141,15 @@ export default function HomePageIntro(props) {
             size="large"
             isDisabled={false}
             variation="primary"
-            children="Get Started"
+            children="Go to Dashboard"
+            onClick={getStartedHandler}
             {...getOverrideProps(overrides, "Button")}
           ></Button>
         </Flex>
       </Flex>
       <Image
         width="unset"
-        height="unset"
+        height="500px"
         display="block"
         gap="unset"
         alignItems="unset"
@@ -162,6 +161,7 @@ export default function HomePageIntro(props) {
         position="relative"
         padding="0px 0px 0px 0px"
         objectFit="unset"
+        src={image}
         {...getOverrideProps(overrides, "image 1")}
       ></Image>
     </Flex>

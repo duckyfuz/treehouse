@@ -14,8 +14,8 @@ export default function HomePageFooter(props) {
     <Flex
       gap="32px"
       direction="column"
-      width="1600px"
-      height="203px"
+      width="1440px"
+      height="210px"
       justifyContent="flex-start"
       alignItems="center"
       position="relative"

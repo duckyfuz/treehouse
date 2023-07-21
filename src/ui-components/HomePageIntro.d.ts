@@ -7,6 +7,7 @@
 import * as React from "react";
 import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
 import { ButtonProps, FlexProps, ImageProps, TextProps } from "@aws-amplify/ui-react";
+import { SyntheticEvent } from "react";
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type HomePageIntroOverridesProps = {
     HomePageIntro?: PrimitiveOverrideProps<FlexProps>;
@@ -19,6 +20,9 @@ export declare type HomePageIntroOverridesProps = {
     "image 1"?: PrimitiveOverrideProps<ImageProps>;
 } & EscapeHatchProps;
 export declare type HomePageIntroProps = React.PropsWithChildren<Partial<FlexProps> & {
+    image?: String;
+    getStartedHandler?: (event: SyntheticEvent) => void;
+} & {
     type?: "Intro";
 } & {
     overrides?: HomePageIntroOverridesProps | undefined | null;
