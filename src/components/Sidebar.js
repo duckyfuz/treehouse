@@ -1,7 +1,13 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import { Flex, Button, Text, Card } from "@aws-amplify/ui-react";
 
-import { MdDashboard, MdSettings, MdHome, MdExitToApp } from "react-icons/md";
+import {
+  MdDashboard,
+  MdArchive,
+  MdSettings,
+  MdHome,
+  MdExitToApp,
+} from "react-icons/md";
 import logo from "../assets/images/logo.png";
 
 const LogoName = () => {
@@ -50,6 +56,16 @@ export const NavButtons = () => {
         >
           <MdDashboard />
           Dashboard
+        </Button>
+        <Button
+          variation={pathname === "/archive" ? "primary" : "menu"}
+          size="large"
+          gap="0.4rem"
+          width="100%"
+          onClick={() => navigate("/archive")}
+        >
+          <MdArchive />
+          Archive
         </Button>
         <Button
           variation={pathname === "/settings" ? "primary" : "menu"}

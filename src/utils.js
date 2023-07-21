@@ -33,3 +33,12 @@ export function filterDateTimeBeforeToday(activities) {
   });
   return filteredActivities;
 }
+
+export function filterDateTimeAfterToday(activities) {
+  const currentDate = new Date();
+  const filteredActivities = activities.filter((activity) => {
+    const testDate = new Date(activity.dateTime);
+    return testDate <= currentDate;
+  });
+  return filteredActivities;
+}

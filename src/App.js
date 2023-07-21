@@ -18,6 +18,7 @@ import { Settings } from "./routes/Settings";
 import { Login } from "./routes/Login";
 
 import { Notifications } from "aws-amplify";
+import { Archive } from "./routes/Archive";
 
 const { InAppMessaging } = Notifications;
 
@@ -41,6 +42,7 @@ function App() {
             <Route path="/" element={<SideLayout />}>
               <Route path="/onboarding" element={<OnBoarding />} />
               <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/archive" element={<Archive />} />
               <Route path="/settings" element={<Settings />} />
             </Route>
             <Route path="*" element={<p>Page Not Found</p>} />

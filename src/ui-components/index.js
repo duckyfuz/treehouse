@@ -5,7 +5,7 @@
  **************************************************************************/
 
 export { default as DataRow } from "./DataRow";
-export { default as Features2x2 } from "./Features2x2";
+export { default as HomePageFeatures } from "./HomePageFeatures";
 export { default as CommentCard } from "./CommentCard";
 export { default as ActivityCardCollection } from "./ActivityCardCollection";
 export { default as ItemCard } from "./ItemCard";
@@ -32,15 +32,16 @@ export { default as Filters } from "./Filters";
 export { default as HeroLayout1 } from "./HeroLayout1";
 export { default as TallCard } from "./TallCard";
 export { default as ProductCard } from "./ProductCard";
-export { default as HeroLayout2 } from "./HeroLayout2";
+export { default as HomePageIntro } from "./HomePageIntro";
 export { default as NavBarHeader2 } from "./NavBarHeader2";
 export { default as NoActionCard } from "./NoActionCard";
 export { default as NavBarHeader } from "./NavBarHeader";
+export { default as HomePageFinisher } from "./HomePageFinisher";
 export { default as CTASection } from "./CTASection";
 export { default as NatCardDescriptionCollection } from "./NatCardDescriptionCollection";
 export { default as ActivityCardDescription } from "./ActivityCardDescription";
 export { default as ReviewCard } from "./ReviewCard";
-export { default as MarketingFooterBrand } from "./MarketingFooterBrand";
+export { default as HomePageFooter } from "./HomePageFooter";
 export { default as ActivityCard } from "./ActivityCard";
 export { default as MyIcon } from "./MyIcon";
 export { default as ContactUs } from "./ContactUs";
