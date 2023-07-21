@@ -57,7 +57,7 @@ export const Dashboard = () => {
 
   useEffect(() => {
     (async function () {
-      try {
+      if (userDets) {
         const sortedActivities = await DataStore.query(
           ActivityItem,
           Predicates.ALL,
@@ -65,14 +65,16 @@ export const Dashboard = () => {
             sort: (s) => s.dateTime(SortDirection.ASCENDING),
           }
         );
-        const filteredActivities = filterDateTimeBeforeToday(sortedActivities);
+        const currentActivities = filterDateTimeBeforeToday(sortedActivities);
+        console.log(userDets.residence);
+        const filteredActivities = currentActivities.filter((activity) =>
+          userDets.residence.includes(activity.residence)
+        );
         setFutureActivities(filteredActivities);
         setIsLoading(false);
-      } catch (err) {
-        console.log(err);
       }
     })();
-  }, []);
+  }, [userDets]);
 
   const openAddActivityModalHandler = () => {
     setOpenAddActivityModal(true);
@@ -190,11 +192,11 @@ export const Dashboard = () => {
             {!isLoading && (
               <Collection
                 isPaginated
-                itemsPerPage={3}
+                itemsPerPage={6}
                 items={futureActivities}
                 type="list"
                 direction="row"
-                wrap="nowrap"
+                wrap="wrap"
                 isSearchable
                 searchNoResultsFound={
                   <Flex
@@ -250,12 +252,12 @@ export const Dashboard = () => {
             open={openAddActivityModal}
             setOpenAddActivityModal={setOpenAddActivityModal}
           />
-            <ViewActivityModal
-              id={activeActivity}
-              open={openViewActivityModal}
-              setOpenViewActivityModal={setOpenViewActivityModal}
-              user={user}
-            />
+          <ViewActivityModal
+            id={activeActivity}
+            open={openViewActivityModal}
+            setOpenViewActivityModal={setOpenViewActivityModal}
+            user={user}
+          />
         </Flex>
       )}
     </>

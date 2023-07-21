@@ -18,12 +18,10 @@ export const OnBoarding = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log(authStatus);
     if (authStatus === "authenticated") {
       if (userDets && userDets.onBoarded) {
         navigate("/dashboard");
       }
-      console.log("hi");
       async function getUserID() {
         console.log(user.username);
         const userDetails = await DataStore.query(UserDetails, (c) =>

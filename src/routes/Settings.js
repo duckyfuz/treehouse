@@ -1,36 +1,47 @@
 import React, { useEffect } from "react";
-import { Flex } from "@aws-amplify/ui-react";
+import { Flex, Placeholder } from "@aws-amplify/ui-react";
 
 import { useNavigate } from "react-router-dom";
 import { useUserObserver } from "../hooks/useUser";
 import { UserDetails } from "../models";
 import { DataStore } from "aws-amplify";
 import { useAuthenticator } from "@aws-amplify/ui-react";
+import { UserDetailsUpdateForm } from "../ui-components";
 
 export const Settings = () => {
-  const Authenticator = useAuthenticator((context) => [context.user]);
+  const { user, authStatus } = useAuthenticator((context) => [context.user]);
 
-  const user = useUserObserver();
+  const userDets = useUserObserver();
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (user && !user.onBoarded) {
-      navigate("/onboarding");
-    }
-    async function getOnBoardingStatus() {
-      const userDetails = await DataStore.query(UserDetails, (c) =>
-        c.name.eq(Authenticator.user.username)
-      );
-      if (userDetails.length === 0) {
+    if (authStatus === "authenticated") {
+      console.log(userDets);
+      if (userDets && !userDets.onBoarded) {
         navigate("/onboarding");
       }
+      async function getOnBoardingStatus() {
+        const userDetails = await DataStore.query(UserDetails, (c) =>
+          c.name.eq(user.username)
+        );
+        if (userDetails.length === 0) {
+          navigate("/onboarding");
+        }
+      }
+      if (user) {
+        getOnBoardingStatus();
+      }
     }
-    getOnBoardingStatus();
-  }, [navigate, user]);
+  }, [navigate, userDets, authStatus, user]);
+
+  let content = <Placeholder size="large" />;
+  if (userDets) {
+    content = <UserDetailsUpdateForm id={userDets.id} />;
+  }
 
   return (
-    <Flex justifyContent="center" width={"30rem"}>
-      <div>Settings</div>
+    <Flex minWidth={"30rem"} direction={"column"}>
+      {content}
     </Flex>
   );
 };

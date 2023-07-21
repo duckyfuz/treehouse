@@ -1,11 +1,10 @@
 import { useNavigate, useLocation } from "react-router-dom";
-import { Flex, Button, Text, Card } from "@aws-amplify/ui-react";
+import { Flex, Button, Text, Card, Link } from "@aws-amplify/ui-react";
 
 import {
   MdDashboard,
   MdArchive,
   MdSettings,
-  MdHome,
   MdExitToApp,
 } from "react-icons/md";
 import logo from "../assets/images/logo.png";
@@ -71,6 +70,13 @@ export const NavButtons = () => {
           <MdSettings />
           Settings
         </Button>
+        <Button size="medium" variation="link" marginTop={"10px"}>
+          <Link
+            href={`mailto:kennethgao25@gmail.com?subject=Hello from treehouse!`}
+          >
+            Contact Us
+          </Link>
+        </Button>
       </Flex>
     </>
   );
@@ -84,6 +90,7 @@ export function Sidebar({ logOut }) {
         <NavButtons />
         <Flex alignContent={"flex-end"}>
           <Button
+            marginTop={"600px"}
             size="large"
             gap="0.4rem"
             variation="destructive"
