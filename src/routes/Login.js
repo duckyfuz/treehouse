@@ -29,7 +29,13 @@ export function Login() {
   };
 
   return (
-    <Flex justifyContent="center">
+    <Flex
+      justifyContent="center"
+      alignContent={"center"}
+      alignItems={"center"}
+      width={"100%"}
+      backgroundColor={"EFF0F0"}
+    >
       <Authenticator services={services} />
     </Flex>
   );
