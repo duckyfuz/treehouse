@@ -92,8 +92,7 @@ export default function ActivityCardDescription(props) {
               alignSelf="stretch"
               position="relative"
               padding="0px 0px 0px 0px"
-              whiteSpace=""
-              isTruncated={true}
+              whiteSpace="pre-wrap"
               children={activityItem?.title}
               {...getOverrideProps(overrides, "This is the Activity Name")}
             ></Text>
