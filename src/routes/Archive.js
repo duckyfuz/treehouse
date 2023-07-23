@@ -11,8 +11,6 @@ import {
 } from "@aws-amplify/ui-react";
 
 import { ActivityCardImage } from "../ui-components";
-import ViewActivityModal from "../components/Modals/ViewActivityModal";
-
 import { ActivityItem, UserDetails } from "../models";
 
 import { useUserObserver } from "../hooks/useUser";
@@ -62,13 +60,15 @@ export const Archive = () => {
             sort: (s) => s.dateTime(SortDirection.DESCENDING),
           }
         );
-        const currentActivities = filterDateTimeAfterToday(sortedActivities);
-        const filteredActivities = currentActivities.filter(
+        const pastActivities = filterDateTimeAfterToday(sortedActivities);
+        const filteredActivities = pastActivities.filter(
           (activity) =>
             userDets.residence.includes(activity.residence) &&
-            activity.participants.includes(userDets.name)
+            (activity.participants.includes(userDets.name) ||
+              activity.host === userDets.name)
         );
-        setPastActivities(filteredActivities);
+        setPastActivities(pastActivities);
+        // setPastActivities(filteredActivities);
 
         filteredActivities.forEach((activity) => {
           (async function () {
@@ -167,6 +167,7 @@ export const Archive = () => {
                     group1={
                       <Image
                         src={imageDict[activity.id]}
+                        alt="no image"
                         width={"448px"}
                         height={"120px"}
                         objectFit="cover"
