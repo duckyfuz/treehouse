@@ -24,6 +24,7 @@ export const Archive = () => {
   const [pastActivities, setPastActivities] = useState();
   const [openViewActivityModal, setOpenViewActivityModal] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [reloadHandler, setReloadHandler] = useState(false);
   const userDets = useUserObserver();
   const navigate = useNavigate();
 
@@ -82,7 +83,7 @@ export const Archive = () => {
         setIsLoading(false);
       }
     })();
-  }, [userDets]);
+  }, [userDets, setActiveActivity, reloadHandler]);
 
   const openViewActivityModalHandler = () => {
     setOpenViewActivityModal(true);
@@ -191,6 +192,8 @@ export const Archive = () => {
               open={openViewActivityModal}
               setOpenViewActivityModal={setOpenViewActivityModal}
               user={user}
+              reload={reloadHandler}
+              setReload={setReloadHandler}
             />
           )}
         </Flex>

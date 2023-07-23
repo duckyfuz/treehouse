@@ -28,6 +28,8 @@ const ViewArchiveModal = ({
   id,
   user,
   setActiveActivity,
+  reload,
+  setReload,
 }) => {
   const [activity, setActivity] = useState();
   const [reloadHandler, setReloadHandler] = useState(true);
@@ -99,6 +101,7 @@ const ViewArchiveModal = ({
               activityItem={activity}
               exitHandler={() => {
                 setActiveActivity();
+                setReload(!reload);
                 setOpenViewActivityModal(false);
               }}
               imageSlot39821654={
