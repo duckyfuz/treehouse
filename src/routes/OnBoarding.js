@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { Flex, Text, useAuthenticator } from "@aws-amplify/ui-react";
 import { useNavigate } from "react-router-dom";
-import { useUserObserver } from "../hooks/useUser";
-import { UserDetails } from "../models";
-import { UserDetailsCreateForm, UserDetailsUpdateForm } from "../ui-components";
+
 import { DataStore } from "aws-amplify";
+import { Flex, Text, useAuthenticator } from "@aws-amplify/ui-react";
+
+import { UserDetailsCreateForm, UserDetailsUpdateForm } from "../ui-components";
+
+import { UserDetails } from "../models";
+
+import { useUserObserver } from "../hooks/useUser";
 
 export const OnBoarding = () => {
   const { user, authStatus } = useAuthenticator((context) => [context.user]);

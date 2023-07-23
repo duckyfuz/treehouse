@@ -1,12 +1,12 @@
 import Modal from "@mui/material/Modal";
 import { Button, Flex, Text, useAuthenticator } from "@aws-amplify/ui-react";
 import { MdDelete } from "react-icons/md";
-import { useUserObserver } from "../hooks/useUser";
+import { useUserObserver } from "../../hooks/useUser";
 import { useEffect, useState } from "react";
-import { ActivityItem } from "../models";
+import { ActivityItem } from "../../models";
 import { DataStore, Notifications } from "aws-amplify";
-import convertISOToCustomFormat from "../utils";
-import { ViewActivityDetailsModal } from "../ui-components";
+import convertISOToCustomFormat from "../../utils";
+import { ViewActivityDetailsModal } from "../../ui-components";
 
 const { InAppMessaging } = Notifications;
 

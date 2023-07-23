@@ -7,7 +7,7 @@ import {
   MdSettings,
   MdExitToApp,
 } from "react-icons/md";
-import logo from "../assets/images/logo.png";
+import logo from "../../assets/images/logo.png";
 
 const LogoName = () => {
   const navigate = useNavigate();

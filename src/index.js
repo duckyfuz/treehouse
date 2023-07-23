@@ -1,17 +1,14 @@
 import React, { StrictMode } from "react";
 import ReactDOM from "react-dom/client";
-import "./index.css";
-import App from "./App";
-import reportWebVitals from "./reportWebVitals";
 
 import { Amplify } from "aws-amplify";
 import { AmplifyProvider, Authenticator } from "@aws-amplify/ui-react";
-import "@aws-amplify/ui-react/styles.css";
 
-import {
-  InAppMessageDisplay,
-  InAppMessagingProvider,
-} from "@aws-amplify/ui-react-notifications";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+
+import "./index.css";
+import "@aws-amplify/ui-react/styles.css";
 
 import config from "./aws-exports";
 Amplify.configure(config);
@@ -21,10 +18,7 @@ root.render(
   <AmplifyProvider>
     <StrictMode>
       <Authenticator.Provider>
-        <InAppMessagingProvider>
-          <InAppMessageDisplay />
-          <App />
-        </InAppMessagingProvider>
+        <App />
       </Authenticator.Provider>
     </StrictMode>
   </AmplifyProvider>

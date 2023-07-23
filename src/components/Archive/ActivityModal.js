@@ -1,9 +1,11 @@
-import React, { useCallback, useEffect, useState } from "react";
-import { useAuthenticator } from "@aws-amplify/ui-react";
+import React, { useEffect, useState } from "react";
+
 import { DataStore, Notifications } from "aws-amplify";
-import { ActionCard, NoActionCard } from "../ui-components";
-import { ActivityItem } from "../models";
-import convertISOToCustomFormat from "../utils";
+import { useAuthenticator } from "@aws-amplify/ui-react";
+
+import { ActionCard, NoActionCard } from "../../ui-components";
+import { ActivityItem } from "../../models";
+import convertISOToCustomFormat from "../../utils";
 
 const { InAppMessaging } = Notifications;
 

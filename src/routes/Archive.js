@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
 import { DataStore, Predicates, SortDirection, Storage } from "aws-amplify";
 import {
   Collection,
@@ -7,14 +9,14 @@ import {
   useAuthenticator,
   Image,
 } from "@aws-amplify/ui-react";
-import { useNavigate } from "react-router-dom";
-import { useUserObserver } from "../hooks/useUser";
+
+import { ActivityCardImage } from "../ui-components";
+import ViewActivityModal from "../components/Modals/ViewActivityModal";
 
 import { ActivityItem, UserDetails } from "../models";
-import { ActivityCardImage } from "../ui-components";
 
+import { useUserObserver } from "../hooks/useUser";
 import convertISOToCustomFormat, { filterDateTimeAfterToday } from "../utils";
-import ViewActivityModal from "../components/ViewActivityModal";
 
 export const Archive = () => {
   const { user, authStatus } = useAuthenticator((context) => [context.user]);
@@ -26,9 +28,9 @@ export const Archive = () => {
   const userDets = useUserObserver();
   const navigate = useNavigate();
 
-  const [defaultImage, setDefaultImage] = useState();
   const [imageDict, setImageDict] = useState({});
 
+  // Onboarding checks
   useEffect(() => {
     if (authStatus === "authenticated") {
       if (userDets && !userDets.onBoarded) {
@@ -45,13 +47,10 @@ export const Archive = () => {
       if (user) {
         getOnBoardingStatus();
       }
-      (async () => {
-        const link = await Storage.get("default.jpg");
-        setDefaultImage(link);
-      })();
     }
   }, [navigate, userDets, authStatus, user]);
 
+  // Fetch activites + sort and filter
   useEffect(() => {
     (async function () {
       if (userDets) {
@@ -59,7 +58,7 @@ export const Archive = () => {
           ActivityItem,
           Predicates.ALL,
           {
-            sort: (s) => s.dateTime(SortDirection.ASCENDING),
+            sort: (s) => s.dateTime(SortDirection.DESCENDING),
           }
         );
         const currentActivities = filterDateTimeAfterToday(sortedActivities);
@@ -170,7 +169,7 @@ export const Archive = () => {
                         objectFit="cover"
                       />
                     }
-                    dateTime={convertISOToCustomFormat(activity.dateTime[0])}
+                    dateTime={convertISOToCustomFormat(activity.dateTime)}
                     location={activity.residence + ", " + activity.location}
                     moreDetailsHandler={() => {
                       setActiveActivity(activity.id);

@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
 import { DataStore, Predicates, SortDirection } from "aws-amplify";
 import {
   Button,
@@ -9,20 +11,19 @@ import {
   Text,
   useAuthenticator,
 } from "@aws-amplify/ui-react";
-import { useNavigate } from "react-router-dom";
-import { useUserObserver } from "../hooks/useUser";
 
-import { ActivityItem, UserDetails } from "../models";
+import { BiMessageSquareAdd } from "react-icons/bi";
 import {
   ActivityCardDescription,
   NatCardDescriptionCollection,
 } from "../ui-components";
+import AddActivityModal from "../components/Modals/AddActivityModal";
+import ViewActivityModal from "../components/Modals/ViewActivityModal";
 
-import { BiMessageSquareAdd } from "react-icons/bi";
+import { ActivityItem, UserDetails } from "../models";
 
+import { useUserObserver } from "../hooks/useUser";
 import convertISOToCustomFormat, { filterDateTimeBeforeToday } from "../utils";
-import AddActivityModal from "../components/AddActivityModal";
-import ViewActivityModal from "../components/ViewActivityModal";
 
 export const Dashboard = () => {
   const { user, authStatus } = useAuthenticator((context) => [context.user]);
@@ -35,6 +36,7 @@ export const Dashboard = () => {
   const userDets = useUserObserver();
   const navigate = useNavigate();
 
+  // Onboarding checks
   useEffect(() => {
     if (authStatus === "authenticated") {
       console.log(userDets);
@@ -55,6 +57,7 @@ export const Dashboard = () => {
     }
   }, [navigate, userDets, authStatus, user]);
 
+  // Fetch activites + sort and filter
   useEffect(() => {
     (async function () {
       if (userDets) {
@@ -228,7 +231,7 @@ export const Dashboard = () => {
                 }
                 searchPlaceholder="Find your next activity!"
               >
-                {(activity, index) => (
+                {(activity) => (
                   <ActivityCardDescription
                     key={activity.id}
                     width={"28rem"}

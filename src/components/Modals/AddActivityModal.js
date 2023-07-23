@@ -1,8 +1,10 @@
-import Modal from "@mui/material/Modal";
 import { Button, Flex, Text } from "@aws-amplify/ui-react";
-import { ActivityItemCreateForm } from "../ui-components";
+
 import { MdDelete } from "react-icons/md";
-import { useUserObserver } from "../hooks/useUser";
+import Modal from "@mui/material/Modal";
+import { ActivityItemCreateForm } from "../../ui-components";
+
+import { useUserObserver } from "../../hooks/useUser";
 
 const AddActivityModal = ({ open, setOpenAddActivityModal }) => {
   const userDets = useUserObserver();

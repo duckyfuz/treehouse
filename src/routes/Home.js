@@ -1,7 +1,10 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
+import { DataStore } from "aws-amplify";
 import { Button, Flex, Text, useAuthenticator } from "@aws-amplify/ui-react";
+
+import { FaDoorClosed, FaDoorOpen } from "react-icons/fa6";
 import {
   HomePageFeatures,
   HomePageFinisher,
@@ -9,11 +12,8 @@ import {
   HomePageIntro,
 } from "../ui-components";
 
-import { FaDoorClosed, FaDoorOpen } from "react-icons/fa6";
-
 import logo from "../assets/images/logo.png";
 import image from "../assets/images/treehouse720.jpeg";
-import { DataStore } from "aws-amplify";
 
 export const Home = () => {
   const { authStatus, signOut } = useAuthenticator((context) => [context.user]);

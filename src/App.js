@@ -1,24 +1,25 @@
-import { useEffect, useState } from "react";
-import { SideLayout } from "./components/SideLayout";
+import { useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+import { Notifications } from "aws-amplify";
 import {
   defaultDarkModeOverride,
   Flex,
   ThemeProvider,
+  withInAppMessaging,
 } from "@aws-amplify/ui-react";
 
-import "@aws-amplify/ui-react/styles.css";
-import "./App.css";
-
 import { Home } from "./routes/Home";
+import { Login } from "./routes/Login";
 import { OnBoarding } from "./routes/OnBoarding";
 import { Dashboard } from "./routes/Dashboard";
-import { Settings } from "./routes/Settings";
-import { Login } from "./routes/Login";
-
-import { Notifications } from "aws-amplify";
 import { Archive } from "./routes/Archive";
+import { Settings } from "./routes/Settings";
+
+import { SideLayout } from "./components/Layout/SideLayout";
+
+import "./App.css";
+import "@aws-amplify/ui-react/styles.css";
 
 const { InAppMessaging } = Notifications;
 
@@ -27,6 +28,7 @@ function App() {
     InAppMessaging.syncMessages();
   }, []);
 
+  // For future dark mode implementation
   const theme = {
     name: "app-theme",
     overrides: [defaultDarkModeOverride],
@@ -53,4 +55,4 @@ function App() {
   );
 }
 
-export default App;
+export default withInAppMessaging(App);

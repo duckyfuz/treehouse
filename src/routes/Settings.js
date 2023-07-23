@@ -1,12 +1,14 @@
 import React, { useEffect } from "react";
-import { Flex, Placeholder } from "@aws-amplify/ui-react";
-
 import { useNavigate } from "react-router-dom";
-import { useUserObserver } from "../hooks/useUser";
-import { UserDetails } from "../models";
+
 import { DataStore } from "aws-amplify";
-import { useAuthenticator } from "@aws-amplify/ui-react";
+import { Flex, Placeholder, useAuthenticator } from "@aws-amplify/ui-react";
+
 import { UserDetailsUpdateForm } from "../ui-components";
+
+import { UserDetails } from "../models";
+
+import { useUserObserver } from "../hooks/useUser";
 
 export const Settings = () => {
   const { user, authStatus } = useAuthenticator((context) => [context.user]);
@@ -14,9 +16,9 @@ export const Settings = () => {
   const userDets = useUserObserver();
   const navigate = useNavigate();
 
+  // Onboarding checks
   useEffect(() => {
     if (authStatus === "authenticated") {
-      console.log(userDets);
       if (userDets && !userDets.onBoarded) {
         navigate("/onboarding");
       }
