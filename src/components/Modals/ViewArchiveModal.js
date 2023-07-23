@@ -146,7 +146,7 @@ const ViewArchiveModal = ({
           counter={{ container: { style: { top: "unset", bottom: 0 } } }}
         />
         <AddPhotoModal
-          id={activity}
+          id={activity && activity.id}
           open={openAddPhotoModal}
           setOpenAddPhotoModal={setOpenAddPhotoModal}
           reloadHandler={reloadHandler}

@@ -7,12 +7,14 @@ import { ActivityItemCreateForm, AddPhotoForm } from "../../ui-components";
 import { useUserObserver } from "../../hooks/useUser";
 import { useEffect } from "react";
 
-const AddPhotoModal = ({ id, open, setOpenAddPhotoModal, reloadHandler, setReloadHandler }) => {
+const AddPhotoModal = ({
+  id,
+  open,
+  setOpenAddPhotoModal,
+  reloadHandler,
+  setReloadHandler,
+}) => {
   const userDets = useUserObserver();
-
-  useEffect(() => {
-    console.log(id);
-  }, []);
 
   return (
     <Modal
@@ -59,7 +61,7 @@ const AddPhotoModal = ({ id, open, setOpenAddPhotoModal, reloadHandler, setReloa
             width={"100%"}
             onSuccess={() => {
               setOpenAddPhotoModal(false);
-              setReloadHandler(!reloadHandler)
+              setReloadHandler(!reloadHandler);
             }}
           />
         </Flex>
