@@ -6,9 +6,19 @@ import { ActivityItem } from "../../models";
 import { DataStore, Notifications, Storage } from "aws-amplify";
 import convertISOToCustomFormat from "../../utils";
 import { ArchiveDetailsModal } from "../../ui-components";
-import { Lightbox } from "yet-another-react-lightbox";
-import "yet-another-react-lightbox/styles.css";
+
 import AddPhotoModal from "./AddPhotoModal";
+
+import Lightbox from "yet-another-react-lightbox";
+import "yet-another-react-lightbox/styles.css";
+import Download from "yet-another-react-lightbox/plugins/download";
+import Share from "yet-another-react-lightbox/plugins/share";
+import Slideshow from "yet-another-react-lightbox/plugins/slideshow";
+import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
+import "yet-another-react-lightbox/plugins/thumbnails.css";
+import Zoom from "yet-another-react-lightbox/plugins/zoom";
+import Counter from "yet-another-react-lightbox/plugins/counter";
+import "yet-another-react-lightbox/plugins/counter.css";
 
 const { InAppMessaging } = Notifications;
 
@@ -129,11 +139,15 @@ const ViewArchiveModal = ({
           open={openImages}
           close={() => setOpenImages(false)}
           slides={imageList}
+          plugins={[Download, Counter, Share, Slideshow, Thumbnails, Zoom]}
+          counter={{ container: { style: { top: "unset", bottom: 0 } } }}
         />
         <AddPhotoModal
           id={activity}
           open={openAddPhotoModal}
           setOpenAddPhotoModal={setOpenAddPhotoModal}
+          reloadHandler={reloadHandler}
+          setReloadHandler={setReloadHandler}
         />
       </Flex>
     </Modal>

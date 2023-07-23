@@ -7,7 +7,7 @@ import { ActivityItemCreateForm, AddPhotoForm } from "../../ui-components";
 import { useUserObserver } from "../../hooks/useUser";
 import { useEffect } from "react";
 
-const AddPhotoModal = ({ id, open, setOpenAddPhotoModal }) => {
+const AddPhotoModal = ({ id, open, setOpenAddPhotoModal, reloadHandler, setReloadHandler }) => {
   const userDets = useUserObserver();
 
   useEffect(() => {
@@ -57,23 +57,9 @@ const AddPhotoModal = ({ id, open, setOpenAddPhotoModal }) => {
           <AddPhotoForm
             id={id}
             width={"100%"}
-            // onSubmit={(fields) => {
-            //   const updatedFields = {};
-            //   Object.keys(fields).forEach((key) => {
-            //     if (typeof fields[key] === "string") {
-            //       updatedFields[key] = fields[key].trim();
-            //     } else {
-            //       updatedFields[key] = fields[key];
-            //     }
-            //   });
-            //   updatedFields["hostName"] = userDets.preferedName;
-            //   updatedFields["host"] = userDets.name;
-            //   updatedFields["participants"] = [];
-            //   updatedFields["images"] = [];
-            //   return updatedFields;
-            // }}
             onSuccess={() => {
               setOpenAddPhotoModal(false);
+              setReloadHandler(!reloadHandler)
             }}
           />
         </Flex>
