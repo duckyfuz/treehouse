@@ -21,9 +21,9 @@ export { default as NatCardDescriptionCollection } from "./NatCardDescriptionCol
 export { default as ActivityCardDescription } from "./ActivityCardDescription";
 export { default as HomePageFooter } from "./HomePageFooter";
 export { default as studioTheme } from "./studioTheme";
+export { default as AddPhotoForm } from "./AddPhotoForm";
 export { default as UserDetailsUpdateForm } from "./UserDetailsUpdateForm";
 export { default as ActivityItemCreateForm } from "./ActivityItemCreateForm";
 export { default as UserDetailsCreateForm } from "./UserDetailsCreateForm";
 export { default as NatActivityCreateForm } from "./NatActivityCreateForm";
 export { default as NatActivityUpdateForm } from "./NatActivityUpdateForm";
-export { default as ActivityItemUpdateForm } from "./ActivityItemUpdateForm";

@@ -1,18 +1,14 @@
 import Modal from "@mui/material/Modal";
-import {
-  Button,
-  Flex,
-  Image,
-  Text,
-  useAuthenticator,
-} from "@aws-amplify/ui-react";
-import { MdDelete } from "react-icons/md";
+import { Flex, Image } from "@aws-amplify/ui-react";
 import { useUserObserver } from "../../hooks/useUser";
 import { useEffect, useState } from "react";
 import { ActivityItem } from "../../models";
 import { DataStore, Notifications, Storage } from "aws-amplify";
 import convertISOToCustomFormat from "../../utils";
 import { ArchiveDetailsModal } from "../../ui-components";
+import { Lightbox } from "yet-another-react-lightbox";
+import "yet-another-react-lightbox/styles.css";
+import AddPhotoModal from "./AddPhotoModal";
 
 const { InAppMessaging } = Notifications;
 
@@ -25,7 +21,10 @@ const ViewArchiveModal = ({
 }) => {
   const [activity, setActivity] = useState();
   const [reloadHandler, setReloadHandler] = useState(true);
-  const [coverImage, setCoverImage] = useState();
+  const [openImages, setOpenImages] = useState(false);
+  const [imageList, setImageList] = useState([]);
+  const [imageNameList, setImageNameList] = useState([]);
+  const [openAddPhotoModal, setOpenAddPhotoModal] = useState(false);
 
   const userDets = useUserObserver();
 
@@ -34,18 +33,35 @@ const ViewArchiveModal = ({
       (async function () {
         const activity = await DataStore.query(ActivityItem, id);
         setActivity(activity);
-        const link = await Storage.get(activity.images[0]);
-        setCoverImage(link);
+        (async function () {
+          for (const image of activity.images) {
+            if (!imageNameList.includes(image)) {
+              setImageNameList((prevImageNameList) => [
+                ...prevImageNameList,
+                image,
+              ]);
+              const link = await Storage.get(image);
+              setImageList((prevImageList) => [
+                ...prevImageList,
+                { src: link },
+              ]);
+            }
+          }
+        })();
+        setImageList([...new Set(imageList)]);
+        console.log(imageNameList);
       })();
     }
   }, [id, reloadHandler]);
 
   const viewPicturesHandler = () => {
+    setOpenImages(true);
     console.log("viewPictures");
   };
 
   const sharePicturesHandler = async () => {
-    console.log("sharePicture");
+    setOpenAddPhotoModal(true);
+    console.log(imageList);
   };
 
   return (
@@ -77,7 +93,7 @@ const ViewArchiveModal = ({
               }}
               imageSlot39821654={
                 <Image
-                  src={coverImage}
+                  src={imageList[0] && imageList[0]["src"]}
                   width={"100%"}
                   height={"100%"}
                   objectFit="cover"
@@ -109,6 +125,16 @@ const ViewArchiveModal = ({
             />
           )}
         </Flex>
+        <Lightbox
+          open={openImages}
+          close={() => setOpenImages(false)}
+          slides={imageList}
+        />
+        <AddPhotoModal
+          id={activity}
+          open={openAddPhotoModal}
+          setOpenAddPhotoModal={setOpenAddPhotoModal}
+        />
       </Flex>
     </Modal>
   );
