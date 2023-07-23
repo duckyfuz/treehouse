@@ -68,8 +68,8 @@ export const Archive = () => {
             (activity.participants.includes(userDets.name) ||
               activity.host === userDets.name)
         );
-        setPastActivities(pastActivities);
-        // setPastActivities(filteredActivities);
+        // setPastActivities(pastActivities);
+        setPastActivities(filteredActivities);
 
         filteredActivities.forEach((activity) => {
           (async function () {
