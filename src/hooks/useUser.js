@@ -21,7 +21,6 @@ export const useUserObserver = () => {
   useEffect(() => {
     if (authStatus === "authenticated") {
       const userSubscription = observeUser();
-      console.log(userSubscription);
       return () => {
         userSubscription.unsubscribe();
       };

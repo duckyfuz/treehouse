@@ -63,8 +63,10 @@ export const Archive = () => {
           }
         );
         const currentActivities = filterDateTimeAfterToday(sortedActivities);
-        const filteredActivities = currentActivities.filter((activity) =>
-          userDets.residence.includes(activity.residence)
+        const filteredActivities = currentActivities.filter(
+          (activity) =>
+            userDets.residence.includes(activity.residence) &&
+            activity.participants.includes(userDets.name)
         );
         setPastActivities(filteredActivities);
 
