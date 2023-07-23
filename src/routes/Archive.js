@@ -17,6 +17,7 @@ import { ActivityItem, UserDetails } from "../models";
 
 import { useUserObserver } from "../hooks/useUser";
 import convertISOToCustomFormat, { filterDateTimeAfterToday } from "../utils";
+import ViewArchiveModal from "../components/Modals/ViewArchiveModal";
 
 export const Archive = () => {
   const { user, authStatus } = useAuthenticator((context) => [context.user]);
@@ -50,7 +51,7 @@ export const Archive = () => {
     }
   }, [navigate, userDets, authStatus, user]);
 
-  // Fetch activites + sort and filter
+  // Fetch activites + sort and filter + fetch images
   useEffect(() => {
     (async function () {
       if (userDets) {
@@ -180,12 +181,15 @@ export const Archive = () => {
               </Collection>
             )}
           </Flex>
-          <ViewActivityModal
-            id={activeActivity}
-            open={openViewActivityModal}
-            setOpenViewActivityModal={setOpenViewActivityModal}
-            user={user}
-          />
+          {activeActivity && (
+            <ViewArchiveModal
+              id={activeActivity}
+              setActiveActivity={setActiveActivity}
+              open={openViewActivityModal}
+              setOpenViewActivityModal={setOpenViewActivityModal}
+              user={user}
+            />
+          )}
         </Flex>
       )}
     </>

@@ -14,117 +14,177 @@ export default function ViewActivityModal(props) {
     <Flex
       gap="0"
       direction="column"
-      width="610px"
+      width="unset"
       height="unset"
       justifyContent="flex-start"
       alignItems="flex-start"
       position="relative"
-      borderRadius="10px"
-      padding="16px 16px 16px 16px"
-      backgroundColor="rgba(255,255,255,1)"
+      padding="0px 0px 0px 0px"
       {...getOverrideProps(overrides, "ViewActivityModal")}
       {...rest}
     >
       <Flex
-        gap="10px"
-        direction="row"
-        width="unset"
+        gap="16px"
+        direction="column"
+        width="610px"
         height="unset"
-        justifyContent="flex-start"
+        justifyContent="center"
         alignItems="center"
         shrink="0"
-        alignSelf="stretch"
         position="relative"
-        padding="0px 16px 0px 16px"
-        {...getOverrideProps(overrides, "Product Title")}
-      >
-        <Text
-          fontFamily="Inter"
-          fontSize="24px"
-          fontWeight="700"
-          color="rgba(13,26,38,1)"
-          lineHeight="20px"
-          textAlign="left"
-          display="block"
-          direction="column"
-          justifyContent="unset"
-          width="unset"
-          height="unset"
-          gap="unset"
-          alignItems="unset"
-          grow="1"
-          shrink="1"
-          basis="0"
-          alignSelf="stretch"
-          position="relative"
-          padding="0px 0px 0px 0px"
-          whiteSpace="pre-wrap"
-          children='"DAWdhaiwdhiu awhiud hiaw iofh aich ifuehaiuf heiuahfiuhaiuwefhiae hfiaew iufheaiuwfhieahfahwifuheiuahfiuhfia"'
-          {...getOverrideProps(overrides, "ACTIVITY TITLE")}
-        ></Text>
-        <Text
-          fontFamily="Inter"
-          fontSize="16px"
-          fontWeight="400"
-          color="rgba(48,64,80,1)"
-          lineHeight="24px"
-          textAlign="left"
-          display="block"
-          direction="column"
-          justifyContent="unset"
-          letterSpacing="0.01px"
-          width="unset"
-          height="unset"
-          gap="unset"
-          alignItems="unset"
-          shrink="0"
-          position="relative"
-          padding="0px 0px 0px 0px"
-          whiteSpace="pre-wrap"
-          children="LOCATION"
-          {...getOverrideProps(overrides, "LOCATION")}
-        ></Text>
-      </Flex>
-      <Flex
-        gap="16px"
-        direction="row"
-        width="unset"
-        height="unset"
-        justifyContent="flex-start"
-        alignItems="flex-start"
-        shrink="0"
-        position="relative"
-        padding="12px 16px 12px 16px"
-        {...getOverrideProps(overrides, "Card Area29766753")}
+        borderRadius="5px"
+        padding="16px 16px 16px 16px"
+        backgroundColor="rgba(255,255,255,1)"
+        {...getOverrideProps(overrides, "ViewActivityModal39821710")}
       >
         <Flex
-          gap="16px"
-          direction="column"
-          width="300px"
+          gap="10px"
+          direction="row"
+          width="unset"
           height="unset"
           justifyContent="flex-start"
+          alignItems="center"
+          shrink="0"
+          alignSelf="stretch"
+          position="relative"
+          padding="0px 16px 0px 16px"
+          {...getOverrideProps(overrides, "Product Title")}
+        >
+          <Text
+            fontFamily="Inter"
+            fontSize="40px"
+            fontWeight="700"
+            color="rgba(13,26,38,1)"
+            lineHeight="40px"
+            textAlign="left"
+            display="block"
+            direction="column"
+            justifyContent="unset"
+            width="unset"
+            height="unset"
+            gap="unset"
+            alignItems="unset"
+            grow="1"
+            shrink="1"
+            basis="0"
+            alignSelf="stretch"
+            position="relative"
+            padding="0px 0px 0px 0px"
+            whiteSpace="pre-wrap"
+            children="ACTIVITY TITLE"
+            {...getOverrideProps(overrides, "ACTIVITY TITLE")}
+          ></Text>
+          <Text
+            fontFamily="Inter"
+            fontSize="20px"
+            fontWeight="400"
+            color="rgba(48,64,80,1)"
+            lineHeight="24px"
+            textAlign="left"
+            display="block"
+            direction="column"
+            justifyContent="unset"
+            letterSpacing="0.05px"
+            width="unset"
+            height="unset"
+            gap="unset"
+            alignItems="unset"
+            shrink="0"
+            position="relative"
+            padding="0px 0px 0px 0px"
+            whiteSpace="pre-wrap"
+            children="LOCATION"
+            {...getOverrideProps(overrides, "LOCATION")}
+          ></Text>
+        </Flex>
+        <Flex
+          gap="16px"
+          direction="row"
+          width="578px"
+          height="unset"
+          justifyContent="center"
           alignItems="flex-start"
           shrink="0"
           position="relative"
-          padding="0px 0px 0px 0px"
-          {...getOverrideProps(overrides, "Card Area39001901")}
+          padding="12px 16px 12px 16px"
+          {...getOverrideProps(overrides, "Details Area")}
         >
           <Flex
             gap="8px"
+            direction="column"
+            width="347px"
+            height="unset"
+            justifyContent="flex-start"
+            alignItems="flex-start"
+            shrink="0"
+            position="relative"
+            padding="0px 0px 0px 0px"
+            {...getOverrideProps(overrides, "Main Text39821722")}
+          >
+            <Text
+              fontFamily="Inter"
+              fontSize="20px"
+              fontWeight="700"
+              color="rgba(48,64,80,1)"
+              lineHeight="20px"
+              textAlign="left"
+              display="block"
+              direction="column"
+              justifyContent="unset"
+              letterSpacing="0.05px"
+              width="unset"
+              height="unset"
+              gap="unset"
+              alignItems="unset"
+              shrink="0"
+              alignSelf="stretch"
+              position="relative"
+              padding="0px 0px 0px 0px"
+              whiteSpace="pre-wrap"
+              children="DETAILS:"
+              {...getOverrideProps(overrides, "DETAILS:")}
+            ></Text>
+            <Text
+              fontFamily="Inter"
+              fontSize="18px"
+              fontWeight="400"
+              color="rgba(48,64,80,1)"
+              lineHeight="24px"
+              textAlign="left"
+              display="block"
+              direction="column"
+              justifyContent="unset"
+              letterSpacing="0.03px"
+              width="unset"
+              height="unset"
+              gap="unset"
+              alignItems="unset"
+              shrink="0"
+              alignSelf="stretch"
+              position="relative"
+              padding="0px 0px 0px 0px"
+              whiteSpace="pre-wrap"
+              children="DETAILS FILL"
+              {...getOverrideProps(overrides, "DETAILS FILL")}
+            ></Text>
+          </Flex>
+          <Flex
+            gap="12px"
             direction="column"
             width="unset"
             height="unset"
             justifyContent="flex-start"
             alignItems="flex-start"
-            shrink="0"
-            alignSelf="stretch"
+            grow="1"
+            shrink="1"
+            basis="0"
             position="relative"
             padding="0px 0px 0px 0px"
-            {...getOverrideProps(overrides, "Main Text39001902")}
+            {...getOverrideProps(overrides, "Card Area39821725")}
           >
             <Text
               fontFamily="Inter"
-              fontSize="16px"
+              fontSize="20px"
               fontWeight="700"
               color="rgba(13,26,38,1)"
               lineHeight="20px"
@@ -145,129 +205,164 @@ export default function ViewActivityModal(props) {
               {...getOverrideProps(overrides, "DATE AND TIME")}
             ></Text>
           </Flex>
-          <Button
-            width="250px"
-            height="45px"
-            shrink="0"
-            size="large"
-            isDisabled={false}
-            variation="primary"
-            children="Attend!"
-            {...getOverrideProps(overrides, "Button39001905")}
-          ></Button>
-          <Button
-            width="250px"
-            height="45px"
-            shrink="0"
-            size="large"
-            isDisabled={false}
-            variation="primary"
-            children="Contact Host"
-            {...getOverrideProps(overrides, "Button39001917")}
-          ></Button>
-          <Text
-            fontFamily="Inter"
-            fontSize="20px"
-            fontWeight="700"
-            color="rgba(13,26,38,1)"
-            lineHeight="25px"
-            textAlign="left"
-            display="block"
-            direction="column"
-            justifyContent="unset"
-            width="unset"
-            height="unset"
-            gap="unset"
-            alignItems="unset"
-            shrink="0"
-            alignSelf="stretch"
-            position="relative"
-            padding="0px 0px 0px 0px"
-            whiteSpace="pre-wrap"
-            children="PARTICIPANTS"
-            {...getOverrideProps(overrides, "PARTICIPANTS")}
-          ></Text>
-          <Text
-            fontFamily="Inter"
-            fontSize="16px"
-            fontWeight="400"
-            color="rgba(13,26,38,1)"
-            lineHeight="25px"
-            textAlign="left"
-            display="block"
-            direction="column"
-            justifyContent="unset"
-            width="unset"
-            height="unset"
-            gap="unset"
-            alignItems="unset"
-            shrink="0"
-            alignSelf="stretch"
-            position="relative"
-            padding="0px 0px 0px 0px"
-            whiteSpace="pre-wrap"
-            children="PARTICIPANTS LIST"
-            {...getOverrideProps(overrides, "PARTICIPANTS LIST")}
-          ></Text>
         </Flex>
         <Flex
-          gap="8px"
+          gap="24px"
+          direction="row"
+          width="unset"
+          height="unset"
+          justifyContent="center"
+          alignItems="center"
+          shrink="0"
+          alignSelf="stretch"
+          position="relative"
+          padding="0px 24px 0px 24px"
+          {...getOverrideProps(overrides, "ImageSlot")}
+        >
+          <Button
+            width="250px"
+            height="45px"
+            shrink="0"
+            size="large"
+            isDisabled={false}
+            variation="primary"
+            children="View Pictures"
+            {...getOverrideProps(overrides, "Button39831748")}
+          ></Button>
+          <Button
+            width="250px"
+            height="45px"
+            shrink="0"
+            size="large"
+            isDisabled={false}
+            variation="primary"
+            children="Share Pictures"
+            {...getOverrideProps(overrides, "Button39831749")}
+          ></Button>
+        </Flex>
+        <Flex
+          gap="16px"
           direction="column"
-          width="237px"
+          width="578px"
           height="unset"
           justifyContent="flex-start"
           alignItems="flex-start"
           shrink="0"
           position="relative"
-          padding="0px 0px 0px 0px"
-          {...getOverrideProps(overrides, "Main Text29766754")}
+          padding="12px 16px 12px 16px"
+          {...getOverrideProps(overrides, "Card Area39821727")}
         >
-          <Text
-            fontFamily="Inter"
-            fontSize="16px"
-            fontWeight="700"
-            color="rgba(48,64,80,1)"
-            lineHeight="24px"
-            textAlign="left"
-            display="block"
+          <Flex
+            gap="8px"
             direction="column"
-            justifyContent="unset"
-            letterSpacing="0.01px"
             width="unset"
             height="unset"
-            gap="unset"
-            alignItems="unset"
+            justifyContent="flex-start"
+            alignItems="flex-start"
             shrink="0"
             alignSelf="stretch"
             position="relative"
             padding="0px 0px 0px 0px"
-            whiteSpace="pre-wrap"
-            children="DETAILS:"
-            {...getOverrideProps(overrides, "DETAILS:")}
-          ></Text>
-          <Text
-            fontFamily="Inter"
-            fontSize="16px"
-            fontWeight="400"
-            color="rgba(48,64,80,1)"
-            lineHeight="24px"
-            textAlign="left"
-            display="block"
+            {...getOverrideProps(overrides, "Main Text39821728")}
+          >
+            <Text
+              fontFamily="Inter"
+              fontSize="20px"
+              fontWeight="700"
+              color="rgba(48,64,80,1)"
+              lineHeight="20px"
+              textAlign="left"
+              display="block"
+              direction="column"
+              justifyContent="unset"
+              letterSpacing="0.05px"
+              width="unset"
+              height="unset"
+              gap="unset"
+              alignItems="unset"
+              shrink="0"
+              alignSelf="stretch"
+              position="relative"
+              padding="0px 0px 0px 0px"
+              whiteSpace="pre-wrap"
+              children="HOST: hostname"
+              {...getOverrideProps(overrides, "HOST: hostname")}
+            ></Text>
+          </Flex>
+          <Flex
+            gap="8px"
             direction="column"
-            justifyContent="unset"
-            letterSpacing="0.01px"
             width="unset"
             height="unset"
-            gap="unset"
-            alignItems="unset"
+            justifyContent="flex-start"
+            alignItems="flex-start"
             shrink="0"
             alignSelf="stretch"
             position="relative"
             padding="0px 0px 0px 0px"
-            whiteSpace="pre-wrap"
-            children="dwadawdwa dnwoadnakwfkjawfjjawlfjawfjakwjdlad"
-            {...getOverrideProps(overrides, "DETAILS FILL")}
-          ></Text>
+            {...getOverrideProps(overrides, "Main Text39821730")}
+          >
+            <Text
+              fontFamily="Inter"
+              fontSize="20px"
+              fontWeight="700"
+              color="rgba(48,64,80,1)"
+              lineHeight="20px"
+              textAlign="left"
+              display="block"
+              direction="column"
+              justifyContent="unset"
+              letterSpacing="0.05px"
+              width="unset"
+              height="unset"
+              gap="unset"
+              alignItems="unset"
+              shrink="0"
+              alignSelf="stretch"
+              position="relative"
+              padding="0px 0px 0px 0px"
+              whiteSpace="pre-wrap"
+              children="PARTICIPANTS:"
+              {...getOverrideProps(overrides, "PARTICIPANTS:")}
+            ></Text>
+            <Flex
+              gap="8px"
+              direction="column"
+              width="unset"
+              height="unset"
+              justifyContent="flex-start"
+              alignItems="flex-start"
+              shrink="0"
+              alignSelf="stretch"
+              position="relative"
+              padding="0px 0px 0px 0px"
+              {...getOverrideProps(overrides, "Participants Slot")}
+            >
+              <Text
+                fontFamily="Inter"
+                fontSize="18px"
+                fontWeight="400"
+                color="rgba(48,64,80,1)"
+                lineHeight="24px"
+                textAlign="left"
+                display="block"
+                direction="column"
+                justifyContent="unset"
+                letterSpacing="0.03px"
+                width="unset"
+                height="unset"
+                gap="unset"
+                alignItems="unset"
+                shrink="0"
+                alignSelf="stretch"
+                position="relative"
+                padding="0px 0px 0px 0px"
+                whiteSpace="pre-wrap"
+                children="PARTICIPANTS LIST"
+                {...getOverrideProps(overrides, "PARTICIPANTS LIST")}
+              ></Text>
+            </Flex>
+          </Flex>
         </Flex>
       </Flex>
     </Flex>

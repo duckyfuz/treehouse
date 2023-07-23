@@ -16,7 +16,7 @@ export default function convertISOToCustomFormat(isoTime) {
 
   const minutes = dateObj.getMinutes();
 
-  const formattedDate = `${day}, ${month}, ${year}`;
+  const formattedDate = `${day} ${month} ${year}`;
   const formattedTime = `${hours.toString().padStart(2, "0")}:${minutes
     .toString()
     .padStart(2, "0")} ${ampm}`;

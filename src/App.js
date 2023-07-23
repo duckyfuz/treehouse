@@ -20,6 +20,10 @@ import { SideLayout } from "./components/Layout/SideLayout";
 
 import "./App.css";
 import "@aws-amplify/ui-react/styles.css";
+import {
+  InAppMessageDisplay,
+  InAppMessagingProvider,
+} from "@aws-amplify/ui-react-notifications";
 
 const { InAppMessaging } = Notifications;
 
@@ -35,24 +39,27 @@ function App() {
   };
 
   return (
-    <ThemeProvider theme={theme}>
-      <Flex height={"100vh"}>
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/" element={<SideLayout />}>
-              <Route path="/onboarding" element={<OnBoarding />} />
-              <Route path="/dashboard" element={<Dashboard />} />
-              <Route path="/archive" element={<Archive />} />
-              <Route path="/settings" element={<Settings />} />
-            </Route>
-            <Route path="*" element={<p>Page Not Found</p>} />
-          </Routes>
-        </BrowserRouter>
-      </Flex>
-    </ThemeProvider>
+    <InAppMessagingProvider>
+      <InAppMessageDisplay />
+      <ThemeProvider theme={theme}>
+        <Flex height={"100vh"}>
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/" element={<SideLayout />}>
+                <Route path="/onboarding" element={<OnBoarding />} />
+                <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/archive" element={<Archive />} />
+                <Route path="/settings" element={<Settings />} />
+              </Route>
+              <Route path="*" element={<p>Page Not Found</p>} />
+            </Routes>
+          </BrowserRouter>
+        </Flex>
+      </ThemeProvider>
+    </InAppMessagingProvider>
   );
 }
 
-export default withInAppMessaging(App);
+export default App;

@@ -5,8 +5,10 @@
  **************************************************************************/
 
 export { default as HomePageFeatures } from "./HomePageFeatures";
+export { default as ViewActivityModal } from "./ViewActivityModal";
 export { default as EditProfile } from "./EditProfile";
 export { default as LogoWithText } from "./LogoWithText";
+export { default as ArchiveDetailsModal } from "./ArchiveDetailsModal";
 export { default as NatCardDescription } from "./NatCardDescription";
 export { default as ActivityCardDescriptionCollection } from "./ActivityCardDescriptionCollection";
 export { default as ProfileCard } from "./ProfileCard";
