@@ -3,7 +3,7 @@ import { Button, Flex, Text, useAuthenticator } from "@aws-amplify/ui-react";
 import { MdDelete } from "react-icons/md";
 import { useUserObserver } from "../../hooks/useUser";
 import { useEffect, useState } from "react";
-import { ActivityItem } from "../../models";
+import { ActivityItem, UserDetails } from "../../models";
 import { DataStore, Notifications } from "aws-amplify";
 import convertISOToCustomFormat from "../../utils";
 import { ViewActivityDetailsModal } from "../../ui-components";
@@ -21,9 +21,7 @@ const ViewActivityModal = ({ open, setOpenViewActivityModal, id, user }) => {
       async function getActivity() {
         const activity = await DataStore.query(ActivityItem, id);
         setActivity(activity);
-        console.log(activity);
       }
-      console.log(activity);
       getActivity();
     }
   }, [id, reloadHandler]);
@@ -42,6 +40,19 @@ const ViewActivityModal = ({ open, setOpenViewActivityModal, id, user }) => {
         updated.participants.push(user.username);
       })
     );
+    (async function () {
+      console.log(userDets);
+      const user = await DataStore.query(UserDetails, userDets.id);
+      const updatedActivitiesAttended = [...user.activitiesAttended, "1"];
+      const updatedUser = await DataStore.save(
+        UserDetails.copyOf(user, (updated) => {
+          updated.activitiesAttended = updatedActivitiesAttended;
+        })
+      );
+      console.log(updatedUser);
+      var message = "Hello, I am inside an IIFE!";
+      console.log(message);
+    })();
     setReloadHandler(!reloadHandler);
   };
 

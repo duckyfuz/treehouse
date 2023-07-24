@@ -35,7 +35,6 @@ export default function ActivityItemCreateForm(props) {
     dateTime: "",
     location: "",
     residence: "",
-    host: "",
   };
   const [title, setTitle] = React.useState(initialValues.title);
   const [description, setDescription] = React.useState(
@@ -44,7 +43,6 @@ export default function ActivityItemCreateForm(props) {
   const [dateTime, setDateTime] = React.useState(initialValues.dateTime);
   const [location, setLocation] = React.useState(initialValues.location);
   const [residence, setResidence] = React.useState(initialValues.residence);
-  const [host, setHost] = React.useState(initialValues.host);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     setTitle(initialValues.title);
@@ -52,7 +50,6 @@ export default function ActivityItemCreateForm(props) {
     setDateTime(initialValues.dateTime);
     setLocation(initialValues.location);
     setResidence(initialValues.residence);
-    setHost(initialValues.host);
     setErrors({});
   };
   const validations = {
@@ -61,7 +58,6 @@ export default function ActivityItemCreateForm(props) {
     dateTime: [{ type: "Required" }],
     location: [{ type: "Required" }],
     residence: [],
-    host: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -111,7 +107,6 @@ export default function ActivityItemCreateForm(props) {
           dateTime,
           location,
           residence,
-          host,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -171,7 +166,6 @@ export default function ActivityItemCreateForm(props) {
               dateTime,
               location,
               residence,
-              host,
             };
             const result = onChange(modelFields);
             value = result?.title ?? value;
@@ -199,7 +193,6 @@ export default function ActivityItemCreateForm(props) {
               dateTime,
               location,
               residence,
-              host,
             };
             const result = onChange(modelFields);
             value = result?.description ?? value;
@@ -230,7 +223,6 @@ export default function ActivityItemCreateForm(props) {
               dateTime: value,
               location,
               residence,
-              host,
             };
             const result = onChange(modelFields);
             value = result?.dateTime ?? value;
@@ -259,7 +251,6 @@ export default function ActivityItemCreateForm(props) {
               dateTime,
               location: value,
               residence,
-              host,
             };
             const result = onChange(modelFields);
             value = result?.location ?? value;
@@ -288,7 +279,6 @@ export default function ActivityItemCreateForm(props) {
               dateTime,
               location,
               residence: value,
-              host,
             };
             const result = onChange(modelFields);
             value = result?.residence ?? value;
@@ -329,35 +319,6 @@ export default function ActivityItemCreateForm(props) {
           {...getOverrideProps(overrides, "residenceoption4")}
         ></option>
       </SelectField>
-      <TextField
-        label="Host"
-        isRequired={false}
-        isReadOnly={false}
-        value={host}
-        onChange={(e) => {
-          let { value } = e.target;
-          if (onChange) {
-            const modelFields = {
-              title,
-              description,
-              dateTime,
-              location,
-              residence,
-              host: value,
-            };
-            const result = onChange(modelFields);
-            value = result?.host ?? value;
-          }
-          if (errors.host?.hasError) {
-            runValidationTasks("host", value);
-          }
-          setHost(value);
-        }}
-        onBlur={() => runValidationTasks("host", host)}
-        errorMessage={errors.host?.errorMessage}
-        hasError={errors.host?.hasError}
-        {...getOverrideProps(overrides, "host")}
-      ></TextField>
       <Flex
         justifyContent="space-between"
         {...getOverrideProps(overrides, "CTAFlex")}

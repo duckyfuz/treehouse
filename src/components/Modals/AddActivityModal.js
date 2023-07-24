@@ -5,6 +5,8 @@ import Modal from "@mui/material/Modal";
 import { ActivityItemCreateForm } from "../../ui-components";
 
 import { useUserObserver } from "../../hooks/useUser";
+import { UserDetails } from "../../models";
+import { DataStore } from "aws-amplify";
 
 const AddActivityModal = ({ open, setOpenAddActivityModal }) => {
   const userDets = useUserObserver();
@@ -66,7 +68,18 @@ const AddActivityModal = ({ open, setOpenAddActivityModal }) => {
               updatedFields["images"] = [];
               return updatedFields;
             }}
-            onSuccess={() => {
+            onSuccess={(fields) => {
+              console.log(fields);
+              (async function () {
+                const user = await DataStore.query(UserDetails, userDets.id);
+                const updatedActivitiesHosted = [...user.activitiesHosted, "1"];
+                const updatedUser = await DataStore.save(
+                  UserDetails.copyOf(user, (updated) => {
+                    updated.activitiesHosted = updatedActivitiesHosted;
+                  })
+                );
+                console.log(updatedUser);
+              })();
               setOpenAddActivityModal(false);
             }}
           />

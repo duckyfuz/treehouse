@@ -2,10 +2,9 @@ import { Button, Flex, Text } from "@aws-amplify/ui-react";
 
 import { MdDelete } from "react-icons/md";
 import Modal from "@mui/material/Modal";
-import { ActivityItemCreateForm, AddPhotoForm } from "../../ui-components";
+import { AddPhotoForm } from "../../ui-components";
 
 import { useUserObserver } from "../../hooks/useUser";
-import { useEffect } from "react";
 
 const AddPhotoModal = ({
   id,

@@ -163,7 +163,7 @@ export default function AddPhotoForm(props) {
             }}
             processFile={processFile}
             accessLevel={"public"}
-            acceptedFileTypes={["image/*", "video/*"]}
+            acceptedFileTypes={["image/*"]}
             isResumable={false}
             showThumbnails={true}
             maxFileCount={10}

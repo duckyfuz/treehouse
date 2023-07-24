@@ -18,7 +18,6 @@ export declare type ActivityItemCreateFormInputValues = {
     dateTime?: string;
     location?: string;
     residence?: string;
-    host?: string;
 };
 export declare type ActivityItemCreateFormValidationValues = {
     title?: ValidationFunction<string>;
@@ -26,7 +25,6 @@ export declare type ActivityItemCreateFormValidationValues = {
     dateTime?: ValidationFunction<string>;
     location?: ValidationFunction<string>;
     residence?: ValidationFunction<string>;
-    host?: ValidationFunction<string>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type ActivityItemCreateFormOverridesProps = {
@@ -36,7 +34,6 @@ export declare type ActivityItemCreateFormOverridesProps = {
     dateTime?: PrimitiveOverrideProps<TextFieldProps>;
     location?: PrimitiveOverrideProps<TextFieldProps>;
     residence?: PrimitiveOverrideProps<SelectFieldProps>;
-    host?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type ActivityItemCreateFormProps = React.PropsWithChildren<{
     overrides?: ActivityItemCreateFormOverridesProps | undefined | null;
