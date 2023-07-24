@@ -16,7 +16,6 @@ export default function HomePageFinisher(props) {
   const { createAccountHandler, overrides: overridesProp, ...rest } = props;
   const variants = [
     {
-      variantValues: { type: "Intro" },
       overrides: {
         Heading: {},
         Body: {},
@@ -26,6 +25,7 @@ export default function HomePageFinisher(props) {
         Left: {},
         HomePageFinisher: {},
       },
+      variantValues: { type: "Intro" },
     },
   ];
   const overrides = mergeVariantsAndOverrides(

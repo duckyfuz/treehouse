@@ -16,7 +16,6 @@ export default function HomePageIntro(props) {
   const { image, getStartedHandler, overrides: overridesProp, ...rest } = props;
   const variants = [
     {
-      variantValues: { type: "Intro" },
       overrides: {
         Heading: {},
         Body: {},
@@ -27,6 +26,7 @@ export default function HomePageIntro(props) {
         "image 1": {},
         HomePageIntro: {},
       },
+      variantValues: { type: "Intro" },
     },
   ];
   const overrides = mergeVariantsAndOverrides(

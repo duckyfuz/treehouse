@@ -6,7 +6,9 @@ import { ActivityItemCreateForm } from "../../ui-components";
 
 import { useUserObserver } from "../../hooks/useUser";
 import { UserDetails } from "../../models";
-import { DataStore } from "aws-amplify";
+import { DataStore, Notifications } from "aws-amplify";
+
+const { InAppMessaging } = Notifications;
 
 const AddActivityModal = ({ open, setOpenAddActivityModal }) => {
   const userDets = useUserObserver();
@@ -79,6 +81,13 @@ const AddActivityModal = ({ open, setOpenAddActivityModal }) => {
                   })
                 );
                 console.log(updatedUser);
+                InAppMessaging.dispatchEvent({
+                  name: "Hostation",
+                  attributes: {
+                    participated: updatedUser.activitiesAttended.length,
+                    hosted: updatedUser.activitiesHosted.length,
+                  },
+                });
               })();
               setOpenAddActivityModal(false);
             }}

@@ -1,12 +1,15 @@
 import Modal from "@mui/material/Modal";
-import { Button, Flex, Text, useAuthenticator } from "@aws-amplify/ui-react";
+import { Button, Flex, Text } from "@aws-amplify/ui-react";
 import { MdDelete } from "react-icons/md";
 import { useUserObserver } from "../../hooks/useUser";
 import { useEffect, useState } from "react";
 import { ActivityItem, UserDetails } from "../../models";
 import { DataStore, Notifications } from "aws-amplify";
 import convertISOToCustomFormat from "../../utils";
-import { ViewActivityDetailsModal } from "../../ui-components";
+import {
+  ViewActivityDetailsModal,
+  FutureActivityModal,
+} from "../../ui-components";
 
 const { InAppMessaging } = Notifications;
 
@@ -50,33 +53,15 @@ const ViewActivityModal = ({ open, setOpenViewActivityModal, id, user }) => {
         })
       );
       console.log(updatedUser);
-      var message = "Hello, I am inside an IIFE!";
-      console.log(message);
+      InAppMessaging.dispatchEvent({
+        name: "Participation",
+        attributes: {
+          participated: updatedUser.activitiesAttended.length,
+          hosted: updatedUser.activitiesHosted.length,
+        },
+      });
     })();
     setReloadHandler(!reloadHandler);
-  };
-
-  const TitleBar = () => {
-    return (
-      <Flex
-        width={"100%"}
-        justifyContent="space-between"
-        alignItems="center"
-        alignContent="center"
-      >
-        <Text fontSize="2em">Activity Title</Text>
-        <Button
-          onClick={() => {
-            setOpenViewActivityModal(false);
-          }}
-          variation="warning"
-          size="large"
-          gap="0.4rem"
-        >
-          Exit <MdDelete />
-        </Button>
-      </Flex>
-    );
   };
 
   return (
@@ -95,31 +80,19 @@ const ViewActivityModal = ({ open, setOpenViewActivityModal, id, user }) => {
           backgroundColor={"white"}
           width={"40%"}
           direction={"column"}
-          padding={"25px"}
           borderRadius={"15px"}
           paddingTop={"15px"}
         >
-          <TitleBar />
           {activity && (
-            <ViewActivityDetailsModal
-              width={"100%"}
+            <FutureActivityModal
+              width="100%"
+              activityItem={activity}
+              exitHandler={() => {}}
+              attendHandler={() => {}}
+              contactHandler={() => {}}
               overrides={{
-                "ACTIVITY TITLE": {
-                  children: activity.title,
-                },
                 LOCATION: {
                   children: activity.residence + " | " + activity.location,
-                },
-                "DATE AND TIME": {
-                  children: convertISOToCustomFormat(activity.dateTime),
-                },
-                Button39001905: {
-                  color: "red",
-                  onClick: attendActivityHandler,
-                },
-                Button39001917: {
-                  color: "blue",
-                  onClick: contactHostHandler,
                 },
                 "PARTICIPANTS LIST": {
                   children:
@@ -127,11 +100,39 @@ const ViewActivityModal = ({ open, setOpenViewActivityModal, id, user }) => {
                       ? "No participants yet... \nBe the first to join! "
                       : activity.participants,
                 },
-                "DETAILS FILL": {
-                  children: activity.description,
-                },
               }}
             />
+            // <ViewActivityDetailsModal
+            //   width={"100%"}
+            //   overrides={{
+            //     "ACTIVITY TITLE": {
+            //       children: activity.title,
+            //     },
+            //     LOCATION: {
+            //       children: activity.residence + " | " + activity.location,
+            //     },
+            //     "DATE AND TIME": {
+            //       children: convertISOToCustomFormat(activity.dateTime),
+            //     },
+            //     Button39001905: {
+            //       color: "red",
+            //       onClick: attendActivityHandler,
+            //     },
+            //     Button39001917: {
+            //       color: "blue",
+            //       onClick: contactHostHandler,
+            //     },
+            //     "PARTICIPANTS LIST": {
+            //       children:
+            //         activity.participants.length === 0
+            //           ? "No participants yet... \nBe the first to join! "
+            //           : activity.participants,
+            //     },
+            //     "DETAILS FILL": {
+            //       children: activity.description,
+            //     },
+            //   }}
+            // />
           )}
         </Flex>
       </Flex>
