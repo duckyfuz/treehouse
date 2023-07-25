@@ -21,16 +21,41 @@ const ViewActivityModal = ({
 }) => {
   const [activity, setActivity] = useState();
   const [reloadHandler, setReloadHandler] = useState(true);
+  const [userCardDetails, setUserCardDetails] = useState({});
 
   const userDets = useUserObserver();
 
   useEffect(() => {
     if (id) {
-      async function getActivity() {
+      (async function () {
         const activity = await DataStore.query(ActivityItem, id);
         setActivity(activity);
-      }
-      getActivity();
+        console.log(activity.participants);
+
+        // Use Promise.all to wait for all the queries to complete
+        const participantPromises = activity.participants.map(async function (
+          participant
+        ) {
+          const user = await DataStore.query(UserDetails, (c) =>
+            c.name.eq(participant)
+          );
+          const userD = user[0];
+          return [userD.name, userD.profilePicture];
+        });
+
+        // Wait for all participant queries to complete before updating userCardDetails
+        Promise.all(participantPromises)
+          .then((results) => {
+            const updatedDetails = Object.fromEntries(results);
+            setUserCardDetails((prevDetails) => ({
+              ...prevDetails,
+              ...updatedDetails,
+            }));
+          })
+          .catch((error) => {
+            console.error("Error while querying user details:", error);
+          });
+      })();
     }
   }, [id, reloadHandler]);
 
@@ -93,22 +118,31 @@ const ViewActivityModal = ({
               activityItem={activity}
               exitHandler={() => {
                 setActiveActivity();
+                console.log(userCardDetails);
+                setUserCardDetails();
                 // setReload(!reload);
                 setOpenViewActivityModal(false);
               }}
               attendHandler={attendActivityHandler}
               contactHandler={contactHostHandler}
               participantsSlot={
-                <Collection
-                  isPaginated
-                  itemsPerPage={10}
-                  items={activity.participants}
-                  type="list"
-                  direction="row"
-                  wrap="wrap"
-                >
-                  {(participant) => <UserCard />}
-                </Collection>
+                userCardDetails && (
+                  <Collection
+                    isPaginated
+                    itemsPerPage={10}
+                    items={activity.participants}
+                    type="list"
+                    direction="row"
+                    wrap="wrap"
+                  >
+                    {(participant) => (
+                      <UserCard
+                        key={participant}
+                        // need to fetch the user details first, then useEffect the userDets in a list, then fetch according to username here.
+                      />
+                    )}
+                  </Collection>
+                )
               }
               overrides={{
                 LOCATION: {
