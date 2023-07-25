@@ -1,14 +1,10 @@
-import Modal from "@mui/material/Modal";
-import { Flex, Image } from "@aws-amplify/ui-react";
-import { useUserObserver } from "../../hooks/useUser";
 import { useEffect, useState } from "react";
-import { ActivityItem } from "../../models";
 import { DataStore, Notifications, Storage } from "aws-amplify";
-import convertISOToCustomFormat from "../../utils";
-import { ArchiveDetailsModal } from "../../ui-components";
+import { Flex, Image } from "@aws-amplify/ui-react";
 
+import Modal from "@mui/material/Modal";
 import AddPhotoModal from "./AddPhotoModal";
-
+import { ArchiveDetailsModal } from "../../ui-components";
 import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
 import Download from "yet-another-react-lightbox/plugins/download";
@@ -19,6 +15,11 @@ import "yet-another-react-lightbox/plugins/thumbnails.css";
 import Zoom from "yet-another-react-lightbox/plugins/zoom";
 import Counter from "yet-another-react-lightbox/plugins/counter";
 import "yet-another-react-lightbox/plugins/counter.css";
+
+import { useUserObserver } from "../../hooks/useUser";
+import { ActivityItem } from "../../models";
+
+import convertISOToCustomFormat from "../../utils";
 
 const { InAppMessaging } = Notifications;
 
@@ -61,14 +62,12 @@ const ViewArchiveModal = ({
           }
         })();
         setImageList([...new Set(imageList)]);
-        console.log(imageNameList);
       })();
     }
   }, [id, reloadHandler]);
 
   const viewPicturesHandler = () => {
     setOpenImages(true);
-    console.log("viewPictures");
   };
 
   const sharePicturesHandler = async () => {

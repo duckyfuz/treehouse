@@ -1,15 +1,14 @@
-import Modal from "@mui/material/Modal";
-import { Button, Flex, Text } from "@aws-amplify/ui-react";
-import { MdDelete } from "react-icons/md";
-import { useUserObserver } from "../../hooks/useUser";
 import { useEffect, useState } from "react";
-import { ActivityItem, UserDetails } from "../../models";
 import { DataStore, Notifications } from "aws-amplify";
+import { Flex } from "@aws-amplify/ui-react";
+
+import Modal from "@mui/material/Modal";
+import { FutureActivityModal } from "../../ui-components";
+
+import { useUserObserver } from "../../hooks/useUser";
+import { ActivityItem, UserDetails } from "../../models";
+
 import convertISOToCustomFormat from "../../utils";
-import {
-  ViewActivityDetailsModal,
-  FutureActivityModal,
-} from "../../ui-components";
 
 const { InAppMessaging } = Notifications;
 
@@ -50,7 +49,6 @@ const ViewActivityModal = ({
       })
     );
     (async function () {
-      console.log(userDets);
       const user = await DataStore.query(UserDetails, userDets.id);
       const updatedActivitiesAttended = [...user.activitiesAttended, "1"];
       const updatedUser = await DataStore.save(
@@ -59,13 +57,6 @@ const ViewActivityModal = ({
         })
       );
       console.log(updatedUser);
-      console.log({
-        name: "Participation",
-        attributes: {
-          participated: updatedUser.activitiesAttended.length.toString(),
-          hosted: updatedUser.activitiesHosted.length.toString(),
-        },
-      });
       InAppMessaging.dispatchEvent({
         name: "Participation",
         attributes: {
@@ -117,39 +108,20 @@ const ViewActivityModal = ({
                       ? "No participants yet... \nBe the first to join! "
                       : activity.participants,
                 },
+                "DATE AND TIME": {
+                  children: convertISOToCustomFormat(activity.dateTime),
+                },
+                "PARTICIPANTS LIST": {
+                  children:
+                    activity.participants.length === 0
+                      ? "No participants yet... \nBe the first to join! "
+                      : activity.participants,
+                },
+                "HOST: hostname": {
+                  children: "Host: " + activity.host,
+                },
               }}
             />
-            // <ViewActivityDetailsModal
-            //   width={"100%"}
-            //   overrides={{
-            //     "ACTIVITY TITLE": {
-            //       children: activity.title,
-            //     },
-            //     LOCATION: {
-            //       children: activity.residence + " | " + activity.location,
-            //     },
-            //     "DATE AND TIME": {
-            //       children: convertISOToCustomFormat(activity.dateTime),
-            //     },
-            //     Button39001905: {
-            //       color: "red",
-            //       onClick: attendActivityHandler,
-            //     },
-            //     Button39001917: {
-            //       color: "blue",
-            //       onClick: contactHostHandler,
-            //     },
-            //     "PARTICIPANTS LIST": {
-            //       children:
-            //         activity.participants.length === 0
-            //           ? "No participants yet... \nBe the first to join! "
-            //           : activity.participants,
-            //     },
-            //     "DETAILS FILL": {
-            //       children: activity.description,
-            //     },
-            //   }}
-            // />
           )}
         </Flex>
       </Flex>

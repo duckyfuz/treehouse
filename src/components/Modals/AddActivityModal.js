@@ -1,3 +1,4 @@
+import { DataStore, Notifications } from "aws-amplify";
 import { Button, Flex, Text } from "@aws-amplify/ui-react";
 
 import { MdDelete } from "react-icons/md";
@@ -6,7 +7,6 @@ import { ActivityItemCreateForm } from "../../ui-components";
 
 import { useUserObserver } from "../../hooks/useUser";
 import { UserDetails } from "../../models";
-import { DataStore, Notifications } from "aws-amplify";
 
 const { InAppMessaging } = Notifications;
 

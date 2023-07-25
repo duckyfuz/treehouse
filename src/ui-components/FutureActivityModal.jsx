@@ -186,7 +186,7 @@ export default function FutureActivityModal(props) {
             position="relative"
             padding="0px 0px 0px 0px"
             whiteSpace="pre-wrap"
-            children="DETAILS FILL"
+            children={activityItem?.description}
             {...getOverrideProps(overrides, "DETAILS FILL")}
           ></Text>
         </Flex>

@@ -12,10 +12,6 @@ import { useUserObserver } from "../hooks/useUser";
 
 export const OnBoarding = () => {
   const { user, authStatus } = useAuthenticator((context) => [context.user]);
-  // await Analytics.updateEndpoint({
-  //   user: user.username,
-  //   attributes: { residence: ["BLK111", "BLK112"] },
-  // });
   const [userDetailsCreated, setUserDetailsCreated] = useState();
   const [userID, setUserID] = useState();
   const userDets = useUserObserver();

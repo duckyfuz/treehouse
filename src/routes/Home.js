@@ -1,3 +1,4 @@
+// Refactored CAA 250723
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -16,9 +17,8 @@ import logo from "../assets/images/logo.png";
 import image from "../assets/images/treehouse720.jpeg";
 
 export const Home = () => {
-  const { authStatus, signOut } = useAuthenticator((context) => [context.user]);
   const navigate = useNavigate();
-
+  const { authStatus, signOut } = useAuthenticator((context) => [context.user]);
   function logOut() {
     signOut();
     DataStore.clear();

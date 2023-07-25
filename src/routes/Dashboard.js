@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { DataStore, Predicates, SortDirection } from "aws-amplify";
+import { Analytics, DataStore, Predicates, SortDirection } from "aws-amplify";
 import {
   Button,
   Card,
@@ -39,7 +39,6 @@ export const Dashboard = () => {
   // Onboarding checks
   useEffect(() => {
     if (authStatus === "authenticated") {
-      console.log(userDets);
       if (userDets && !userDets.onBoarded) {
         navigate("/onboarding");
       }
@@ -61,6 +60,7 @@ export const Dashboard = () => {
   useEffect(() => {
     (async function () {
       if (userDets) {
+        // Fetch and sort activities
         const sortedActivities = await DataStore.query(
           ActivityItem,
           Predicates.ALL,
@@ -68,13 +68,20 @@ export const Dashboard = () => {
             sort: (s) => s.dateTime(SortDirection.ASCENDING),
           }
         );
+
+        // Filter activites by date and residence (unable to do so within amplify)
         const currentActivities = filterDateTimeBeforeToday(sortedActivities);
-        console.log(userDets.residence);
         const filteredActivities = currentActivities.filter((activity) =>
           userDets.residence.includes(activity.residence)
         );
         setFutureActivities(filteredActivities);
         setIsLoading(false);
+
+        // Update Analytics Identifiers
+        await Analytics.updateEndpoint({
+          userId: user.id,
+          attributes: { residence: user.residence },
+        });
       }
     })();
   }, [userDets]);
@@ -84,8 +91,6 @@ export const Dashboard = () => {
   };
 
   const openViewActivityModalHandler = () => {
-    console.log("View Open");
-    console.log(activeActivity);
     setOpenViewActivityModal(true);
   };
 
