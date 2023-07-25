@@ -111,6 +111,16 @@ const ViewActivityModal = ({
                 "DATE AND TIME": {
                   children: convertISOToCustomFormat(activity.dateTime),
                 },
+                Button39831748: {
+                  isDisabled:
+                    activity.participants.includes(userDets.name) ||
+                    activity.host === userDets.name
+                      ? true
+                      : false,
+                },
+                Button39831749: {
+                  isDisabled: activity.host === userDets.name ? true : false,
+                },
                 "PARTICIPANTS LIST": {
                   children:
                     activity.participants.length === 0
