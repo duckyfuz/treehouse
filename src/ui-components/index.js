@@ -23,7 +23,7 @@ export { default as NatActivityUpdateForm } from "./NatActivityUpdateForm";
 export { default as NatCardDescription } from "./NatCardDescription";
 export { default as NatCardDescriptionCollection } from "./NatCardDescriptionCollection";
 export { default as ProfileCard } from "./ProfileCard";
+export { default as UserCard } from "./UserCard";
 export { default as UserDetailsCreateForm } from "./UserDetailsCreateForm";
 export { default as UserDetailsUpdateForm } from "./UserDetailsUpdateForm";
-export { default as ViewActivityDetailsModal } from "./ViewActivityDetailsModal";
 export { default as studioTheme } from "./studioTheme";

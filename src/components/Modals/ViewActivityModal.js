@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { DataStore, Notifications } from "aws-amplify";
-import { Flex } from "@aws-amplify/ui-react";
+import { Collection, Flex } from "@aws-amplify/ui-react";
 
 import Modal from "@mui/material/Modal";
-import { FutureActivityModal } from "../../ui-components";
+import { FutureActivityModal, UserCard } from "../../ui-components";
 
 import { useUserObserver } from "../../hooks/useUser";
 import { ActivityItem, UserDetails } from "../../models";
@@ -98,6 +98,18 @@ const ViewActivityModal = ({
               }}
               attendHandler={attendActivityHandler}
               contactHandler={contactHostHandler}
+              participantsSlot={
+                <Collection
+                  isPaginated
+                  itemsPerPage={10}
+                  items={activity.participants}
+                  type="list"
+                  direction="row"
+                  wrap="wrap"
+                >
+                  {(participant) => <UserCard />}
+                </Collection>
+              }
               overrides={{
                 LOCATION: {
                   children: activity.residence + " | " + activity.location,

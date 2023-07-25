@@ -5,25 +5,17 @@
  **************************************************************************/
 
 import * as React from "react";
-import { UserDetails } from "../models";
 import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
 import { FlexProps, ImageProps, TextProps } from "@aws-amplify/ui-react";
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type UserCardOverridesProps = {
     UserCard?: PrimitiveOverrideProps<FlexProps>;
-    Left?: PrimitiveOverrideProps<FlexProps>;
+    Image?: PrimitiveOverrideProps<FlexProps>;
     image?: PrimitiveOverrideProps<ImageProps>;
-    Right?: PrimitiveOverrideProps<FlexProps>;
-    Message?: PrimitiveOverrideProps<FlexProps>;
-    Heading?: PrimitiveOverrideProps<TextProps>;
-    Body39111824?: PrimitiveOverrideProps<TextProps>;
-    Body39121831?: PrimitiveOverrideProps<TextProps>;
+    Name?: PrimitiveOverrideProps<FlexProps>;
+    "Melinda Marcus"?: PrimitiveOverrideProps<TextProps>;
 } & EscapeHatchProps;
 export declare type UserCardProps = React.PropsWithChildren<Partial<FlexProps> & {
-    userDetails?: UserDetails;
-} & {
-    mode?: "Dark" | "Light";
-} & {
     overrides?: UserCardOverridesProps | undefined | null;
 }>;
 export default function UserCard(props: UserCardProps): React.ReactElement;

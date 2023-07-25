@@ -39,6 +39,7 @@ export declare type FutureActivityModalProps = React.PropsWithChildren<Partial<F
     exitHandler?: (event: SyntheticEvent) => void;
     attendHandler?: (event: SyntheticEvent) => void;
     contactHandler?: (event: SyntheticEvent) => void;
+    participantsSlot?: React.ReactNode;
 } & {
     overrides?: FutureActivityModalOverridesProps | undefined | null;
 }>;

@@ -14,6 +14,7 @@ export default function FutureActivityModal(props) {
     exitHandler,
     attendHandler,
     contactHandler,
+    participantsSlot,
     overrides,
     ...rest
   } = props;
@@ -358,32 +359,9 @@ export default function FutureActivityModal(props) {
             alignSelf="stretch"
             position="relative"
             padding="0px 0px 0px 0px"
+            children={participantsSlot}
             {...getOverrideProps(overrides, "Participants Slot")}
-          >
-            <Text
-              fontFamily="Inter"
-              fontSize="18px"
-              fontWeight="400"
-              color="rgba(48,64,80,1)"
-              lineHeight="24px"
-              textAlign="left"
-              display="block"
-              direction="column"
-              justifyContent="unset"
-              letterSpacing="0.03px"
-              width="unset"
-              height="unset"
-              gap="unset"
-              alignItems="unset"
-              shrink="0"
-              alignSelf="stretch"
-              position="relative"
-              padding="0px 0px 0px 0px"
-              whiteSpace="pre-wrap"
-              children="PARTICIPANTS LIST"
-              {...getOverrideProps(overrides, "PARTICIPANTS LIST")}
-            ></Text>
-          </Flex>
+          ></Flex>
         </Flex>
       </Flex>
     </Flex>

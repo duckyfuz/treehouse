@@ -6,186 +6,91 @@
 
 /* eslint-disable */
 import * as React from "react";
-import {
-  getOverrideProps,
-  getOverridesFromVariants,
-  mergeVariantsAndOverrides,
-} from "@aws-amplify/ui-react/internal";
+import { getOverrideProps } from "@aws-amplify/ui-react/internal";
 import { Flex, Image, Text } from "@aws-amplify/ui-react";
 export default function UserCard(props) {
-  const { userDetails, overrides: overridesProp, ...rest } = props;
-  const variants = [
-    {
-      variantValues: { mode: "Light" },
-      overrides: {
-        image: {},
-        Left: {},
-        Heading: {},
-        Body39111824: {},
-        Body39121831: {},
-        Message: {},
-        Right: {},
-        UserCard: {},
-      },
-    },
-    {
-      variantValues: { mode: "Dark" },
-      overrides: {
-        image: {},
-        Left: {},
-        Heading: {},
-        Body39111824: {},
-        Body39121831: {},
-        Message: {},
-        Right: {},
-        UserCard: { backgroundColor: "rgba(31,110,140,1)" },
-      },
-    },
-  ];
-  const overrides = mergeVariantsAndOverrides(
-    getOverridesFromVariants(variants, props),
-    overridesProp || {}
-  );
+  const { overrides, ...rest } = props;
   return (
     <Flex
-      gap="10px"
+      gap="1px"
       direction="row"
-      width="unset"
-      height="unset"
+      width="120px"
+      height="30px"
       justifyContent="center"
       alignItems="center"
-      overflow="hidden"
       position="relative"
-      borderRadius="20px"
-      padding="10px 20px 10px 10px"
-      backgroundColor="rgba(120,149,203,1)"
-      display="flex"
+      padding="0px 0px 0px 0px"
       {...getOverrideProps(overrides, "UserCard")}
       {...rest}
     >
       <Flex
-        gap="10px"
+        gap="0"
         direction="column"
-        width="unset"
-        height="unset"
-        justifyContent="center"
+        width="25px"
+        height="25px"
+        justifyContent="flex-start"
         alignItems="center"
-        overflow="hidden"
         shrink="0"
         position="relative"
         padding="0px 0px 0px 0px"
-        display="flex"
-        {...getOverrideProps(overrides, "Left")}
+        {...getOverrideProps(overrides, "Image")}
       >
         <Image
-          width="100px"
-          height="100px"
+          width="unset"
+          height="unset"
           display="block"
           gap="unset"
           alignItems="unset"
           justifyContent="unset"
-          shrink="0"
+          grow="1"
+          shrink="1"
+          basis="0"
+          alignSelf="stretch"
           position="relative"
-          borderRadius="30px"
+          borderRadius="6px"
           padding="0px 0px 0px 0px"
-          objectFit="unset"
+          objectFit="contain"
           {...getOverrideProps(overrides, "image")}
         ></Image>
       </Flex>
       <Flex
-        gap="10px"
+        gap="8px"
         direction="column"
         width="unset"
-        height="unset"
-        justifyContent="center"
+        height="25px"
+        justifyContent="flex-start"
         alignItems="center"
-        overflow="hidden"
-        shrink="0"
+        grow="1"
+        shrink="1"
+        basis="0"
         position="relative"
         padding="0px 0px 0px 0px"
-        display="flex"
-        {...getOverrideProps(overrides, "Right")}
+        {...getOverrideProps(overrides, "Name")}
       >
-        <Flex
-          gap="2px"
+        <Text
+          fontFamily="Inter"
+          fontSize="12px"
+          fontWeight="700"
+          color="rgba(13,26,38,1)"
+          lineHeight="25px"
+          textAlign="center"
+          display="block"
           direction="column"
+          justifyContent="unset"
           width="unset"
           height="unset"
-          justifyContent="center"
-          alignItems="flex-start"
-          shrink="0"
+          gap="unset"
+          alignItems="unset"
+          grow="1"
+          shrink="1"
+          basis="0"
           alignSelf="stretch"
           position="relative"
           padding="0px 0px 0px 0px"
-          display="flex"
-          {...getOverrideProps(overrides, "Message")}
-        >
-          <Text
-            fontFamily="Inter"
-            fontSize="30px"
-            fontWeight="600"
-            color="rgba(13,26,38,1)"
-            lineHeight="30px"
-            textAlign="center"
-            display="block"
-            direction="column"
-            justifyContent="unset"
-            width="unset"
-            height="unset"
-            gap="unset"
-            alignItems="unset"
-            shrink="0"
-            position="relative"
-            padding="0px 0px 0px 0px"
-            whiteSpace="pre-wrap"
-            children={userDetails?.preferedName}
-            {...getOverrideProps(overrides, "Heading")}
-          ></Text>
-          <Text
-            fontFamily="Inter"
-            fontSize="14px"
-            fontWeight="400"
-            color="rgba(48,64,80,1)"
-            lineHeight="14px"
-            textAlign="left"
-            display="block"
-            direction="column"
-            justifyContent="unset"
-            letterSpacing="0px"
-            width="unset"
-            height="unset"
-            gap="unset"
-            alignItems="unset"
-            shrink="0"
-            position="relative"
-            padding="0px 0px 0px 0px"
-            whiteSpace="pre-wrap"
-            children="PARTICIPATION"
-            {...getOverrideProps(overrides, "Body39111824")}
-          ></Text>
-          <Text
-            fontFamily="Inter"
-            fontSize="14px"
-            fontWeight="400"
-            color="rgba(48,64,80,1)"
-            lineHeight="14px"
-            textAlign="left"
-            display="block"
-            direction="column"
-            justifyContent="unset"
-            letterSpacing="0px"
-            width="unset"
-            height="unset"
-            gap="unset"
-            alignItems="unset"
-            shrink="0"
-            position="relative"
-            padding="0px 0px 0px 0px"
-            whiteSpace="pre-wrap"
-            children="HOSTATION"
-            {...getOverrideProps(overrides, "Body39121831")}
-          ></Text>
-        </Flex>
+          whiteSpace="pre-wrap"
+          children="Melinda Marcus"
+          {...getOverrideProps(overrides, "Melinda Marcus")}
+        ></Text>
       </Flex>
     </Flex>
   );
