@@ -13,7 +13,13 @@ import {
 
 const { InAppMessaging } = Notifications;
 
-const ViewActivityModal = ({ open, setOpenViewActivityModal, id, user }) => {
+const ViewActivityModal = ({
+  open,
+  setOpenViewActivityModal,
+  id,
+  user,
+  setActiveActivity,
+}) => {
   const [activity, setActivity] = useState();
   const [reloadHandler, setReloadHandler] = useState(true);
 
@@ -53,11 +59,18 @@ const ViewActivityModal = ({ open, setOpenViewActivityModal, id, user }) => {
         })
       );
       console.log(updatedUser);
+      console.log({
+        name: "Participation",
+        attributes: {
+          participated: updatedUser.activitiesAttended.length.toString(),
+          hosted: updatedUser.activitiesHosted.length.toString(),
+        },
+      });
       InAppMessaging.dispatchEvent({
         name: "Participation",
         attributes: {
-          participated: updatedUser.activitiesAttended.length,
-          hosted: updatedUser.activitiesHosted.length,
+          participated: updatedUser.activitiesAttended.length.toString(),
+          hosted: updatedUser.activitiesHosted.length.toString(),
         },
       });
     })();
@@ -87,9 +100,13 @@ const ViewActivityModal = ({ open, setOpenViewActivityModal, id, user }) => {
             <FutureActivityModal
               width="100%"
               activityItem={activity}
-              exitHandler={() => {}}
-              attendHandler={() => {}}
-              contactHandler={() => {}}
+              exitHandler={() => {
+                setActiveActivity();
+                // setReload(!reload);
+                setOpenViewActivityModal(false);
+              }}
+              attendHandler={attendActivityHandler}
+              contactHandler={contactHostHandler}
               overrides={{
                 LOCATION: {
                   children: activity.residence + " | " + activity.location,

@@ -38,7 +38,7 @@ export default function FutureActivityModal(props) {
         width="unset"
         height="unset"
         justifyContent="space-between"
-        alignItems="center"
+        alignItems="flex-start"
         shrink="0"
         alignSelf="stretch"
         position="relative"
@@ -78,7 +78,7 @@ export default function FutureActivityModal(props) {
             position="relative"
             padding="0px 0px 0px 0px"
             whiteSpace="pre-wrap"
-            children="ACTIVITY TITLE"
+            children={activityItem?.title}
             {...getOverrideProps(overrides, "ACTIVITY TITLE")}
           ></Text>
           <Text

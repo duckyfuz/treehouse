@@ -258,6 +258,7 @@ export const Dashboard = () => {
           <ViewActivityModal
             id={activeActivity}
             open={openViewActivityModal}
+            setActiveActivity={setActiveActivity}
             setOpenViewActivityModal={setOpenViewActivityModal}
             user={user}
           />

@@ -40,7 +40,7 @@ export default function ArchiveDetailsModal(props) {
         width="unset"
         height="unset"
         justifyContent="space-between"
-        alignItems="center"
+        alignItems="flex-start"
         shrink="0"
         alignSelf="stretch"
         position="relative"
