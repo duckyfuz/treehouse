@@ -404,7 +404,7 @@ export default function UserDetailsUpdateForm(props) {
               });
             }}
             processFile={processFile}
-            accessLevel={"private"}
+            accessLevel={"public"}
             acceptedFileTypes={["image/*"]}
             isResumable={false}
             showThumbnails={true}

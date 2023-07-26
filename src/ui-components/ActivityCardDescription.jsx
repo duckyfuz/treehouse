@@ -25,7 +25,7 @@ export default function ActivityCardDescription(props) {
       width="448px"
       height="220px"
       justifyContent="center"
-      alignItems="center"
+      alignItems="flex-end"
       position="relative"
       boxShadow="0px 4px 4px rgba(0, 0, 0, 0.25)"
       borderRadius="5px"

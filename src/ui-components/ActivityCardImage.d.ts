@@ -21,6 +21,7 @@ export declare type ActivityCardImageOverridesProps = {
     Frame?: PrimitiveOverrideProps<FlexProps>;
     "Date and Time"?: PrimitiveOverrideProps<TextProps>;
     "Location of Event"?: PrimitiveOverrideProps<TextProps>;
+    "Frame 1"?: PrimitiveOverrideProps<FlexProps>;
     Button?: PrimitiveOverrideProps<ButtonProps>;
 } & EscapeHatchProps;
 export declare type ActivityCardImageProps = React.PropsWithChildren<Partial<FlexProps> & {

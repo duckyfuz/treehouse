@@ -173,19 +173,6 @@ export default function EditProfile(props) {
             variation="default"
             {...getOverrideProps(overrides, "TextField29766923")}
           ></TextField>
-          <TextField
-            width="unset"
-            height="unset"
-            label="Email"
-            placeholder="john.doe@awsamplify.com"
-            shrink="0"
-            alignSelf="stretch"
-            size="default"
-            isDisabled={false}
-            labelHidden={false}
-            variation="default"
-            {...getOverrideProps(overrides, "TextField29766924")}
-          ></TextField>
         </Flex>
         <Button
           width="unset"

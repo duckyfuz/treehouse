@@ -12,7 +12,7 @@ export default function UserCard(props) {
   const { profilePic, name, overrides, ...rest } = props;
   return (
     <Flex
-      gap="1px"
+      gap="4px"
       direction="row"
       width="120px"
       height="30px"
@@ -59,8 +59,8 @@ export default function UserCard(props) {
         direction="column"
         width="unset"
         height="25px"
-        justifyContent="flex-start"
-        alignItems="center"
+        justifyContent="center"
+        alignItems="flex-start"
         grow="1"
         shrink="1"
         basis="0"
@@ -74,7 +74,7 @@ export default function UserCard(props) {
           fontWeight="700"
           color="rgba(13,26,38,1)"
           lineHeight="25px"
-          textAlign="center"
+          textAlign="left"
           display="block"
           direction="column"
           justifyContent="unset"

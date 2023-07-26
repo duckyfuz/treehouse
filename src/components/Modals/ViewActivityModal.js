@@ -1,51 +1,36 @@
 import { useEffect, useState } from "react";
 import { DataStore, Notifications, Storage } from "aws-amplify";
-import { Card, Collection, Flex } from "@aws-amplify/ui-react";
+import { Collection, Flex } from "@aws-amplify/ui-react";
 
 import Modal from "@mui/material/Modal";
 import { FutureActivityModal, UserCard } from "../../ui-components";
 
-import { useUserObserver } from "../../hooks/useUser";
 import { ActivityItem, UserDetails } from "../../models";
 
 import convertISOToCustomFormat from "../../utils";
 
 const { InAppMessaging } = Notifications;
 
-const ViewActivityModal = ({
-  open,
-  setOpenViewActivityModal,
-  id,
-  user,
-  setActiveActivity,
-}) => {
-  const [loading, setLoading] = useState(true);
-  const [activity, setActivity] = useState();
+const ViewActivityModal = ({ userDets, open, activity, closeModalHandler }) => {
   const [reloadHandler, setReloadHandler] = useState(true);
   const [userCardDetails, setUserCardDetails] = useState({});
-
-  const userDets = useUserObserver();
+  const [attendContact, setAttendContact] = useState([false, false]);
 
   useEffect(() => {
-    if (id) {
+    activity &&
       (async function () {
-        const activity = await DataStore.query(ActivityItem, id);
-        setActivity(activity);
-        console.log(activity.participants);
-
+        setAttendContact([
+          activity.participants.includes(userDets.id),
+          activity.host === userDets.name,
+        ]);
         // Use Promise.all to wait for all the queries to complete
         const participantPromises = activity.participants.map(async function (
           participant
         ) {
-          const user = await DataStore.query(UserDetails, (c) =>
-            c.name.eq(participant)
-          );
-          const userD = user[0];
-          const profilePicURL = await Storage.get(userD.profilePicture);
-          console.log(profilePicURL);
-          return [userD.name, [userD.preferedName, profilePicURL]];
+          const user = await DataStore.query(UserDetails, participant);
+          const profilePicURL = await Storage.get(user.profilePicture);
+          return [user.id, [user.preferedName, profilePicURL]];
         });
-
         // Wait for all participant queries to complete before updating userCardDetails
         Promise.all(participantPromises)
           .then((results) => {
@@ -54,144 +39,134 @@ const ViewActivityModal = ({
               ...prevDetails,
               ...updatedDetails,
             }));
-            console.log(userCardDetails);
-            setLoading(false);
           })
           .catch((error) => {
             console.error("Error while querying user details:", error);
           });
       })();
-    }
-  }, [id, reloadHandler]);
+  }, [activity, reloadHandler]);
 
   const contactHostHandler = () => {
-    InAppMessaging.dispatchEvent({
-      name: "newParticipant",
-      attributes: { residence: "BLK111" },
-    });
+    console.log("Contacting Host");
   };
 
   const attendActivityHandler = async () => {
-    const original = await DataStore.query(ActivityItem, activity);
     await DataStore.save(
-      ActivityItem.copyOf(original, (updated) => {
-        updated.participants.push(user.username);
+      ActivityItem.copyOf(activity, (updated) => {
+        updated.participants.push(userDets.id);
       })
     );
-    (async function () {
-      const user = await DataStore.query(UserDetails, userDets.id);
-      const updatedActivitiesAttended = [...user.activitiesAttended, "1"];
-      const updatedUser = await DataStore.save(
-        UserDetails.copyOf(user, (updated) => {
-          updated.activitiesAttended = updatedActivitiesAttended;
-        })
-      );
-      console.log(updatedUser);
-      InAppMessaging.dispatchEvent({
-        name: "Participation",
-        attributes: {
-          participated: updatedUser.activitiesAttended.length.toString(),
-          hosted: updatedUser.activitiesHosted.length.toString(),
-        },
-      });
-    })();
-    setReloadHandler(!reloadHandler);
+    const updatedUser = await DataStore.save(
+      UserDetails.copyOf(userDets, (updated) => {
+        updated.activitiesAttended = [
+          ...userDets.activitiesAttended,
+          activity.id,
+        ];
+      })
+    );
+    InAppMessaging.dispatchEvent({
+      name: "Participation",
+      attributes: {
+        participated: updatedUser.activitiesAttended.length.toString(),
+        hosted: updatedUser.activitiesHosted.length.toString(),
+      },
+    });
+    setAttendContact([true, false]);
   };
 
   return (
-    <Modal
-      open={open}
-      aria-labelledby="parent-modal-title"
-      aria-describedby="parent-modal-description"
-    >
-      <Flex
-        justifyContent="center"
-        alignItems="center"
-        alignContent="center"
-        height={"100%"}
-      >
-        <Flex
-          backgroundColor={"white"}
-          width={"40%"}
-          direction={"column"}
-          borderRadius={"15px"}
-          paddingTop={"15px"}
+    <>
+      {activity !== undefined && (
+        <Modal
+          open={open}
+          aria-labelledby="parent-modal-title"
+          aria-describedby="parent-modal-description"
         >
-          {activity && userCardDetails && (
-            <FutureActivityModal
-              width="100%"
-              activityItem={activity}
-              exitHandler={() => {
-                setActiveActivity();
-                console.log(userCardDetails);
-                setUserCardDetails();
-                // setReload(!reload);
-                setOpenViewActivityModal(false);
-              }}
-              attendHandler={attendActivityHandler}
-              contactHandler={contactHostHandler}
-              participantsSlot={
-                <Collection
-                  isPaginated
-                  itemsPerPage={10}
-                  items={activity.participants}
-                  type="list"
-                  direction="row"
-                  wrap="wrap"
-                >
-                  {(participant) => (
-                    <UserCard
-                      key={participant}
-                      name={
-                        userCardDetails[participant] &&
-                        userCardDetails[participant][0]
-                      }
-                      profilePic={
-                        userCardDetails[participant] &&
-                        userCardDetails[participant][1]
-                      }
-                    />
-                  )}
-                </Collection>
-              }
-              overrides={{
-                LOCATION: {
-                  children: activity.residence + " | " + activity.location,
-                },
-                "PARTICIPANTS LIST": {
-                  children:
-                    activity.participants.length === 0
-                      ? "No participants yet... \nBe the first to join! "
-                      : activity.participants,
-                },
-                "DATE AND TIME": {
-                  children: convertISOToCustomFormat(activity.dateTime),
-                },
-                Button39831748: {
-                  isDisabled:
-                    activity.participants.includes(userDets.name) ||
-                    activity.host === userDets.name
-                      ? true
-                      : false,
-                },
-                Button39831749: {
-                  isDisabled: activity.host === userDets.name ? true : false,
-                },
-                "PARTICIPANTS LIST": {
-                  children:
-                    activity.participants.length === 0
-                      ? "No participants yet... \nBe the first to join! "
-                      : activity.participants,
-                },
-                "HOST: hostname": {
-                  children: "Host: " + activity.host,
-                },
-              }}
-            />
-          )}
-        </Flex>
-      </Flex>
-    </Modal>
+          <Flex
+            justifyContent="center"
+            alignItems="center"
+            alignContent="center"
+            height={"100%"}
+          >
+            <Flex
+              backgroundColor={"white"}
+              width={"50%"}
+              minHeight={"50%"}
+              direction={"column"}
+              borderRadius={"15px"}
+              padding={"25px"}
+            >
+              {activity && userCardDetails && (
+                <FutureActivityModal
+                  width="100%"
+                  activityItem={activity}
+                  exitHandler={() => {
+                    setUserCardDetails();
+                    closeModalHandler();
+                  }}
+                  attendHandler={attendActivityHandler}
+                  contactHandler={contactHostHandler}
+                  participantsSlot={
+                    <Collection
+                      isPaginated
+                      itemsPerPage={10}
+                      items={activity.participants}
+                      type="list"
+                      direction="row"
+                      wrap="wrap"
+                    >
+                      {(participant) => (
+                        <UserCard
+                          key={participant}
+                          name={
+                            userCardDetails[participant] &&
+                            userCardDetails[participant][0]
+                          }
+                          profilePic={
+                            userCardDetails[participant] &&
+                            userCardDetails[participant][1]
+                          }
+                        />
+                      )}
+                    </Collection>
+                  }
+                  overrides={{
+                    LOCATION: {
+                      children: activity.residence + " | " + activity.location,
+                    },
+                    "PARTICIPANTS LIST": {
+                      children:
+                        activity.participants.length === 0
+                          ? "No participants yet... \nBe the first to join! "
+                          : activity.participants,
+                    },
+                    "DATE AND TIME": {
+                      children: convertISOToCustomFormat(activity.dateTime),
+                    },
+                    Button39831748: {
+                      isDisabled:
+                        attendContact[0] || attendContact[1] ? true : false,
+                    },
+                    Button39831749: {
+                      isDisabled: attendContact[1] ? true : false,
+                    },
+                    "PARTICIPANTS LIST": {
+                      children:
+                        activity.participants.length === 0
+                          ? "No participants yet... \nBe the first to join! "
+                          : activity.participants,
+                    },
+                    "HOST: hostname": {
+                      children: "Host: " + activity.host,
+                    },
+                  }}
+                />
+              )}
+            </Flex>
+          </Flex>
+        </Modal>
+      )}
+    </>
   );
 };
 

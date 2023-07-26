@@ -49,7 +49,7 @@ export default function NatCardDescriptionCollection(props) {
           natActivity={item}
           height="auto"
           width="28rem"
-          margin="0 1rem 0 0px"
+          margin="0 1rem 0 1rem"
           key={item.id}
           {...(overrideItems && overrideItems({ item, index }))}
         ></NatCardDescription>

@@ -208,7 +208,7 @@ export default function ActivityItemCreateForm(props) {
         {...getOverrideProps(overrides, "description")}
       ></TextAreaField>
       <TextField
-        label="Date time"
+        label="Date & Time"
         isRequired={true}
         isReadOnly={false}
         type="datetime-local"
@@ -267,7 +267,7 @@ export default function ActivityItemCreateForm(props) {
       ></TextField>
       <SelectField
         label="Residence"
-        placeholder="Please select an option"
+        placeholder="Select a residence!"
         isDisabled={false}
         value={residence}
         onChange={(e) => {

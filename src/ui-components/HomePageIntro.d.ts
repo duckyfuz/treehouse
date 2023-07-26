@@ -17,6 +17,7 @@ export declare type HomePageIntroOverridesProps = {
     Heading?: PrimitiveOverrideProps<TextProps>;
     Body?: PrimitiveOverrideProps<TextProps>;
     Button?: PrimitiveOverrideProps<ButtonProps>;
+    "Group 1"?: PrimitiveOverrideProps<FlexProps>;
     "image 1"?: PrimitiveOverrideProps<ImageProps>;
 } & EscapeHatchProps;
 export declare type HomePageIntroProps = React.PropsWithChildren<Partial<FlexProps> & {

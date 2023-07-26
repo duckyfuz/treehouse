@@ -21,6 +21,7 @@ export declare type NatCardDescriptionOverridesProps = {
 } & EscapeHatchProps;
 export declare type NatCardDescriptionProps = React.PropsWithChildren<Partial<FlexProps> & {
     natActivity?: NatActivity;
+    dateTime?: String;
 } & {
     overrides?: NatCardDescriptionOverridesProps | undefined | null;
 }>;

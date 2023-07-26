@@ -24,6 +24,7 @@ export default function HomePageIntro(props) {
         HeroMessage: {},
         Left: {},
         "image 1": {},
+        "Group 1": {},
         HomePageIntro: {},
       },
       variantValues: { type: "Intro" },
@@ -147,23 +148,35 @@ export default function HomePageIntro(props) {
           ></Button>
         </Flex>
       </Flex>
-      <Image
-        width="unset"
-        height="500px"
+      <Flex
+        padding="0px 0px 0px 0px"
+        width="720px"
+        height="unset"
         display="block"
         gap="unset"
         alignItems="unset"
         justifyContent="unset"
-        grow="1"
-        shrink="1"
-        basis="0"
+        shrink="0"
         alignSelf="stretch"
         position="relative"
-        padding="0px 0px 0px 0px"
-        objectFit="unset"
-        src={image}
-        {...getOverrideProps(overrides, "image 1")}
-      ></Image>
+        {...getOverrideProps(overrides, "Group 1")}
+      >
+        <Image
+          width="720px"
+          height="500px"
+          display="block"
+          gap="unset"
+          alignItems="unset"
+          justifyContent="unset"
+          position="absolute"
+          top="0px"
+          left="0px"
+          padding="0px 0px 0px 0px"
+          objectFit="unset"
+          src={image}
+          {...getOverrideProps(overrides, "image 1")}
+        ></Image>
+      </Flex>
     </Flex>
   );
 }

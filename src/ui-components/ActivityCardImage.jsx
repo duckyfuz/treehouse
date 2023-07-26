@@ -26,7 +26,7 @@ export default function ActivityCardImage(props) {
       width="448px"
       height="288px"
       justifyContent="center"
-      alignItems="center"
+      alignItems="flex-end"
       position="relative"
       boxShadow="0px 4px 4px rgba(0, 0, 0, 0.25)"
       borderRadius="5px"
@@ -173,17 +173,30 @@ export default function ActivityCardImage(props) {
           </Flex>
         </Flex>
       </Flex>
-      <Button
-        width="200px"
-        height="45px"
+      <Flex
+        gap="10px"
+        direction="column"
+        width="unset"
+        height="unset"
+        justifyContent="center"
+        alignItems="flex-end"
         shrink="0"
-        size="large"
-        isDisabled={false}
-        variation="primary"
-        children="More Details"
-        onClick={moreDetailsHandler}
-        {...getOverrideProps(overrides, "Button")}
-      ></Button>
+        position="relative"
+        padding="0px 24px 0px 24px"
+        {...getOverrideProps(overrides, "Frame 1")}
+      >
+        <Button
+          width="200px"
+          height="45px"
+          shrink="0"
+          size="large"
+          isDisabled={false}
+          variation="primary"
+          children="More Details"
+          onClick={moreDetailsHandler}
+          {...getOverrideProps(overrides, "Button")}
+        ></Button>
+      </Flex>
     </Flex>
   );
 }

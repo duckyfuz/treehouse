@@ -8,7 +8,6 @@ import {
   Card,
   Collection,
   Flex,
-  Placeholder,
   Text,
   useAuthenticator,
 } from "@aws-amplify/ui-react";
@@ -27,9 +26,11 @@ import { useUserObserver } from "../hooks/useUser";
 import convertISOToCustomFormat, { filterDateTimeBeforeToday } from "../utils";
 
 const currentTime = new Date();
+
 export const Dashboard = () => {
   const navigate = useNavigate();
   const userDets = useUserObserver();
+
   const { user, authStatus } = useAuthenticator((context) => [context.user]);
   const [futureActivities, setFutureActivities] = useState();
 
@@ -87,7 +88,7 @@ export const Dashboard = () => {
         });
       }
     })();
-  }, [userDets]);
+  }, [userDets, user]);
 
   const AddActivityButton = () => {
     return (
@@ -108,10 +109,9 @@ export const Dashboard = () => {
     return (
       <Flex
         width={"90rem"}
-        height={"200px"}
+        height={"150px"}
         justifyContent="space-between"
         alignItems="center"
-        alignContent="flex-start"
       >
         <Text
           variation="primary"
@@ -128,60 +128,52 @@ export const Dashboard = () => {
             : "Evening"}
           , {userDets && userDets.preferedName}
         </Text>
-        <AddActivityButton />{" "}
+        <AddActivityButton />
       </Flex>
     );
   };
 
   const NatActivitiesDisplay = () => {
     return (
-      <Flex justifyContent="center">
-        <Card variation="elevated" width={"90rem"}>
-          <Text
-            variation="primary"
-            lineHeight="1.5em"
-            fontWeight={500}
-            fontSize="2em"
-            fontStyle="bold"
-          >
-            national activities
-          </Text>
-          <NatCardDescriptionCollection
-            overrideItems={({ item }) => ({
-              overrides: {
-                "Date and Time": {
-                  children: convertISOToCustomFormat(item.dateTime),
-                },
+      <Card variation="elevated" width="90rem">
+        <Text
+          variation="primary"
+          lineHeight="1.5em"
+          fontWeight={500}
+          fontSize="2em"
+          marginBottom={"14px"}
+        >
+          nationwide activities
+        </Text>
+        <NatCardDescriptionCollection
+          width={"100%"}
+          justifyContent={"center"}
+          overrideItems={({ item }) => ({
+            overrides: {
+              "Date and Time": {
+                children: convertISOToCustomFormat(item.dateTime),
               },
-            })}
-          />
-        </Card>
-      </Flex>
+            },
+          })}
+        />
+      </Card>
     );
   };
 
   const FutureActivitesDisplay = () => {
     return (
-      <Flex
-        direction={"column"}
-        alignContent={"center"}
-        justifyContent={"flex-start"}
-        alignItems={"center"}
-        width={"90rem"}
-      >
-        <Flex width={"90rem"}>
-          <Text
-            variation="primary"
-            lineHeight="1.5em"
-            fontWeight={500}
-            fontSize="2em"
-            fontStyle="bold"
-          >
-            neighborhood meetups
-          </Text>
-        </Flex>
+      <Flex direction="column" width={"90rem"}>
+        <Text
+          variation="primary"
+          lineHeight="1.5em"
+          fontWeight={500}
+          fontSize="2em"
+        >
+          neighborhood meetups
+        </Text>
         {!isLoading && (
           <Collection
+            width={"90rem"}
             isPaginated
             itemsPerPage={6}
             items={futureActivities}
@@ -222,7 +214,7 @@ export const Dashboard = () => {
             {(activity) => (
               <ActivityCardDescription
                 key={activity.id}
-                width={"28rem"}
+                width={"28.3rem"}
                 margin={"0.5rem"}
                 activityItem={activity}
                 dateTime={convertISOToCustomFormat(activity.dateTime)}
@@ -231,7 +223,7 @@ export const Dashboard = () => {
                   activity.participants.length + " neighbor(s) attending!"
                 }
                 moreDetailsHandler={() => {
-                  setActiveActivity(activity.id);
+                  setActiveActivity(activity);
                   setOpenViewActivityModal(true);
                 }}
               />
@@ -248,25 +240,28 @@ export const Dashboard = () => {
         "Not Authed"
       ) : (
         <Flex
-          direction={"column"}
-          alignContent={"center"}
-          justifyContent={"flex-start"}
-          alignItems={"center"}
-          width={"100rem"}
+          direction="column"
+          justifyContent="flex-start"
+          alignItems="stretch"
+          alignContent="flex-start"
+          marginLeft={"20px"}
         >
           <TopBar />
           <NatActivitiesDisplay />
           <FutureActivitesDisplay />
+
           <AddActivityModal
             open={openAddActivityModal}
             setOpenAddActivityModal={setOpenAddActivityModal}
           />
           <ViewActivityModal
-            id={activeActivity}
+            userDets={userDets}
             open={openViewActivityModal}
-            setActiveActivity={setActiveActivity}
-            setOpenViewActivityModal={setOpenViewActivityModal}
-            user={user}
+            activity={activeActivity}
+            closeModalHandler={() => {
+              setActiveActivity();
+              setOpenViewActivityModal(false);
+            }}
           />
         </Flex>
       )}

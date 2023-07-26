@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { DataStore } from "aws-amplify";
 import { Flex, Placeholder, useAuthenticator } from "@aws-amplify/ui-react";
 
-import { UserDetailsUpdateForm } from "../ui-components";
+import { EditProfile, UserDetailsUpdateForm } from "../ui-components";
 
 import { UserDetails } from "../models";
 
@@ -36,31 +36,6 @@ export const Settings = () => {
     }
   }, [navigate, userDets, authStatus, user]);
 
-  let content = <Placeholder size="large" />;
-  if (userDets) {
-    content = (
-      <UserDetailsUpdateForm
-        width={"90rem"}
-        id={userDets.id}
-        onSubmit={(fields) => {
-          const updatedFields = {};
-          Object.keys(fields).forEach((key) => {
-            if (typeof fields[key] === "string") {
-              updatedFields[key] = fields[key].trim();
-            } else {
-              updatedFields[key] = fields[key];
-            }
-          });
-          updatedFields["residence"] = [...new Set(fields.residence)];
-          return updatedFields;
-        }}
-        onSuccess={() => {
-          console.log("submitted");
-        }}
-      />
-    );
-  }
-
   return (
     <Flex
       direction={"column"}
@@ -69,7 +44,28 @@ export const Settings = () => {
       alignItems={"center"}
       width={"100rem"}
     >
-      {content}
+      {userDets && (
+        <UserDetailsUpdateForm
+          width={"90rem"}
+          id={userDets.id}
+          onSubmit={(fields) => {
+            const updatedFields = {};
+            Object.keys(fields).forEach((key) => {
+              if (typeof fields[key] === "string") {
+                updatedFields[key] = fields[key].trim();
+              } else {
+                updatedFields[key] = fields[key];
+              }
+            });
+            updatedFields["residence"] = [...new Set(fields.residence)];
+            return updatedFields;
+          }}
+          onSuccess={() => {
+            console.log("submitted");
+          }}
+        />
+        // <EditProfile />
+      )}
     </Flex>
   );
 };
