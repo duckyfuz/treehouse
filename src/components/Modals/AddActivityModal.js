@@ -27,10 +27,10 @@ const AddActivityModal = ({ open, setOpenAddActivityModal }) => {
       >
         <Flex
           backgroundColor={"white"}
-          width={"40%"}
+          width={"45%"}
           direction={"column"}
-          padding={"5px"}
           borderRadius={"15px"}
+          padding={"25px"}
         >
           <Flex
             width={"100%"}
