@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { DataStore, Notifications } from "aws-amplify";
-import { Collection, Flex } from "@aws-amplify/ui-react";
+import { DataStore, Notifications, Storage } from "aws-amplify";
+import { Card, Collection, Flex } from "@aws-amplify/ui-react";
 
 import Modal from "@mui/material/Modal";
 import { FutureActivityModal, UserCard } from "../../ui-components";
@@ -19,6 +19,7 @@ const ViewActivityModal = ({
   user,
   setActiveActivity,
 }) => {
+  const [loading, setLoading] = useState(true);
   const [activity, setActivity] = useState();
   const [reloadHandler, setReloadHandler] = useState(true);
   const [userCardDetails, setUserCardDetails] = useState({});
@@ -40,7 +41,9 @@ const ViewActivityModal = ({
             c.name.eq(participant)
           );
           const userD = user[0];
-          return [userD.name, userD.profilePicture];
+          const profilePicURL = await Storage.get(userD.profilePicture);
+          console.log(profilePicURL);
+          return [userD.name, [userD.preferedName, profilePicURL]];
         });
 
         // Wait for all participant queries to complete before updating userCardDetails
@@ -51,6 +54,8 @@ const ViewActivityModal = ({
               ...prevDetails,
               ...updatedDetails,
             }));
+            console.log(userCardDetails);
+            setLoading(false);
           })
           .catch((error) => {
             console.error("Error while querying user details:", error);
@@ -112,7 +117,7 @@ const ViewActivityModal = ({
           borderRadius={"15px"}
           paddingTop={"15px"}
         >
-          {activity && (
+          {activity && userCardDetails && (
             <FutureActivityModal
               width="100%"
               activityItem={activity}
@@ -126,23 +131,28 @@ const ViewActivityModal = ({
               attendHandler={attendActivityHandler}
               contactHandler={contactHostHandler}
               participantsSlot={
-                userCardDetails && (
-                  <Collection
-                    isPaginated
-                    itemsPerPage={10}
-                    items={activity.participants}
-                    type="list"
-                    direction="row"
-                    wrap="wrap"
-                  >
-                    {(participant) => (
-                      <UserCard
-                        key={participant}
-                        // need to fetch the user details first, then useEffect the userDets in a list, then fetch according to username here.
-                      />
-                    )}
-                  </Collection>
-                )
+                <Collection
+                  isPaginated
+                  itemsPerPage={10}
+                  items={activity.participants}
+                  type="list"
+                  direction="row"
+                  wrap="wrap"
+                >
+                  {(participant) => (
+                    <UserCard
+                      key={participant}
+                      name={
+                        userCardDetails[participant] &&
+                        userCardDetails[participant][0]
+                      }
+                      profilePic={
+                        userCardDetails[participant] &&
+                        userCardDetails[participant][1]
+                      }
+                    />
+                  )}
+                </Collection>
               }
               overrides={{
                 LOCATION: {

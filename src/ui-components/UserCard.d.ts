@@ -16,6 +16,9 @@ export declare type UserCardOverridesProps = {
     "Melinda Marcus"?: PrimitiveOverrideProps<TextProps>;
 } & EscapeHatchProps;
 export declare type UserCardProps = React.PropsWithChildren<Partial<FlexProps> & {
+    profilePic?: String;
+    name?: String;
+} & {
     overrides?: UserCardOverridesProps | undefined | null;
 }>;
 export default function UserCard(props: UserCardProps): React.ReactElement;
