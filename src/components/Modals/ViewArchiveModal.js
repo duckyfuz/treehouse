@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import { DataStore, Notifications, Storage } from "aws-amplify";
-import { Flex, Image } from "@aws-amplify/ui-react";
+import { Analytics, DataStore, Storage } from "aws-amplify";
+import { Collection, Flex, Image } from "@aws-amplify/ui-react";
 
 import Modal from "@mui/material/Modal";
 import AddPhotoModal from "./AddPhotoModal";
-import { ArchiveDetailsModal } from "../../ui-components";
+import { ArchiveDetailsModal, UserCard } from "../../ui-components";
 import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
 import Download from "yet-another-react-lightbox/plugins/download";
@@ -16,18 +16,14 @@ import Zoom from "yet-another-react-lightbox/plugins/zoom";
 import Counter from "yet-another-react-lightbox/plugins/counter";
 import "yet-another-react-lightbox/plugins/counter.css";
 
-import { useUserObserver } from "../../hooks/useUser";
-import { ActivityItem } from "../../models";
+import { ActivityItem, UserDetails } from "../../models";
 
 import convertISOToCustomFormat from "../../utils";
-
-const { InAppMessaging } = Notifications;
 
 const ViewArchiveModal = ({
   open,
   setOpenViewActivityModal,
   id,
-  user,
   setActiveActivity,
   reload,
   setReload,
@@ -38,8 +34,7 @@ const ViewArchiveModal = ({
   const [imageList, setImageList] = useState([]);
   const [imageNameList, setImageNameList] = useState([]);
   const [openAddPhotoModal, setOpenAddPhotoModal] = useState(false);
-
-  const userDets = useUserObserver();
+  const [userCardDetails, setUserCardDetails] = useState({});
 
   useEffect(() => {
     if (id) {
@@ -66,7 +61,34 @@ const ViewArchiveModal = ({
     }
   }, [id, reloadHandler]);
 
+  useEffect(() => {
+    activity &&
+      (async function () {
+        // Use Promise.all to wait for all the queries to complete
+        const participantPromises = activity.participants.map(async function (
+          participant
+        ) {
+          const user = await DataStore.query(UserDetails, participant);
+          const profilePicURL = await Storage.get(user.profilePicture);
+          return [user.id, [user.preferedName, profilePicURL]];
+        });
+        // Wait for all participant queries to complete before updating userCardDetails
+        Promise.all(participantPromises)
+          .then((results) => {
+            const updatedDetails = Object.fromEntries(results);
+            setUserCardDetails((prevDetails) => ({
+              ...prevDetails,
+              ...updatedDetails,
+            }));
+          })
+          .catch((error) => {
+            console.error("Error while querying user details:", error);
+          });
+      })();
+  }, [activity, reloadHandler]);
+
   const viewPicturesHandler = () => {
+    Analytics.record({ name: 'photoView' });
     setOpenImages(true);
   };
 
@@ -113,6 +135,30 @@ const ViewArchiveModal = ({
               }
               viewPicturesHandler={viewPicturesHandler}
               sharePicturesHandler={sharePicturesHandler}
+              participantsSlot={
+                <Collection
+                  isPaginated
+                  itemsPerPage={10}
+                  items={activity.participants}
+                  type="list"
+                  direction="row"
+                  wrap="wrap"
+                >
+                  {(participant) => (
+                    <UserCard
+                      key={participant}
+                      name={
+                        userCardDetails[participant] &&
+                        userCardDetails[participant][0]
+                      }
+                      profilePic={
+                        userCardDetails[participant] &&
+                        userCardDetails[participant][1]
+                      }
+                    />
+                  )}
+                </Collection>
+              }
               overrides={{
                 LOCATION: {
                   children: activity.residence + " | " + activity.location,
@@ -129,10 +175,9 @@ const ViewArchiveModal = ({
                 "PARTICIPANTS LIST": {
                   children:
                     activity.participants.length === 0
-                      ? "No participants yet... \nBe the first to join! "
+                      ? "Looks like nobody joined this event... Try inviting more people next time!"
                       : activity.participants,
                 },
-                "DETAILS FILL": {},
               }}
             />
           )}

@@ -97,6 +97,7 @@ export const Dashboard = () => {
         gap="0.4rem"
         variation="primary"
         onClick={() => {
+          Analytics.record({ name: "viewAddActivity" });
           setOpenAddActivityModal(true);
         }}
       >
@@ -223,6 +224,7 @@ export const Dashboard = () => {
                   activity.participants.length + " neighbor(s) attending!"
                 }
                 moreDetailsHandler={() => {
+                  Analytics.record({ name: "viewFutureActivity" });
                   setActiveActivity(activity);
                   setOpenViewActivityModal(true);
                 }}
@@ -249,7 +251,6 @@ export const Dashboard = () => {
           <TopBar />
           <NatActivitiesDisplay />
           <FutureActivitesDisplay />
-
           <AddActivityModal
             open={openAddActivityModal}
             setOpenAddActivityModal={setOpenAddActivityModal}

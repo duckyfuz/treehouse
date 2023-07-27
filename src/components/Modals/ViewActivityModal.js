@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { DataStore, Notifications, Storage } from "aws-amplify";
+import { Analytics, DataStore, Notifications, Storage } from "aws-amplify";
 import { Collection, Flex } from "@aws-amplify/ui-react";
 
 import Modal from "@mui/material/Modal";
@@ -12,7 +12,6 @@ import convertISOToCustomFormat from "../../utils";
 const { InAppMessaging } = Notifications;
 
 const ViewActivityModal = ({ userDets, open, activity, closeModalHandler }) => {
-  const [reloadHandler, setReloadHandler] = useState(true);
   const [userCardDetails, setUserCardDetails] = useState({});
   const [attendContact, setAttendContact] = useState([false, false]);
 
@@ -44,7 +43,7 @@ const ViewActivityModal = ({ userDets, open, activity, closeModalHandler }) => {
             console.error("Error while querying user details:", error);
           });
       })();
-  }, [activity, reloadHandler]);
+  }, [activity]);
 
   const contactHostHandler = () => {
     console.log("Contacting Host");
@@ -71,7 +70,9 @@ const ViewActivityModal = ({ userDets, open, activity, closeModalHandler }) => {
         hosted: updatedUser.activitiesHosted.length.toString(),
       },
     });
+    Analytics.record({ name: "participation" });
     setAttendContact([true, false]);
+    closeModalHandler();
   };
 
   return (
@@ -149,12 +150,6 @@ const ViewActivityModal = ({ userDets, open, activity, closeModalHandler }) => {
                     },
                     Button39831749: {
                       isDisabled: attendContact[1] ? true : false,
-                    },
-                    "PARTICIPANTS LIST": {
-                      children:
-                        activity.participants.length === 0
-                          ? "No participants yet... \nBe the first to join! "
-                          : activity.participants,
                     },
                     "HOST: hostname": {
                       children: "Host: " + activity.host,

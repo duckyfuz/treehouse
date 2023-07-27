@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { DataStore, Predicates, SortDirection, Storage } from "aws-amplify";
+import {
+  Analytics,
+  DataStore,
+  Predicates,
+  SortDirection,
+  Storage,
+} from "aws-amplify";
 import {
   Collection,
   Flex,
@@ -65,10 +71,9 @@ export const Archive = () => {
         const filteredActivities = pastActivities.filter(
           (activity) =>
             userDets.residence.includes(activity.residence) &&
-            (activity.participants.includes(userDets.name) ||
+            (activity.participants.includes(userDets.id) ||
               activity.host === userDets.name)
         );
-        // setPastActivities(pastActivities);
         setPastActivities(filteredActivities);
 
         filteredActivities.forEach((activity) => {
@@ -177,6 +182,7 @@ export const Archive = () => {
                     dateTime={convertISOToCustomFormat(activity.dateTime)}
                     location={activity.residence + ", " + activity.location}
                     moreDetailsHandler={() => {
+                      Analytics.record({ name: "viewArchiveActivity" });
                       setActiveActivity(activity.id);
                       openViewActivityModalHandler();
                     }}

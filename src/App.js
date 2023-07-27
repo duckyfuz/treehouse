@@ -6,7 +6,6 @@ import {
   defaultDarkModeOverride,
   Flex,
   ThemeProvider,
-  withInAppMessaging,
 } from "@aws-amplify/ui-react";
 
 import { Home } from "./routes/Home";

@@ -43,6 +43,7 @@ export declare type ArchiveDetailsModalProps = React.PropsWithChildren<Partial<F
     imageSlot39821654?: React.ReactNode;
     buttonFrame?: React.ReactNode;
     exitHandler?: (event: SyntheticEvent) => void;
+    participantsSlot?: React.ReactNode;
 } & {
     overrides?: ArchiveDetailsModalOverridesProps | undefined | null;
 }>;

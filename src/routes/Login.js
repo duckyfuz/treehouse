@@ -5,8 +5,6 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { Auth } from "aws-amplify";
 import { Authenticator, useAuthenticator, Flex } from "@aws-amplify/ui-react";
 
-import "@aws-amplify/ui-react/styles.css";
-
 export function Login() {
   const { route } = useAuthenticator((context) => [context.route]);
 

@@ -14,8 +14,8 @@ export default function UserCard(props) {
     <Flex
       gap="4px"
       direction="row"
-      width="120px"
-      height="30px"
+      width="unset"
+      height="unset"
       justifyContent="center"
       alignItems="center"
       position="relative"
@@ -26,8 +26,8 @@ export default function UserCard(props) {
       <Flex
         gap="0"
         direction="column"
-        width="25px"
-        height="25px"
+        width="35px"
+        height="35px"
         justifyContent="flex-start"
         alignItems="center"
         shrink="0"
@@ -56,21 +56,19 @@ export default function UserCard(props) {
       </Flex>
       <Flex
         gap="8px"
-        direction="column"
-        width="unset"
-        height="25px"
-        justifyContent="center"
-        alignItems="flex-start"
-        grow="1"
-        shrink="1"
-        basis="0"
+        direction="row"
+        width="150px"
+        height="35px"
+        justifyContent="flex-start"
+        alignItems="center"
+        shrink="0"
         position="relative"
         padding="0px 0px 0px 0px"
         {...getOverrideProps(overrides, "Name")}
       >
         <Text
           fontFamily="Inter"
-          fontSize="12px"
+          fontSize="24px"
           fontWeight="700"
           color="rgba(13,26,38,1)"
           lineHeight="25px"
