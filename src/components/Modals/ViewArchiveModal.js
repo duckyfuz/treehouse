@@ -178,6 +178,9 @@ const ViewArchiveModal = ({
                       ? "Looks like nobody joined this event... Try inviting more people next time!"
                       : activity.participants,
                 },
+                "HOST: hostname": {
+                  children: "Host: " + activity.hostName,
+                },
               }}
             />
           )}

@@ -15,6 +15,7 @@ const ViewActivityModal = ({ userDets, open, activity, closeModalHandler }) => {
   const [userCardDetails, setUserCardDetails] = useState({});
   const [attendContact, setAttendContact] = useState([false, false]);
 
+  // Fetch details for UserCard
   useEffect(() => {
     activity &&
       (async function () {
@@ -49,6 +50,7 @@ const ViewActivityModal = ({ userDets, open, activity, closeModalHandler }) => {
     console.log("Contacting Host");
   };
 
+  // Update ActivityItem, then UserDetails, send IAM event (Analytics kinda iffy)
   const attendActivityHandler = async () => {
     await DataStore.save(
       ActivityItem.copyOf(activity, (updated) => {
@@ -110,7 +112,7 @@ const ViewActivityModal = ({ userDets, open, activity, closeModalHandler }) => {
                   participantsSlot={
                     <Collection
                       isPaginated
-                      itemsPerPage={10}
+                      itemsPerPage={20}
                       items={activity.participants}
                       type="list"
                       direction="row"
@@ -152,7 +154,7 @@ const ViewActivityModal = ({ userDets, open, activity, closeModalHandler }) => {
                       isDisabled: attendContact[1] ? true : false,
                     },
                     "HOST: hostname": {
-                      children: "Host: " + activity.host,
+                      children: "Host: " + activity.hostName,
                     },
                   }}
                 />
