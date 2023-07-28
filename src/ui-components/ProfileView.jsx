@@ -77,7 +77,7 @@ export default function ProfileView(props) {
             position="relative"
             padding="0px 0px 0px 0px"
             whiteSpace="pre-wrap"
-            children="Full name:"
+            children="Username:"
             {...getOverrideProps(overrides, "label40581898")}
           ></Text>
           <Text
