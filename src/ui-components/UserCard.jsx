@@ -16,7 +16,7 @@ export default function UserCard(props) {
       direction="row"
       width="unset"
       height="unset"
-      justifyContent="center"
+      justifyContent="flex-start"
       alignItems="center"
       position="relative"
       padding="0px 0px 0px 0px"
@@ -28,7 +28,7 @@ export default function UserCard(props) {
         direction="column"
         width="35px"
         height="35px"
-        justifyContent="flex-start"
+        justifyContent="center"
         alignItems="center"
         shrink="0"
         position="relative"
@@ -68,7 +68,7 @@ export default function UserCard(props) {
       >
         <Text
           fontFamily="Inter"
-          fontSize="24px"
+          fontSize="30px"
           fontWeight="700"
           color="rgba(13,26,38,1)"
           lineHeight="25px"

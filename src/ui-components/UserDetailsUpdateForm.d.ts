@@ -5,8 +5,7 @@
  **************************************************************************/
 
 import * as React from "react";
-import { GridProps, SelectFieldProps, SwitchFieldProps, TextFieldProps } from "@aws-amplify/ui-react";
-import { StorageManagerProps } from "@aws-amplify/ui-react-storage";
+import { GridProps, SelectFieldProps, TextFieldProps } from "@aws-amplify/ui-react";
 import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
 import { UserDetails } from "../models";
 export declare type ValidationResponse = {
@@ -16,23 +15,17 @@ export declare type ValidationResponse = {
 export declare type ValidationFunction<T> = (value: T, validationResponse: ValidationResponse) => ValidationResponse | Promise<ValidationResponse>;
 export declare type UserDetailsUpdateFormInputValues = {
     preferedName?: string;
-    profilePicture?: string;
     residence?: string[];
-    onBoarded?: boolean;
 };
 export declare type UserDetailsUpdateFormValidationValues = {
     preferedName?: ValidationFunction<string>;
-    profilePicture?: ValidationFunction<string>;
     residence?: ValidationFunction<string>;
-    onBoarded?: ValidationFunction<boolean>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type UserDetailsUpdateFormOverridesProps = {
     UserDetailsUpdateFormGrid?: PrimitiveOverrideProps<GridProps>;
     preferedName?: PrimitiveOverrideProps<TextFieldProps>;
-    profilePicture?: PrimitiveOverrideProps<StorageManagerProps>;
     residence?: PrimitiveOverrideProps<SelectFieldProps>;
-    onBoarded?: PrimitiveOverrideProps<SwitchFieldProps>;
 } & EscapeHatchProps;
 export declare type UserDetailsUpdateFormProps = React.PropsWithChildren<{
     overrides?: UserDetailsUpdateFormOverridesProps | undefined | null;

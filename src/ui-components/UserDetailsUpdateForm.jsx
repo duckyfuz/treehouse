@@ -15,15 +15,13 @@ import {
   Icon,
   ScrollView,
   SelectField,
-  SwitchField,
   Text,
   TextField,
   useTheme,
 } from "@aws-amplify/ui-react";
-import { StorageManager } from "@aws-amplify/ui-react-storage";
-import { Field, getOverrideProps } from "@aws-amplify/ui-react/internal";
+import { getOverrideProps } from "@aws-amplify/ui-react/internal";
 import { UserDetails } from "../models";
-import { fetchByPath, processFile, validateField } from "./utils";
+import { fetchByPath, validateField } from "./utils";
 import { DataStore } from "aws-amplify";
 function ArrayField({
   items = [],
@@ -197,28 +195,20 @@ export default function UserDetailsUpdateForm(props) {
   } = props;
   const initialValues = {
     preferedName: "",
-    profilePicture: undefined,
     residence: [],
-    onBoarded: false,
   };
   const [preferedName, setPreferedName] = React.useState(
     initialValues.preferedName
   );
-  const [profilePicture, setProfilePicture] = React.useState(
-    initialValues.profilePicture
-  );
   const [residence, setResidence] = React.useState(initialValues.residence);
-  const [onBoarded, setOnBoarded] = React.useState(initialValues.onBoarded);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     const cleanValues = userDetailsRecord
       ? { ...initialValues, ...userDetailsRecord }
       : initialValues;
     setPreferedName(cleanValues.preferedName);
-    setProfilePicture(cleanValues.profilePicture);
     setResidence(cleanValues.residence ?? []);
     setCurrentResidenceValue("");
-    setOnBoarded(cleanValues.onBoarded);
     setErrors({});
   };
   const [userDetailsRecord, setUserDetailsRecord] =
@@ -249,9 +239,7 @@ export default function UserDetailsUpdateForm(props) {
   };
   const validations = {
     preferedName: [{ type: "Required" }],
-    profilePicture: [],
     residence: [{ type: "Required" }],
-    onBoarded: [{ type: "Required" }],
   };
   const runValidationTasks = async (
     fieldName,
@@ -280,9 +268,7 @@ export default function UserDetailsUpdateForm(props) {
         event.preventDefault();
         let modelFields = {
           preferedName,
-          profilePicture,
           residence,
-          onBoarded,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -344,9 +330,7 @@ export default function UserDetailsUpdateForm(props) {
           if (onChange) {
             const modelFields = {
               preferedName: value,
-              profilePicture,
               residence,
-              onBoarded,
             };
             const result = onChange(modelFields);
             value = result?.preferedName ?? value;
@@ -361,67 +345,13 @@ export default function UserDetailsUpdateForm(props) {
         hasError={errors.preferedName?.hasError}
         {...getOverrideProps(overrides, "preferedName")}
       ></TextField>
-      <Field
-        errorMessage={errors.profilePicture?.errorMessage}
-        hasError={errors.profilePicture?.hasError}
-        label={"Profile picture"}
-        isRequired={false}
-        isReadOnly={false}
-      >
-        {userDetailsRecord && (
-          <StorageManager
-            defaultFiles={[{ key: userDetailsRecord.profilePicture }]}
-            onUploadSuccess={({ key }) => {
-              setProfilePicture((prev) => {
-                let value = key;
-                if (onChange) {
-                  const modelFields = {
-                    preferedName,
-                    profilePicture: value,
-                    residence,
-                    onBoarded,
-                  };
-                  const result = onChange(modelFields);
-                  value = result?.profilePicture ?? value;
-                }
-                return value;
-              });
-            }}
-            onFileRemove={({ key }) => {
-              setProfilePicture((prev) => {
-                let value = initialValues?.profilePicture;
-                if (onChange) {
-                  const modelFields = {
-                    preferedName,
-                    profilePicture: value,
-                    residence,
-                    onBoarded,
-                  };
-                  const result = onChange(modelFields);
-                  value = result?.profilePicture ?? value;
-                }
-                return value;
-              });
-            }}
-            processFile={processFile}
-            accessLevel={"public"}
-            acceptedFileTypes={["image/*"]}
-            isResumable={false}
-            showThumbnails={true}
-            maxFileCount={1}
-            {...getOverrideProps(overrides, "profilePicture")}
-          ></StorageManager>
-        )}
-      </Field>
       <ArrayField
         onChange={async (items) => {
           let values = items;
           if (onChange) {
             const modelFields = {
               preferedName,
-              profilePicture,
               residence: values,
-              onBoarded,
             };
             const result = onChange(modelFields);
             values = result?.residence ?? values;
@@ -485,33 +415,6 @@ export default function UserDetailsUpdateForm(props) {
           ></option>
         </SelectField>
       </ArrayField>
-      <SwitchField
-        label="I accept the terms and conditions. "
-        defaultChecked={false}
-        isDisabled={false}
-        isChecked={onBoarded}
-        onChange={(e) => {
-          let value = e.target.checked;
-          if (onChange) {
-            const modelFields = {
-              preferedName,
-              profilePicture,
-              residence,
-              onBoarded: value,
-            };
-            const result = onChange(modelFields);
-            value = result?.onBoarded ?? value;
-          }
-          if (errors.onBoarded?.hasError) {
-            runValidationTasks("onBoarded", value);
-          }
-          setOnBoarded(value);
-        }}
-        onBlur={() => runValidationTasks("onBoarded", onBoarded)}
-        errorMessage={errors.onBoarded?.errorMessage}
-        hasError={errors.onBoarded?.hasError}
-        {...getOverrideProps(overrides, "onBoarded")}
-      ></SwitchField>
       <Flex
         justifyContent="space-between"
         {...getOverrideProps(overrides, "CTAFlex")}

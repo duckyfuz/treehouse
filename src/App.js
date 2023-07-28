@@ -50,7 +50,7 @@ function App() {
                 <Route path="/onboarding" element={<OnBoarding />} />
                 <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/archive" element={<Archive />} />
-                <Route path="/settings" element={<Settings />} />
+                {/* <Route path="/settings" element={<Settings />} /> */}
               </Route>
               <Route path="*" element={<p>Page Not Found</p>} />
             </Routes>

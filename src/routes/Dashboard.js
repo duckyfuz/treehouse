@@ -161,6 +161,69 @@ export const Dashboard = () => {
     );
   };
 
+  const FutureCollection = () => {
+    return (
+      <Collection
+        width={"90rem"}
+        isPaginated
+        itemsPerPage={6}
+        items={futureActivities}
+        type="list"
+        direction="row"
+        wrap="wrap"
+        isSearchable
+        searchNoResultsFound={
+          <Flex
+            justifyContent="center"
+            alignContent={"center"}
+            alignItems={"center"}
+            direction={"column"}
+          >
+            <Text
+              variation="primary"
+              lineHeight="1.2em"
+              fontWeight={360}
+              fontSize="1.4em"
+              fontStyle="bold"
+            >
+              No activities found...
+            </Text>
+            <Text
+              variation="primary"
+              lineHeight="0.8em"
+              fontWeight={340}
+              fontSize="1.2em"
+              fontStyle="bold"
+            >
+              Why not host your own!
+            </Text>
+            <AddActivityButton />
+          </Flex>
+        }
+        searchPlaceholder="Find your next activity!"
+      >
+        {(activity) => (
+          <ActivityCardDescription
+            key={activity.id}
+            width={"28.3rem"}
+            margin={"0.5rem"}
+            activityItem={activity}
+            dateTime={convertISOToCustomFormat(activity.dateTime)}
+            location={activity.residence + ", " + activity.location}
+            participants={
+              activity.participants.length + " neighbor(s) attending!"
+            }
+            moreDetailsHandler={() => {
+              Analytics.record({ name: "viewFutureActivity" });
+              setActiveActivity(activity);
+              setOpenViewActivityModal(true);
+            }}
+          />
+        )}
+      </Collection>
+    );
+  };
+
   const FutureActivitesDisplay = () => {
     return (
       <Flex direction="column" width={"90rem"}>
@@ -172,66 +235,7 @@ export const Dashboard = () => {
         >
           neighborhood meetups
         </Text>
-        {!isLoading && (
-          <Collection
-            width={"90rem"}
-            isPaginated
-            itemsPerPage={6}
-            items={futureActivities}
-            type="list"
-            direction="row"
-            wrap="wrap"
-            isSearchable
-            searchNoResultsFound={
-              <Flex
-                justifyContent="center"
-                alignContent={"center"}
-                alignItems={"center"}
-                direction={"column"}
-              >
-                <Text
-                  variation="primary"
-                  lineHeight="1.2em"
-                  fontWeight={360}
-                  fontSize="1.4em"
-                  fontStyle="bold"
-                >
-                  No activities found...
-                </Text>
-                <Text
-                  variation="primary"
-                  lineHeight="0.8em"
-                  fontWeight={340}
-                  fontSize="1.2em"
-                  fontStyle="bold"
-                >
-                  Why not host your own!
-                </Text>
-                <AddActivityButton />
-              </Flex>
-            }
-            searchPlaceholder="Find your next activity!"
-          >
-            {(activity) => (
-              <ActivityCardDescription
-                key={activity.id}
-                width={"28.3rem"}
-                margin={"0.5rem"}
-                activityItem={activity}
-                dateTime={convertISOToCustomFormat(activity.dateTime)}
-                location={activity.residence + ", " + activity.location}
-                participants={
-                  activity.participants.length + " neighbor(s) attending!"
-                }
-                moreDetailsHandler={() => {
-                  Analytics.record({ name: "viewFutureActivity" });
-                  setActiveActivity(activity);
-                  setOpenViewActivityModal(true);
-                }}
-              />
-            )}
-          </Collection>
-        )}
+        {!isLoading && <FutureCollection />}
       </Flex>
     );
   };

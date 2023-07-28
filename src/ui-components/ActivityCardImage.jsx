@@ -29,7 +29,7 @@ export default function ActivityCardImage(props) {
       alignItems="flex-end"
       position="relative"
       boxShadow="0px 4px 4px rgba(0, 0, 0, 0.25)"
-      borderRadius="5px"
+      borderRadius="10px"
       padding="0px 0px 24px 0px"
       backgroundColor="rgba(255,255,255,1)"
       {...getOverrideProps(overrides, "ActivityCardImage")}

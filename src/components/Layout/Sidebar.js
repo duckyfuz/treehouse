@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Flex, Button, Text, Card, Link } from "@aws-amplify/ui-react";
 
@@ -8,6 +9,8 @@ import {
   MdExitToApp,
 } from "react-icons/md";
 import logo from "../../assets/images/logo.png";
+
+import SettingsModal from "../Modals/SettingsModal";
 
 const LogoName = () => {
   const navigate = useNavigate();
@@ -33,7 +36,7 @@ const LogoName = () => {
   );
 };
 
-export const NavButtons = () => {
+const NavButtons = ({ openSettings, setOpenSettings }) => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
@@ -61,11 +64,13 @@ export const NavButtons = () => {
           Archive
         </Button>
         <Button
-          variation={pathname === "/settings" ? "primary" : "menu"}
+          variation={
+            openSettings || pathname === "/onboarding" ? "primary" : "menu"
+          }
           size="large"
           gap="0.4rem"
           width="100%"
-          onClick={() => navigate("/settings")}
+          onClick={() => setOpenSettings(true)}
         >
           <MdSettings />
           Settings
@@ -82,12 +87,17 @@ export const NavButtons = () => {
   );
 };
 
-export function Sidebar({ logOut }) {
+const Sidebar = ({ logOut }) => {
+  const [openSettings, setOpenSettings] = useState(false);
+
   return (
     <Card variation="elevated">
       <Flex alignItems="center" direction="column" height={"100%"}>
         <LogoName />
-        <NavButtons />
+        <NavButtons
+          openSettings={openSettings}
+          setOpenSettings={setOpenSettings}
+        />
         <Flex alignContent={"flex-end"}>
           <Button
             marginTop={"60px"}
@@ -101,6 +111,9 @@ export function Sidebar({ logOut }) {
           </Button>
         </Flex>
       </Flex>
+      <SettingsModal open={openSettings} setOpenSettings={setOpenSettings} />
     </Card>
   );
-}
+};
+
+export default Sidebar;

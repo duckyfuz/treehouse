@@ -73,7 +73,7 @@ const ViewArchiveModal = ({
           return [user.id, [user.preferedName, profilePicURL]];
         });
         // Wait for all participant queries to complete before updating userCardDetails
-        Promise.all(participantPromises)
+        await Promise.all(participantPromises)
           .then((results) => {
             const updatedDetails = Object.fromEntries(results);
             setUserCardDetails((prevDetails) => ({
@@ -191,6 +191,14 @@ const ViewArchiveModal = ({
           slides={imageList}
           plugins={[Download, Counter, Share, Slideshow, Thumbnails, Zoom]}
           counter={{ container: { style: { top: "unset", bottom: 0 } } }}
+          inline={{
+            style: {
+              width: "100%",
+              maxWidth: "900px",
+              aspectRatio: "3 / 2",
+              margin: "0 auto",
+            },
+          }}
         />
         <AddPhotoModal
           id={activity && activity.id}

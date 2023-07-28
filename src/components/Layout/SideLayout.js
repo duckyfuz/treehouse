@@ -1,9 +1,10 @@
+import { useState } from "react";
 import { useNavigate, Outlet } from "react-router-dom";
 
-import { useAuthenticator, Flex } from "@aws-amplify/ui-react";
+import { useAuthenticator } from "@aws-amplify/ui-react";
 import { DataStore } from "@aws-amplify/datastore";
 
-import { Sidebar } from "./Sidebar";
+import Sidebar from "./Sidebar";
 
 export function SideLayout() {
   const navigate = useNavigate();
