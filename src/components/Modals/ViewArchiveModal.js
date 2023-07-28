@@ -88,7 +88,7 @@ const ViewArchiveModal = ({
   }, [activity, reloadHandler]);
 
   const viewPicturesHandler = () => {
-    Analytics.record({ name: 'photoView' });
+    Analytics.record({ name: "photoView" });
     setOpenImages(true);
   };
 
@@ -166,12 +166,12 @@ const ViewArchiveModal = ({
                 "DATE AND TIME": {
                   children: convertISOToCustomFormat(activity.dateTime),
                 },
-                Button39831738: {
-                  color: "blue",
-                },
-                Button39831743: {
-                  color: "red",
-                },
+                // Button39831738: {
+                //   color: "blue",
+                // },
+                // Button39831743: {
+                //   color: "red",
+                // },
                 "PARTICIPANTS LIST": {
                   children:
                     activity.participants.length === 0

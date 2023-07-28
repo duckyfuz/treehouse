@@ -29,7 +29,7 @@ const AddPhotoModal = ({
       >
         <Flex
           backgroundColor={"white"}
-          width={"40%"}
+          width={"45%"}
           direction={"column"}
           padding={"5px"}
           borderRadius={"15px"}
@@ -43,7 +43,7 @@ const AddPhotoModal = ({
             alignItems="center"
             alignContent="center"
           >
-            <Text fontSize="2em">Host a new activity!</Text>
+            <Text fontSize="2em">Share your memories!</Text>
             <Button
               onClick={() => {
                 setOpenAddPhotoModal(false);

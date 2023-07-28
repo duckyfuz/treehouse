@@ -67,7 +67,7 @@ export const OnBoarding = () => {
       {authStatus !== "authenticated" ? (
         "Not Authed"
       ) : (
-        <Flex justifyContent="center" minWidth={"30rem"} direction={"column"}>
+        <Flex marginTop={"50px"} minWidth={"30rem"} direction={"column"}>
           <Text
             variation="primary"
             lineHeight="1.5em"
