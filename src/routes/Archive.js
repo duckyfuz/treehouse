@@ -162,7 +162,7 @@ export const Archive = () => {
                     </Text>
                   </Flex>
                 }
-                searchPlaceholder="Search for a good memory!"
+                searchPlaceholder="Looking for something?"
               >
                 {(activity) => (
                   <ActivityCardImage
