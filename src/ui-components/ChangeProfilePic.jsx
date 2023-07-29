@@ -163,7 +163,7 @@ export default function ChangeProfilePic(props) {
               });
             }}
             processFile={processFile}
-            accessLevel={"private"}
+            accessLevel={"public"}
             acceptedFileTypes={["image/*"]}
             isResumable={false}
             showThumbnails={true}

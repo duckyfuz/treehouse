@@ -167,6 +167,7 @@ export default function AddPhotoForm(props) {
             isResumable={false}
             showThumbnails={true}
             maxFileCount={10}
+            maxSize={1000000}
             {...getOverrideProps(overrides, "images")}
           ></StorageManager>
         )}

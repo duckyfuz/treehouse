@@ -390,6 +390,7 @@ export default function UserDetailsCreateForm(props) {
           isResumable={false}
           showThumbnails={true}
           maxFileCount={1}
+          maxSize={1000000}
           {...getOverrideProps(overrides, "profilePicture")}
         ></StorageManager>
       </Field>

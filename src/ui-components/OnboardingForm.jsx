@@ -400,10 +400,11 @@ export default function OnboardingForm(props) {
             }}
             processFile={processFile}
             accessLevel={"public"}
-            acceptedFileTypes={[]}
+            acceptedFileTypes={["image/*"]}
             isResumable={false}
             showThumbnails={true}
             maxFileCount={1}
+            maxSize={1000000}
             {...getOverrideProps(overrides, "profilePicture")}
           ></StorageManager>
         )}
