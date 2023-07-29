@@ -49,7 +49,9 @@ const ViewActivityModal = ({ userDets, open, activity, closeModalHandler }) => {
 
   const contactHostHandler = () => {
     console.log("Contacting Host");
-    toast.error(`This feature is still being worked on! Try again in a month or so.`);
+    toast.error(
+      `This feature is still being worked on! Try again in a month or so.`
+    );
   };
 
   // Update ActivityItem, then UserDetails, send IAM event (Analytics kinda iffy)
@@ -115,14 +117,16 @@ const ViewActivityModal = ({ userDets, open, activity, closeModalHandler }) => {
                   participantsSlot={
                     <Collection
                       isPaginated
-                      itemsPerPage={20}
+                      itemsPerPage={8}
                       items={activity.participants}
                       type="list"
                       direction="row"
                       wrap="wrap"
+                      gap={"10px"}
                     >
                       {(participant) => (
                         <UserCard
+                          width={"200px"}
                           key={participant}
                           name={
                             userCardDetails[participant] &&
@@ -132,6 +136,11 @@ const ViewActivityModal = ({ userDets, open, activity, closeModalHandler }) => {
                             userCardDetails[participant] &&
                             userCardDetails[participant][1]
                           }
+                          overrides={{
+                            image: {
+                              objectFit: "cover",
+                            },
+                          }}
                         />
                       )}
                     </Collection>

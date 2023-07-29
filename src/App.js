@@ -22,7 +22,9 @@ import {
   InAppMessageDisplay,
   InAppMessagingProvider,
 } from "@aws-amplify/ui-react-notifications";
+
 import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const { InAppMessaging } = Notifications;
 

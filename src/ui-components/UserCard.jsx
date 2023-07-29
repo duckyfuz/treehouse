@@ -86,7 +86,8 @@ export default function UserCard(props) {
           alignSelf="stretch"
           position="relative"
           padding="0px 0px 0px 0px"
-          whiteSpace="pre-wrap"
+          whiteSpace={true}
+          isTruncated={true}
           children={name}
           {...getOverrideProps(overrides, "Melinda Marcus")}
         ></Text>
