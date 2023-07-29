@@ -1,21 +1,23 @@
 # treehouse - allow kampong spirit to take root 
 ### building a community that will never leaf anybody behind
 
-In the heart of Singapore's history lies a treasured concept - the kampong spirit. Imagine a time when tight-knit communities flourished, fostering unity and genuine connections within their "kampungs," or villages. But in today's fast-paced, modern world, this cherished essence faces a daunting challenge - urbanization, technology, and individualism are eroding the very fabric of community bonds.
+In the heart of Singapore's history lies a treasured concept - the [kampong spirit](https://www.nas.gov.sg/archivesonline/blastfromthepast/kampungspirit). Imagine a time when tight-knit communities flourished, fostering unity and genuine connections within their "kampungs," or villages. Back then, residents in a kampong shared collective responsibility for one another, creating a supportive and caring environment. Neighbours became like extended family members, building lasting bonds and friendships that instilled a strong sense of belonging and connectedness to the community.
 
-Can we reclaim the kampong spirit and revive the sense of togetherness that once defined Singapore's cultural heritage?
+However, in today's fast-paced and modernized world, this cherished spirit faces a daunting challenge - urbanization, technology, and individualism are [eroding the very fabric of community bonds](https://dr.ntu.edu.sg/handle/10356/78543). The close ties that once defined Singapore's cultural heritage are being put to the test.
+
+The question arises: Can we reclaim the kampong spirit and revive the sense of togetherness that once defined Singapore's identity? While the challenges are real, the essence of the kampong spirit continues to resonate, offering hope for a future where unity and genuine connections transcend the barriers of modernity.
 
 ## ✌🏼 The Solution.
 
-[treehouse](https://dev.d1ykjigyeh5h3.amplifyapp.com/) offers a practical solution to address this challenge. Users can easily post and discover activities, encouraging communal interaction. By facilitating photo exchanges post-event, treehouse fosters a sense of togetherness.
+[treehouse](https://dev.d1ykjigyeh5h3.amplifyapp.com/) offers an innovative solution to revive the kampong spirit in the face of modern challenges - users can effortlessly post and discover activities, fostering a vibrant platform for communal interaction. The emphasis on photo exchanges after events further strengthen the sense of togetherness and shared experiences among participants.
 
-Technology does not have to be the downfall of the kampong spirit. Instead, it can play a vital role in reviving the community.
+This technological approach breaks down barriers to community engagement and demonstrates that technology can be a powerful tool in reviving and nurturing the essence of the kampong spirit, preserving Singapore's rich cultural heritage for generations to come.
 
 ### 🏃‍♂️ The Motivation
 
-I longed for simpler times when I could easily meet friends at the [void deck](https://en.wikipedia.org/wiki/Void_deck) for a simple game of soccer. I wanted an easy way to coordinate events with others living in my apartment to ensure that busy schedules would never be the reason we missed a game ever again.
+I yearned for simpler times when I could easily meet friends at the [void deck](https://en.wikipedia.org/wiki/Void_deck) for a casual game of soccer. Now, coordinating events with fellow [HDB flat](https://www.thearcadiaonline.com/what-is-hdb-housing-and-how-does-it-work/#:~:text=HDB%20housing%20is%20a%20system,prices%20for%20rent%20or%20purchase.) (Singapore's take on public housing) residents seems like a challenge amidst everybody's busy schedules, and I longed for a solution that would ensure we would never miss out on our shared passion again.
 
-When I discovered the Hashnode AWS hackathon, I saw the perfect opportunity to bring my vision to life. (While creating my first-ever full-stack app!) Simultaneously, I wanted to gain more experience with [Amazon Web Service](https://aws.amazon.com) - the most popular cloud service worldwide.
+When I discovered the Hashnode AWS hackathon, I saw the perfect opportunity to bring my vision to life while embarking on the exhilarating journey of creating my very first full-stack app. Simultaneously, I wanted to gain more experience with [Amazon Web Service](https://aws.amazon.com) - the most popular cloud service worldwide, renowned for its reliability, scalability and global presence.
 
 ### 🏡 About treehouse
 
@@ -44,7 +46,7 @@ Amplify In-App Messaging | Amplify Storage (S3)
 | Host or join an event | Share events on social media |
 | Delete self-hosted event | More personalisation in UI |
 | Share photos (archived events) | In-app chat (with other participants) |
-|  | Authentication with [Singpass](https://api.singpass.gov.sg/library/verify/developers/overview) |
+| Edit personal information | Authentication with [Singpass](https://api.singpass.gov.sg/library/verify/developers/overview) |
 
 **Trial Accounts:**  
 testuser | Password (Blk 111 & 112)  
@@ -58,7 +60,7 @@ testuser3 | Password3 (Blk 112 & 223)
 
 ## 🗺️ The Journey.
 
-The initial plan was an app full of bells and whistles - imagine an AI that recommends activities in your community according to your unique interests... but that's a bit too much for a 19-year-old prospective software developer dipping his toes into the world of full-stack development. I cut down the scope of work until I arrived at an MUP that I could build in a month.
+The original idea for the app was ambitious - imagine an AI that recommends activities in your community according to your unique interests... but that's a bit too much for a 19-year-old prospective software developer dipping his toes into the world of full-stack development. I cut down the scope of work until I arrived at an MUP that I could build in a month.
 
 ### 📀 Data Models
 
@@ -66,17 +68,17 @@ After many iterations, I settled on these 4 models.
 
 ![](https://cdn.hashnode.com/res/hashnode/image/upload/v1690286602608/f4ba9e45-7425-4f36-a57b-334170714d1b.png align="center")
 
-**NatActivity** is for nationwide activities added by administrators - think national holidays, community engagements, etc. Not much information is needed, just the name, date and location.
+**NatActivity** serves as a platform for administrators to add nationwide activities, encompassing significant events like national holidays and community engagements. The information required for each activity is succinct, comprising its name, date, and location.
 
-**Residence** is essentially a list of apartments (or groups of people). It’s an enum used in **UserDetails** to ensure that users are only shown events in their vicinity.
+**Residence**, functioning as an enum within UserDetails, groups users based on their residential areas. This categorization ensures that users are presented with events relevant to their vicinity.
 
-**UserDetails** is exactly what its name suggests. It stores information about each user such as their nicknames, profile pictures, and activities they took part in.
+**UserDetails**, as its name implies, serves as a repository for individual user information. This includes user-specific data such as nicknames, profile pictures, and a record of the activities they have participated in, providing a comprehensive overview of each user's engagement on the platform.
 
-Finally, **ActivityItem** takes care of the attributes of each event - names, dates, participants, and most importantly, location. It also includes an array to store images! (or rather, the titles of the images on S3)
+Finally, **ActivityItem** takes care of the attributes of each event - names, dates, participants, and most importantly, location. It also includes an array to store images! (or rather, the paths to the image files in the S3 bucket)
 
 ### 🧑🏼‍🦲 Amplify Authentication
 
-Security is always important, especially when dealing with sensitive information such as user location. With AWS Amplify Authentication and AWS Cognito, implementing authentication in a new React app could not be easier. This was essentially all I had to add to my index.js file:
+Ensuring security is of paramount importance, particularly when handling sensitive information like user locations. Thanks to AWS Amplify Authentication and AWS Cognito, incorporating authentication into a new React app has become remarkably straightforward. In fact, it boiled down to just a few additions to my `index.js` file:
 
 ```javascript
 import React, { StrictMode } from "react";
@@ -105,7 +107,7 @@ root.render(
 );
 ```
 
-That's it! What used to take hours to create could now be done in minutes with the help of AWS Amplify. I even managed to [add OAuth](https://docs.amplify.aws/lib/auth/social/q/platform/js/) for users to create an account with Google without any prior knowledge of authorisation frameworks!
+That's it! What used to take hours to create could now be done in minutes with the help of AWS Amplify. I even managed to [integrate OAuth](https://docs.amplify.aws/lib/auth/social/q/platform/js/) for users to create an account using Google without any prior expertise in authorisation frameworks!
 
 I opted to make a personalised login page with the `<Authenticator />` component - this way, I would have space to spruce up the login page in the future. ✨Fancy.✨
 
@@ -128,11 +130,11 @@ Next, I had to decide on the UI of treehouse. I wanted to create differentiated 
 
 ![](https://cdn.hashnode.com/res/hashnode/image/upload/v1690371277121/387250ca-b257-4d34-a00a-8f0066e5759b.png align="center")
 
-[AWS Amplify's UI Builder](https://help.figma.com/hc/en-us/articles/6376798776343-AWS-Amplify-Studio-and-Figma) gives you the ability to create front-end components from Figma, and that was exactly what I did. Using Amplify Studio, I managed to create a [collection](https://docs.amplify.aws/console/tutorial/collections/) that was sorted and paginated. All without writing a single line of code!
+[AWS Amplify's UI Builder](https://help.figma.com/hc/en-us/articles/6376798776343-AWS-Amplify-Studio-and-Figma) gives you the ability to create front-end components from Figma, and that was exactly what I did. Using Amplify Studio, I was able to create a [collection](https://docs.amplify.aws/console/tutorial/collections/) that was sorted and paginated, all without writing a single line of code!
 
 ![](https://cdn.hashnode.com/res/hashnode/image/upload/v1690373704278/7ba2c2e6-f8a5-4d2a-b237-514db109074d.png align="center")
 
-However, I was never able to figure out how to set dynamic component properties on Amplify Studio. After diving into the [documentation](https://docs.amplify.aws/console/), I learnt how to "[extend-via-code](https://docs.amplify.aws/console/uibuilder/override/#extend-generated-collections-via-overrideitems-prop)" to dynamically disable signup buttons for certain activities.
+However, I was never able to figure out how to set dynamic component properties on Amplify Studio. Determined to find a solution, I delved into the [documentation](https://docs.amplify.aws/console/) and learned how to utilize the "[extend-via-code](https://docs.amplify.aws/console/uibuilder/override/#extend-generated-collections-via-overrideitems-prop)" approach to dynamically disable signup buttons for certain activities
 
 ```javascript
 <FutureActivityModal
@@ -148,11 +150,11 @@ However, I was never able to figure out how to set dynamic component properties 
 />
 ```
 
-For me, the most useful feature of the UI Builder was undoubtedly the automatically generated forms. Since my app leveraged on Amplify DataStore, I was able to seamlessly map my form to an existing data model - all without having to deal with pesky state management or validation logic. I didn't need a single line of code to write input data to Amazon DynamoDB!
+Undoubtedly, the most valuable feature of the UI Builder for me was its automatically generated forms. As my app heavily relied on Amplify DataStore, I was thrilled to discover that I could effortlessly map my form to an existing data model, all without the need for complex state management or validation logic. The seamless integration allowed me to submit input data directly to Amazon DynamoDB without writing a single line of code!
 
 ![](https://cdn.hashnode.com/res/hashnode/image/upload/v1690374750729/16fc4ca5-0d13-4365-bfa4-036cddc91d92.png align="center")
 
-While I certainly faced some difficulties with complicated components, I must admit that the UI Builder is certainly a godsend when creating static components. I created most of the homepage with only components created from Figma!
+While I certainly encountered some challenges while dealing with complicated components, I must admit that the UI Builder proved to be a godsend when it came to creating static components. Remarkably, I was able to create most of the homepage with only components generated from Figma!
 
 ![](https://cdn.hashnode.com/res/hashnode/image/upload/v1690374373223/d0931206-769c-48c4-a978-1a181ba167ee.png align="center")
 
@@ -172,14 +174,9 @@ While I certainly faced some difficulties with complicated components, I must ad
 
 ### 🗄️ Amplify DataStore
 
-I initially planned to use AWS AppSync GraphQL API. However, after realising the [benefits of Amplify DataStore](https://aws.amazon.com/amplify/datastore/) (and mostly because I wanted to map forms to my data models), I quickly made the switch to Amplify DataStore. The switch was extremely easy - the changes required were minimal as the code for querying and writing data was quite similar.
+Initially, I had planned to utilize the AWS AppSync GraphQL API for my app's data management. However, upon realizing the [numerous benefits](https://aws.amazon.com/amplify/datastore/) offered by Amplify DataStore, especially its seamless integration with form mapping to data models, I swiftly made the switch. The transition turned out to be remarkably smooth as the changes required were minimal - DataStore utilises the GraphQL query language as well!
 
-<div data-node-type="callout">
-<div data-node-type="callout-emoji">👉</div>
-<div data-node-type="callout-text">Amplify DataStore utilises the GraphQL query language as well!</div>
-</div>
-
-What I found most useful was the ability to [observe query results in real-time](https://docs.amplify.aws/lib/datastore/real-time/q/platform/js/#observe-model-mutations-in-real-time). I created my own `useUser` Hook to easily get real-time updates for user properties within all of my routes.
+One of the most valuable features I found was the ability to [observe query results in real time](https://docs.amplify.aws/lib/datastore/real-time/q/platform/js/#observe-model-mutations-in-real-time). To leverage this functionality across all my routes, I created a custom `useUser` Hook, enabling easy access to real-time updates for user properties.
 
 ```javascript
 export const useUserObserver = () => {
@@ -209,7 +206,7 @@ export const useUserObserver = () => {
 };
 ```
 
-However, fetching data from the cloud turned out to be a little headache - I was unable to dynamically filter items before fetching them and finally had to resort to fetching every single item before filtering them by the current date and the user's selected residences.
+However, fetching data from the cloud resulted in a minor headache - I was unable to dynamically filter items before fetching them and finally had to resort to fetching every single item before filtering them by the current date and the user's selected residences.
 
 ```javascript
 const sortedActivities = await DataStore.query(
@@ -234,11 +231,11 @@ But hey, at least it works! (for now...)
 
 ### 🪣 Amplify Storage (with S3)
 
-Adding a S3 bucket to my project was extremely easy with Amplify Studio. As my app did not require special permissions, it took minimal time to figure out the authorization rules I needed.
+Integrating an S3 bucket into my project was a breeze with the help of Amplify Studio. The user-friendly interface and clear instructions made the process remarkably easy, even for someone without extensive experience in cloud storage. Since my app's requirements were straightforward, figuring out the necessary authorization rules was a quick task.
 
 ![](https://cdn.hashnode.com/res/hashnode/image/upload/v1690377857536/11dd515e-758a-4471-8e62-387351034a6d.png align="center")
 
-Fetching data from the S3 bucket was simple as well - especially after figuring out how to utilise the `public/`, `protected/` and `private/` folders of the bucket. For this project, I mainly used the `public/` folder - after all, the pictures are meant to be shared among everyone!
+Fetching data from the S3 bucket proved to be just as straightforward - especially after figuring out how to utilise the `public/`, `protected/` and `private/` folders of the bucket. For this project, I mainly used the `public/` folder - after all, the pictures are meant to be shared among everyone!
 
 ### 💬 Amplify In-App Messaging
 
@@ -290,15 +287,15 @@ My usage of AWS Analytics is pretty basic. All I wanted to do was to gather data
 
 ![](https://cdn.hashnode.com/res/hashnode/image/upload/v1690427427042/f6e1f121-7d1a-4f63-98bb-ce8844b2cb01.png align="center")
 
-By [recording custom events](https://docs.amplify.aws/lib/analytics/record/q/platform/js/#recording-custom-events), I was able to gather even more user data. With just one additional line of code `Analytics.record({ name: 'eventName' })` in the app's click handlers, I was able to easily record the user's actions. With AWS Analytics, I could find out how often users registered attendance for events, how often they hosted new events and how often they view their archived events.
+[Recording custom events](https://docs.amplify.aws/lib/analytics/record/q/platform/js/#recording-custom-events) through AWS Analytics proved to be an efficient way to gather additional user data, requiring only one simple line of code, namely `Analytics.record({ name: 'eventName' })`, in the app's click handlers. This approach enabled me to track various user interactions, such as how frequently users registered attendance for events, how often they hosted new events, and how frequently they accessed their archived events.
 
 ![](https://cdn.hashnode.com/res/hashnode/image/upload/v1690428403029/a8a20ffd-48e1-4a75-9ff7-bab07f86cde0.png align="center")
 
-With how simple the entire process was, I certainly plan to implement analytics to a greater degree in the future.
+With how simple the entire process was, I certainly plan to implement analytics to a greater degree in my future apps.
 
 ### 🖥️ AWS Hosting
 
-Hosting my React App with AWS Amplify was probably the easiest thing I've done in this entire project. All it took was three lines of code...
+Hosting with AWS Amplify was certainly a breeze - hands down the easiest part of the project. With just three simple lines of CLI code, my first-ever full-stack app was brought into the world.
 
 ```bash
 amplify add hosting
@@ -306,17 +303,15 @@ amplify configure hosting
 amplify publish
 ```
 
-And voila! After a month of hard work, my first full-stack app was finally live. 🥳
-
 ![](https://cdn.hashnode.com/res/hashnode/image/upload/v1690443522290/de558170-9cda-4cea-92be-adce05fa230c.png align="center")
 
 ## 🎬 Final Product.
 
-Upon opening the app, you'll be greeted with a summary of what the app is all about. It focuses on 4 main themes: (1) Embracing Unity, (2) Celebrating Diversity, (3) Reviving Spirit, and (4) Creating Lasting Memories - what we will need for the kampong spirit to thrive again in the digital age.
+Upon opening the app, you'll be greeted with a summary of what the app is all about. It revolves on four key themes: (1) Embracing Unity, (2) Celebrating Diversity, (3) Reviving Spirit, and (4) Creating Lasting Memories - the core of our vision for fostering a sense of togetherness and community connection.
 
 ![](https://cdn.hashnode.com/res/hashnode/image/upload/v1690284459412/6f0dae94-eb8d-4897-8b29-dc779ca688af.png align="center")
 
-Clicking on the Log In / Go to Dashboard button will bring you to the `/login` screen, where you can conveniently create a new account in less than a minute.
+Clicking on the `Log In` / `Go to Dashboard` button will bring you to the `/login` screen, where you can conveniently create a new account in less than a minute.
 
 ![](https://cdn.hashnode.com/res/hashnode/image/upload/v1690444081316/329e108a-73fd-4d3f-8e09-9a83574d8089.png align="center")
 
@@ -344,11 +339,11 @@ The day after the event, the activity card will be moved to the Archive tab, whe
 
 ### 🏋️‍♀️ Struggles...
 
-When I first started the project, I was a total JavaScript newbie. I had next to no knowledge of how async functions worked and could not even create a simple loop. Frankly, I even had no idea what promises were.
+When I first started the project, I was a total JavaScript novice. I had next to no knowledge of how async functions worked and could not even create a simple loop. Frankly, even promises were a foreign concept to me.
 
-As a result, when I was creating a `useEffect` function to fetch images from my S3 bucket, I mistakenly used a `forEach` loop, which does not wait for each iteration's async operation to complete before moving on to the next one. The pictures did not work as expected, and I ended up spending hours trying to fix this one issue.
+As a result, while creating a `useEffect` function to fetch images from my S3 bucket, I mistakenly used a `forEach` loop, which does not wait for each iteration's async operation to complete before moving on. It led to unexpected behaviour, and I ended up spending hours trying to fix this one issue.
 
-It was a stroke of luck that Hashnode's email promoting their newly released [Rix](https://hashnode.com/rix) came when it did. I hopped on the platform and pasted my code into the chat together with the error message. To my surprise, it quickly diagnosed the issue and gave out possible solutions.
+It was a stroke of luck that Hashnode's email promoting their newly released [Rix](https://hashnode.com/rix) came when it did. I hopped on the platform and pasted my code into the AI together with the error message. To my surprise, it quickly diagnosed the issue and gave out possible solutions.
 
 ![](https://cdn.hashnode.com/res/hashnode/image/upload/v1690543245321/0768ac79-de26-451f-ba20-49dcf6ad5408.png align="center")
 
@@ -376,9 +371,9 @@ useEffect(() => {
 }, [activity]);
 ```
 
-And voila! The error plaguing me was finally dealt with. Imagine how many hours I could have saved if I just used Rix from the start...
+Absolutely incredible! Rix proved to be a lifesaver, and I can't help but wonder how many precious hours I could have saved if I had discovered it earlier.
 
-And that's not all - whenever I faced an error I did not understand, all I needed to do was paste the error into Rix and I received a detailed explanation of why the error occurred and how I could fix it. All hail our AI overlords. 🤖
+From then on, whenever I faced an error I did not understand, all I had to do was paste the error into Rix to receive a detailed explanation of why the error occurred and possible solutions. Rix certainly turned out to be a great tool to learn new languages and frameworks. All hail our AI overlords. 🤖
 
 ### 🦥 More Struggles...
 
@@ -413,14 +408,14 @@ This is because I used an automatically generated form component from the UI lib
 
 ![](https://cdn.hashnode.com/res/hashnode/image/upload/v1690547730692/9a0fe0c4-6e4b-4ad4-9c61-4605e2f1b37c.png align="center")
 
-As you can see, there is no way to create a dynamic list of dropdown items. Hopefully, there'll be one in the future!
+As you can see, there is no way to create a dynamic list of dropdown items. Hopefully, that'll change in the future!
 
 ### 🏁 Conclusion
 
-And that concludes my month-long development journey! I started this journey knowing next to nothing about AWS Amplify, and I am certainly proud of the app I have created. Amplify is a powerful tool for front-end developers to quickly build and host full-stack applications, and certainly useful for most developers due to its ease of use.
+And that concludes my month-long development journey with AWS Amplify! I started this journey knowing next to nothing about AWS Amplify, and I am certainly proud of the app I have created. AWS Amplify has proven to be a powerful resource for front-end developers, enabling them to quickly build and host full-stack applications with ease.
 
-However, AWS Amplify's simplicity limits its usefulness. Users might find that they require much deeper knowledge of AWS to bring their ideas to life, leading to a longer development time.
+However, as I delved deeper into the platform, I realized that its simplicity also comes with some limitations. While it's a fantastic option for straightforward applications, users might find that more complex projects require a deeper understanding of AWS services, which can extend the development time.
 
-In my opinion, AWS Amplify strikes a good balance as it's suitable for both beginners and professionals. Beginners would likely not require workarounds to bypass Amplify's limitations for straightforward applications, while professionals would likely already have the know-how to delve deeper into AWS or develop custom solutions to fit their specialised and intricate use cases.
+In my opinion, AWS Amplify strikes a good balance as it's suitable for both beginners and professionals. Beginners would likely not require workarounds to bypass Amplify's limitations for straightforward applications, while professionals would probably already have the know-how to delve deeper into AWS or develop custom solutions to fit their specialised and intricate use cases.
 
-All in all, my journey with AWS Amplify has been a fruitful one and I am glad to add this versatile tool to my toolbox!
+Overall, my journey with AWS Amplify has been fruitful, and I am excited to add this versatile tool to my toolbox. The experience has opened up new possibilities for my future projects, and I look forward to further refining my skills with this valuable resource.
