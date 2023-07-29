@@ -1,20 +1,12 @@
-import { Button, Flex, Text } from "@aws-amplify/ui-react";
+import React, { Button, Flex, Text } from "@aws-amplify/ui-react";
 
 import { MdDelete } from "react-icons/md";
 import Modal from "@mui/material/Modal";
-import {
-  AddPhotoForm,
-  ChangeProfilePic,
-  UserDetailsUpdateForm,
-} from "../../ui-components";
+import { UserDetailsUpdateForm } from "../../ui-components";
 
-import { useUserObserver } from "../../hooks/useUser";
-import { StorageManager } from "@aws-amplify/ui-react-storage";
 import { toast } from "react-toastify";
 
 const NameResidenceModal = ({ id, open, setNRModal }) => {
-  const userDets = useUserObserver();
-
   return (
     <Modal
       open={open}

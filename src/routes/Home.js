@@ -29,7 +29,6 @@ export const Home = () => {
 
   useEffect(() => {
     (async function () {
-      // Function to fetch the image using Amplify Storage
       try {
         const imageURL = await Storage.get("treehouseHome.jpg", {
           validateObjectExistence: true,

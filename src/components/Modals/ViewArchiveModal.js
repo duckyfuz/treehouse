@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Analytics, DataStore, Storage } from "aws-amplify";
 import { Collection, Flex, Image } from "@aws-amplify/ui-react";
 
@@ -69,8 +69,17 @@ const ViewArchiveModal = ({
           participant
         ) {
           const user = await DataStore.query(UserDetails, participant);
-          const profilePicURL = await Storage.get(user.profilePicture);
-          return [user.id, [user.preferedName, profilePicURL]];
+          try {
+            const profilePicURL = await Storage.get(user.profilePicture, {
+              validateObjectExistence: true,
+            });
+            return [user.id, [user.preferedName, profilePicURL]];
+          } catch (error) {
+            console.error("Error fetching profile picture:", error);
+            const profilePicURL =
+              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwvGWjwjiCh8UCmLjeDGBj9iIZt7cyiynfwnYz_63_hg&s";
+            return [user.id, [user.preferedName, profilePicURL]];
+          }
         });
         // Wait for all participant queries to complete before updating userCardDetails
         await Promise.all(participantPromises)

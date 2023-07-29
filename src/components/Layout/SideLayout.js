@@ -1,12 +1,11 @@
-import { useState } from "react";
-import { useNavigate, Outlet } from "react-router-dom";
+import React, { useNavigate, Outlet } from "react-router-dom";
 
 import { useAuthenticator } from "@aws-amplify/ui-react";
 import { DataStore } from "@aws-amplify/datastore";
 
 import Sidebar from "./Sidebar";
 
-export function SideLayout() {
+export default function SideLayout() {
   const navigate = useNavigate();
   const { route, signOut } = useAuthenticator((context) => [
     context.route,

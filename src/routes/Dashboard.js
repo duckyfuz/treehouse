@@ -46,16 +46,15 @@ export const Dashboard = () => {
       if (userDets && !userDets.onBoarded) {
         navigate("/onboarding");
       }
-      async function getOnBoardingStatus() {
-        const userDetails = await DataStore.query(UserDetails, (c) =>
-          c.name.eq(user.username)
-        );
-        if (userDetails.length === 0) {
-          navigate("/onboarding");
-        }
-      }
       if (user) {
-        getOnBoardingStatus();
+        (async function getOnBoardingStatus() {
+          const userDetails = await DataStore.query(UserDetails, (c) =>
+            c.name.eq(user.username)
+          );
+          if (userDetails.length === 0) {
+            navigate("/onboarding");
+          }
+        })();
       }
     } else if (authStatus === "unauthenticated") {
       navigate("/login");
@@ -244,6 +243,7 @@ export const Dashboard = () => {
 
   return (
     <>
+      {authStatus === "configuring" && "Loading..."}
       {authStatus !== "authenticated" ? (
         "Not Authed"
       ) : (

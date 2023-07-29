@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Analytics, DataStore, Notifications, Storage } from "aws-amplify";
 import { Collection, Flex } from "@aws-amplify/ui-react";
 
@@ -29,8 +29,17 @@ const ViewActivityModal = ({ userDets, open, activity, closeModalHandler }) => {
           participant
         ) {
           const user = await DataStore.query(UserDetails, participant);
-          const profilePicURL = await Storage.get(user.profilePicture);
-          return [user.id, [user.preferedName, profilePicURL]];
+          try {
+            const profilePicURL = await Storage.get(user.profilePicture, {
+              validateObjectExistence: true,
+            });
+            return [user.id, [user.preferedName, profilePicURL]];
+          } catch (error) {
+            console.error("Error fetching profile picture:", error);
+            const profilePicURL =
+              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwvGWjwjiCh8UCmLjeDGBj9iIZt7cyiynfwnYz_63_hg&s";
+            return [user.id, [user.preferedName, profilePicURL]];
+          }
         });
         // Wait for all participant queries to complete before updating userCardDetails
         Promise.all(participantPromises)
@@ -45,7 +54,7 @@ const ViewActivityModal = ({ userDets, open, activity, closeModalHandler }) => {
             console.error("Error while querying user details:", error);
           });
       })();
-  }, [activity]);
+  }, [activity, userDets]);
 
   const contactHostHandler = () => {
     console.log("Contacting Host");
@@ -54,7 +63,7 @@ const ViewActivityModal = ({ userDets, open, activity, closeModalHandler }) => {
     );
   };
 
-  // Update ActivityItem, then UserDetails, send IAM event (Analytics kinda iffy)
+  // Update ActivityItem, then UserDetails, send IAM event (Analytics kinda iffy tho)
   const attendActivityHandler = async () => {
     await DataStore.save(
       ActivityItem.copyOf(activity, (updated) => {

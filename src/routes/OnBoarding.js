@@ -23,54 +23,19 @@ export const OnBoarding = () => {
       if (userDets && userDets.onBoarded) {
         navigate("/dashboard");
       }
-      async function getUserID() {
-        const userDetails = await DataStore.query(UserDetails, (c) =>
-          c.name.eq(user.username)
-        );
-        setUserID(userDetails[0].id);
-      }
       if (userDets !== null) {
         setUserDetailsCreated(true);
-        getUserID();
+        (async function () {
+          const userDetails = await DataStore.query(UserDetails, (c) =>
+            c.name.eq(user.username)
+          );
+          setUserID(userDetails[0].id);
+        })();
       } else {
         setUserDetailsCreated(false);
       }
     }
   }, [navigate, userDets, authStatus, user]);
-
-  let content = (
-    <UserDetailsCreateForm
-      onSubmit={(fields) => {
-        const updatedFields = {};
-        Object.keys(fields).forEach((key) => {
-          if (typeof fields[key] === "string") {
-            updatedFields[key] = fields[key].trim();
-          } else {
-            updatedFields[key] = fields[key];
-          }
-        });
-        updatedFields["name"] = user.username;
-        updatedFields["activitiesAttended"] = [];
-        updatedFields["activitiesHosted"] = [];
-        console.log(updatedFields);
-        return updatedFields;
-      }}
-      onSuccess={() => {
-        toast.success(`Welcome aboard!`);
-      }}
-    />
-  );
-
-  if (userDetailsCreated) {
-    content = (
-      <OnboardingForm
-        id={userID}
-        onSuccess={() => {
-          toast.success(`Welcome aboard!`);
-        }}
-      />
-    );
-  }
 
   return (
     <>
@@ -89,7 +54,34 @@ export const OnBoarding = () => {
           >
             Onbarding Form
           </Text>
-          {content}
+          {userDetailsCreated ? (
+            <OnboardingForm
+              id={userID}
+              onSuccess={() => {
+                toast.success(`Welcome aboard!`);
+              }}
+            />
+          ) : (
+            <UserDetailsCreateForm
+              onSubmit={(fields) => {
+                const updatedFields = {};
+                Object.keys(fields).forEach((key) => {
+                  if (typeof fields[key] === "string") {
+                    updatedFields[key] = fields[key].trim();
+                  } else {
+                    updatedFields[key] = fields[key];
+                  }
+                });
+                updatedFields["name"] = user.username;
+                updatedFields["activitiesAttended"] = [];
+                updatedFields["activitiesHosted"] = [];
+                return updatedFields;
+              }}
+              onSuccess={() => {
+                toast.success(`Welcome aboard!`);
+              }}
+            />
+          )}
         </Flex>
       )}
     </>

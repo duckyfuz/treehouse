@@ -1,12 +1,11 @@
-import { Storage, Notifications } from "aws-amplify";
+import React, { Storage } from "aws-amplify";
 import { Button, Flex, Text } from "@aws-amplify/ui-react";
 
 import { MdDelete } from "react-icons/md";
 import Modal from "@mui/material/Modal";
-import { ActivityItemCreateForm, ProfileView } from "../../ui-components";
+import { ProfileView } from "../../ui-components";
 
 import { useUserObserver } from "../../hooks/useUser";
-import { UserDetails } from "../../models";
 import { useEffect, useState } from "react";
 import ProfilePictureModal from "./ProfilePictureModal";
 import NameResidenceModal from "./NameResidenceModal";

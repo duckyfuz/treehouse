@@ -70,8 +70,8 @@ export default function UserCard(props) {
         <Text
           fontFamily="Inter"
           fontSize="25px"
-          fontWeight="700"
-          color="rgba(13,26,38,1)"
+          fontWeight="400"
+          color="rgba(12,28,43,1)"
           lineHeight="25px"
           textAlign="left"
           display="block"

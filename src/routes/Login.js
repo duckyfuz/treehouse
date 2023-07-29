@@ -1,5 +1,4 @@
-// Rewritten CAA 250723
-import { useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 
 import { Auth } from "aws-amplify";
@@ -45,7 +44,7 @@ export function Login() {
         width={"50%"}
         backgroundColor={"#fffef0"}
       >
-        {/* Space for images */}
+        {/* Space for image(s) */}
       </Flex>
     </Flex>
   );

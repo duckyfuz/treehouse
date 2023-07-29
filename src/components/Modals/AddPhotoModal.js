@@ -1,10 +1,9 @@
-import { Button, Flex, Text } from "@aws-amplify/ui-react";
+import React, { Button, Flex, Text } from "@aws-amplify/ui-react";
 
 import { MdDelete } from "react-icons/md";
 import Modal from "@mui/material/Modal";
 import { AddPhotoForm } from "../../ui-components";
 
-import { useUserObserver } from "../../hooks/useUser";
 import { toast } from "react-toastify";
 
 const AddPhotoModal = ({
@@ -14,8 +13,6 @@ const AddPhotoModal = ({
   reloadHandler,
   setReloadHandler,
 }) => {
-  const userDets = useUserObserver();
-
   return (
     <Modal
       open={open}

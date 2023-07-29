@@ -14,7 +14,7 @@ import { OnBoarding } from "./routes/OnBoarding";
 import { Dashboard } from "./routes/Dashboard";
 import { Archive } from "./routes/Archive";
 
-import { SideLayout } from "./components/Layout/SideLayout";
+import SideLayout from "./components/Layout/SideLayout";
 
 import "./App.css";
 import "@aws-amplify/ui-react/styles.css";

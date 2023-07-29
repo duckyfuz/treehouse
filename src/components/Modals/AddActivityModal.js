@@ -1,4 +1,4 @@
-import { DataStore, Notifications } from "aws-amplify";
+import React, { DataStore, Notifications } from "aws-amplify";
 import { Button, Flex, Text } from "@aws-amplify/ui-react";
 
 import { MdDelete } from "react-icons/md";

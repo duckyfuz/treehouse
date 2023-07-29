@@ -1,15 +1,12 @@
-import { Button, Flex, Text } from "@aws-amplify/ui-react";
+import React, { Button, Flex, Text } from "@aws-amplify/ui-react";
 
 import { MdDelete } from "react-icons/md";
 import Modal from "@mui/material/Modal";
 import { ChangeProfilePic } from "../../ui-components";
 
-import { useUserObserver } from "../../hooks/useUser";
 import { toast } from "react-toastify";
 
 const ProfilePictureModal = ({ id, open, setPictureModal }) => {
-  const userDets = useUserObserver();
-
   return (
     <Modal
       open={open}
@@ -66,7 +63,7 @@ const ProfilePictureModal = ({ id, open, setPictureModal }) => {
             id={id}
             onSuccess={() => {
               setPictureModal(false);
-              toast.success(`Profile picture uploaded! You're looking good.`)
+              toast.success(`Profile picture uploaded! You're looking good.`);
             }}
           />
         </Flex>

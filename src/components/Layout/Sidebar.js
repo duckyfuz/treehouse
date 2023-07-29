@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Flex, Button, Text, Card, Link } from "@aws-amplify/ui-react";
 
@@ -111,7 +111,9 @@ const Sidebar = ({ logOut }) => {
           </Button>
         </Flex>
       </Flex>
-      <SettingsModal open={openSettings} setOpenSettings={setOpenSettings} />
+      {openSettings && (
+        <SettingsModal open={openSettings} setOpenSettings={setOpenSettings} />
+      )}
     </Card>
   );
 };
