@@ -14,6 +14,7 @@ import {
 } from "../ui-components";
 
 import logo from "../assets/images/logo.png";
+import { toast } from "react-toastify";
 
 export const Home = () => {
   const navigate = useNavigate();
@@ -132,7 +133,11 @@ export const Home = () => {
           }}
         />
       )}
-      <HomePageFooter />
+      <HomePageFooter
+        subscribeHandler={() => {
+          toast(`That button is actually just for show.`);
+        }}
+      />
     </Flex>
   );
 };
