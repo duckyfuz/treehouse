@@ -25,6 +25,9 @@ import { ActivityItem, UserDetails } from "../models";
 import { useUserObserver } from "../hooks/useUser";
 import convertISOToCustomFormat, { filterDateTimeBeforeToday } from "../utils";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const currentTime = new Date();
 
 export const Dashboard = () => {
@@ -268,6 +271,7 @@ export const Dashboard = () => {
               setOpenViewActivityModal(false);
             }}
           />
+          
         </Flex>
       )}
     </>

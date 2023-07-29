@@ -151,13 +151,12 @@ export default function HomePageIntro(props) {
       <Flex
         padding="0px 0px 0px 0px"
         width="720px"
-        height="unset"
+        height="500px"
         display="block"
         gap="unset"
         alignItems="unset"
         justifyContent="unset"
         shrink="0"
-        alignSelf="stretch"
         position="relative"
         {...getOverrideProps(overrides, "Group 1")}
       >

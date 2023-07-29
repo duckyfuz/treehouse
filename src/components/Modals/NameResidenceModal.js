@@ -10,6 +10,7 @@ import {
 
 import { useUserObserver } from "../../hooks/useUser";
 import { StorageManager } from "@aws-amplify/ui-react-storage";
+import { toast } from "react-toastify";
 
 const NameResidenceModal = ({ id, open, setNRModal }) => {
   const userDets = useUserObserver();
@@ -78,6 +79,7 @@ const NameResidenceModal = ({ id, open, setNRModal }) => {
             }}
             onSuccess={() => {
               setNRModal(false);
+              toast.success(`User details updated.`);
             }}
           />
         </Flex>

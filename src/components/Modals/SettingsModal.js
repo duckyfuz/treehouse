@@ -10,6 +10,7 @@ import { UserDetails } from "../../models";
 import { useEffect, useState } from "react";
 import ProfilePictureModal from "./ProfilePictureModal";
 import NameResidenceModal from "./NameResidenceModal";
+import { toast } from "react-toastify";
 
 function SettingsModal({ open, setOpenSettings }) {
   const userDets = useUserObserver();
@@ -85,7 +86,11 @@ function SettingsModal({ open, setOpenSettings }) {
                 changePictureHandler={() => {
                   setPictureModal(true);
                 }}
-                changePasswordHandler={() => {}}
+                changePasswordHandler={() => {
+                  toast.error(
+                    `This feature is still being worked on! Try again in a month or so.`
+                  );
+                }}
                 editProfileHandler={() => {
                   setNRModal(true);
                 }}

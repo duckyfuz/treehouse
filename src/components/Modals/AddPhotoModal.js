@@ -5,6 +5,7 @@ import Modal from "@mui/material/Modal";
 import { AddPhotoForm } from "../../ui-components";
 
 import { useUserObserver } from "../../hooks/useUser";
+import { toast } from "react-toastify";
 
 const AddPhotoModal = ({
   id,
@@ -61,6 +62,9 @@ const AddPhotoModal = ({
             onSuccess={() => {
               setOpenAddPhotoModal(false);
               setReloadHandler(!reloadHandler);
+              toast.success(
+                `Successfully uploaded images! Click on "View Pictures" to take a look.`
+              );
             }}
           />
         </Flex>

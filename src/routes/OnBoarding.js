@@ -4,11 +4,12 @@ import { useNavigate } from "react-router-dom";
 import { DataStore } from "aws-amplify";
 import { Flex, Text, useAuthenticator } from "@aws-amplify/ui-react";
 
-import { UserDetailsCreateForm, UserDetailsUpdateForm } from "../ui-components";
+import { OnboardingForm, UserDetailsCreateForm } from "../ui-components";
 
 import { UserDetails } from "../models";
 
 import { useUserObserver } from "../hooks/useUser";
+import { toast } from "react-toastify";
 
 export const OnBoarding = () => {
   const { user, authStatus } = useAuthenticator((context) => [context.user]);
@@ -23,7 +24,6 @@ export const OnBoarding = () => {
         navigate("/dashboard");
       }
       async function getUserID() {
-        console.log(user.username);
         const userDetails = await DataStore.query(UserDetails, (c) =>
           c.name.eq(user.username)
         );
@@ -52,13 +52,24 @@ export const OnBoarding = () => {
         updatedFields["name"] = user.username;
         updatedFields["activitiesAttended"] = [];
         updatedFields["activitiesHosted"] = [];
+        console.log(updatedFields);
         return updatedFields;
+      }}
+      onSuccess={() => {
+        toast.success(`Welcome aboard!`);
       }}
     />
   );
 
   if (userDetailsCreated) {
-    content = <UserDetailsUpdateForm id={userID} />;
+    content = (
+      <OnboardingForm
+        id={userID}
+        onSuccess={() => {
+          toast.success(`Welcome aboard!`);
+        }}
+      />
+    );
   }
 
   return (

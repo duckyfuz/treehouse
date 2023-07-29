@@ -23,6 +23,7 @@ import {
   InAppMessageDisplay,
   InAppMessagingProvider,
 } from "@aws-amplify/ui-react-notifications";
+import { ToastContainer } from "react-toastify";
 
 const { InAppMessaging } = Notifications;
 
@@ -56,6 +57,18 @@ function App() {
             </Routes>
           </BrowserRouter>
         </Flex>
+        <ToastContainer
+          position="top-center"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
       </ThemeProvider>
     </InAppMessagingProvider>
   );

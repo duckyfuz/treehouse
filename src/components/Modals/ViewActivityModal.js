@@ -8,6 +8,7 @@ import { FutureActivityModal, UserCard } from "../../ui-components";
 import { ActivityItem, UserDetails } from "../../models";
 
 import convertISOToCustomFormat from "../../utils";
+import { toast } from "react-toastify";
 
 const { InAppMessaging } = Notifications;
 
@@ -48,6 +49,7 @@ const ViewActivityModal = ({ userDets, open, activity, closeModalHandler }) => {
 
   const contactHostHandler = () => {
     console.log("Contacting Host");
+    toast.error(`This feature is still being worked on! Try again in a month or so.`);
   };
 
   // Update ActivityItem, then UserDetails, send IAM event (Analytics kinda iffy)
@@ -74,6 +76,7 @@ const ViewActivityModal = ({ userDets, open, activity, closeModalHandler }) => {
     });
     Analytics.record({ name: "participation" });
     setAttendContact([true, false]);
+    toast.success(`You are taking part in: ${activity.title}`);
     closeModalHandler();
   };
 
