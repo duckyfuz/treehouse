@@ -21,7 +21,7 @@ When I discovered the Hashnode AWS hackathon, I saw the perfect opportunity to b
 
 **treehouse:** [https://dev.d1ykjigyeh5h3.amplifyapp.com/](https://dev.d1ykjigyeh5h3.amplifyapp.com/)  
 **Github:** [https://github.com/duckyfuz/treehouse](https://github.com/duckyfuz/treehouse)  
-**Figma**: [Link](https://www.figma.com/file/pByUaxkJpRDbwUOvTLBzzy/treehouseAmplifyAWS?type=design&node-id=861%3A3635&mode=design&t=4O4AVPnPuD4HL7m1-1) (View `MyComponents` page)
+**Figma**: [Link](https://www.figma.com/file/pByUaxkJpRDbwUOvTLBzzy/treehouseAmplifyAWS?type=design&node-id=861%3A3635&mode=design&t=4O4AVPnPuD4HL7m1-1) (Visit `MyComponents` page)
 
 ![](https://cdn.hashnode.com/res/hashnode/image/upload/v1690284459412/6f0dae94-eb8d-4897-8b29-dc779ca688af.png align="center")
 
@@ -105,9 +105,9 @@ root.render(
 );
 ```
 
-That's it! What used to take hours to create could now be done in minutes with the help of AWS Amplify.
+That's it! What used to take hours to create could now be done in minutes with the help of AWS Amplify. I even managed to [add OAuth](https://docs.amplify.aws/lib/auth/social/q/platform/js/) for users to create an account with Google without any prior knowledge of authorisation frameworks!
 
-I opted to make a personalised login page with the `<Authenticator />` component:
+I opted to make a personalised login page with the `<Authenticator />` component - this way, I would have space to spruce up the login page in the future. ✨Fancy.✨
 
 ```javascript
 const services = {
@@ -119,8 +119,6 @@ const services = {
 
 <Authenticator services={services} />
 ```
-
-This way, I would have space to spruce up the login page in the future. ✨Fancy.✨
 
 ![](https://cdn.hashnode.com/res/hashnode/image/upload/v1690370805736/722ee09a-b0e9-40b9-8476-ac2d8b00286c.png align="center")
 
@@ -240,11 +238,11 @@ Adding a S3 bucket to my project was extremely easy with Amplify Studio. As my a
 
 ![](https://cdn.hashnode.com/res/hashnode/image/upload/v1690377857536/11dd515e-758a-4471-8e62-387351034a6d.png align="center")
 
-Fetching data from the S3 bucket was simple as well - especially after figuring out how to utilise the `public/`, `protected/` and `private/` folders of the bucket.
+Fetching data from the S3 bucket was simple as well - especially after figuring out how to utilise the `public/`, `protected/` and `private/` folders of the bucket. For this project, I mainly used the `public/` folder - after all, the pictures are meant to be shared among everyone!
 
 ### 💬 Amplify In-App Messaging
 
-I wanted to send encouraging messages to the user when they attended or hosted activities and I found Amplify's In-App Messaging component to be superrrrr useful for that.
+I wanted to send encouraging messages to the user when they attended or hosted activities and I found Amplify's In-App Messaging component to be EXTREMELY useful for that.
 
 To start, I created a simple campaign in AWS Pinpoint with the trigger event `Participation` and the attribute `participated: 1`.
 
@@ -278,7 +276,7 @@ const attendActivityHandler = async () => {
 };
 ```
 
-You might now be wondering why I didn't just use a popular React library like [react-toastify](https://www.npmjs.com/package/react-toastify) to display messages to the user...
+You might now be wondering why I didn't just use a popular library like [react-toastify](https://www.npmjs.com/package/react-toastify) to display messages to the user...
 
 Well, while these libraries are arguably easier to customise and simpler to use (I still have yet to figure out how to [use custom components and styles with In-App Messaging](https://ui.docs.amplify.aws/react/connected-components/in-app-messaging)), with Amplify's In-App Messaging, I can update, add and delete campaign messages on the AWS Console without making a single commit on my codebase. See for example:
 
@@ -292,7 +290,7 @@ My usage of AWS Analytics is pretty basic. All I wanted to do was to gather data
 
 ![](https://cdn.hashnode.com/res/hashnode/image/upload/v1690427427042/f6e1f121-7d1a-4f63-98bb-ce8844b2cb01.png align="center")
 
-By [recording custom events](https://docs.amplify.aws/lib/analytics/record/q/platform/js/#recording-custom-events), I was able to gather even more user data. With just one additional line of code `Analytics.record({ name: 'albumVisit' })` in the app's click handlers, I was able to easily record the user's actions. With AWS Analytics, I could find out how often users registered attendance for events, how often they hosted new events, and most importantly, how often they view their event photos.
+By [recording custom events](https://docs.amplify.aws/lib/analytics/record/q/platform/js/#recording-custom-events), I was able to gather even more user data. With just one additional line of code `Analytics.record({ name: 'eventName' })` in the app's click handlers, I was able to easily record the user's actions. With AWS Analytics, I could find out how often users registered attendance for events, how often they hosted new events and how often they view their archived events.
 
 ![](https://cdn.hashnode.com/res/hashnode/image/upload/v1690428403029/a8a20ffd-48e1-4a75-9ff7-bab07f86cde0.png align="center")
 
@@ -332,15 +330,13 @@ TESTER seems to be craving a game of [Mahjong](https://en.wikipedia.org/wiki/Mah
 
 ![](https://cdn.hashnode.com/res/hashnode/image/upload/v1690446840210/8f0f8934-f8e6-414e-b86f-0edb2fab704f.png align="center")
 
-![](https://cdn.hashnode.com/res/hashnode/image/upload/v1690541311315/cbaa9873-e251-4b90-af97-69dfe0111e9e.png align="center")
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1690611513680/6fb41e07-0163-4bf6-8bb3-42f40a90cf3b.png align="center")
 
 ![](https://cdn.hashnode.com/res/hashnode/image/upload/v1690446935750/34fa4653-f4eb-4cd5-ab05-bc1759783e49.png align="center")
 
 The day after the event, the activity card will be moved to the Archive tab, where it'll gain a delightful picture slot. Upon clicking on the card, users will be able to share photos they took, as well as view those added by others.
 
-![](https://cdn.hashnode.com/res/hashnode/image/upload/v1690541639822/537a8475-31db-41a6-80db-1f2ae4287b55.png align="center")
-
-![](https://cdn.hashnode.com/res/hashnode/image/upload/v1690541664233/59e41d5e-b733-4329-b338-1904563b203b.png align="center")
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1690611406747/c50ebdcd-7eae-4702-9cec-20f566657292.png align="center")
 
 ![](https://cdn.hashnode.com/res/hashnode/image/upload/v1690541728164/e7a01c1a-a77e-44cc-b561-8baecfe676f1.png align="center")
 
@@ -382,7 +378,7 @@ useEffect(() => {
 
 And voila! The error plaguing me was finally dealt with. Imagine how many hours I could have saved if I just used Rix from the start...
 
-And that's not all - whenever I faced an error I did not understand, all I needed to do was paste the error into Rix and I received a detailed explanation of why the error occurred and how I could fix it. All hail our AI overlords.
+And that's not all - whenever I faced an error I did not understand, all I needed to do was paste the error into Rix and I received a detailed explanation of why the error occurred and how I could fix it. All hail our AI overlords. 🤖
 
 ### 🦥 More Struggles...
 
@@ -417,7 +413,7 @@ This is because I used an automatically generated form component from the UI lib
 
 ![](https://cdn.hashnode.com/res/hashnode/image/upload/v1690547730692/9a0fe0c4-6e4b-4ad4-9c61-4605e2f1b37c.png align="center")
 
-As you can see, there is no way to create a dynamic list of dropdown items. (Hopefully, there will be in the future!)
+As you can see, there is no way to create a dynamic list of dropdown items. Hopefully, there'll be one in the future!
 
 ### 🏁 Conclusion
 
