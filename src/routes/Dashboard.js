@@ -89,7 +89,8 @@ export const Dashboard = () => {
         });
       }
     })();
-  }, [userDets, user, authStatus]);
+    // eslint-disable-next-line
+  }, [userDets, authStatus]);
 
   const AddActivityButton = () => {
     return (

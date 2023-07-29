@@ -59,6 +59,7 @@ const ViewArchiveModal = ({
         setImageList([...new Set(imageList)]);
       })();
     }
+    // eslint-disable-next-line
   }, [id, reloadHandler]);
 
   useEffect(() => {
