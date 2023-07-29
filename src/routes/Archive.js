@@ -53,6 +53,8 @@ export const Archive = () => {
       if (user) {
         getOnBoardingStatus();
       }
+    } else if (authStatus === "unauthenticated") {
+      navigate("/login");
     }
   }, [navigate, userDets, authStatus, user]);
 

@@ -60,6 +60,8 @@ export const Dashboard = () => {
       if (user) {
         getOnBoardingStatus();
       }
+    } else if (authStatus === "unauthenticated") {
+      navigate("/login");
     }
   }, [navigate, userDets, authStatus, user]);
 
@@ -271,7 +273,6 @@ export const Dashboard = () => {
               setOpenViewActivityModal(false);
             }}
           />
-          
         </Flex>
       )}
     </>

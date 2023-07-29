@@ -104,7 +104,7 @@ export const Home = () => {
         borderRadius={"15px"}
         image={imageURL}
         getStartedHandler={() => {
-          navigate("/login");
+          navigate("/dashboard");
         }}
         overrides={{
           "image 1": {
@@ -129,7 +129,7 @@ export const Home = () => {
         <HomePageFinisher
           borderRadius={"15px"}
           createAccountHandler={() => {
-            navigate("/login");
+            navigate("/dashboard");
           }}
         />
       )}
