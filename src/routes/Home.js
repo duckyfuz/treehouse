@@ -38,7 +38,7 @@ export const Home = () => {
         setImageURL(
           "https://media.istockphoto.com/id/1357830750/vector/geometric-illustration-of-multi-coloured-human-figures.jpg?s=612x612&w=0&k=20&c=2uvkAa8B9pyBcMbMUoE6zQVXPrNAz8Tdysdfq8G3oKM="
         );
-        console.error("Error fetching the image:", error);
+        console.error("Not Authenticated - showing default picture:", error);
       }
     })();
   }, []);

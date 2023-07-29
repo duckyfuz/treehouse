@@ -14,6 +14,7 @@ export function Login() {
   const from = useRef(initialFrom);
 
   useEffect(() => {
+    // Check if the route is set to "authenticated"
     if (route === "authenticated") {
       navigate(from.current, { replace: true });
     }

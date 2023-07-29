@@ -20,11 +20,16 @@ export const OnBoarding = () => {
 
   useEffect(() => {
     if (authStatus === "authenticated") {
+      // If the user is authenticated and has completed onboarding, navigate to "/dashboard".
       if (userDets && userDets.onBoarded) {
         navigate("/dashboard");
       }
+
+      // Check if userDets is not null and update userDetailsCreated state accordingly.
       if (userDets !== null) {
         setUserDetailsCreated(true);
+
+        // Fetch user details from DataStore using the user's username and update the userID state.
         (async function () {
           const userDetails = await DataStore.query(UserDetails, (c) =>
             c.name.eq(user.username)
@@ -32,6 +37,7 @@ export const OnBoarding = () => {
           setUserID(userDetails[0].id);
         })();
       } else {
+        // If userDets is null, set userDetailsCreated state to false.
         setUserDetailsCreated(false);
       }
     }

@@ -25,6 +25,7 @@ export const useUserObserver = () => {
         userSubscription.unsubscribe();
       };
     }
+    // eslint-disable-next-line
   }, [authStatus]);
 
   return userDets;

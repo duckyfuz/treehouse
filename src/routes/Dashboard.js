@@ -63,32 +63,37 @@ export const Dashboard = () => {
 
   // Fetch activites + sort and filter
   useEffect(() => {
-    (async function () {
-      if (userDets) {
-        // Fetch and sort activities
-        const sortedActivities = await DataStore.query(
-          ActivityItem,
-          Predicates.ALL,
-          {
-            sort: (s) => s.dateTime(SortDirection.ASCENDING),
-          }
-        );
-
-        // Filter activites by date and residence (unable to do so within amplify)
-        const currentActivities = filterDateTimeBeforeToday(sortedActivities);
-        const filteredActivities = currentActivities.filter((activity) =>
-          userDets.residence.includes(activity.residence)
-        );
-        setFutureActivities(filteredActivities);
+    async function fetchDataAndProcess() {
+      try {
+        if (userDets) {
+          // Fetch and sort activities
+          const sortedActivities = await DataStore.query(
+            ActivityItem,
+            Predicates.ALL,
+            {
+              sort: (s) => s.dateTime(SortDirection.ASCENDING),
+            }
+          );
+          // Filter activities by date and residence (unable to do so within amplify)
+          const currentActivities = filterDateTimeBeforeToday(sortedActivities);
+          const filteredActivities = currentActivities.filter((activity) =>
+            userDets.residence.includes(activity.residence)
+          );
+          setFutureActivities(filteredActivities);
+          setIsLoading(false);
+          // Update Analytics Identifiers
+          await Analytics.updateEndpoint({
+            userId: user.id,
+            attributes: { residence: user.residence },
+          });
+        }
+      } catch (error) {
+        console.error("Error fetching and processing data:", error);
         setIsLoading(false);
-
-        // Update Analytics Identifiers
-        await Analytics.updateEndpoint({
-          userId: user.id,
-          attributes: { residence: user.residence },
-        });
       }
-    })();
+    }
+    // Call the fetchDataAndProcess function
+    fetchDataAndProcess();
     // eslint-disable-next-line
   }, [userDets, authStatus]);
 

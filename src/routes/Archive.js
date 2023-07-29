@@ -59,36 +59,51 @@ export const Archive = () => {
 
   // Fetch activites + sort and filter + fetch images
   useEffect(() => {
-    (async function () {
+    async function fetchAndProcessData() {
       if (userDets) {
-        const sortedActivities = await DataStore.query(
-          ActivityItem,
-          Predicates.ALL,
-          {
-            sort: (s) => s.dateTime(SortDirection.DESCENDING),
-          }
-        );
-        const pastActivities = filterDateTimeAfterToday(sortedActivities);
-        const filteredActivities = pastActivities.filter(
-          (activity) =>
-            userDets.residence.includes(activity.residence) &&
-            (activity.participants.includes(userDets.id) ||
-              activity.host === userDets.name)
-        );
-        setPastActivities(filteredActivities);
-
-        filteredActivities.forEach((activity) => {
-          (async function () {
-            const link = await Storage.get(activity.images[0]);
-            setImageDict((prevImageDict) => ({
-              ...prevImageDict,
-              [activity.id]: link,
-            }));
-          })();
-        });
-        setIsLoading(false);
+        try {
+          const sortedActivities = await DataStore.query(
+            ActivityItem,
+            Predicates.ALL,
+            {
+              sort: (s) => s.dateTime(SortDirection.DESCENDING),
+            }
+          );
+          const filteredActivities = filterDateTimeAfterToday(
+            sortedActivities
+          ).filter(
+            (activity) =>
+              userDets.residence.includes(activity.residence) &&
+              (activity.participants.includes(userDets.id) ||
+                activity.host === userDets.name)
+          );
+          setPastActivities(filteredActivities);
+          const fetchImagePromises = filteredActivities.map(
+            async (activity) => {
+              const link = await Storage.get(activity.images[0]);
+              return { id: activity.id, link };
+            }
+          );
+          // Use Promise.all to wait for all image fetch operations to complete
+          const imageResults = await Promise.all(fetchImagePromises);
+          // Transform the array of image results into an object using reduce
+          const imageDict = imageResults.reduce((acc, { id, link }) => {
+            acc[id] = link;
+            return acc;
+          }, {});
+          setImageDict((prevImageDict) => ({
+            ...prevImageDict,
+            ...imageDict,
+          }));
+          setIsLoading(false);
+        } catch (error) {
+          console.error("Error fetching and processing data:", error);
+          setIsLoading(false);
+        }
       }
-    })();
+    }
+    // Call the fetchAndProcessData function
+    fetchAndProcessData();
   }, [userDets, setActiveActivity, reloadHandler]);
 
   const openViewActivityModalHandler = () => {
