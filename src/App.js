@@ -13,7 +13,6 @@ import { Login } from "./routes/Login";
 import { OnBoarding } from "./routes/OnBoarding";
 import { Dashboard } from "./routes/Dashboard";
 import { Archive } from "./routes/Archive";
-import { Settings } from "./routes/Settings";
 
 import { SideLayout } from "./components/Layout/SideLayout";
 

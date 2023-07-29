@@ -408,6 +408,10 @@ export default function OnboardingForm(props) {
           ></StorageManager>
         )}
       </Field>
+      <Divider
+        orientation="horizontal"
+        {...getOverrideProps(overrides, "SectionalElement0")}
+      ></Divider>
       <ArrayField
         onChange={async (items) => {
           let values = items;
@@ -480,10 +484,6 @@ export default function OnboardingForm(props) {
           ></option>
         </SelectField>
       </ArrayField>
-      <Divider
-        orientation="horizontal"
-        {...getOverrideProps(overrides, "SectionalElement0")}
-      ></Divider>
       <SwitchField
         label="I accept the terms and conditions.   "
         defaultChecked={false}

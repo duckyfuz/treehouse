@@ -11,7 +11,7 @@ export function Login() {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const initialFrom = location.state?.from?.pathname || "/dashboard";
+  const initialFrom = location.state?.from?.pathname || "/";
   const from = useRef(initialFrom);
 
   useEffect(() => {
@@ -23,7 +23,7 @@ export function Login() {
   const services = {
     async handleConfirmSignUp({ username, code }) {
       await Auth.confirmSignUp(username, code);
-      from.current = "/onboarding";
+      from.current = "/";
     },
   };
 

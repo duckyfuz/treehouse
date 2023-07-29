@@ -7,9 +7,9 @@
 /* eslint-disable */
 import * as React from "react";
 import { getOverrideProps } from "@aws-amplify/ui-react/internal";
-import { Button, Flex, Text, TextField, View } from "@aws-amplify/ui-react";
+import { Button, Flex, Text, TextField } from "@aws-amplify/ui-react";
 export default function HomePageFooter(props) {
-  const { overrides, ...rest } = props;
+  const { subscribeHandler, overrides, ...rest } = props;
   return (
     <Flex
       gap="32px"
@@ -123,6 +123,7 @@ export default function HomePageFooter(props) {
             isDisabled={false}
             variation="primary"
             children="Subscribe"
+            onClick={subscribeHandler}
             {...getOverrideProps(overrides, "Button")}
           ></Button>
         </Flex>
@@ -170,14 +171,9 @@ export default function HomePageFooter(props) {
             position="relative"
             padding="0px 0px 0px 0px"
             whiteSpace="pre-wrap"
-            children="Made with"
-            {...getOverrideProps(overrides, "Made with")}
+            children="Made with AWS Amplify"
+            {...getOverrideProps(overrides, "Made with AWS Amplify")}
           ></Text>
-          <View
-            width="127.88px"
-            height="18.91px"
-            {...getOverrideProps(overrides, "LogoWithText")}
-          ></View>
           <Text
             fontFamily="Inter"
             fontSize="12px"

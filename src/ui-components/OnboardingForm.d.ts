@@ -31,8 +31,8 @@ export declare type OnboardingFormOverridesProps = {
     OnboardingFormGrid?: PrimitiveOverrideProps<GridProps>;
     preferedName?: PrimitiveOverrideProps<TextFieldProps>;
     profilePicture?: PrimitiveOverrideProps<StorageManagerProps>;
-    residence?: PrimitiveOverrideProps<SelectFieldProps>;
     SectionalElement0?: PrimitiveOverrideProps<DividerProps>;
+    residence?: PrimitiveOverrideProps<SelectFieldProps>;
     onBoarded?: PrimitiveOverrideProps<SwitchFieldProps>;
 } & EscapeHatchProps;
 export declare type OnboardingFormProps = React.PropsWithChildren<{
