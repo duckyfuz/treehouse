@@ -44,7 +44,7 @@ export const Dashboard = () => {
   useEffect(() => {
     if (authStatus === "authenticated") {
       if (userDets && !userDets.onBoarded) {
-        navigate("/onboarding");
+        navigate("/");
       }
       if (user) {
         (async function getOnBoardingStatus() {
