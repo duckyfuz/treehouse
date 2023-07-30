@@ -34,7 +34,7 @@ export default function HomePageFeatures(props) {
         shrink="0"
         position="relative"
         padding="0px 0px 0px 0px"
-        {...getOverrideProps(overrides, "Frame 13629766592")}
+        {...getOverrideProps(overrides, "Container")}
       >
         <Flex
           gap="24px"
@@ -46,7 +46,7 @@ export default function HomePageFeatures(props) {
           shrink="0"
           position="relative"
           padding="0px 0px 0px 0px"
-          {...getOverrideProps(overrides, "Frame 13629766593")}
+          {...getOverrideProps(overrides, "TopContainer")}
         >
           <Flex
             gap="16px"
@@ -63,7 +63,7 @@ export default function HomePageFeatures(props) {
             boxShadow="0px 2px 6px rgba(0.05098039284348488, 0.10196078568696976, 0.14901961386203766, 0.15000000596046448)"
             padding="40px 40px 40px 40px"
             backgroundColor="rgba(239,240,240,1)"
-            {...getOverrideProps(overrides, "Frame 37429766594")}
+            {...getOverrideProps(overrides, "LeftContainer29766594")}
           >
             <Text
               fontFamily="Inter"
@@ -129,7 +129,7 @@ export default function HomePageFeatures(props) {
             boxShadow="0px 2px 6px rgba(0.05098039284348488, 0.10196078568696976, 0.14901961386203766, 0.15000000596046448)"
             padding="40px 40px 40px 40px"
             backgroundColor="rgba(239,240,240,1)"
-            {...getOverrideProps(overrides, "Frame 37329766597")}
+            {...getOverrideProps(overrides, "RightContainer29766597")}
           >
             <Text
               fontFamily="Inter"
@@ -191,7 +191,7 @@ export default function HomePageFeatures(props) {
           shrink="0"
           position="relative"
           padding="0px 0px 0px 0px"
-          {...getOverrideProps(overrides, "Frame 393")}
+          {...getOverrideProps(overrides, "BottomContainer")}
         >
           <Flex
             gap="16px"
@@ -209,7 +209,7 @@ export default function HomePageFeatures(props) {
             borderRadius="8px"
             padding="40px 40px 40px 40px"
             backgroundColor="rgba(239,240,240,1)"
-            {...getOverrideProps(overrides, "Frame 37429766601")}
+            {...getOverrideProps(overrides, "LeftContainer29766601")}
           >
             <Text
               fontFamily="Inter"
@@ -275,7 +275,7 @@ export default function HomePageFeatures(props) {
             boxShadow="0px 2px 6px rgba(0.05098039284348488, 0.10196078568696976, 0.14901961386203766, 0.15000000596046448)"
             padding="40px 40px 40px 40px"
             backgroundColor="rgba(239,240,240,1)"
-            {...getOverrideProps(overrides, "Frame 37329766604")}
+            {...getOverrideProps(overrides, "RightContainer29766604")}
           >
             <Text
               fontFamily="Inter"

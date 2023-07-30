@@ -6,20 +6,23 @@
 
 import * as React from "react";
 import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
-import { ButtonProps, FlexProps, TextFieldProps, TextProps } from "@aws-amplify/ui-react";
+import { ButtonProps, FlexProps, TextProps } from "@aws-amplify/ui-react";
 import { SyntheticEvent } from "react";
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type HomePageFooterOverridesProps = {
     HomePageFooter?: PrimitiveOverrideProps<FlexProps>;
-    "Frame 313"?: PrimitiveOverrideProps<FlexProps>;
-    "Frame 434"?: PrimitiveOverrideProps<FlexProps>;
+    TopContainer?: PrimitiveOverrideProps<FlexProps>;
+    NewsletterContainer?: PrimitiveOverrideProps<FlexProps>;
     "Sign up for our newsletter"?: PrimitiveOverrideProps<TextProps>;
     "No spam. We promise."?: PrimitiveOverrideProps<TextProps>;
-    "Frame 435"?: PrimitiveOverrideProps<FlexProps>;
-    TextField?: PrimitiveOverrideProps<TextFieldProps>;
+    SubscribeContainer?: PrimitiveOverrideProps<FlexProps>;
+    EmailContainer?: PrimitiveOverrideProps<FlexProps>;
+    InputContainer?: PrimitiveOverrideProps<FlexProps>;
+    Input?: PrimitiveOverrideProps<FlexProps>;
+    placeholder?: PrimitiveOverrideProps<TextProps>;
     Button?: PrimitiveOverrideProps<ButtonProps>;
-    "Frame 433"?: PrimitiveOverrideProps<FlexProps>;
-    "Frame 1"?: PrimitiveOverrideProps<FlexProps>;
+    FooterContainer?: PrimitiveOverrideProps<FlexProps>;
+    MadeContainer?: PrimitiveOverrideProps<FlexProps>;
     "Made with AWS Amplify"?: PrimitiveOverrideProps<TextProps>;
     "(and lots of time)"?: PrimitiveOverrideProps<TextProps>;
     "\u00A9 2023 duckyfuz. All rights reserved."?: PrimitiveOverrideProps<TextProps>;

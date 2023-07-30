@@ -1,4 +1,3 @@
-// Refactored CAA 250723
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -105,33 +104,20 @@ export const Home = () => {
         getStartedHandler={() => {
           navigate("/dashboard");
         }}
-        overrides={{
-          "image 1": {
-            borderRadius: "15px",
-          },
-        }}
       />
       <HomePageFeatures />
-      {authStatus === "authenticated" ? (
-        <HomePageFinisher
-          borderRadius={"15px"}
-          createAccountHandler={() => {
-            navigate("/login");
-          }}
-          overrides={{
-            Button: {
-              children: "Let's Get Started!",
-            },
-          }}
-        />
-      ) : (
-        <HomePageFinisher
-          borderRadius={"15px"}
-          createAccountHandler={() => {
-            navigate("/dashboard");
-          }}
-        />
-      )}
+      <HomePageFinisher
+        borderRadius={"15px"}
+        buttonText={
+          authStatus === "authenticated"
+            ? "Let's Get Started!"
+            : "Create an Account"
+        }
+        createAccountHandler={() => {
+          navigate("/dashboard");
+        }}
+      />
+
       <HomePageFooter
         subscribeHandler={() => {
           toast(`That button is actually just for show.`);

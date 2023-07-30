@@ -13,16 +13,21 @@ import {
 } from "@aws-amplify/ui-react/internal";
 import { Button, Flex, Text } from "@aws-amplify/ui-react";
 export default function HomePageFinisher(props) {
-  const { createAccountHandler, overrides: overridesProp, ...rest } = props;
+  const {
+    createAccountHandler,
+    buttonText,
+    overrides: overridesProp,
+    ...rest
+  } = props;
   const variants = [
     {
       overrides: {
         Heading: {},
         Body: {},
-        Message: {},
+        Message39605310: {},
         Button: {},
-        HeroMessage: {},
-        Left: {},
+        Message39605309: {},
+        Container: {},
         HomePageFinisher: {},
       },
       variantValues: { type: "Intro" },
@@ -60,7 +65,7 @@ export default function HomePageFinisher(props) {
         padding="40px 120px 40px 120px"
         backgroundColor="rgba(0,0,0,0)"
         display="flex"
-        {...getOverrideProps(overrides, "Left")}
+        {...getOverrideProps(overrides, "Container")}
       >
         <Flex
           gap="12px"
@@ -73,7 +78,7 @@ export default function HomePageFinisher(props) {
           position="relative"
           padding="0px 0px 0px 0px"
           display="flex"
-          {...getOverrideProps(overrides, "HeroMessage")}
+          {...getOverrideProps(overrides, "Message39605309")}
         >
           <Flex
             gap="16px"
@@ -86,7 +91,7 @@ export default function HomePageFinisher(props) {
             position="relative"
             padding="0px 0px 0px 0px"
             display="flex"
-            {...getOverrideProps(overrides, "Message")}
+            {...getOverrideProps(overrides, "Message39605310")}
           >
             <Text
               fontFamily="Inter"
@@ -136,11 +141,12 @@ export default function HomePageFinisher(props) {
           <Button
             width="unset"
             height="unset"
+            label="Create an Account"
             shrink="0"
             size="large"
             isDisabled={false}
             variation="primary"
-            children="Create an Account"
+            children={buttonText}
             onClick={createAccountHandler}
             {...getOverrideProps(overrides, "Button")}
           ></Button>

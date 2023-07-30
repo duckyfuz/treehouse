@@ -20,11 +20,11 @@ export default function HomePageIntro(props) {
         Heading: {},
         Body: {},
         Message: {},
-        Button: {},
-        HeroMessage: {},
-        Left: {},
-        "image 1": {},
-        "Group 1": {},
+        DashboardButton: {},
+        MessageContainer: {},
+        LeftContainer: {},
+        Image: {},
+        ImageSlot: {},
         HomePageIntro: {},
       },
       variantValues: { type: "Intro" },
@@ -63,7 +63,7 @@ export default function HomePageIntro(props) {
         padding="120px 120px 120px 120px"
         backgroundColor="rgba(0,0,0,0)"
         display="flex"
-        {...getOverrideProps(overrides, "Left")}
+        {...getOverrideProps(overrides, "LeftContainer")}
       >
         <Flex
           gap="24px"
@@ -76,7 +76,7 @@ export default function HomePageIntro(props) {
           position="relative"
           padding="0px 0px 0px 0px"
           display="flex"
-          {...getOverrideProps(overrides, "HeroMessage")}
+          {...getOverrideProps(overrides, "MessageContainer")}
         >
           <Flex
             gap="16px"
@@ -144,7 +144,7 @@ export default function HomePageIntro(props) {
             variation="primary"
             children="Go to Dashboard"
             onClick={getStartedHandler}
-            {...getOverrideProps(overrides, "Button")}
+            {...getOverrideProps(overrides, "DashboardButton")}
           ></Button>
         </Flex>
       </Flex>
@@ -158,7 +158,7 @@ export default function HomePageIntro(props) {
         justifyContent="unset"
         shrink="0"
         position="relative"
-        {...getOverrideProps(overrides, "Group 1")}
+        {...getOverrideProps(overrides, "ImageSlot")}
       >
         <Image
           width="720px"
@@ -173,7 +173,8 @@ export default function HomePageIntro(props) {
           padding="0px 0px 0px 0px"
           objectFit="unset"
           src={image}
-          {...getOverrideProps(overrides, "image 1")}
+          borderRadius="15px"
+          {...getOverrideProps(overrides, "Image")}
         ></Image>
       </Flex>
     </Flex>

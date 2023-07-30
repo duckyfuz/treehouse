@@ -11,14 +11,14 @@ import { SyntheticEvent } from "react";
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type HomePageIntroOverridesProps = {
     HomePageIntro?: PrimitiveOverrideProps<FlexProps>;
-    Left?: PrimitiveOverrideProps<FlexProps>;
-    HeroMessage?: PrimitiveOverrideProps<FlexProps>;
+    LeftContainer?: PrimitiveOverrideProps<FlexProps>;
+    MessageContainer?: PrimitiveOverrideProps<FlexProps>;
     Message?: PrimitiveOverrideProps<FlexProps>;
     Heading?: PrimitiveOverrideProps<TextProps>;
     Body?: PrimitiveOverrideProps<TextProps>;
-    Button?: PrimitiveOverrideProps<ButtonProps>;
-    "Group 1"?: PrimitiveOverrideProps<FlexProps>;
-    "image 1"?: PrimitiveOverrideProps<ImageProps>;
+    DashboardButton?: PrimitiveOverrideProps<ButtonProps>;
+    ImageSlot?: PrimitiveOverrideProps<FlexProps>;
+    Image?: PrimitiveOverrideProps<ImageProps>;
 } & EscapeHatchProps;
 export declare type HomePageIntroProps = React.PropsWithChildren<Partial<FlexProps> & {
     image?: String;

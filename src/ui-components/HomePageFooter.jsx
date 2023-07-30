@@ -7,7 +7,7 @@
 /* eslint-disable */
 import * as React from "react";
 import { getOverrideProps } from "@aws-amplify/ui-react/internal";
-import { Button, Flex, Text, TextField } from "@aws-amplify/ui-react";
+import { Button, Flex, Text } from "@aws-amplify/ui-react";
 export default function HomePageFooter(props) {
   const { subscribeHandler, overrides, ...rest } = props;
   return (
@@ -35,7 +35,7 @@ export default function HomePageFooter(props) {
         alignSelf="stretch"
         position="relative"
         padding="0px 0px 0px 0px"
-        {...getOverrideProps(overrides, "Frame 313")}
+        {...getOverrideProps(overrides, "TopContainer")}
       >
         <Flex
           gap="10px"
@@ -47,7 +47,7 @@ export default function HomePageFooter(props) {
           shrink="0"
           position="relative"
           padding="0px 0px 0px 0px"
-          {...getOverrideProps(overrides, "Frame 434")}
+          {...getOverrideProps(overrides, "NewsletterContainer")}
         >
           <Text
             fontFamily="Inter"
@@ -102,24 +102,77 @@ export default function HomePageFooter(props) {
           shrink="0"
           position="relative"
           padding="0px 0px 0px 0px"
-          {...getOverrideProps(overrides, "Frame 435")}
+          {...getOverrideProps(overrides, "SubscribeContainer")}
         >
-          <TextField
+          <Flex
+            gap="8px"
+            direction="column"
             width="300px"
             height="unset"
-            placeholder="Your email"
+            justifyContent="flex-start"
+            alignItems="flex-start"
             shrink="0"
-            size="default"
-            isDisabled={false}
-            labelHidden={true}
-            variation="default"
-            {...getOverrideProps(overrides, "TextField")}
-          ></TextField>
+            position="relative"
+            padding="0px 0px 0px 0px"
+            {...getOverrideProps(overrides, "EmailContainer")}
+          >
+            <Flex
+              gap="0"
+              direction="column"
+              width="unset"
+              height="unset"
+              justifyContent="flex-start"
+              alignItems="flex-start"
+              shrink="0"
+              alignSelf="stretch"
+              position="relative"
+              padding="0px 0px 0px 0px"
+              {...getOverrideProps(overrides, "InputContainer")}
+            >
+              <Flex
+                gap="10px"
+                direction="column"
+                width="300px"
+                height="unset"
+                justifyContent="center"
+                alignItems="center"
+                shrink="0"
+                position="relative"
+                border="1px SOLID rgba(174,179,183,1)"
+                borderRadius="4px"
+                padding="7px 15px 7px 15px"
+                {...getOverrideProps(overrides, "Input")}
+              >
+                <Text
+                  fontFamily="Inter"
+                  fontSize="16px"
+                  fontWeight="400"
+                  color="rgba(128,128,128,1)"
+                  lineHeight="24px"
+                  textAlign="left"
+                  display="block"
+                  direction="column"
+                  justifyContent="unset"
+                  width="unset"
+                  height="unset"
+                  gap="unset"
+                  alignItems="unset"
+                  shrink="0"
+                  alignSelf="stretch"
+                  position="relative"
+                  padding="0px 0px 0px 0px"
+                  whiteSpace="pre-wrap"
+                  children="Your email"
+                  {...getOverrideProps(overrides, "placeholder")}
+                ></Text>
+              </Flex>
+            </Flex>
+          </Flex>
           <Button
-            width="unset"
-            height="unset"
+            width="187px"
+            height="40px"
             shrink="0"
-            size="default"
+            size="large"
             isDisabled={false}
             variation="primary"
             children="Subscribe"
@@ -139,7 +192,7 @@ export default function HomePageFooter(props) {
         alignSelf="stretch"
         position="relative"
         padding="0px 0px 0px 0px"
-        {...getOverrideProps(overrides, "Frame 433")}
+        {...getOverrideProps(overrides, "FooterContainer")}
       >
         <Flex
           gap="8px"
@@ -151,7 +204,7 @@ export default function HomePageFooter(props) {
           shrink="0"
           position="relative"
           padding="0px 0px 0px 0px"
-          {...getOverrideProps(overrides, "Frame 1")}
+          {...getOverrideProps(overrides, "MadeContainer")}
         >
           <Text
             fontFamily="Inter"
