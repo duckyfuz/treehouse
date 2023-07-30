@@ -21,7 +21,7 @@ export default function ProfileView(props) {
   } = props;
   return (
     <Flex
-      gap="16px"
+      gap="12px"
       direction="column"
       width="640px"
       height="unset"
@@ -34,7 +34,7 @@ export default function ProfileView(props) {
       {...rest}
     >
       <Flex
-        gap="24px"
+        gap="12px"
         direction="column"
         width="unset"
         height="unset"
@@ -44,66 +44,8 @@ export default function ProfileView(props) {
         alignSelf="stretch"
         position="relative"
         padding="24px 24px 24px 24px"
-        {...getOverrideProps(overrides, "Content")}
+        {...getOverrideProps(overrides, "Container")}
       >
-        <Flex
-          gap="8px"
-          direction="row"
-          width="unset"
-          height="unset"
-          justifyContent="flex-start"
-          alignItems="center"
-          shrink="0"
-          alignSelf="stretch"
-          position="relative"
-          padding="0px 0px 0px 0px"
-          {...getOverrideProps(overrides, "TextField40581897")}
-        >
-          <Text
-            fontFamily="Inter"
-            fontSize="20px"
-            fontWeight="700"
-            color="rgba(0,0,0,1)"
-            lineHeight="30px"
-            textAlign="left"
-            display="block"
-            direction="column"
-            justifyContent="unset"
-            width="unset"
-            height="unset"
-            gap="unset"
-            alignItems="unset"
-            shrink="0"
-            position="relative"
-            padding="0px 0px 0px 0px"
-            whiteSpace="pre-wrap"
-            children="Username:"
-            {...getOverrideProps(overrides, "label40581898")}
-          ></Text>
-          <Text
-            fontFamily="Inter"
-            fontSize="22px"
-            fontWeight="400"
-            color="rgba(0,0,0,1)"
-            lineHeight="33px"
-            textAlign="left"
-            display="block"
-            direction="column"
-            justifyContent="unset"
-            width="unset"
-            height="unset"
-            gap="unset"
-            alignItems="unset"
-            grow="1"
-            shrink="1"
-            basis="0"
-            position="relative"
-            padding="0px 0px 0px 0px"
-            whiteSpace="pre-wrap"
-            children={userDetails?.preferedName}
-            {...getOverrideProps(overrides, "placeholder40581896")}
-          ></Text>
-        </Flex>
         <Flex
           gap="32px"
           direction="row"
@@ -114,13 +56,13 @@ export default function ProfileView(props) {
           shrink="0"
           alignSelf="stretch"
           position="relative"
-          padding="0px 30px 0px 30px"
-          {...getOverrideProps(overrides, "Profile")}
+          padding="0px 0px 0px 0px"
+          {...getOverrideProps(overrides, "ProfileContainer")}
         >
           <Flex
             padding="0px 0px 0px 0px"
-            width="160px"
-            height="160px"
+            width="100px"
+            height="100px"
             display="block"
             gap="unset"
             alignItems="unset"
@@ -130,8 +72,8 @@ export default function ProfileView(props) {
             {...getOverrideProps(overrides, "ImageSlot")}
           >
             <Image
-              width="160px"
-              height="160px"
+              width="100px"
+              height="100px"
               display="block"
               gap="unset"
               alignItems="unset"
@@ -143,7 +85,7 @@ export default function ProfileView(props) {
               padding="0px 0px 0px 0px"
               objectFit="cover"
               src={profilePictureURL}
-              {...getOverrideProps(overrides, "image")}
+              {...getOverrideProps(overrides, "ProfilePicture")}
             ></Image>
           </Flex>
           <Button
@@ -155,66 +97,138 @@ export default function ProfileView(props) {
             variation="primary"
             children="Change Profile Picture"
             onClick={changePictureHandler}
-            {...getOverrideProps(overrides, "Button40581892")}
+            {...getOverrideProps(overrides, "ChangePictureButton")}
           ></Button>
         </Flex>
         <Flex
-          gap="8px"
-          direction="row"
+          gap="0"
+          direction="column"
           width="unset"
           height="unset"
           justifyContent="flex-start"
-          alignItems="center"
+          alignItems="flex-start"
           shrink="0"
           alignSelf="stretch"
           position="relative"
           padding="0px 0px 0px 0px"
-          {...getOverrideProps(overrides, "TextField40581904")}
+          {...getOverrideProps(overrides, "TextContainer")}
         >
-          <Text
-            fontFamily="Inter"
-            fontSize="20px"
-            fontWeight="700"
-            color="rgba(0,0,0,1)"
-            lineHeight="30px"
-            textAlign="left"
-            display="block"
-            direction="column"
-            justifyContent="unset"
+          <Flex
+            gap="8px"
+            direction="row"
             width="unset"
             height="unset"
-            gap="unset"
-            alignItems="unset"
+            justifyContent="flex-start"
+            alignItems="center"
             shrink="0"
+            alignSelf="stretch"
             position="relative"
             padding="0px 0px 0px 0px"
-            whiteSpace="pre-wrap"
-            children="Residence(s):"
-            {...getOverrideProps(overrides, "label40581905")}
-          ></Text>
-          <Text
-            fontFamily="Inter"
-            fontSize="22px"
-            fontWeight="400"
-            color="rgba(0,0,0,1)"
-            lineHeight="33px"
-            textAlign="left"
-            display="block"
-            direction="column"
-            justifyContent="unset"
+            {...getOverrideProps(overrides, "UsernameContainer")}
+          >
+            <Text
+              fontFamily="Inter"
+              fontSize="20px"
+              fontWeight="700"
+              color="rgba(0,0,0,1)"
+              lineHeight="30px"
+              textAlign="left"
+              display="block"
+              direction="column"
+              justifyContent="unset"
+              width="unset"
+              height="unset"
+              gap="unset"
+              alignItems="unset"
+              shrink="0"
+              position="relative"
+              padding="0px 0px 0px 0px"
+              whiteSpace="pre-wrap"
+              children="Username:"
+              {...getOverrideProps(overrides, "UsernameLabel")}
+            ></Text>
+            <Text
+              fontFamily="Inter"
+              fontSize="22px"
+              fontWeight="400"
+              color="rgba(0,0,0,1)"
+              lineHeight="33px"
+              textAlign="left"
+              display="block"
+              direction="column"
+              justifyContent="unset"
+              width="unset"
+              height="unset"
+              gap="unset"
+              alignItems="unset"
+              grow="1"
+              shrink="1"
+              basis="0"
+              position="relative"
+              padding="0px 0px 0px 0px"
+              whiteSpace="pre-wrap"
+              children={userDetails?.preferedName}
+              {...getOverrideProps(overrides, "Username")}
+            ></Text>
+          </Flex>
+          <Flex
+            gap="8px"
+            direction="row"
             width="unset"
             height="unset"
-            gap="unset"
-            alignItems="unset"
-            grow="1"
-            shrink="1"
-            basis="0"
+            justifyContent="flex-start"
+            alignItems="center"
+            shrink="0"
+            alignSelf="stretch"
             position="relative"
             padding="0px 0px 0px 0px"
-            whiteSpace="pre-wrap"
-            children={residences}
-            {...getOverrideProps(overrides, "placeholder40581906")}
-          ></Text>
+            {...getOverrideProps(overrides, "ResidenceContainer")}
+          >
+            <Text
+              fontFamily="Inter"
+              fontSize="20px"
+              fontWeight="700"
+              color="rgba(0,0,0,1)"
+              lineHeight="30px"
+              textAlign="left"
+              display="block"
+              direction="column"
+              justifyContent="unset"
+              width="unset"
+              height="unset"
+              gap="unset"
+              alignItems="unset"
+              shrink="0"
+              position="relative"
+              padding="0px 0px 0px 0px"
+              whiteSpace="pre-wrap"
+              children="Residence(s):"
+              {...getOverrideProps(overrides, "ResidenceLabel")}
+            ></Text>
+            <Text
+              fontFamily="Inter"
+              fontSize="22px"
+              fontWeight="400"
+              color="rgba(0,0,0,1)"
+              lineHeight="33px"
+              textAlign="left"
+              display="block"
+              direction="column"
+              justifyContent="unset"
+              width="unset"
+              height="unset"
+              gap="unset"
+              alignItems="unset"
+              grow="1"
+              shrink="1"
+              basis="0"
+              position="relative"
+              padding="0px 0px 0px 0px"
+              whiteSpace="pre-wrap"
+              children={residences}
+              {...getOverrideProps(overrides, "Residence")}
+            ></Text>
+          </Flex>
         </Flex>
         <Flex
           gap="24px"
@@ -227,7 +241,7 @@ export default function ProfileView(props) {
           alignSelf="stretch"
           position="relative"
           padding="0px 0px 0px 0px"
-          {...getOverrideProps(overrides, "Frame 2")}
+          {...getOverrideProps(overrides, "ButtonsContainer")}
         >
           <Button
             width="unset"
@@ -239,7 +253,7 @@ export default function ProfileView(props) {
             variation="primary"
             children="Edit Profile"
             onClick={editProfileHandler}
-            {...getOverrideProps(overrides, "Button29766926")}
+            {...getOverrideProps(overrides, "EditProfileButton")}
           ></Button>
           <Button
             width="unset"
@@ -252,7 +266,7 @@ export default function ProfileView(props) {
             variation="primary"
             children="Change Password"
             onClick={changePasswordHandler}
-            {...getOverrideProps(overrides, "Button40581886")}
+            {...getOverrideProps(overrides, "ChangePassButton")}
           ></Button>
         </Flex>
       </Flex>
