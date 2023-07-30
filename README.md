@@ -44,7 +44,7 @@ Amplify In-App Messaging | Amplify Storage (S3)
 | --- | --- |
 | Create a personal account | Display personal statistics |
 | Host or join an event | Share events on social media |
-| Delete self-hosted event | More personalisation in UI |
+| Delete self-hosted event | Personalised UI |
 | Share photos (archived events) | In-app chat (with other participants) |
 | Edit personal information | Authentication with [Singpass](https://api.singpass.gov.sg/library/verify/developers/overview) |
 
@@ -55,7 +55,7 @@ testuser3 | Password3 (Blk 112 & 223)
 
 <div data-node-type="callout">
 <div data-node-type="callout-emoji">😗</div>
-<div data-node-type="callout-text">Feel free to use the trial accounts, but you can always create a new account for yourself! Experience smooth authentication with AWS Amplify. 😁</div>
+<div data-node-type="callout-text">Feel free to use the trial accounts, but you can always create a new account for yourself! (OAuth with Google is supported.) 😁</div>
 </div>
 
 ## 🗺️ The Journey.
@@ -72,7 +72,7 @@ After many iterations, I settled on these 4 models.
 
 **Residence**, functioning as an enum within UserDetails, groups users based on their residential areas. This categorization ensures that users are presented with events relevant to their vicinity.
 
-**UserDetails**, as its name implies, serves as a repository for individual user information. This includes user-specific data such as nicknames, profile pictures, and a record of the activities they have participated in, providing a comprehensive overview of each user's engagement on the platform.
+**UserDetails**, as its name implies, serves as a repository for individual user information. This includes user-specific data such as nicknames, profile pictures, and a record of the activities they have participated in, providing a comprehensive overview of each user's engagement on the platform. (In the future, I'm planning to store this data in Authentication `attributes` instead!)
 
 Finally, **ActivityItem** takes care of the attributes of each event - names, dates, participants, and most importantly, location. It also includes an array to store images! (or rather, the paths to the image files in the S3 bucket)
 
@@ -139,11 +139,11 @@ However, I was never able to figure out how to set dynamic component properties 
 ```javascript
 <FutureActivityModal
   overrides={{
-    Button39831748: {
+    AttendButton: {
       isDisabled:
         attendContact[0] || attendContact[1] ? true : false,
     },
-    Button39831749: {
+    ContactButton: {
       isDisabled: attendContact[1] ? true : false,
     },
   }}
@@ -307,7 +307,7 @@ amplify publish
 
 ## 🎬 Final Product.
 
-Upon opening the app, you'll be greeted with a summary of what the app is all about. It revolves on four key themes: (1) Embracing Unity, (2) Celebrating Diversity, (3) Reviving Spirit, and (4) Creating Lasting Memories - the core of our vision for fostering a sense of togetherness and community connection.
+Upon opening the app, you'll be greeted with a summary of what the app is all about. It revolves around four key themes: (1) Embracing Unity, (2) Celebrating Diversity, (3) Reviving Spirit, and (4) Creating Lasting Memories - the core of our vision for fostering a sense of togetherness and community connection.
 
 ![](https://cdn.hashnode.com/res/hashnode/image/upload/v1690284459412/6f0dae94-eb8d-4897-8b29-dc779ca688af.png align="center")
 
@@ -323,15 +323,15 @@ The Dashboard consists of "National Events" (added by administrators) and "Futur
 
 TESTER seems to be craving a game of [Mahjong](https://en.wikipedia.org/wiki/Mahjong)... Maybe he'll join the Mahjong Marathon hosted by 25USER!
 
-![](https://cdn.hashnode.com/res/hashnode/image/upload/v1690446840210/8f0f8934-f8e6-414e-b86f-0edb2fab704f.png align="center")
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1690703461323/fabdb1d9-d40d-4f53-b441-cc9359235612.png align="center")
 
-![](https://cdn.hashnode.com/res/hashnode/image/upload/v1690611513680/6fb41e07-0163-4bf6-8bb3-42f40a90cf3b.png align="center")
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1690703634476/dd009964-5455-4dc9-8a17-53c800fbd832.png align="center")
 
-![](https://cdn.hashnode.com/res/hashnode/image/upload/v1690446935750/34fa4653-f4eb-4cd5-ab05-bc1759783e49.png align="center")
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1690703774979/4e5b52e1-3d54-4e48-811b-b04c4501e088.png align="center")
 
 The day after the event, the activity card will be moved to the Archive tab, where it'll gain a delightful picture slot. Upon clicking on the card, users will be able to share photos they took, as well as view those added by others.
 
-![](https://cdn.hashnode.com/res/hashnode/image/upload/v1690611406747/c50ebdcd-7eae-4702-9cec-20f566657292.png align="center")
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1690703870919/1291d1f3-d20d-4c77-86c8-0bdffdd439d2.png align="center")
 
 ![](https://cdn.hashnode.com/res/hashnode/image/upload/v1690541728164/e7a01c1a-a77e-44cc-b561-8baecfe676f1.png align="center")
 
