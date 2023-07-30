@@ -5,7 +5,11 @@ import { PasswordChange } from "../../ui-components";
 import { toast } from "react-toastify";
 import { Auth } from "aws-amplify";
 
+import { useUserObserver } from "../../hooks/useUser";
+
 const ChangePassModal = ({ open, setPassModal }) => {
+  const userDets = useUserObserver();
+
   return (
     <Modal
       open={open}
@@ -55,11 +59,34 @@ const ChangePassModal = ({ open, setPassModal }) => {
             justifyContent="center"
             alignItems="center"
             alignContent="center"
+          >
+            <Text fontSize="1.2em">
+              Google-initialised accounts are not supported.
+            </Text>
+          </Flex>{" "}
+          <Flex
+            width={"100%"}
+            paddingLeft={"25px"}
+            paddingRight={"25px"}
+            justifyContent="center"
+            alignItems="center"
+            alignContent="center"
           ></Flex>
           <PasswordChange
             onSubmit={(fields) => {
               if (fields.NewPass !== fields.ConfirmPass) {
                 toast.error(`Your passwords do not match! Try again.`);
+              } else if (fields.CurrentPass === fields.ConfirmPass) {
+                toast.error(
+                  `Your new password cannot be identical to your old password.`
+                );
+              } else if (
+                ["testuser", "testuser1", "testuser2"].includes(userDets.name)
+              ) {
+                toast.error(
+                  `Password change not supported for demo accounts. Try creating your own!`
+                );
+                return;
               } else {
                 (async function () {
                   try {
@@ -85,6 +112,7 @@ const ChangePassModal = ({ open, setPassModal }) => {
                     console.log(err);
                   }
                 })();
+                return;
               }
             }}
           />
