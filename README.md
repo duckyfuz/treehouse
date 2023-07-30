@@ -174,7 +174,7 @@ While I certainly encountered some challenges while dealing with complicated com
 
 ### 🗄️ Amplify DataStore
 
-Initially, I had planned to utilize the AWS AppSync GraphQL API for my app's data management. However, upon realizing the [numerous benefits](https://aws.amazon.com/amplify/datastore/) offered by Amplify DataStore, especially its seamless integration with form mapping to data models, I swiftly made the switch. The transition turned out to be remarkably smooth as the changes required were minimal - DataStore utilises the GraphQL query language as well!
+Initially, I had planned to utilize the AWS AppSync GraphQL API for my app's data management. However, upon realizing the [numerous benefits](https://aws.amazon.com/amplify/datastore/) offered by Amplify DataStore such as [form mapping](https://aws.amazon.com/blogs/mobile/new-announcing-storage-manager-and-relationship-support-for-form-builder/), (and confirming with the administrators that it was allowed for the hackathon) I swiftly made the switch. The transition turned out to be remarkably smooth as the changes required were minimal - DataStore utilises the GraphQL query language as well!
 
 One of the most valuable features I found was the ability to [observe query results in real time](https://docs.amplify.aws/lib/datastore/real-time/q/platform/js/#observe-model-mutations-in-real-time). To leverage this functionality across all my routes, I created a custom `useUser` Hook, enabling easy access to real-time updates for user properties.
 
