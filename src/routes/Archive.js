@@ -14,6 +14,7 @@ import {
   Text,
   useAuthenticator,
   Image,
+  Button,
 } from "@aws-amplify/ui-react";
 
 import { ActivityCardImage } from "../ui-components";
@@ -167,15 +168,17 @@ export const Archive = () => {
                     >
                       No activities found...
                     </Text>
-                    <Text
-                      variation="primary"
-                      lineHeight="0.8em"
-                      fontWeight={340}
-                      fontSize="1.2em"
-                      fontStyle="bold"
+                    <Button
+                      marginTop={"-15px"}
+                      size="medium"
+                      gap="0.4rem"
+                      variation="link"
+                      onClick={() => {
+                        navigate("/dashboard");
+                      }}
                     >
-                      Join one now!
-                    </Text>
+                      Go to Dashboard
+                    </Button>
                   </Flex>
                 }
                 searchPlaceholder="Looking for something?"
