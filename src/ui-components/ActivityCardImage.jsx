@@ -38,7 +38,7 @@ export default function ActivityCardImage(props) {
       <Flex
         padding="0px 0px 0px 0px"
         width="448px"
-        height="160px"
+        height="240px"
         display="block"
         gap="unset"
         alignItems="unset"
