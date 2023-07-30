@@ -7,6 +7,7 @@ import { ActivityItemCreateForm } from "../../ui-components";
 
 import { useUserObserver } from "../../hooks/useUser";
 import { UserDetails } from "../../models";
+import { toast } from "react-toastify";
 
 const { InAppMessaging } = Notifications;
 
@@ -90,6 +91,7 @@ const AddActivityModal = ({ open, setOpenAddActivityModal }) => {
                     hosted: updatedUser.activitiesHosted.length,
                   },
                 });
+                toast.success(`Your activity, ${fields.title}, is live!`);
               })();
               setOpenAddActivityModal(false);
             }}
