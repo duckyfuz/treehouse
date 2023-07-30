@@ -77,6 +77,7 @@ const AddActivityModal = ({ open, setOpenAddActivityModal }) => {
               console.log(fields);
               (async function () {
                 const user = await DataStore.query(UserDetails, userDets.id);
+                // Unable to get the id from fields - find workaround in the future
                 const updatedActivitiesHosted = [...user.activitiesHosted, "1"];
                 const updatedUser = await DataStore.save(
                   UserDetails.copyOf(user, (updated) => {
