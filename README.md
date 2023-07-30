@@ -307,6 +307,21 @@ amplify publish
 
 ## 🎬 Final Product.
 
+<div data-node-type="callout">
+<div data-node-type="callout-emoji">😁</div>
+<div data-node-type="callout-text">If you don't like videos, scroll down for a written guide on the usage!</div>
+</div>
+
+%[https://youtu.be/3V_lqg10TB4] 
+
+%[https://youtu.be/P-kZzmcGKJI] 
+
+%[https://youtu.be/7SdbptMYU8M] 
+
+%[https://youtu.be/MVDPELJKzdA] 
+
+### 🔨 Usage Instructions
+
 Upon opening the app, you'll be greeted with a summary of what the app is all about. It revolves around four key themes: (1) Embracing Unity, (2) Celebrating Diversity, (3) Reviving Spirit, and (4) Creating Lasting Memories - the core of our vision for fostering a sense of togetherness and community connection.
 
 ![](https://cdn.hashnode.com/res/hashnode/image/upload/v1690284459412/6f0dae94-eb8d-4897-8b29-dc779ca688af.png align="center")
@@ -414,7 +429,7 @@ As you can see, there is no way to create a dynamic list of dropdown items. Hope
 
 And that concludes my month-long development journey with AWS Amplify! I started this journey knowing next to nothing about AWS Amplify, and I am certainly proud of the app I have created. AWS Amplify has proven to be a powerful resource for front-end developers, enabling them to quickly build and host full-stack applications with ease.
 
-However, as I delved deeper into the platform, I realized that its simplicity also comes with some limitations. While it's a fantastic option for straightforward applications, users might find that more complex projects require a deeper understanding of AWS services, which can extend the development time.
+However, as I delved deeper into the platform, I realized that AWS Amplify's simplicity also comes with some limitations. While it's a fantastic option for straightforward applications, users might find that more complex projects require a deeper understanding of AWS services, which can extend the development time.
 
 In my opinion, AWS Amplify strikes a good balance as it's suitable for both beginners and professionals. Beginners would likely not require workarounds to bypass Amplify's limitations for straightforward applications, while professionals would probably already have the know-how to delve deeper into AWS or develop custom solutions to fit their specialised and intricate use cases.
 
