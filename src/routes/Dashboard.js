@@ -95,7 +95,7 @@ export const Dashboard = () => {
     // Call the fetchDataAndProcess function
     fetchDataAndProcess();
     // eslint-disable-next-line
-  }, [userDets, authStatus]);
+  }, [userDets, authStatus, activeActivity]);
 
   const AddActivityButton = () => {
     return (
