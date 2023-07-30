@@ -63,8 +63,12 @@ export const OnBoarding = () => {
           {userDetailsCreated ? (
             <OnboardingForm
               id={userID}
-              onSuccess={() => {
-                toast.success(`Welcome aboard!`);
+              onSuccess={(fields) => {
+                if (fields.onBoarded === false) {
+                  toast.error(`You need to agree to the Terms and Conditions!`);
+                } else {
+                  toast.success(`Welcome aboard!`);
+                }
               }}
             />
           ) : (
@@ -83,8 +87,12 @@ export const OnBoarding = () => {
                 updatedFields["activitiesHosted"] = [];
                 return updatedFields;
               }}
-              onSuccess={() => {
-                toast.success(`Welcome aboard!`);
+              onSuccess={(fields) => {
+                if (fields.onBoarded === false) {
+                  toast.error(`You need to agree to the Terms and Conditions!`);
+                } else {
+                  toast.success(`Welcome aboard!`);
+                }
               }}
             />
           )}
