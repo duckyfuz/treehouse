@@ -61,9 +61,9 @@ const ChangePassModal = ({ open, setPassModal }) => {
             alignContent="center"
           >
             <Text fontSize="1.2em">
-              Google-initialised accounts are not supported.
+              Google-initialised accounts are not supported here.
             </Text>
-          </Flex>{" "}
+          </Flex>
           <Flex
             width={"100%"}
             paddingLeft={"25px"}
