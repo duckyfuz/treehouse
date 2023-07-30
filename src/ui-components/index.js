@@ -23,6 +23,7 @@ export { default as NatActivityUpdateForm } from "./NatActivityUpdateForm";
 export { default as NatCardDescription } from "./NatCardDescription";
 export { default as NatCardDescriptionCollection } from "./NatCardDescriptionCollection";
 export { default as OnboardingForm } from "./OnboardingForm";
+export { default as PasswordChange } from "./PasswordChange";
 export { default as ProfileCard } from "./ProfileCard";
 export { default as ProfileView } from "./ProfileView";
 export { default as UserCard } from "./UserCard";
