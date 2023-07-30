@@ -70,7 +70,7 @@ After many iterations, I settled on these 4 models.
 
 **NatActivity** serves as a platform for administrators to add nationwide activities, encompassing significant events like national holidays and community engagements. The information required for each activity is succinct, comprising its name, date, and location.
 
-**Residence**, functioning as an enum within UserDetails, groups users based on their residential areas. This categorization ensures that users are presented with events relevant to their vicinity.
+**Residence**, functioning as an enum within UserDetails, is essentially a list of residential areas. This categorization ensures that users are only presented with events relevant to their vicinity. This is a field that only administrators will have access to and will slowly grow to include every neighbourhood in Singapore.
 
 **UserDetails**, as its name implies, serves as a repository for individual user information. This includes user-specific data such as nicknames, profile pictures, and a record of the activities they have participated in, providing a comprehensive overview of each user's engagement on the platform. (In the future, I'm planning to store this data in Authentication `attributes` instead!)
 
@@ -410,7 +410,7 @@ This is because I used an automatically generated form component from the UI lib
 
 As you can see, there is no way to create a dynamic list of dropdown items. Hopefully, that'll change in the future!
 
-### 🏁 Conclusion
+## 🏁 Conclusion
 
 And that concludes my month-long development journey with AWS Amplify! I started this journey knowing next to nothing about AWS Amplify, and I am certainly proud of the app I have created. AWS Amplify has proven to be a powerful resource for front-end developers, enabling them to quickly build and host full-stack applications with ease.
 
