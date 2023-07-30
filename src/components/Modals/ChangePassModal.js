@@ -22,7 +22,8 @@ const ChangePassModal = ({ open, setPassModal }) => {
         <Flex
           backgroundColor={"white"}
           width={"45%"}
-          
+          minWidth={"400px"}
+          maxWidth={"650px"}
           direction={"column"}
           padding={"5px"}
           borderRadius={"15px"}

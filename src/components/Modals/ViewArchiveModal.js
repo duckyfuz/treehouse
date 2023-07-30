@@ -122,6 +122,8 @@ const ViewArchiveModal = ({
         <Flex
           backgroundColor={"white"}
           width={"40%"}
+          minWidth={"620px"}
+          maxWidth={"800px"}
           direction={"column"}
           borderRadius={"15px"}
           paddingTop={"15px"}

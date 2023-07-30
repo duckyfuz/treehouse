@@ -22,6 +22,8 @@ const ProfilePictureModal = ({ id, open, setPictureModal }) => {
         <Flex
           backgroundColor={"white"}
           width={"45%"}
+          minWidth={"700px"}
+          maxWidth={"800px"}
           direction={"column"}
           padding={"5px"}
           borderRadius={"15px"}

@@ -9,13 +9,14 @@ import { useUserObserver } from "../../hooks/useUser";
 import { useEffect, useState } from "react";
 import ProfilePictureModal from "./ProfilePictureModal";
 import NameResidenceModal from "./NameResidenceModal";
-import { toast } from "react-toastify";
+import ChangePassModal from "./ChangePassModal";
 
 function SettingsModal({ open, setOpenSettings }) {
   const userDets = useUserObserver();
   const [profilePictureURL, setProfilePictureURL] = useState();
   const [pictureModal, setPictureModal] = useState(false);
   const [NRModal, setNRModal] = useState(false);
+  const [passModal, setPassModal] = useState(false);
 
   // Fetch activites + sort and filter
   useEffect(() => {
@@ -56,6 +57,8 @@ function SettingsModal({ open, setOpenSettings }) {
             <Flex
               backgroundColor={"white"}
               width={"40%"}
+              minWidth={"550px"}
+              maxWidth={"600px"}
               direction={"column"}
               borderRadius={"15px"}
               padding={"25px"}
@@ -86,9 +89,7 @@ function SettingsModal({ open, setOpenSettings }) {
                   setPictureModal(true);
                 }}
                 changePasswordHandler={() => {
-                  toast.error(
-                    `This feature is still being worked on! Try again in a month or so.`
-                  );
+                  setPassModal(true);
                 }}
                 editProfileHandler={() => {
                   setNRModal(true);
@@ -109,6 +110,7 @@ function SettingsModal({ open, setOpenSettings }) {
           open={NRModal}
           setNRModal={setNRModal}
         />
+        <ChangePassModal open={passModal} setPassModal={setPassModal} />
       </>
     )
   );

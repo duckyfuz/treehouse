@@ -22,6 +22,8 @@ const NameResidenceModal = ({ id, open, setNRModal }) => {
         <Flex
           backgroundColor={"white"}
           width={"45%"}
+          minWidth={"400px"}
+          maxWidth={"650px"}
           direction={"column"}
           padding={"5px"}
           borderRadius={"15px"}
@@ -35,7 +37,7 @@ const NameResidenceModal = ({ id, open, setNRModal }) => {
             alignItems="center"
             alignContent="center"
           >
-            <Text fontSize="2em">Change Profile Picture</Text>
+            <Text fontSize="2em">Change User Details</Text>
             <Button
               onClick={() => {
                 setNRModal(false);

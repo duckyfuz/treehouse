@@ -108,7 +108,8 @@ const ViewActivityModal = ({ userDets, open, activity, closeModalHandler }) => {
             <Flex
               backgroundColor={"white"}
               width={"50%"}
-              minHeight={"40%"}
+              minWidth={"620px"}
+              maxWidth={"800px"}
               direction={"column"}
               borderRadius={"15px"}
               padding={"25px"}
