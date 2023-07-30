@@ -12,7 +12,6 @@ import { SyntheticEvent } from "react";
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type ProfileViewOverridesProps = {
     ProfileView?: PrimitiveOverrideProps<FlexProps>;
-    Container?: PrimitiveOverrideProps<FlexProps>;
     ProfileContainer?: PrimitiveOverrideProps<FlexProps>;
     ImageSlot?: PrimitiveOverrideProps<FlexProps>;
     ProfilePicture?: PrimitiveOverrideProps<ImageProps>;

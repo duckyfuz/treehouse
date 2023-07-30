@@ -1,6 +1,5 @@
 import React, { Button, Flex, Text } from "@aws-amplify/ui-react";
 
-import { MdDelete } from "react-icons/md";
 import Modal from "@mui/material/Modal";
 import { PasswordChange } from "../../ui-components";
 import { toast } from "react-toastify";
@@ -42,11 +41,11 @@ const ChangePassModal = ({ open, setPassModal }) => {
               onClick={() => {
                 setPassModal(false);
               }}
-              variation="warning"
+              variation="destructive"
               size="large"
               gap="0.4rem"
             >
-              Cancel <MdDelete />
+              Cancel
             </Button>
           </Flex>
           <Flex

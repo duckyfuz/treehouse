@@ -11,13 +11,11 @@ import { FlexProps, TextProps } from "@aws-amplify/ui-react";
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type NatCardDescriptionOverridesProps = {
     NatCardDescription?: PrimitiveOverrideProps<FlexProps>;
-    Body?: PrimitiveOverrideProps<FlexProps>;
-    Text?: PrimitiveOverrideProps<FlexProps>;
-    Headline?: PrimitiveOverrideProps<FlexProps>;
-    "This is the Activity Name"?: PrimitiveOverrideProps<TextProps>;
-    Frame?: PrimitiveOverrideProps<FlexProps>;
-    "Date and Time"?: PrimitiveOverrideProps<TextProps>;
-    "Location of Event"?: PrimitiveOverrideProps<TextProps>;
+    Container?: PrimitiveOverrideProps<FlexProps>;
+    ActivityTitle?: PrimitiveOverrideProps<TextProps>;
+    DetailsContainer?: PrimitiveOverrideProps<FlexProps>;
+    DateTime?: PrimitiveOverrideProps<TextProps>;
+    Location?: PrimitiveOverrideProps<TextProps>;
 } & EscapeHatchProps;
 export declare type NatCardDescriptionProps = React.PropsWithChildren<Partial<FlexProps> & {
     natActivity?: NatActivity;

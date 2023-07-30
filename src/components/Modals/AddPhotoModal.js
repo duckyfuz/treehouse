@@ -1,6 +1,5 @@
 import React, { Button, Flex, Text } from "@aws-amplify/ui-react";
 
-import { MdDelete } from "react-icons/md";
 import Modal from "@mui/material/Modal";
 import { AddPhotoForm } from "../../ui-components";
 
@@ -48,11 +47,11 @@ const AddPhotoModal = ({
               onClick={() => {
                 setOpenAddPhotoModal(false);
               }}
-              variation="warning"
+              variation="destructive"
               size="large"
               gap="0.4rem"
             >
-              Exit <MdDelete />
+              Exit 
             </Button>
           </Flex>
           <AddPhotoForm

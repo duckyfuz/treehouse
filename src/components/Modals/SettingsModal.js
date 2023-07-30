@@ -1,7 +1,6 @@
 import React, { Storage } from "aws-amplify";
 import { Button, Flex, Text } from "@aws-amplify/ui-react";
 
-import { MdDelete } from "react-icons/md";
 import Modal from "@mui/material/Modal";
 import { ProfileView } from "../../ui-components";
 
@@ -64,8 +63,6 @@ function SettingsModal({ open, setOpenSettings }) {
               padding={"25px"}
             >
               <Flex
-                paddingLeft={"25px"}
-                paddingRight={"25px"}
                 justifyContent="space-between"
                 alignItems="center"
                 alignContent="center"
@@ -75,11 +72,11 @@ function SettingsModal({ open, setOpenSettings }) {
                   onClick={() => {
                     setOpenSettings(false);
                   }}
-                  variation="warning"
+                  variation="destructive"
                   size="large"
                   gap="0.4rem"
                 >
-                  Exit <MdDelete />
+                  Exit
                 </Button>
               </Flex>
               <ProfileView

@@ -21,15 +21,15 @@ export default function ActivityCardImage(props) {
   } = props;
   return (
     <Flex
-      gap="16px"
+      gap="12px"
       direction="column"
       width="448px"
-      height="288px"
+      height="unset"
       justifyContent="center"
       alignItems="flex-end"
       position="relative"
       boxShadow="0px 4px 4px rgba(0, 0, 0, 0.25)"
-      borderRadius="10px"
+      borderRadius="12px"
       padding="0px 0px 24px 0px"
       backgroundColor="rgba(255,255,255,1)"
       {...getOverrideProps(overrides, "ActivityCardImage")}
@@ -38,7 +38,7 @@ export default function ActivityCardImage(props) {
       <Flex
         padding="0px 0px 0px 0px"
         width="448px"
-        height="120px"
+        height="160px"
         display="block"
         gap="unset"
         alignItems="unset"
@@ -49,34 +49,55 @@ export default function ActivityCardImage(props) {
         {...getOverrideProps(overrides, "ImageSlot")}
       ></Flex>
       <Flex
-        gap="40px"
-        direction="row"
+        gap="16px"
+        direction="column"
         width="unset"
-        height="67px"
-        justifyContent="flex-start"
-        alignItems="flex-start"
+        height="unset"
+        justifyContent="center"
+        alignItems="flex-end"
         shrink="0"
         alignSelf="stretch"
         position="relative"
-        padding="0px 24px 0px 24px"
-        {...getOverrideProps(overrides, "Body")}
+        padding="0px 0px 0px 0px"
+        {...getOverrideProps(overrides, "Container")}
       >
         <Flex
-          gap="16px"
+          gap="8px"
           direction="column"
           width="unset"
           height="unset"
           justifyContent="flex-start"
           alignItems="flex-start"
-          grow="1"
-          shrink="1"
-          basis="0"
+          shrink="0"
+          alignSelf="stretch"
           position="relative"
-          padding="0px 0px 0px 0px"
-          {...getOverrideProps(overrides, "Text")}
+          padding="12px 24px 12px 24px"
+          {...getOverrideProps(overrides, "DetailsContainer")}
         >
+          <Text
+            fontFamily="Inter"
+            fontSize="30px"
+            fontWeight="700"
+            color="rgba(13,26,38,1)"
+            lineHeight="25px"
+            textAlign="left"
+            display="block"
+            direction="column"
+            justifyContent="unset"
+            width="unset"
+            height="unset"
+            gap="unset"
+            alignItems="unset"
+            shrink="0"
+            alignSelf="stretch"
+            position="relative"
+            padding="0px 0px 0px 0px"
+            whiteSpace="pre-wrap"
+            children={activityItem?.title}
+            {...getOverrideProps(overrides, "ActivityTitle")}
+          ></Text>
           <Flex
-            gap="8px"
+            gap="2px"
             direction="column"
             width="unset"
             height="unset"
@@ -86,18 +107,19 @@ export default function ActivityCardImage(props) {
             alignSelf="stretch"
             position="relative"
             padding="0px 0px 0px 0px"
-            {...getOverrideProps(overrides, "Headline")}
+            {...getOverrideProps(overrides, "DateLocationContainer")}
           >
             <Text
               fontFamily="Inter"
-              fontSize="30px"
-              fontWeight="700"
-              color="rgba(13,26,38,1)"
-              lineHeight="25px"
+              fontSize="16px"
+              fontWeight="400"
+              color="rgba(92,102,112,1)"
+              lineHeight="16px"
               textAlign="left"
               display="block"
               direction="column"
               justifyContent="unset"
+              letterSpacing="0.01px"
               width="unset"
               height="unset"
               gap="unset"
@@ -107,95 +129,58 @@ export default function ActivityCardImage(props) {
               position="relative"
               padding="0px 0px 0px 0px"
               whiteSpace="pre-wrap"
-              children={activityItem?.title}
-              {...getOverrideProps(overrides, "This is the Activity Name")}
+              children={dateTime}
+              {...getOverrideProps(overrides, "DateTime")}
             ></Text>
-            <Flex
-              gap="2px"
+            <Text
+              fontFamily="Inter"
+              fontSize="16px"
+              fontWeight="400"
+              color="rgba(92,102,112,1)"
+              lineHeight="16px"
+              textAlign="left"
+              display="block"
               direction="column"
+              justifyContent="unset"
+              letterSpacing="0.01px"
               width="unset"
               height="unset"
-              justifyContent="flex-start"
-              alignItems="flex-start"
+              gap="unset"
+              alignItems="unset"
               shrink="0"
               alignSelf="stretch"
               position="relative"
               padding="0px 0px 0px 0px"
-              {...getOverrideProps(overrides, "Frame")}
-            >
-              <Text
-                fontFamily="Inter"
-                fontSize="16px"
-                fontWeight="400"
-                color="rgba(92,102,112,1)"
-                lineHeight="16px"
-                textAlign="left"
-                display="block"
-                direction="column"
-                justifyContent="unset"
-                letterSpacing="0.01px"
-                width="unset"
-                height="unset"
-                gap="unset"
-                alignItems="unset"
-                shrink="0"
-                alignSelf="stretch"
-                position="relative"
-                padding="0px 0px 0px 0px"
-                whiteSpace="pre-wrap"
-                children={dateTime}
-                {...getOverrideProps(overrides, "Date and Time")}
-              ></Text>
-              <Text
-                fontFamily="Inter"
-                fontSize="16px"
-                fontWeight="400"
-                color="rgba(92,102,112,1)"
-                lineHeight="16px"
-                textAlign="left"
-                display="block"
-                direction="column"
-                justifyContent="unset"
-                letterSpacing="0.01px"
-                width="unset"
-                height="unset"
-                gap="unset"
-                alignItems="unset"
-                shrink="0"
-                alignSelf="stretch"
-                position="relative"
-                padding="0px 0px 0px 0px"
-                whiteSpace="pre-wrap"
-                children={location}
-                {...getOverrideProps(overrides, "Location of Event")}
-              ></Text>
-            </Flex>
+              whiteSpace="pre-wrap"
+              children={location}
+              {...getOverrideProps(overrides, "Location")}
+            ></Text>
           </Flex>
         </Flex>
-      </Flex>
-      <Flex
-        gap="10px"
-        direction="column"
-        width="unset"
-        height="unset"
-        justifyContent="center"
-        alignItems="flex-end"
-        shrink="0"
-        position="relative"
-        padding="0px 24px 0px 24px"
-        {...getOverrideProps(overrides, "Frame 1")}
-      >
-        <Button
-          width="200px"
-          height="45px"
+        <Flex
+          gap="10px"
+          direction="column"
+          width="unset"
+          height="unset"
+          justifyContent="center"
+          alignItems="flex-end"
           shrink="0"
-          size="large"
-          isDisabled={false}
-          variation="primary"
-          children="More Details"
-          onClick={moreDetailsHandler}
-          {...getOverrideProps(overrides, "Button")}
-        ></Button>
+          position="relative"
+          padding="0px 24px 0px 24px"
+          {...getOverrideProps(overrides, "Frame 1")}
+        >
+          <Button
+            width="200px"
+            height="45px"
+            shrink="0"
+            size="large"
+            isDisabled={false}
+            variation="primary"
+            children="More Details"
+            onClick={moreDetailsHandler}
+            {...getOverrideProps(overrides, "Button")}
+          ></Button>
+        </Flex>
       </Flex>
     </Flex>
   );

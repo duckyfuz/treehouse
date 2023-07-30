@@ -18,7 +18,7 @@ import "yet-another-react-lightbox/plugins/counter.css";
 
 import { ActivityItem, UserDetails } from "../../models";
 
-import convertISOToCustomFormat from "../../utils";
+import { convertISOToTwoLineFormat } from "../../utils";
 
 const ViewArchiveModal = ({
   open,
@@ -124,6 +124,7 @@ const ViewArchiveModal = ({
           width={"40%"}
           minWidth={"620px"}
           maxWidth={"800px"}
+          minHeight={"700px"}
           direction={"column"}
           borderRadius={"15px"}
           paddingTop={"15px"}
@@ -140,6 +141,8 @@ const ViewArchiveModal = ({
               imageSlot39821654={
                 <Image
                   src={imageList[0] && imageList[0]["src"]}
+                  borderRadius={"12px"}
+                  alt="no image"
                   width={"100%"}
                   height={"100%"}
                   objectFit="cover"
@@ -147,6 +150,9 @@ const ViewArchiveModal = ({
               }
               viewPicturesHandler={viewPicturesHandler}
               sharePicturesHandler={sharePicturesHandler}
+              hostName={"Host: " + activity.hostName}
+              location={activity.residence + " | " + activity.location}
+              dateTime={convertISOToTwoLineFormat(activity.dateTime)}
               participantsSlot={
                 <Collection
                   isPaginated
@@ -172,26 +178,8 @@ const ViewArchiveModal = ({
                 </Collection>
               }
               overrides={{
-                LOCATION: {
-                  children: activity.residence + " | " + activity.location,
-                },
-                "DATE AND TIME": {
-                  children: convertISOToCustomFormat(activity.dateTime),
-                },
-                // Button39831738: {
-                //   color: "blue",
-                // },
-                // Button39831743: {
-                //   color: "red",
-                // },
-                "PARTICIPANTS LIST": {
-                  children:
-                    activity.participants.length === 0
-                      ? "Looks like nobody joined this event... Try inviting more people next time!"
-                      : activity.participants,
-                },
-                "HOST: hostname": {
-                  children: "Host: " + activity.hostName,
+                ExitButton: {
+                  variation: "destructive",
                 },
               }}
             />

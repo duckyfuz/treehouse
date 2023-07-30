@@ -143,7 +143,7 @@ export const Dashboard = () => {
 
   const NatActivitiesDisplay = () => {
     return (
-      <Card variation="elevated" width="90rem">
+      <Card variation="elevated" width="90rem" height={"250px"}>
         <Text
           variation="primary"
           lineHeight="1.5em"
@@ -158,7 +158,7 @@ export const Dashboard = () => {
           justifyContent={"center"}
           overrideItems={({ item }) => ({
             overrides: {
-              "Date and Time": {
+              DateTime: {
                 children: convertISOToCustomFormat(item.dateTime),
               },
             },

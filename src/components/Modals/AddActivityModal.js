@@ -49,11 +49,11 @@ const AddActivityModal = ({ open, setOpenAddActivityModal }) => {
               onClick={() => {
                 setOpenAddActivityModal(false);
               }}
-              variation="warning"
+              variation="destructive"
               size="large"
               gap="0.4rem"
             >
-              Exit <MdDelete />
+              Cancel <MdDelete />
             </Button>
           </Flex>
           <ActivityItemCreateForm

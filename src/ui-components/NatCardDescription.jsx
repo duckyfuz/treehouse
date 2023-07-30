@@ -20,15 +20,15 @@ export default function NatCardDescription(props) {
       alignItems="flex-start"
       position="relative"
       boxShadow="0px 4px 4px rgba(0, 0, 0, 0.25)"
-      borderRadius="5px"
+      borderRadius="12px"
       padding="24px 24px 24px 24px"
       backgroundColor="rgba(255,255,255,1)"
       {...getOverrideProps(overrides, "NatCardDescription")}
       {...rest}
     >
       <Flex
-        gap="40px"
-        direction="row"
+        gap="8px"
+        direction="column"
         width="unset"
         height="unset"
         justifyContent="flex-start"
@@ -37,118 +37,89 @@ export default function NatCardDescription(props) {
         alignSelf="stretch"
         position="relative"
         padding="0px 0px 0px 0px"
-        {...getOverrideProps(overrides, "Body")}
+        {...getOverrideProps(overrides, "Container")}
       >
+        <Text
+          fontFamily="Inter"
+          fontSize="30px"
+          fontWeight="700"
+          color="rgba(13,26,38,1)"
+          lineHeight="25px"
+          textAlign="left"
+          display="block"
+          direction="column"
+          justifyContent="unset"
+          width="unset"
+          height="unset"
+          gap="unset"
+          alignItems="unset"
+          shrink="0"
+          alignSelf="stretch"
+          position="relative"
+          padding="0px 0px 0px 0px"
+          whiteSpace="pre-wrap"
+          children={natActivity?.title}
+          {...getOverrideProps(overrides, "ActivityTitle")}
+        ></Text>
         <Flex
-          gap="16px"
+          gap="2px"
           direction="column"
           width="unset"
           height="unset"
           justifyContent="flex-start"
           alignItems="flex-start"
-          grow="1"
-          shrink="1"
-          basis="0"
+          shrink="0"
+          alignSelf="stretch"
           position="relative"
           padding="0px 0px 0px 0px"
-          {...getOverrideProps(overrides, "Text")}
+          {...getOverrideProps(overrides, "DetailsContainer")}
         >
-          <Flex
-            gap="8px"
+          <Text
+            fontFamily="Inter"
+            fontSize="16px"
+            fontWeight="400"
+            color="rgba(92,102,112,1)"
+            lineHeight="16px"
+            textAlign="left"
+            display="block"
             direction="column"
+            justifyContent="unset"
+            letterSpacing="0.01px"
             width="unset"
             height="unset"
-            justifyContent="flex-start"
-            alignItems="flex-start"
+            gap="unset"
+            alignItems="unset"
             shrink="0"
             alignSelf="stretch"
             position="relative"
             padding="0px 0px 0px 0px"
-            {...getOverrideProps(overrides, "Headline")}
-          >
-            <Text
-              fontFamily="Inter"
-              fontSize="30px"
-              fontWeight="700"
-              color="rgba(13,26,38,1)"
-              lineHeight="25px"
-              textAlign="left"
-              display="block"
-              direction="column"
-              justifyContent="unset"
-              width="unset"
-              height="unset"
-              gap="unset"
-              alignItems="unset"
-              shrink="0"
-              alignSelf="stretch"
-              position="relative"
-              padding="0px 0px 0px 0px"
-              whiteSpace="pre-wrap"
-              children={natActivity?.title}
-              {...getOverrideProps(overrides, "This is the Activity Name")}
-            ></Text>
-            <Flex
-              gap="2px"
-              direction="column"
-              width="unset"
-              height="unset"
-              justifyContent="flex-start"
-              alignItems="flex-start"
-              shrink="0"
-              alignSelf="stretch"
-              position="relative"
-              padding="0px 0px 0px 0px"
-              {...getOverrideProps(overrides, "Frame")}
-            >
-              <Text
-                fontFamily="Inter"
-                fontSize="16px"
-                fontWeight="400"
-                color="rgba(92,102,112,1)"
-                lineHeight="16px"
-                textAlign="left"
-                display="block"
-                direction="column"
-                justifyContent="unset"
-                letterSpacing="0.01px"
-                width="unset"
-                height="unset"
-                gap="unset"
-                alignItems="unset"
-                shrink="0"
-                alignSelf="stretch"
-                position="relative"
-                padding="0px 0px 0px 0px"
-                whiteSpace="pre-wrap"
-                children={dateTime}
-                {...getOverrideProps(overrides, "Date and Time")}
-              ></Text>
-              <Text
-                fontFamily="Inter"
-                fontSize="16px"
-                fontWeight="400"
-                color="rgba(92,102,112,1)"
-                lineHeight="16px"
-                textAlign="left"
-                display="block"
-                direction="column"
-                justifyContent="unset"
-                letterSpacing="0.01px"
-                width="unset"
-                height="unset"
-                gap="unset"
-                alignItems="unset"
-                shrink="0"
-                alignSelf="stretch"
-                position="relative"
-                padding="0px 0px 0px 0px"
-                whiteSpace="pre-wrap"
-                children={natActivity?.location}
-                {...getOverrideProps(overrides, "Location of Event")}
-              ></Text>
-            </Flex>
-          </Flex>
+            whiteSpace="pre-wrap"
+            children={dateTime}
+            {...getOverrideProps(overrides, "DateTime")}
+          ></Text>
+          <Text
+            fontFamily="Inter"
+            fontSize="16px"
+            fontWeight="400"
+            color="rgba(92,102,112,1)"
+            lineHeight="16px"
+            textAlign="left"
+            display="block"
+            direction="column"
+            justifyContent="unset"
+            letterSpacing="0.01px"
+            width="unset"
+            height="unset"
+            gap="unset"
+            alignItems="unset"
+            shrink="0"
+            alignSelf="stretch"
+            position="relative"
+            padding="0px 0px 0px 0px"
+            whiteSpace="pre-wrap"
+            children={natActivity?.location}
+            {...getOverrideProps(overrides, "Location")}
+          ></Text>
         </Flex>
       </Flex>
     </Flex>

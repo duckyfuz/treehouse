@@ -15,6 +15,9 @@ export default function FutureActivityModal(props) {
     attendHandler,
     contactHandler,
     participantsSlot,
+    location,
+    dateTime,
+    hostName,
     overrides,
     ...rest
   } = props;
@@ -27,7 +30,7 @@ export default function FutureActivityModal(props) {
       justifyContent="flex-start"
       alignItems="flex-start"
       position="relative"
-      borderRadius="10px"
+      borderRadius="12px"
       padding="16px 16px 16px 16px"
       backgroundColor="rgba(255,255,255,1)"
       {...getOverrideProps(overrides, "FutureActivityModal")}
@@ -44,7 +47,7 @@ export default function FutureActivityModal(props) {
         alignSelf="stretch"
         position="relative"
         padding="0px 4px 0px 4px"
-        {...getOverrideProps(overrides, "Product Title")}
+        {...getOverrideProps(overrides, "TopContainer")}
       >
         <Flex
           gap="10px"
@@ -58,7 +61,7 @@ export default function FutureActivityModal(props) {
           basis="0"
           position="relative"
           padding="0px 0px 0px 0px"
-          {...getOverrideProps(overrides, "Frame 1")}
+          {...getOverrideProps(overrides, "TitileLocationContainer")}
         >
           <Text
             fontFamily="Inter"
@@ -80,7 +83,7 @@ export default function FutureActivityModal(props) {
             padding="0px 0px 0px 0px"
             whiteSpace="pre-wrap"
             children={activityItem?.title}
-            {...getOverrideProps(overrides, "ACTIVITY TITLE")}
+            {...getOverrideProps(overrides, "ActivityTitle")}
           ></Text>
           <Text
             fontFamily="Inter"
@@ -101,8 +104,8 @@ export default function FutureActivityModal(props) {
             position="relative"
             padding="0px 0px 0px 0px"
             whiteSpace="pre-wrap"
-            children="LOCATION"
-            {...getOverrideProps(overrides, "LOCATION")}
+            children={location}
+            {...getOverrideProps(overrides, "Location")}
           ></Text>
         </Flex>
         <Button
@@ -114,7 +117,7 @@ export default function FutureActivityModal(props) {
           variation="primary"
           children="Exit"
           onClick={exitHandler}
-          {...getOverrideProps(overrides, "Button39911774")}
+          {...getOverrideProps(overrides, "ExitButton")}
         ></Button>
       </Flex>
       <Flex
@@ -128,7 +131,7 @@ export default function FutureActivityModal(props) {
         alignSelf="stretch"
         position="relative"
         padding="12px 4px 12px 4px"
-        {...getOverrideProps(overrides, "Details Area")}
+        {...getOverrideProps(overrides, "DetailsTimeContainer")}
       >
         <Flex
           gap="8px"
@@ -142,13 +145,13 @@ export default function FutureActivityModal(props) {
           basis="0"
           position="relative"
           padding="0px 0px 0px 0px"
-          {...getOverrideProps(overrides, "Main Text39911779")}
+          {...getOverrideProps(overrides, "DetailsContainer")}
         >
           <Text
             fontFamily="Inter"
             fontSize="20px"
             fontWeight="700"
-            color="rgba(0,0,0,1)"
+            color="rgba(13,26,38,1)"
             lineHeight="20px"
             textAlign="left"
             display="block"
@@ -164,8 +167,8 @@ export default function FutureActivityModal(props) {
             position="relative"
             padding="0px 0px 0px 0px"
             whiteSpace="pre-wrap"
-            children="DETAILS:"
-            {...getOverrideProps(overrides, "DETAILS:")}
+            children="Details:"
+            {...getOverrideProps(overrides, "Details:")}
           ></Text>
           <Text
             fontFamily="Inter"
@@ -188,7 +191,7 @@ export default function FutureActivityModal(props) {
             padding="0px 0px 0px 0px"
             whiteSpace="pre-wrap"
             children={activityItem?.description}
-            {...getOverrideProps(overrides, "DETAILS FILL")}
+            {...getOverrideProps(overrides, "DetailsActual")}
           ></Text>
         </Flex>
         <Flex
@@ -201,7 +204,7 @@ export default function FutureActivityModal(props) {
           shrink="0"
           position="relative"
           padding="0px 0px 0px 0px"
-          {...getOverrideProps(overrides, "Card Area39911782")}
+          {...getOverrideProps(overrides, "DateTimeContainer")}
         >
           <Text
             fontFamily="Inter"
@@ -221,8 +224,8 @@ export default function FutureActivityModal(props) {
             position="relative"
             padding="0px 0px 0px 0px"
             whiteSpace="pre-wrap"
-            children="DATE AND TIME"
-            {...getOverrideProps(overrides, "DATE AND TIME")}
+            children={dateTime}
+            {...getOverrideProps(overrides, "DateTime")}
           ></Text>
         </Flex>
       </Flex>
@@ -237,7 +240,7 @@ export default function FutureActivityModal(props) {
         alignSelf="stretch"
         position="relative"
         padding="0px 24px 0px 24px"
-        {...getOverrideProps(overrides, "ImageSlot")}
+        {...getOverrideProps(overrides, "ButtonsContainer")}
       >
         <Button
           width="250px"
@@ -248,7 +251,7 @@ export default function FutureActivityModal(props) {
           variation="primary"
           children="Attend"
           onClick={attendHandler}
-          {...getOverrideProps(overrides, "Button39831748")}
+          {...getOverrideProps(overrides, "AttendButton")}
         ></Button>
         <Button
           width="250px"
@@ -259,7 +262,7 @@ export default function FutureActivityModal(props) {
           variation="primary"
           children="Contact Host"
           onClick={contactHandler}
-          {...getOverrideProps(overrides, "Button39831749")}
+          {...getOverrideProps(overrides, "ContactButton")}
         ></Button>
       </Flex>
       <Flex
@@ -273,7 +276,7 @@ export default function FutureActivityModal(props) {
         alignSelf="stretch"
         position="relative"
         padding="12px 16px 12px 16px"
-        {...getOverrideProps(overrides, "Card Area39911784")}
+        {...getOverrideProps(overrides, "PeopleContainer")}
       >
         <Flex
           gap="8px"
@@ -286,13 +289,13 @@ export default function FutureActivityModal(props) {
           alignSelf="stretch"
           position="relative"
           padding="0px 0px 0px 0px"
-          {...getOverrideProps(overrides, "Main Text39911785")}
+          {...getOverrideProps(overrides, "HostContainer")}
         >
           <Text
             fontFamily="Inter"
             fontSize="20px"
             fontWeight="700"
-            color="rgba(0,0,0,1)"
+            color="rgba(13,26,38,1)"
             lineHeight="20px"
             textAlign="left"
             display="block"
@@ -308,8 +311,8 @@ export default function FutureActivityModal(props) {
             position="relative"
             padding="0px 0px 0px 0px"
             whiteSpace="pre-wrap"
-            children="HOST: hostname"
-            {...getOverrideProps(overrides, "HOST: hostname")}
+            children={hostName}
+            {...getOverrideProps(overrides, "HostName")}
           ></Text>
         </Flex>
         <Flex
@@ -323,13 +326,13 @@ export default function FutureActivityModal(props) {
           alignSelf="stretch"
           position="relative"
           padding="0px 0px 0px 0px"
-          {...getOverrideProps(overrides, "Main Text39911787")}
+          {...getOverrideProps(overrides, "ParticipantsContainer")}
         >
           <Text
             fontFamily="Inter"
             fontSize="20px"
             fontWeight="700"
-            color="rgba(0,0,0,1)"
+            color="rgba(13,26,38,1)"
             lineHeight="20px"
             textAlign="left"
             display="block"
@@ -345,8 +348,8 @@ export default function FutureActivityModal(props) {
             position="relative"
             padding="0px 0px 0px 0px"
             whiteSpace="pre-wrap"
-            children="PARTICIPANTS:"
-            {...getOverrideProps(overrides, "PARTICIPANTS:")}
+            children="Participants:"
+            {...getOverrideProps(overrides, "Participants:")}
           ></Text>
           <Flex
             gap="8px"
@@ -360,7 +363,7 @@ export default function FutureActivityModal(props) {
             position="relative"
             padding="0px 0px 0px 0px"
             children={participantsSlot}
-            {...getOverrideProps(overrides, "Participants Slot")}
+            {...getOverrideProps(overrides, "ParticipantsSlot")}
           ></Flex>
         </Flex>
       </Flex>

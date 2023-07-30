@@ -13,14 +13,13 @@ export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes
 export declare type ActivityCardImageOverridesProps = {
     ActivityCardImage?: PrimitiveOverrideProps<FlexProps>;
     ImageSlot?: PrimitiveOverrideProps<FlexProps>;
-    image?: PrimitiveOverrideProps<ImageProps>;
-    Body?: PrimitiveOverrideProps<FlexProps>;
-    Text?: PrimitiveOverrideProps<FlexProps>;
-    Headline?: PrimitiveOverrideProps<FlexProps>;
-    "This is the Activity Name"?: PrimitiveOverrideProps<TextProps>;
-    Frame?: PrimitiveOverrideProps<FlexProps>;
-    "Date and Time"?: PrimitiveOverrideProps<TextProps>;
-    "Location of Event"?: PrimitiveOverrideProps<TextProps>;
+    Image?: PrimitiveOverrideProps<ImageProps>;
+    Container?: PrimitiveOverrideProps<FlexProps>;
+    DetailsContainer?: PrimitiveOverrideProps<FlexProps>;
+    ActivityTitle?: PrimitiveOverrideProps<TextProps>;
+    DateLocationContainer?: PrimitiveOverrideProps<FlexProps>;
+    DateTime?: PrimitiveOverrideProps<TextProps>;
+    Location?: PrimitiveOverrideProps<TextProps>;
     "Frame 1"?: PrimitiveOverrideProps<FlexProps>;
     Button?: PrimitiveOverrideProps<ButtonProps>;
 } & EscapeHatchProps;

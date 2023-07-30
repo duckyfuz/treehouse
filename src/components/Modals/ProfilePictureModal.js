@@ -1,6 +1,5 @@
 import React, { Button, Flex, Text } from "@aws-amplify/ui-react";
 
-import { MdDelete } from "react-icons/md";
 import Modal from "@mui/material/Modal";
 import { ChangeProfilePic } from "../../ui-components";
 
@@ -42,11 +41,11 @@ const ProfilePictureModal = ({ id, open, setPictureModal }) => {
               onClick={() => {
                 setPictureModal(false);
               }}
-              variation="warning"
+              variation="destructive"
               size="large"
               gap="0.4rem"
             >
-              Cancel <MdDelete />
+              Cancel
             </Button>
           </Flex>
           <Flex

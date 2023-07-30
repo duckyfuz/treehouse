@@ -118,11 +118,11 @@ export const Archive = () => {
         "Not Authed"
       ) : (
         <Flex
-          direction={"column"}
-          alignContent={"center"}
-          justifyContent={"flex-start"}
-          alignItems={"center"}
-          width={"100rem"}
+          direction="column"
+          justifyContent="flex-start"
+          alignItems="stretch"
+          alignContent="flex-start"
+          marginLeft={"20px"}
         >
           <Flex justifyContent="center" marginTop={"50px"}></Flex>
           <Flex
@@ -192,9 +192,10 @@ export const Archive = () => {
                     group1={
                       <Image
                         src={imageDict[activity.id]}
+                        borderRadius={"12px"}
                         alt="no image"
-                        width={"448px"}
-                        height={"120px"}
+                        width={"100%"}
+                        height={"100%"}
                         objectFit="cover"
                       />
                     }

@@ -13,10 +13,13 @@ export default function ArchiveDetailsModal(props) {
     activityItem,
     viewPicturesHandler,
     sharePicturesHandler,
-    imageSlot39821654,
     buttonFrame,
     exitHandler,
     participantsSlot,
+    location,
+    imageSlot39821654,
+    dateTime,
+    hostName,
     overrides,
     ...rest
   } = props;
@@ -29,7 +32,7 @@ export default function ArchiveDetailsModal(props) {
       justifyContent="center"
       alignItems="center"
       position="relative"
-      borderRadius="5px"
+      borderRadius="12px"
       padding="16px 16px 16px 16px"
       backgroundColor="rgba(255,255,255,1)"
       {...getOverrideProps(overrides, "ArchiveDetailsModal")}
@@ -46,7 +49,7 @@ export default function ArchiveDetailsModal(props) {
         alignSelf="stretch"
         position="relative"
         padding="0px 4px 0px 4px"
-        {...getOverrideProps(overrides, "Product Title")}
+        {...getOverrideProps(overrides, "TopContainer")}
       >
         <Flex
           gap="10px"
@@ -60,7 +63,7 @@ export default function ArchiveDetailsModal(props) {
           basis="0"
           position="relative"
           padding="0px 0px 0px 0px"
-          {...getOverrideProps(overrides, "Frame 1")}
+          {...getOverrideProps(overrides, "TitleLocationContainer")}
         >
           <Text
             fontFamily="Inter"
@@ -82,7 +85,7 @@ export default function ArchiveDetailsModal(props) {
             padding="0px 0px 0px 0px"
             whiteSpace="pre-wrap"
             children={activityItem?.title}
-            {...getOverrideProps(overrides, "ACTIVITY TITLE")}
+            {...getOverrideProps(overrides, "ActivityTitle")}
           ></Text>
           <Text
             fontFamily="Inter"
@@ -103,8 +106,8 @@ export default function ArchiveDetailsModal(props) {
             position="relative"
             padding="0px 0px 0px 0px"
             whiteSpace="pre-wrap"
-            children="LOCATION"
-            {...getOverrideProps(overrides, "LOCATION")}
+            children={location}
+            {...getOverrideProps(overrides, "Location")}
           ></Text>
         </Flex>
         <Button
@@ -116,7 +119,7 @@ export default function ArchiveDetailsModal(props) {
           variation="primary"
           children="Exit"
           onClick={exitHandler}
-          {...getOverrideProps(overrides, "Button39831756")}
+          {...getOverrideProps(overrides, "ExitButton")}
         ></Button>
       </Flex>
       <Flex
@@ -131,7 +134,7 @@ export default function ArchiveDetailsModal(props) {
         alignSelf="stretch"
         position="relative"
         children={imageSlot39821654}
-        {...getOverrideProps(overrides, "ImageSlot39821654")}
+        {...getOverrideProps(overrides, "ImageSlot")}
       ></Flex>
       <Flex
         gap="24px"
@@ -144,7 +147,7 @@ export default function ArchiveDetailsModal(props) {
         alignSelf="stretch"
         position="relative"
         padding="0px 24px 0px 24px"
-        {...getOverrideProps(overrides, "ImageSlot39821668")}
+        {...getOverrideProps(overrides, "ButtonsContainer")}
       >
         <Button
           width="250px"
@@ -155,7 +158,7 @@ export default function ArchiveDetailsModal(props) {
           variation="primary"
           children="View Pictures"
           onClick={viewPicturesHandler}
-          {...getOverrideProps(overrides, "Button39831738")}
+          {...getOverrideProps(overrides, "ViewButton")}
         ></Button>
         <Button
           width="250px"
@@ -166,7 +169,7 @@ export default function ArchiveDetailsModal(props) {
           variation="primary"
           children="Share Pictures"
           onClick={sharePicturesHandler}
-          {...getOverrideProps(overrides, "Button39831743")}
+          {...getOverrideProps(overrides, "ShareButton")}
         ></Button>
       </Flex>
       <Flex
@@ -180,7 +183,7 @@ export default function ArchiveDetailsModal(props) {
         alignSelf="stretch"
         position="relative"
         padding="12px 16px 12px 16px"
-        {...getOverrideProps(overrides, "Details Area")}
+        {...getOverrideProps(overrides, "DetailsDateContainer")}
       >
         <Flex
           gap="8px"
@@ -194,13 +197,13 @@ export default function ArchiveDetailsModal(props) {
           basis="0"
           position="relative"
           padding="0px 0px 0px 0px"
-          {...getOverrideProps(overrides, "Main Text39821645")}
+          {...getOverrideProps(overrides, "DetailsContainer")}
         >
           <Text
             fontFamily="Inter"
             fontSize="20px"
             fontWeight="700"
-            color="rgba(0,0,0,1)"
+            color="rgba(13,26,38,1)"
             lineHeight="20px"
             textAlign="left"
             display="block"
@@ -216,8 +219,8 @@ export default function ArchiveDetailsModal(props) {
             position="relative"
             padding="0px 0px 0px 0px"
             whiteSpace="pre-wrap"
-            children="DETAILS:"
-            {...getOverrideProps(overrides, "DETAILS:")}
+            children="Details:"
+            {...getOverrideProps(overrides, "Details:")}
           ></Text>
           <Text
             fontFamily="Inter"
@@ -240,7 +243,7 @@ export default function ArchiveDetailsModal(props) {
             padding="0px 0px 0px 0px"
             whiteSpace="pre-wrap"
             children={activityItem?.description}
-            {...getOverrideProps(overrides, "DETAILS FILL")}
+            {...getOverrideProps(overrides, "DetailsActual")}
           ></Text>
         </Flex>
         <Flex
@@ -253,7 +256,7 @@ export default function ArchiveDetailsModal(props) {
           shrink="0"
           position="relative"
           padding="0px 0px 0px 0px"
-          {...getOverrideProps(overrides, "Card Area39821638")}
+          {...getOverrideProps(overrides, "DateTimeContainer")}
         >
           <Text
             fontFamily="Inter"
@@ -273,8 +276,8 @@ export default function ArchiveDetailsModal(props) {
             position="relative"
             padding="0px 0px 0px 0px"
             whiteSpace="pre-wrap"
-            children="DATE AND TIME"
-            {...getOverrideProps(overrides, "DATE AND TIME")}
+            children={dateTime}
+            {...getOverrideProps(overrides, "DateTime")}
           ></Text>
         </Flex>
       </Flex>
@@ -289,7 +292,7 @@ export default function ArchiveDetailsModal(props) {
         alignSelf="stretch"
         position="relative"
         padding="12px 16px 12px 16px"
-        {...getOverrideProps(overrides, "Card Area39821676")}
+        {...getOverrideProps(overrides, "PeopleContainer")}
       >
         <Flex
           gap="8px"
@@ -302,13 +305,13 @@ export default function ArchiveDetailsModal(props) {
           alignSelf="stretch"
           position="relative"
           padding="0px 0px 0px 0px"
-          {...getOverrideProps(overrides, "Main Text39821677")}
+          {...getOverrideProps(overrides, "HostContainer")}
         >
           <Text
             fontFamily="Inter"
             fontSize="20px"
             fontWeight="700"
-            color="rgba(0,0,0,1)"
+            color="rgba(13,26,38,1)"
             lineHeight="20px"
             textAlign="left"
             display="block"
@@ -324,8 +327,8 @@ export default function ArchiveDetailsModal(props) {
             position="relative"
             padding="0px 0px 0px 0px"
             whiteSpace="pre-wrap"
-            children="HOST: hostname"
-            {...getOverrideProps(overrides, "HOST: hostname")}
+            children={hostName}
+            {...getOverrideProps(overrides, "HostName")}
           ></Text>
         </Flex>
         <Flex
@@ -339,13 +342,13 @@ export default function ArchiveDetailsModal(props) {
           alignSelf="stretch"
           position="relative"
           padding="0px 0px 0px 0px"
-          {...getOverrideProps(overrides, "Main Text39821683")}
+          {...getOverrideProps(overrides, "ParticipantsContainer")}
         >
           <Text
             fontFamily="Inter"
             fontSize="20px"
             fontWeight="700"
-            color="rgba(0,0,0,1)"
+            color="rgba(13,26,38,1)"
             lineHeight="20px"
             textAlign="left"
             display="block"
@@ -361,8 +364,8 @@ export default function ArchiveDetailsModal(props) {
             position="relative"
             padding="0px 0px 0px 0px"
             whiteSpace="pre-wrap"
-            children="PARTICIPANTS:"
-            {...getOverrideProps(overrides, "PARTICIPANTS:")}
+            children="Participants:"
+            {...getOverrideProps(overrides, "Participants:")}
           ></Text>
           <Flex
             gap="8px"
@@ -376,7 +379,7 @@ export default function ArchiveDetailsModal(props) {
             position="relative"
             padding="0px 0px 0px 0px"
             children={participantsSlot}
-            {...getOverrideProps(overrides, "Participants Slot")}
+            {...getOverrideProps(overrides, "ParticipantsSlot")}
           ></Flex>
         </Flex>
       </Flex>

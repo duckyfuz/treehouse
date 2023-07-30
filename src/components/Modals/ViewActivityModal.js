@@ -7,7 +7,7 @@ import { FutureActivityModal, UserCard } from "../../ui-components";
 
 import { ActivityItem, UserDetails } from "../../models";
 
-import convertISOToCustomFormat from "../../utils";
+import { convertISOToTwoLineFormat } from "../../utils";
 import { toast } from "react-toastify";
 
 const { InAppMessaging } = Notifications;
@@ -110,6 +110,7 @@ const ViewActivityModal = ({ userDets, open, activity, closeModalHandler }) => {
               width={"50%"}
               minWidth={"620px"}
               maxWidth={"800px"}
+              minHeight={"500px"}
               direction={"column"}
               borderRadius={"15px"}
               padding={"25px"}
@@ -124,6 +125,9 @@ const ViewActivityModal = ({ userDets, open, activity, closeModalHandler }) => {
                   }}
                   attendHandler={attendActivityHandler}
                   contactHandler={contactHostHandler}
+                  hostName={"Host: " + activity.hostName}
+                  location={activity.residence + " | " + activity.location}
+                  dateTime={convertISOToTwoLineFormat(activity.dateTime)}
                   participantsSlot={
                     <Collection
                       isPaginated
@@ -156,27 +160,15 @@ const ViewActivityModal = ({ userDets, open, activity, closeModalHandler }) => {
                     </Collection>
                   }
                   overrides={{
-                    LOCATION: {
-                      children: activity.residence + " | " + activity.location,
-                    },
-                    "PARTICIPANTS LIST": {
-                      children:
-                        activity.participants.length === 0
-                          ? "No participants yet... \nBe the first to join! "
-                          : activity.participants,
-                    },
-                    "DATE AND TIME": {
-                      children: convertISOToCustomFormat(activity.dateTime),
-                    },
-                    Button39831748: {
+                    AttendButton: {
                       isDisabled:
                         attendContact[0] || attendContact[1] ? true : false,
                     },
-                    Button39831749: {
+                    ContactButton: {
                       isDisabled: attendContact[1] ? true : false,
                     },
-                    "HOST: hostname": {
-                      children: "Host: " + activity.hostName,
+                    ExitButton: {
+                      variation: "destructive",
                     },
                   }}
                 />
