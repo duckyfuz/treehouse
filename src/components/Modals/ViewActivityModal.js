@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Analytics, DataStore, Notifications, Storage } from "aws-amplify";
-import { Collection, Flex } from "@aws-amplify/ui-react";
+import { Button, Collection, Flex } from "@aws-amplify/ui-react";
 
 import Modal from "@mui/material/Modal";
 import { FutureActivityModal, UserCard } from "../../ui-components";
@@ -180,6 +180,21 @@ const ViewActivityModal = ({ userDets, open, activity, closeModalHandler }) => {
                     },
                   }}
                 />
+              )}
+              {userDets.name === activity.host && (
+                <Button
+                  variation="destructive"
+                  loadingText=""
+                  onClick={() => {
+                    (async function () {
+                      DataStore.delete(activity);
+                      closeModalHandler();
+                      toast.success(`Activity successfully deleted!`);
+                    })();
+                  }}
+                >
+                  Delete Activity
+                </Button>
               )}
             </Flex>
           </Flex>
